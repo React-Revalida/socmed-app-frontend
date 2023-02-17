@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Container, CssBaseline } from "@mui/material";
 import Feed from "./pages/Feed";
 import Sidebar from "./components/Sidebar";
+import Widget from "./components/Widget";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Container>
+      <Widget />
     </div>
   );
 }
