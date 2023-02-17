@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import React from "react";
 import "./Comment.css";
 
