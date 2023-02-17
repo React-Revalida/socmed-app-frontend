@@ -14,6 +14,10 @@
   display: flex;
 }
 
+.emoji {
+  overflow: visible !important;
+}
+
 .tweetBox__input > input {
   flex: 1;
   margin-left: 20px;

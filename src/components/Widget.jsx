@@ -12,7 +12,7 @@ const Widget = () => {
     <div className="widgets">
       <div className="widgets__input">
         <SearchIcon className="widgets__SearchIcon" />
-        <input placeholder="Search Twitter" type="text" />
+        <input placeholder="Search OnlyPosts" type="text" />
       </div>
       <div className="widgets__widgetContainer">
         <h2>Whats'happening</h2>

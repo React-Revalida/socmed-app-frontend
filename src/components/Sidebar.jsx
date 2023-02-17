@@ -13,7 +13,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar__twitterIcon">
         <PushPinIcon className="icon" />
-        OnlyPosts
+        <h3>OnlyPosts</h3>
       </div>
 
       <SidebarOpt active Icon={HomeIcon} text="Feed" />
