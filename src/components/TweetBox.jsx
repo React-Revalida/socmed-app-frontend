@@ -1,6 +1,6 @@
 import { Avatar, Button } from "@mui/material";
 import React, { useState } from "react";
-import "./TweetBox.css";
+import "../styles/TweetBox.css";
 import EmojiPicker from "emoji-picker-react";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { styled } from "@mui/material/styles";

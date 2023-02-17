@@ -1,6 +1,6 @@
 import { Avatar, Typography } from "@mui/material";
 import React from "react";
-import "./Comment.css";
+import "../styles/Comment.css";
 
 const Comment = () => {
   return (

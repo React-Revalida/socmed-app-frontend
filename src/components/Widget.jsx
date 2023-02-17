@@ -1,4 +1,4 @@
-import "./Widget.css";
+import "../styles/Widget.css";
 import {
   TwitterTimelineEmbed,
   TwitterShareButton,

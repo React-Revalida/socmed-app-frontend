@@ -5,7 +5,7 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React, { forwardRef } from "react";
-import "./Post.css";
+import "../styles/Post.css";
 import Actions from "./Actions";
 
 const Post = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Sidebar.css";
+import "../styles/Sidebar.css";
 import OnlyPost from "../assets/onlyposts.png";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import TwitterIcon from "@mui/icons-material/Twitter";
