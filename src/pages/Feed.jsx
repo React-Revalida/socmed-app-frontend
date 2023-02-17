@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
-import "./Feed.css";
+import "../styles/Feed.css";
 import TweetBox from "../components/TweetBox";
 import {
   Button,
