@@ -8,6 +8,7 @@ import { Container, CssBaseline } from "@mui/material";
 import Feed from "./pages/Feed";
 import Sidebar from "./components/Sidebar";
 import Widget from "./components/Widget";
+import PostPage from "./pages/PostPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/post" element={<PostPage />} />
         </Routes>
       </Container>
       <Widget />
