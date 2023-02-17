@@ -6,11 +6,13 @@ import RegisterPage from "./pages/RegisterPage";
 import { useState } from "react";
 import { Container, CssBaseline } from "@mui/material";
 import Feed from "./pages/Feed";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <>
+    <div className="app">
       <CssBaseline />
+      <Sidebar />
       <Container sx={{ marginTop: 3 }}>
         <Routes>
           <Route path="/" element={<Navigate to="/feed" />}></Route>
@@ -19,7 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Container>
-    </>
+    </div>
   );
 }
 
