@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="app">
       <CssBaseline />
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Container sx={{ marginTop: 3 }}>
         <Routes>
           <Route path="/" element={<Navigate to="/feed" />}></Route>
@@ -23,7 +23,7 @@ function App() {
           <Route path="/post" element={<PostPage />} />
         </Routes>
       </Container>
-      <Widget />
+      {/* <Widget /> */}
     </div>
   );
 }
