@@ -7,6 +7,7 @@
 .comment__body {
   flex: 1;
   padding: 10px;
+  margin-top: 6px;
 }
 
 .comment__avatar {

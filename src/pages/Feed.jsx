@@ -34,8 +34,20 @@ const Feed = () => {
             <Post />
           </CardActionArea>
         </Card>
+        <Card sx={{ boxShadow: 0 }}>
+          <CardActionArea onClick={() => navigate("/post")}>
+            <Post />
+          </CardActionArea>
+        </Card>
+        <Card sx={{ boxShadow: 0 }}>
+          <CardActionArea onClick={() => navigate("/post")}>
+            <Post />
+          </CardActionArea>
+        </Card>
+        {/* 
         <Post />
         <Post />
+        <Post /> */}
         {posts.map((post) => (
           <Post
           // key={post.text}
