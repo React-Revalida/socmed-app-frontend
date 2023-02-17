@@ -1,7 +1,18 @@
 import React from "react";
+import { Box } from "@mui/material";
+import LoginForm from "../components/RegisterForm";
 
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="90vh"
+    >
+      <LoginForm />
+    </Box>
+  );
 };
 
 export default RegisterPage;
