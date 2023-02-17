@@ -2,12 +2,22 @@ import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 import "./Feed.css";
 import TweetBox from "../components/TweetBox";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  Container,
+  IconButton,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,7 +28,12 @@ const Feed = () => {
 
         <TweetBox />
         {/* <FlipMove> */}
-        <Post />
+        {/*test for clicking post*/}
+        <Card sx={{ boxShadow: 0 }}>
+          <CardActionArea onClick={() => navigate("/post")}>
+            <Post />
+          </CardActionArea>
+        </Card>
         <Post />
         <Post />
         {posts.map((post) => (
