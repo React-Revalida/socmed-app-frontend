@@ -8,22 +8,23 @@ import Feed from "./pages/Feed";
 import Sidebar from "./components/Sidebar";
 import Widget from "./components/Widget";
 import PostPage from "./pages/PostPage";
+import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 
 function App() {
   return (
     <div className="app">
       <CssBaseline />
-      {/* <Sidebar /> */}
       <Container sx={{ marginTop: 3 }}>
         <Routes>
-          <Route path="/" element={<Navigate to="/feed" />}></Route>
-          <Route path="/feed" element={<Feed />} />
+          <Route element={<SidebarWidgetLayout />}>
+            <Route path="/" element={<Navigate to="/feed" />}></Route>
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/post" element={<PostPage />} />
+          </Route>
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/post" element={<PostPage />} />
         </Routes>
       </Container>
-      {/* <Widget /> */}
     </div>
   );
 }
