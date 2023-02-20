@@ -9,7 +9,7 @@ const PostPage = (postDetails) => {
   const navigate = useNavigate();
 
   return (
-    <Grid container spacing={1}>
+    <Grid container sx={{ mb: 60, ml: 3 }}>
       <Grid item xs={1}>
         <IconButton>
           <ArrowBack onClick={() => navigate("/")} />
