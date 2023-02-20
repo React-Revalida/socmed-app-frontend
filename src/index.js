@@ -3,12 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import {
+  UserInterfaceContext,
+  UserInterfaceProvider,
+} from "./contexts/UserInterfaceContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserInterfaceProvider>
+        <App />
+      </UserInterfaceProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
