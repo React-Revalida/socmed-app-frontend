@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "../components/Post";
 import "../styles/Feed.css";
 import TweetBox from "../components/TweetBox";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import {
   Button,
   Card,
@@ -10,11 +12,13 @@ import {
   IconButton,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { UserInterfaceContext } from "../contexts/UserInterfaceContext";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'
 
 const Feed = () => {
+  const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
   const [posts, setPosts] = useState([]);
 
   const navigate = useNavigate();
@@ -23,7 +27,16 @@ const Feed = () => {
     <>
       <div className="feed">
         <div className="feed__header">
-          <h2>Your Feed</h2>
+          <h2 className="inline">Your Feed</h2>
+
+          <IconButton
+            className="inline"
+            sx={{ ml: 1 }}
+            onClick={onToggleDarkMode}
+            color="inherit"
+          >
+            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </div>
 
         <TweetBox />

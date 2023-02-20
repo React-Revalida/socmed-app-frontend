@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/Sidebar.css";
 import OnlyPost from "../assets/onlyposts.png";
 import PushPinIcon from "@mui/icons-material/PushPin";
@@ -8,6 +8,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Button from "@mui/material/Button";
+import Switch from "@mui/material/Switch";
+
 const Sidebar = () => {
   return (
     <div className="sidebar">
