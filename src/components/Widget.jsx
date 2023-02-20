@@ -11,7 +11,7 @@ const Widget = () => {
   return (
     <div className="widgets">
       <div className="widgets__input">
-        <SearchIcon className="widgets__SearchIcon" />
+        <SearchIcon />
         <input placeholder="Search OnlyPosts" type="text" />
       </div>
       <div className="widgets__widgetContainer">

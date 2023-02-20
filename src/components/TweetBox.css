@@ -23,13 +23,15 @@
   margin-left: 20px;
   font-size: 20px;
   border: none;
+  border-radius: 10px;
   outline: none;
 }
 
 .tweetBox__imageInput {
-  border: none;
   padding: 10px;
   outline: none;
+  border: none;
+  border-radius: 10px;
 }
 
 .tweetBox__tweetButton {

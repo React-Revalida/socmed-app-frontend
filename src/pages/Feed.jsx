@@ -21,7 +21,7 @@ const Feed = () => {
         <Post />
         <Post />
         <Post />
-        {posts.map((post) => (
+        {/* {posts.map((post) => (
           <Post
           // key={post.text}
           // displayName={post.displayName}
@@ -31,7 +31,7 @@ const Feed = () => {
           // image={post.image}
           // avatar={post.avatar}
           />
-        ))}
+        ))} */}
         {/* </FlipMove> */}
       </div>
     </>
