@@ -9,6 +9,7 @@ const LoginPage = () => {
       justifyContent="center"
       alignItems="center"
       minHeight="90vh"
+      sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
     >
       <LoginForm />
     </Box>
