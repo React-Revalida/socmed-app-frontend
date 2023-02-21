@@ -18,6 +18,7 @@ import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { amber, deepOrange, grey } from "@mui/material/colors";
 import { PaletteMode } from "@mui/material";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const theme = createTheme({
   palette: {
@@ -89,6 +90,7 @@ function App() {
             </Route>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Container>
       </div>
