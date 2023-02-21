@@ -7,6 +7,7 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import errorPic from "../assets/NavigatingError.png";
 import textBox from "../assets/TextBox.png";
+import shadow from "../assets/OvalShadow.png";
 
 const NotFoundPage = () => {
   const accessToken = true;
@@ -25,6 +26,16 @@ const NotFoundPage = () => {
               left: 50,
             }}
           />
+          <Grid
+            sx={{
+              transform: "rotateX(240deg)",
+              position: "relative",
+              left: 50,
+              bottom: 10,
+            }}
+          >
+            <img src={shadow} width={80} height={50}></img>
+          </Grid>
         </Grid>
         <Grid item xs={4} sx={{ mr: 50 }}>
           <Typography
@@ -60,7 +71,7 @@ const NotFoundPage = () => {
         <Grid item xs={12} display={"flex"} justifyContent={"center"}>
           <Typography fontSize={15} fontFamily={"unset"} color={"#7b847f"}>
             We couldn't find the page you are looking for, or maybe it never
-            existed. Try heading back to the main page
+            existed. Try heading back to the main page.
           </Typography>
         </Grid>
         <Grid item xs={12} display={"flex"} justifyContent={"center"}>
