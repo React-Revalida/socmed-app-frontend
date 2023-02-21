@@ -57,7 +57,7 @@ const RegisterForm = () => {
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: 225, marginRight: 1 }}
+                sx={{ width: "200", marginRight: 1 }}
               />
               <TextField
                 name="middleName"
@@ -65,7 +65,7 @@ const RegisterForm = () => {
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: 225, marginLeft: 1, marginRight: 1 }}
+                sx={{ width: "200", marginRight: 1 }}
               />
               <TextField
                 name="lastName"
@@ -73,10 +73,10 @@ const RegisterForm = () => {
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: 200, marginLeft: 1 }}
+                sx={{ width: "200" }}
               />
             </Box>
-            <Box>
+            <Box display={"flex"} justifyContent={"space-between"}>
               <TextField
                 name="username"
                 label="Username"
@@ -84,7 +84,7 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ marginRight: 1, width: 300 }}
+                sx={{ marginRight: 1, width: 340 }}
               />
               <TextField
                 name="email"
@@ -92,10 +92,10 @@ const RegisterForm = () => {
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ marginLeft: 1, width: 300 }}
+                sx={{ width: 340 }}
               />
             </Box>
-            <Box>
+            <Box display={"flex"} justifyContent={"space-between"}>
               <TextField
                 name="password"
                 label="Password"
@@ -103,7 +103,7 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ marginRight: 1, width: 300 }}
+                sx={{ marginRight: 1, width: 340 }}
               />
               <TextField
                 name="confirmPassword"
@@ -112,19 +112,25 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ marginLeft: 1, width: 300 }}
+                sx={{ width: 340 }}
               />
             </Box>
-            <Box width={300}>
-              <Select
-                name="gender"
-                options={genderOptions}
-                placeholder="Gender"
-              />
-            </Box>
-            <Box width={300}>
-              <Typography variant="overline">Profile Photo</Typography>
-              <Input type="file" />
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Box width={340}>
+                <Select
+                  name="gender"
+                  options={genderOptions}
+                  placeholder="Gender"
+                />
+              </Box>
+              <Box width={340}>
+                <Typography variant="overline">Profile Photo</Typography>
+                <Input type="file" />
+              </Box>
             </Box>
           </Box>
         </CardContent>
