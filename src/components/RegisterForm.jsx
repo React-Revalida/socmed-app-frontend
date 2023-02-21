@@ -30,6 +30,7 @@ const RegisterForm = () => {
           paddingTop: 2,
           paddingBottom: 4,
           borderRadius: 4,
+          width: 800,
         }}
       >
         <Box textAlign={"center"}>
@@ -41,77 +42,93 @@ const RegisterForm = () => {
           sx={{ fontWeight: "bold", textAlign: "center" }}
         />
         <CardContent>
-          <Box width={250}>
-            <TextField
-              name="firstName"
-              label="First Name"
-              variant="outlined"
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="middleName"
-              label="Middle Name"
-              variant="outlined"
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="lastName"
-              label="Last Name"
-              variant="outlined"
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="username"
-              label="Username"
-              variant="outlined"
-              type={"password"}
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="email"
-              label="Email"
-              variant="outlined"
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="password"
-              label="Password"
-              variant="outlined"
-              type={"password"}
-              margin="dense"
-              size="small"
-              fullWidth
-            />
-            <TextField
-              name="confirmPassword"
-              label="Confirm Password"
-              variant="outlined"
-              type={"password"}
-              style={{ marginBottom: 8, marginTop: 4 }}
-              size="small"
-              fullWidth
-            />
-            <Select
-              name="gender"
-              options={genderOptions}
-              placeholder="Gender"
-              fullWidth
-            />
-            <Typography variant="overline">Profile Photo</Typography>
-            <Input type="file" />
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Box>
+              <TextField
+                name="firstName"
+                label="First Name"
+                variant="outlined"
+                margin="dense"
+                size="small"
+                sx={{ width: 225, marginRight: 1 }}
+              />
+              <TextField
+                name="middleName"
+                label="Middle Name"
+                variant="outlined"
+                margin="dense"
+                size="small"
+                sx={{ width: 225, marginLeft: 1, marginRight: 1 }}
+              />
+              <TextField
+                name="lastName"
+                label="Last Name"
+                variant="outlined"
+                margin="dense"
+                size="small"
+                sx={{ width: 200, marginLeft: 1 }}
+              />
+            </Box>
+            <Box>
+              <TextField
+                name="username"
+                label="Username"
+                variant="outlined"
+                type={"password"}
+                margin="dense"
+                size="small"
+                sx={{ marginRight: 1, width: 300 }}
+              />
+              <TextField
+                name="email"
+                label="Email"
+                variant="outlined"
+                margin="dense"
+                size="small"
+                sx={{ marginLeft: 1, width: 300 }}
+              />
+            </Box>
+            <Box>
+              <TextField
+                name="password"
+                label="Password"
+                variant="outlined"
+                type={"password"}
+                margin="dense"
+                size="small"
+                sx={{ marginRight: 1, width: 300 }}
+              />
+              <TextField
+                name="confirmPassword"
+                label="Confirm Password"
+                variant="outlined"
+                type={"password"}
+                margin="dense"
+                size="small"
+                sx={{ marginLeft: 1, width: 300 }}
+              />
+            </Box>
+            <Box width={300}>
+              <Select
+                name="gender"
+                options={genderOptions}
+                placeholder="Gender"
+              />
+            </Box>
+            <Box width={300}>
+              <Typography variant="overline">Profile Photo</Typography>
+              <Input type="file" />
+            </Box>
           </Box>
         </CardContent>
-        <CardActions sx={{ padding: "15px" }}>
+        <CardActions sx={{ justifyContent: "center" }}>
           <Button
             variant="contained"
             sx={{
