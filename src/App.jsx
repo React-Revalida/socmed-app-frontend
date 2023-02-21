@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { useContext, useState } from "react";
 import {
+  useTheme,
   Container,
   createTheme,
   CssBaseline,
@@ -15,16 +16,68 @@ import Widget from "./components/Widget";
 import PostPage from "./pages/PostPage";
 import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
+import { amber, deepOrange, grey } from "@mui/material/colors";
+import { PaletteMode } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
+  },
+});
+
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+    primary: {
+      light: "#f5f8fa",
+      main: "#3f50b5",
+      dark: "#17202a",
+      contrastText: "#fff",
+    },
+    ...(mode === "dark" && {
+      background: {
+        default: "#17202a",
+        paper: "#17202a",
+      },
+    }),
+    text: {
+      ...(mode === "light"
+        ? {
+            primary: grey[900],
+            secondary: grey[800],
+          }
+        : {
+            primary: "#fff",
+            secondary: grey[500],
+          }),
+    },
+  },
+});
 
 function App() {
   const { darkMode } = useContext(UserInterfaceContext);
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  });
+
+  const theme = useTheme();
+  const mode = darkMode ? "dark" : "light";
+  const darkModeTheme = createTheme(getDesignTokens(mode));
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: darkMode ? "dark" : "light",
+  //   },
+  // });
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkModeTheme}>
       <div className="app">
         <CssBaseline />
         <Container sx={{ marginTop: 3 }}>
