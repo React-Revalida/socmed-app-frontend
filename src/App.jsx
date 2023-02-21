@@ -2,7 +2,7 @@ import "./App.css";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   useTheme,
   Container,
@@ -19,6 +19,10 @@ import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { amber, deepOrange, grey } from "@mui/material/colors";
 import { PaletteMode } from "@mui/material";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProfilePage from "./pages/ProfilePage";
+import * as profileService from "./services/profile";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "./store/actions";
 
 const theme = createTheme({
   palette: {
@@ -77,6 +81,14 @@ function App() {
   //     mode: darkMode ? "dark" : "light",
   //   },
   // });
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
+  const profile = useSelector((state) => state.profile);
+
   return (
     <ThemeProvider theme={darkModeTheme}>
       <div className="app">
@@ -87,6 +99,10 @@ function App() {
               <Route path="/" element={<Navigate to="/feed" />}></Route>
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
+              <Route
+                path="/profile/me"
+                element={<ProfilePage profile={profile} />}
+              />
             </Route>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
