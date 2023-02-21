@@ -6,12 +6,21 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Input,
   TextField,
   Typography,
 } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
+import { Link } from "react-router-dom";
+import Select from "react-select";
 
 const RegisterForm = () => {
+  const genderOptions = [
+    { value: "MALE", label: "Male" },
+    { value: "FEMALE", label: "Female" },
+    { value: "OTHER", label: "Prefer not to say" },
+  ];
+
   return (
     <>
       <Card
@@ -34,16 +43,32 @@ const RegisterForm = () => {
         <CardContent>
           <Box width={250}>
             <TextField
-              name="name"
-              label="Name"
+              name="firstName"
+              label="First Name"
               variant="outlined"
               margin="dense"
               size="small"
               fullWidth
             />
             <TextField
-              name="phoneNumber"
-              label="Phone Number"
+              name="middleName"
+              label="Middle Name"
+              variant="outlined"
+              margin="dense"
+              size="small"
+              fullWidth
+            />
+            <TextField
+              name="lastName"
+              label="Last Name"
+              variant="outlined"
+              margin="dense"
+              size="small"
+              fullWidth
+            />
+            <TextField
+              name="username"
+              label="Username"
               variant="outlined"
               type={"password"}
               margin="dense"
@@ -54,11 +79,36 @@ const RegisterForm = () => {
               name="email"
               label="Email"
               variant="outlined"
+              margin="dense"
+              size="small"
+              fullWidth
+            />
+            <TextField
+              name="password"
+              label="Password"
+              variant="outlined"
               type={"password"}
               margin="dense"
               size="small"
               fullWidth
             />
+            <TextField
+              name="confirmPassword"
+              label="Confirm Password"
+              variant="outlined"
+              type={"password"}
+              style={{ marginBottom: 8, marginTop: 4 }}
+              size="small"
+              fullWidth
+            />
+            <Select
+              name="gender"
+              options={genderOptions}
+              placeholder="Gender"
+              fullWidth
+            />
+            <Typography variant="overline">Profile Photo</Typography>
+            <Input type="file" />
           </Box>
         </CardContent>
         <CardActions sx={{ padding: "15px" }}>
@@ -66,17 +116,22 @@ const RegisterForm = () => {
             variant="contained"
             sx={{
               width: 250,
-              backgroundColor: "#1DA1F2",
+              backgroundColor: "#00d5bf",
               borderRadius: 8,
+              ":hover": {
+                backgroundColor: "#00d5bf",
+              },
             }}
           >
             Sign Up
           </Button>
         </CardActions>
-        <Box marginTop={2} marginBottom={4} textAlign={"center"}>
-          <Typography variant="caption" color={"#1DA1F2"}>
-            Go to Login
-          </Typography>
+        <Box textAlign={"center"}>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Typography variant="caption" color={"#00d5bf"}>
+              Go to Login
+            </Typography>
+          </Link>
         </Box>
       </Card>
     </>
