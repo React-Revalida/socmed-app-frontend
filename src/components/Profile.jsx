@@ -2,6 +2,7 @@ import { ArrowBack, Schedule } from "@mui/icons-material";
 import React from "react";
 import Avatar from "react-avatar";
 import { useSelector } from "react-redux";
+
 const Profile = ({ profile }) => {
   const loading = useSelector((state) => state.loading);
   if (loading) return <div>Loading...</div>;

@@ -6,7 +6,7 @@ import {
 import * as profileService from "../../services/profile";
 
 export const fetchProfile = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchProfileRequest());
     profileService
       .getProfile()
