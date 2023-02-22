@@ -4,29 +4,56 @@ import {
   Grid,
   InputLabel,
   MenuItem,
-  OutlinedInput,
-  Select,
   Tab,
   Tabs,
-  TextField,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { Box, useTheme } from "@mui/system";
 import React from "react";
 import Avatar from "react-avatar";
 import "../styles/EditProfile.css";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import { CustomTextField } from "../custom/CustomTextField";
+import {
+  CustomOutlinedTextField,
+  CustomSelect,
+} from "../custom/CustomFieldComponents";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import moment from "moment";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  // change color of data picker
+  datePickerOutline: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
+      },
+      "&:hover fieldset": {
+        borderColor: "white",
+      },
+    },
+  },
+}));
 
 const ProfileEditForm = ({ profile }) => {
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-  const [age, setAge] = React.useState("");
+  const [tab, setTab] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-
-  const handleGenderChange = (event) => {
-    setAge(event.target.value);
+  const [state, setState] = React.useState({
+    firstname: profile.firstname,
+    middlename: profile.middlename ? profile.middlename : "",
+    lastname: profile.lastname,
+    gender: profile.gender,
+    birthdate: profile.birthdate,
+    phone: profile.phone,
+    bio: profile.bio,
+    profilePic: profile.profilePic,
+  });
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleGenderClose = () => {
@@ -37,13 +64,10 @@ const ProfileEditForm = ({ profile }) => {
     setOpen(true);
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleTabChange = (event, newValue) => {
+    setTab(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
   return (
     <form>
       <Grid container spacing={2}>
@@ -64,78 +88,97 @@ const ProfileEditForm = ({ profile }) => {
         <Grid item xs={12}>
           <Box sx={{ bgcolor: "background.paper" }}>
             <Tabs
-              value={value}
-              onChange={handleChange}
+              value={tab}
+              onChange={handleTabChange}
               textColor="inherit"
               variant="fullWidth"
             >
               <Tab label="Profile" {...a11yProps(0)} />
               <Tab label="Address" {...a11yProps(1)} />
             </Tabs>
-            <SwipeableViews
-              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-              index={value}
-              onChangeIndex={handleChangeIndex}
-            >
-              <TabPanel value={value} index={0} dir={theme.direction}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <CustomTextField
-                      name="firstname"
-                      label="First Name"
-                      fullWidth
-                      variant="standard"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <CustomTextField
-                      name="middlename"
-                      label="Middle Name"
-                      fullWidth
-                      variant="standard"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <CustomTextField
-                      name="lastname"
-                      label="Last Name"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControl fullWidth>
-                      <InputLabel id="gender">Gender</InputLabel>
-                      <Select
-                        labelId="gender"
-                        id="gender"
-                        open={open}
-                        onClose={handleGenderClose}
-                        onOpen={handleGenderOpen}
-                        value={age}
-                        label="Gender"
-                        onChange={handleGenderChange}
-                      >
-                        <MenuItem value="MALE">Male</MenuItem>
-                        <MenuItem value="FEMALE">Female</MenuItem>
-                        <MenuItem value="OTHERS">Others</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <CustomTextField
-                      name="bio"
-                      label="Bio"
-                      fullWidth
-                      multiline
-                      rows={4}
-                    />
-                  </Grid>
+            <TabPanel value={tab} index={0} dir={theme.direction}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <CustomOutlinedTextField
+                    name="firstname"
+                    label="First Name"
+                    fullWidth
+                    value={state.firstname}
+                    onChange={handleChange}
+                  />
                 </Grid>
-              </TabPanel>
-              <TabPanel value={value} index={1} dir={theme.direction}>
-                Item Two
-              </TabPanel>
-            </SwipeableViews>
+                <Grid item xs={12}>
+                  <CustomOutlinedTextField
+                    name="middlename"
+                    label="Middle Name"
+                    fullWidth
+                    value={state.middlename}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomOutlinedTextField
+                    name="lastname"
+                    label="Last Name"
+                    fullWidth
+                    value={state.lastname}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel id="gender">Gender</InputLabel>
+                    <CustomSelect
+                      labelId="gender"
+                      id="gender"
+                      open={open}
+                      onClose={handleGenderClose}
+                      onOpen={handleGenderOpen}
+                      value={state.gender}
+                      label="Gender"
+                      onChange={(event) => {
+                        setState({ ...state, gender: event.target.value });
+                      }}
+                    >
+                      <MenuItem value="MALE">Male</MenuItem>
+                      <MenuItem value="FEMALE">Female</MenuItem>
+                      <MenuItem value="OTHERS">Others</MenuItem>
+                    </CustomSelect>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <LocalizationProvider dateAdapter={AdapterMoment}>
+                    <DesktopDatePicker
+                      label="Birthday"
+                      inputFormat="MMMM DD, yyyy"
+                      value={state.birthdate}
+                      disableMaskedInput={true}
+                      onChange={(newValue) => {
+                        let format = "yyyy-MM-DD";
+                        const date = moment(newValue).format(format);
+                        setState({ ...state, birthdate: date });
+                        console.log(state.birthdate);
+                      }}
+                      renderInput={(params) => (
+                        <CustomOutlinedTextField fullWidth {...params} />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomOutlinedTextField
+                    name="bio"
+                    label="Bio"
+                    fullWidth
+                    multiline
+                    rows={4}
+                  />
+                </Grid>
+              </Grid>
+            </TabPanel>
+            <TabPanel value={tab} index={1} dir={theme.direction}>
+              Item Two
+            </TabPanel>
           </Box>
           <Grid item xs={12}>
             <Button

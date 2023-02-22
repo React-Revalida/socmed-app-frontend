@@ -23,6 +23,7 @@ const Profile = ({ profile }) => {
             timeout: 500,
           },
         }}
+        onClose={() => setOpen(false)}
       >
         <DialogContent>
           <ProfileEditForm profile={profile} />
