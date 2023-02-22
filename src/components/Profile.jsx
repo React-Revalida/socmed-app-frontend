@@ -11,21 +11,14 @@ const Profile = ({ profile, isMe }) => {
     setOpen(isOpen);
   };
 
-  useEffect(() => {
-    setOpen(false);
-  }, []);
   if (loading) return <div>Loading...</div>;
   return (
     <>
-      <Dialog open={open}>
-        <DialogContent>
-          <ProfileEditForm
-            profile={profile}
-            isOpen={open}
-            onOpenDialog={handleOpenEditDialog}
-          />
-        </DialogContent>
-      </Dialog>
+      <ProfileEditForm
+        profile={profile}
+        isDialogOpen={open}
+        onOpenDialog={handleOpenEditDialog}
+      />
       <section className="feed">
         <div className="profileHeader">
           <div>

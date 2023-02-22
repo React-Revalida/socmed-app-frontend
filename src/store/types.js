@@ -44,3 +44,9 @@ export const updateProfileFailure = (error) => {
     payload: error,
   };
 }
+
+export const resetSuccess = () => {
+  return {
+    type: "RESET_SUCCESS",
+  };
+}

@@ -1,5 +1,7 @@
 import {
   Button,
+  Dialog,
+  DialogContent,
   FormControl,
   Grid,
   InputLabel,
@@ -8,7 +10,7 @@ import {
   Tabs,
 } from "@mui/material";
 import { Box, useTheme } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "../styles/EditProfile.css";
 import PropTypes from "prop-types";
@@ -21,8 +23,8 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
 import * as profileActions from "../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-
-const ProfileEditForm = ({ profile, onOpenDialog }) => {
+import { toast } from "react-toastify";
+const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
@@ -65,18 +67,21 @@ const ProfileEditForm = ({ profile, onOpenDialog }) => {
   };
 
   const success = useSelector((state) => state.success);
-  const loading = useSelector((state) => state.loading);
+  const fieldErrors = useSelector((state) => state.error);
+
+  useEffect(() => {
+    if(success) {
+      onOpenDialog(false);
+      dispatch(profileActions.resetSuccess());
+    }
+  }, [fieldErrors, success, onOpenDialog, dispatch]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tab === 0) {
       dispatch(profileActions.updateProfile(state, profilePicUpload));
-      if (loading === false && success === true) {
-        onOpenDialog(false);
-      } else {
-        onOpenDialog(true);
-      }
-    } else {
-      console.log("Address Edit Form: ", state);
+    } else if (tab === 1) {
+      alert("Address");
     }
   };
   const handleFileChange = (event) => {
@@ -89,150 +94,154 @@ const ProfileEditForm = ({ profile, onOpenDialog }) => {
     reader.readAsDataURL(file);
   };
   return (
-    <Grid component="form" onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <div className="profile">
-            <div className="profileTitle">
-              <label htmlFor="profilePicInput">
-                <Avatar
-                  round={true}
-                  size="120"
-                  name={profile.name}
-                  src={profilePic}
-                ></Avatar>
-                <input
-                  type="file"
-                  id="profilePicInput"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                />
-              </label>
-            </div>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ bgcolor: "background.paper" }}>
-            <Tabs
-              value={tab}
-              onChange={handleTabChange}
-              textColor="inherit"
-              variant="fullWidth"
-            >
-              <Tab label="Profile" {...a11yProps(0)} />
-              <Tab label="Address" {...a11yProps(1)} />
-            </Tabs>
-            <TabPanel value={tab} index={0} dir={theme.direction}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <CustomOutlinedTextField
-                    name="firstname"
-                    label="First Name"
-                    fullWidth
-                    value={state.firstname}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <CustomOutlinedTextField
-                    name="middlename"
-                    label="Middle Name"
-                    fullWidth
-                    value={state.middlename}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <CustomOutlinedTextField
-                    name="lastname"
-                    label="Last Name"
-                    fullWidth
-                    value={state.lastname}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel id="gender">Gender</InputLabel>
-                    <CustomSelect
-                      labelId="gender"
-                      id="gender"
-                      open={open}
-                      onClose={handleGenderClose}
-                      onOpen={handleGenderOpen}
-                      value={state.gender}
-                      label="Gender"
-                      onChange={(event) => {
-                        setState({ ...state, gender: event.target.value });
-                      }}
-                    >
-                      <MenuItem value="MALE">Male</MenuItem>
-                      <MenuItem value="FEMALE">Female</MenuItem>
-                      <MenuItem value="OTHERS">Others</MenuItem>
-                    </CustomSelect>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <LocalizationProvider dateAdapter={AdapterMoment}>
-                    <DesktopDatePicker
-                      label="Birthday"
-                      inputFormat="MMMM DD, yyyy"
-                      value={state.birthdate}
-                      disableMaskedInput={true}
-                      onChange={(newValue) => {
-                        let format = "yyyy-MM-DD";
-                        const date = moment(newValue).format(format);
-                        setState({ ...state, birthdate: date });
-                      }}
-                      renderInput={(params) => (
-                        <CustomOutlinedTextField fullWidth {...params} />
-                      )}
+    <Dialog open={isDialogOpen} onClose={() => onOpenDialog(false)} fullWidth>
+      <DialogContent>
+        <Grid component="form" onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <div className="profile">
+                <div className="profileTitle">
+                  <label htmlFor="profilePicInput">
+                    <Avatar
+                      round={true}
+                      size="120"
+                      name={profile.name}
+                      src={profilePic}
+                    ></Avatar>
+                    <input
+                      type="file"
+                      id="profilePicInput"
+                      style={{ display: "none" }}
+                      onChange={handleFileChange}
                     />
-                  </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12}>
-                  <CustomOutlinedTextField
-                    name="phone"
-                    label="Phone"
-                    fullWidth
-                    value={state.phone}
-                    onChange={handleChange}
-                    inputProps={{
-                      maxLength: 11,
-                      inputMode: "numeric",
-                      pattern: "[0-9]*",
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <CustomOutlinedTextField
-                    name="bio"
-                    label="Bio"
-                    fullWidth
-                    multiline
-                    rows={4}
-                    value={state.bio}
-                    onChange={handleChange}
-                  />
-                </Grid>
+                  </label>
+                </div>
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <Box sx={{ bgcolor: "background.paper" }}>
+                <Tabs
+                  value={tab}
+                  onChange={handleTabChange}
+                  textColor="inherit"
+                  variant="fullWidth"
+                >
+                  <Tab label="Profile" {...a11yProps(0)} />
+                  <Tab label="Address" {...a11yProps(1)} />
+                </Tabs>
+                <TabPanel value={tab} index={0} dir={theme.direction}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="firstname"
+                        label="First Name"
+                        fullWidth
+                        value={state.firstname}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="middlename"
+                        label="Middle Name"
+                        fullWidth
+                        value={state.middlename}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="lastname"
+                        label="Last Name"
+                        fullWidth
+                        value={state.lastname}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <FormControl fullWidth>
+                        <InputLabel id="gender">Gender</InputLabel>
+                        <CustomSelect
+                          labelId="gender"
+                          id="gender"
+                          open={open}
+                          onClose={handleGenderClose}
+                          onOpen={handleGenderOpen}
+                          value={state.gender}
+                          label="Gender"
+                          onChange={(event) => {
+                            setState({ ...state, gender: event.target.value });
+                          }}
+                        >
+                          <MenuItem value="MALE">Male</MenuItem>
+                          <MenuItem value="FEMALE">Female</MenuItem>
+                          <MenuItem value="OTHERS">Others</MenuItem>
+                        </CustomSelect>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <DesktopDatePicker
+                          label="Birthday"
+                          inputFormat="MMMM DD, yyyy"
+                          value={state.birthdate}
+                          disableMaskedInput={true}
+                          onChange={(newValue) => {
+                            let format = "yyyy-MM-DD";
+                            const date = moment(newValue).format(format);
+                            setState({ ...state, birthdate: date });
+                          }}
+                          renderInput={(params) => (
+                            <CustomOutlinedTextField fullWidth {...params} />
+                          )}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="phone"
+                        label="Phone"
+                        fullWidth
+                        value={state.phone}
+                        onChange={handleChange}
+                        inputProps={{
+                          maxLength: 11,
+                          inputMode: "numeric",
+                          pattern: "[0-9]*",
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="bio"
+                        label="Bio"
+                        fullWidth
+                        multiline
+                        rows={4}
+                        value={state.bio}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+                <TabPanel value={tab} index={1} dir={theme.direction}>
+                  Item Two
+                </TabPanel>
+              </Box>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  className="editProfile"
+                  sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
+                >
+                  Save Changes
+                </Button>
               </Grid>
-            </TabPanel>
-            <TabPanel value={tab} index={1} dir={theme.direction}>
-              Item Two
-            </TabPanel>
-          </Box>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              className="editProfile"
-              sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
-            >
-              Save Changes
-            </Button>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </DialogContent>
+    </Dialog>
   );
 };
 

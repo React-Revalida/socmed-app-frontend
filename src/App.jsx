@@ -22,7 +22,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import * as profileService from "./services/profile";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const theme = createTheme({
   palette: {
     primary: {
@@ -104,7 +105,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Container>
+        </Container> 
+        <ToastContainer />
       </div>
     </ThemeProvider>
   );

@@ -1,42 +1,34 @@
-import {
-  fetchOtherProfileRequest,
-  fetchProfileFailure,
-  fetchProfileRequest,
-  fetchProfileSuccess,
-  updateProfileRequest,
-  updateProfileSuccess,
-  updateProfileFailure,
-} from "./types";
+import * as type from "./types";
 import * as profileService from "../services/profile";
 
 export const fetchProfile = () => {
   return (dispatch) => {
-    dispatch(fetchProfileRequest());
+    dispatch(type.fetchProfileRequest());
     profileService
       .getProfile()
       .then((response) => {
         const profile = response.data;
-        dispatch(fetchProfileSuccess(profile));
+        dispatch(type.fetchProfileSuccess(profile));
       })
       .catch((error) => {
         const errorMsg = error.message;
-        dispatch(fetchProfileFailure(errorMsg));
+        dispatch(type.fetchProfileFailure(errorMsg));
       });
   };
 };
 
 export const fetchOtherProfile = (username) => {
   return (dispatch) => {
-    dispatch(fetchOtherProfileRequest(username));
+    dispatch(type.fetchOtherProfileRequest(username));
     profileService
       .getOtherProfile(username)
       .then((response) => {
         const profile = response.data;
-        dispatch(fetchProfileSuccess(profile));
+        dispatch(type.fetchProfileSuccess(profile));
       })
       .catch((error) => {
         const errorMsg = error.message;
-        dispatch(fetchProfileFailure(errorMsg));
+        dispatch(type.fetchProfileFailure(errorMsg));
       });
   };
 };
@@ -55,17 +47,24 @@ export const updateProfile = (profileDTO, profilePic) => {
   let formData = new FormData();
   formData.append("user", profileBlob);
   formData.append("profile", profileImage);
-  return async (dispatch) => {
-    dispatch(updateProfileRequest());
-    await profileService
+  return (dispatch) => {
+    dispatch(type.updateProfileRequest());
+    profileService
       .updateProfile(formData)
-      .then((response) => {
+      .then(async (response) => {
         const profile = response.data;
-        dispatch(updateProfileSuccess(profile));
-        console.log(profile);
+        await dispatch(type.updateProfileSuccess(profile));
       })
-      .catch((error) => {
-        dispatch(updateProfileFailure(error.response.data.fieldErrors));
+      .catch(async (error) => {
+        await dispatch(
+          type.updateProfileFailure(error.response.data.fieldErrors)
+        );
       });
+  };
+};
+
+export const resetSuccess = () => {
+  return (dispatch) => {
+    dispatch(type.resetSuccess());
   };
 };

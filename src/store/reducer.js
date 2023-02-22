@@ -34,21 +34,23 @@ export const reducer = (state = initialState, action) => {
     case "UPDATE_PROFILE_REQUEST":
       return {
         ...state,
-        loading: true,
         error: {},
       };
     case "UPDATE_PROFILE_SUCCESS":
       return {
         ...state,
-        loading: false,
         profile: action.payload,
         success: true,
       };
     case "UPDATE_PROFILE_FAILURE":
       return {
         ...state,
-        loading: false,
         error: action.payload,
+        success: false,
+      };
+    case "RESET_SUCCESS":
+      return {
+        ...state,
         success: false,
       };
     default:
