@@ -1,5 +1,7 @@
 const initialState = {
-  profile: {},
+  profile: {
+    address: {},
+  },
   loading: false,
   error: {},
   success: false,
@@ -43,6 +45,23 @@ export const reducer = (state = initialState, action) => {
         success: true,
       };
     case "UPDATE_PROFILE_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+      };
+    case "UPDATE_ADDRESS_REQUEST":
+      return {
+        ...state,
+        error: {},
+      };
+    case "UPDATE_ADDRESS_SUCCESS":
+      return {
+        ...state,
+        profile: action.payload,
+        success: true,
+      };
+    case "UPDATE_ADDRESS_FAILURE":
       return {
         ...state,
         error: action.payload,

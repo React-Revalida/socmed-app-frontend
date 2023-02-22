@@ -29,24 +29,44 @@ export const updateProfileRequest = () => {
   return {
     type: "UPDATE_PROFILE_REQUEST",
   };
-}
+};
 
 export const updateProfileSuccess = (profile) => {
   return {
     type: "UPDATE_PROFILE_SUCCESS",
     payload: profile,
   };
-}
+};
 
 export const updateProfileFailure = (error) => {
   return {
     type: "UPDATE_PROFILE_FAILURE",
     payload: error,
   };
-}
+};
+
+export const updateAddressRequest = () => {
+  return {
+    type: "UPDATE_ADDRESS_REQUEST",
+  };
+};
+
+export const updateAddressSuccess = (profile) => {
+  return {
+    type: "UPDATE_ADDRESS_SUCCESS",
+    payload: profile,
+  };
+};
+
+export const updateAddressFailure = (error) => {
+  return {
+    type: "UPDATE_ADDRESS_FAILURE",
+    payload: error,
+  };
+};
 
 export const resetSuccess = () => {
   return {
     type: "RESET_SUCCESS",
   };
-}
+};

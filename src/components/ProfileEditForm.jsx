@@ -29,7 +29,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState({
+  const [profileState, setProfileState] = React.useState({
     firstname: profile.firstname,
     middlename: profile.middlename ? profile.middlename : "",
     lastname: profile.lastname,
@@ -38,10 +38,19 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
     phone: profile.phone ? profile.phone : "",
     bio: profile.bio ? profile.bio : "",
   });
+  const [addressState, setAddressState] = React.useState({
+    houseNo: profile.address.houseNo,
+    street: profile.address.street,
+    subdivision: profile.address.subdivision,
+    barangay: profile.address.barangay,
+    city: profile.address.city,
+    province: profile.address.province,
+    zip: profile.address.zip,
+  });
   const [profilePic, setProfilePic] = React.useState(profile.profilePic);
   const [profilePicUpload, setProfilePicUpload] = useState(null);
 
-  const schema = Joi.object({
+  const profileSchema = Joi.object({
     firstname: Joi.string().max(50).required(),
     middlename: Joi.string().max(20),
     lastname: Joi.string().max(50).required(),
@@ -53,38 +62,74 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
     bio: Joi.string().max(160),
   });
 
-  const [fieldErrors, setFieldErrors] = useState({});
-  const handleChange = ({ currentTarget: input }) => {
+  const addressSchema = Joi.object({
+    houseNo: Joi.string().max(20).required(),
+    street: Joi.string().max(20).required(),
+    subdivision: Joi.string().max(25).required(),
+    barangay: Joi.string().max(25).required(),
+    city: Joi.string().max(25).required(),
+    province: Joi.string().max(20).required(),
+    zip: Joi.number().integer().required(),
+  });
+
+  const [profileFieldErrors, setProfileFieldErrors] = useState({});
+  const [addressFieldErrors, setAddressFieldErrors] = useState({});
+  const handleProfileChange = ({ currentTarget: input }) => {
     if (input.name === "phone") {
       const newValue = input.value;
       const numericValue = newValue.replace(/\D/g, ""); // Remove any non-numeric characters
-      setState({ ...state, phone: numericValue });
+      setProfileState({ ...profileState, phone: numericValue });
       console.log("Phone: ", numericValue);
     } else {
-      setState({
-        ...state,
+      setProfileState({
+        ...profileState,
         [input.name]: input.value,
       });
     }
 
-    const { error } = schema
+    const { error } = profileSchema
       .extract(input.name)
       .label(input.name)
       .validate(input.value);
 
     if (error) {
-      setFieldErrors({
-        ...fieldErrors,
+      setProfileFieldErrors({
+        ...profileFieldErrors,
         [input.name]: error.details[0].message,
       });
     } else {
-      delete fieldErrors[input.name];
-      setFieldErrors({ ...fieldErrors, [input.name]: "" });
+      delete profileFieldErrors[input.name];
+      setProfileFieldErrors({ ...profileFieldErrors, [input.name]: "" });
     }
   };
-  const isFormInvalid = () => {
-    const result = schema.validate(state);
 
+  const handleAddressChange = ({ currentTarget: input }) => {
+    setAddressState({
+      ...addressState,
+      [input.name]: input.value,
+    });
+
+    const { error } = addressSchema
+      .extract(input.name)
+      .label(input.name)
+      .validate(input.value);
+
+    if (error) {
+      setAddressFieldErrors({
+        ...addressFieldErrors,
+        [input.name]: error.details[0].message,
+      });
+    } else {
+      delete addressFieldErrors[input.name];
+      setAddressFieldErrors({ ...addressFieldErrors, [input.name]: "" });
+    }
+  };
+
+  const isFormInvalid = () => {
+    let result = profileSchema.validate(profileState);
+    if (tab === 1) {
+      result = addressSchema.validate(addressState);
+    }
     return !!result.error;
   };
 
@@ -112,9 +157,9 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tab === 0) {
-      dispatch(profileActions.updateProfile(state, profilePicUpload));
+      dispatch(profileActions.updateProfile(profileState, profilePicUpload));
     } else if (tab === 1) {
-      alert("Address");
+      dispatch(profileActions.updateAddress(addressState));
     }
   };
 
@@ -168,12 +213,12 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                     <Grid item xs={12}>
                       <CustomOutlinedTextField
                         name="firstname"
-                        error={!!fieldErrors.firstname}
-                        helperText={fieldErrors.firstname}
+                        error={!!profileFieldErrors.firstname}
+                        helperText={profileFieldErrors.firstname}
                         label="First Name"
                         fullWidth
-                        value={state.firstname}
-                        onChange={handleChange}
+                        value={profileState.firstname}
+                        onChange={handleProfileChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -181,19 +226,19 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                         name="middlename"
                         label="Middle Name"
                         fullWidth
-                        value={state.middlename}
-                        onChange={handleChange}
+                        value={profileState.middlename}
+                        onChange={handleProfileChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
                       <CustomOutlinedTextField
                         name="lastname"
                         label="Last Name"
-                        error={!!fieldErrors.lastname}
-                        helperText={fieldErrors.lastname}
+                        error={!!profileFieldErrors.lastname}
+                        helperText={profileFieldErrors.lastname}
                         fullWidth
-                        value={state.lastname}
-                        onChange={handleChange}
+                        value={profileState.lastname}
+                        onChange={handleProfileChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -205,10 +250,13 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                           open={open}
                           onClose={handleGenderClose}
                           onOpen={handleGenderOpen}
-                          value={state.gender}
+                          value={profileState.gender}
                           label="Gender"
                           onChange={(event) => {
-                            setState({ ...state, gender: event.target.value });
+                            setProfileState({
+                              ...profileState,
+                              gender: event.target.value,
+                            });
                           }}
                         >
                           <MenuItem value="MALE">Male</MenuItem>
@@ -222,19 +270,22 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                         <DesktopDatePicker
                           label="Birthday"
                           inputFormat="MMMM DD, yyyy"
-                          value={state.birthdate}
+                          value={profileState.birthdate}
                           disableMaskedInput={true}
                           onChange={(newValue) => {
                             let format = "yyyy-MM-DD";
                             const date = newValue
                               ? moment(newValue).format(format)
                               : null;
-                            setState({ ...state, birthdate: date });
+                            setProfileState({
+                              ...profileState,
+                              birthdate: date,
+                            });
                           }}
                           renderInput={(params) => (
                             <CustomOutlinedTextField
-                              error={!!fieldErrors.birthdate}
-                              helperText={fieldErrors.birthdate}
+                              error={!!profileFieldErrors.birthdate}
+                              helperText={profileFieldErrors.birthdate}
                               fullWidth
                               {...params}
                             />
@@ -246,11 +297,11 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                       <CustomOutlinedTextField
                         name="phone"
                         label="Phone"
-                        error={!!fieldErrors.phone}
-                        helperText={fieldErrors.phone}
+                        error={!!profileFieldErrors.phone}
+                        helperText={profileFieldErrors.phone}
                         fullWidth
-                        value={state.phone}
-                        onChange={handleChange}
+                        value={profileState.phone}
+                        onChange={handleProfileChange}
                         inputProps={{
                           maxLength: 11,
                           inputMode: "numeric",
@@ -265,16 +316,95 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                         fullWidth
                         multiline
                         rows={4}
-                        value={state.bio}
-                        error={!!fieldErrors.bio}
-                        helperText={fieldErrors.bio}
-                        onChange={handleChange}
+                        value={profileState.bio}
+                        error={!!profileFieldErrors.bio}
+                        helperText={profileFieldErrors.bio}
+                        onChange={handleProfileChange}
                       />
                     </Grid>
                   </Grid>
                 </TabPanel>
                 <TabPanel value={tab} index={1} dir={theme.direction}>
-                  Item Two
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="houseNo"
+                        label="House No."
+                        fullWidth
+                        value={addressState.houseNo}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.houseNo}
+                        helperText={addressFieldErrors.houseNo}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="street"
+                        label="Street"
+                        fullWidth
+                        value={addressState.street}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.street}
+                        helperText={addressFieldErrors.street}
+                      />
+                    </Grid>
+                    {/* subdivision */}
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="subdivision"
+                        label="Subdivision"
+                        fullWidth
+                        value={addressState.subdivision}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.subdivision}
+                        helperText={addressFieldErrors.subdivision}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="barangay"
+                        label="Barangay"
+                        fullWidth
+                        value={addressState.barangay}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.barangay}
+                        helperText={addressFieldErrors.barangay}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="city"
+                        label="City"
+                        fullWidth
+                        value={addressState.city}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.city}
+                        helperText={addressFieldErrors.city}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="province"
+                        label="Province"
+                        fullWidth
+                        value={addressState.province}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.province}
+                        helperText={addressFieldErrors.province}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <CustomOutlinedTextField
+                        name="zip"
+                        label="Zip Code"
+                        fullWidth
+                        value={addressState.zip}
+                        onChange={handleAddressChange}
+                        error={!!addressFieldErrors.zip}
+                        helperText={addressFieldErrors.zip}
+                      />
+                    </Grid>
+                  </Grid>
                 </TabPanel>
               </Box>
               <Grid item xs={12}>

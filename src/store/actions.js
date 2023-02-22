@@ -63,6 +63,23 @@ export const updateProfile = (profileDTO, profilePic) => {
   };
 };
 
+export const updateAddress = (addressDTO) => {
+  return (dispatch) => {
+    dispatch(type.updateAddressRequest());
+    profileService
+      .updateAddress(addressDTO)
+      .then(async (response) => {
+        const profile = response.data;
+        await dispatch(type.updateAddressSuccess(profile));
+      })
+      .catch(async (error) => {
+        await dispatch(
+          type.updateAddressFailure(error.response.data.fieldErrors)
+        );
+      });
+  };
+};
+
 export const resetSuccess = () => {
   return (dispatch) => {
     dispatch(type.resetSuccess());
