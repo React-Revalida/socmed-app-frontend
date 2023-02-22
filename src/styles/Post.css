@@ -1,8 +1,8 @@
 .post {
   display: flex;
   align-items: flex-start;
-  border-bottom: 1px solid var(--twitter-background);
   padding-bottom: 10px;
+  border: 1px solid var(--twitter-background);
 }
 
 .post__body {
@@ -33,6 +33,7 @@
 .post__headerText > h3 {
   font-size: 15px;
   margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .post__headerSpecial {
@@ -44,4 +45,8 @@
 .post__headerDescription {
   margin-bottom: 10px;
   font-size: 15px;
+}
+
+.component__top__border {
+  border-top: 1px solid var(--twitter-background);
 }

@@ -46,21 +46,19 @@ const Feed = () => {
         <TweetBox />
         {/* <FlipMove> */}
         {/*test for clicking post*/}
-        <Card sx={{ boxShadow: 0 }}>
-          <CardActionArea onClick={() => navigate("/post")}>
-            <Post />
-          </CardActionArea>
-        </Card>
-        <Card sx={{ boxShadow: 0 }}>
-          <CardActionArea onClick={() => navigate("/post")}>
-            <Post />
-          </CardActionArea>
-        </Card>
-        <Card sx={{ boxShadow: 0 }}>
-          <CardActionArea onClick={() => navigate("/post")}>
-            <Post />
-          </CardActionArea>
-        </Card>
+
+        <CardActionArea onClick={() => navigate("/post")}>
+          <Post />
+        </CardActionArea>
+
+        <CardActionArea onClick={() => navigate("/post")}>
+          <Post />
+        </CardActionArea>
+
+        <CardActionArea onClick={() => navigate("/post")}>
+          <Post />
+        </CardActionArea>
+
         {/* 
         <Post />
         <Post />
