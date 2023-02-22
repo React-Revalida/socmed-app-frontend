@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Profile = ({ profile }) => {
   const loading = useSelector((state) => state.loading);
   if (loading) return <div>Loading...</div>;
+
   return (
     <section className="feed">
       <div className="profileHeader">
