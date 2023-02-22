@@ -11,6 +11,12 @@ export const reducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
+    case "FETCH_OTHER_PROFILE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
     case "FETCH_PROFILE_SUCCESS":
       return {
         ...state,

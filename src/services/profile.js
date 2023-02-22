@@ -15,3 +15,7 @@ export const getProfile = async () => {
   staticLogin("bryn", "admin2255");
   return await http.get("/users/me");
 };
+
+export const getOtherProfile = async (username) => {
+  return await http.get(`/profiles/${username}`);
+};

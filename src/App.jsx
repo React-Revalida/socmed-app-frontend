@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { useContext, useEffect, useState } from "react";
@@ -22,7 +22,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import * as profileService from "./services/profile";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "./store/actions";
 
 const theme = createTheme({
   palette: {
@@ -82,13 +81,6 @@ function App() {
   //   },
   // });
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
-
-  const profile = useSelector((state) => state.profile);
-
   return (
     <ThemeProvider theme={darkModeTheme}>
       <div className="app">
@@ -100,8 +92,12 @@ function App() {
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
               <Route
-                path="/profile/me"
-                element={<ProfilePage profile={profile} />}
+                path="/profile"
+                element={<ProfilePage />}
+              />
+              <Route
+                path="/profile/:username"
+                element={<ProfilePage />}
               />
             </Route>
             <Route path="/register" element={<RegisterPage />} />

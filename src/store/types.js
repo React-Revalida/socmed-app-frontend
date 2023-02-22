@@ -4,6 +4,13 @@ export const fetchProfileRequest = () => {
   };
 };
 
+export const fetchOtherProfileRequest = (username) => {
+  return {
+    type: "FETCH_OTHER_PROFILE_REQUEST",
+    payload: username,
+  };
+};
+
 export const fetchProfileSuccess = (profile) => {
   return {
     type: "FETCH_PROFILE_SUCCESS",

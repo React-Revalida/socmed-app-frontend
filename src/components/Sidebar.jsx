@@ -23,7 +23,7 @@ const Sidebar = () => {
 
       <SidebarOpt active Icon={HomeIcon} text="Feed" />
       <SidebarOpt Icon={SearchIcon} text="Explore" />
-      <SidebarOpt Icon={PermIdentityIcon} text="Profile" onClick={() => {navigate('/profile/me')}} />
+      <SidebarOpt Icon={PermIdentityIcon} text="Profile" onClick={() => {navigate('/profile')}} />
       <Button variant="outlined" className="sidebar__tweet">
         Tweet
       </Button>
