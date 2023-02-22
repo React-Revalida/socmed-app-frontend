@@ -24,3 +24,23 @@ export const fetchProfileFailure = (error) => {
     payload: error,
   };
 };
+
+export const updateProfileRequest = () => {
+  return {
+    type: "UPDATE_PROFILE_REQUEST",
+  };
+}
+
+export const updateProfileSuccess = (profile) => {
+  return {
+    type: "UPDATE_PROFILE_SUCCESS",
+    payload: profile,
+  };
+}
+
+export const updateProfileFailure = (error) => {
+  return {
+    type: "UPDATE_PROFILE_FAILURE",
+    payload: error,
+  };
+}

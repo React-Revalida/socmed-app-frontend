@@ -12,6 +12,7 @@ http.interceptors.response.use(null, (error) => {
 
   if (!expectedError) {
     console.log("inside interceptor");
+    console.log(error);
     alert("An unexpected error occurred");
   }
 

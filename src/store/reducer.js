@@ -1,7 +1,8 @@
 const initialState = {
   profile: {},
   loading: false,
-  error: null,
+  error: {},
+  success: false,
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,13 +10,13 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null,
+        error: {},
       };
     case "FETCH_OTHER_PROFILE_REQUEST":
       return {
         ...state,
         loading: true,
-        error: null,
+        error: {},
       };
     case "FETCH_PROFILE_SUCCESS":
       return {
@@ -28,7 +29,27 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        profile: null,
+        profile: {},
+      };
+    case "UPDATE_PROFILE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: {},
+      };
+    case "UPDATE_PROFILE_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        profile: action.payload,
+        success: true,
+      };
+    case "UPDATE_PROFILE_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        success: false,
       };
     default:
       return state;

@@ -1,32 +1,29 @@
 import { ArrowBack, Schedule } from "@mui/icons-material";
 import { Backdrop, Button, Dialog, DialogContent } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "react-avatar";
 import { useSelector } from "react-redux";
 import ProfileEditForm from "./ProfileEditForm";
 const Profile = ({ profile, isMe }) => {
   const loading = useSelector((state) => state.loading);
   const [open, setOpen] = React.useState(false);
-  const handleEditProfile = () => {
-    setOpen(true);
+  const handleOpenEditDialog = (isOpen) => {
+    setOpen(isOpen);
   };
 
+  useEffect(() => {
+    setOpen(false);
+  }, []);
   if (loading) return <div>Loading...</div>;
   return (
     <>
-      <Dialog
-        open={open}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-        onClose={() => setOpen(false)}
-      >
+      <Dialog open={open}>
         <DialogContent>
-          <ProfileEditForm profile={profile} />
+          <ProfileEditForm
+            profile={profile}
+            isOpen={open}
+            onOpenDialog={handleOpenEditDialog}
+          />
         </DialogContent>
       </Dialog>
       <section className="feed">
@@ -51,7 +48,10 @@ const Profile = ({ profile, isMe }) => {
               ></Avatar>
             </div>
             {isMe ? (
-              <Button className="editProfile" onClick={handleEditProfile}>
+              <Button
+                className="editProfile"
+                onClick={() => handleOpenEditDialog(true)}
+              >
                 <span>Edit Profile</span>
               </Button>
             ) : (

@@ -3,6 +3,9 @@ import {
   fetchProfileFailure,
   fetchProfileRequest,
   fetchProfileSuccess,
+  updateProfileRequest,
+  updateProfileSuccess,
+  updateProfileFailure,
 } from "./types";
 import * as profileService from "../services/profile";
 
@@ -12,7 +15,6 @@ export const fetchProfile = () => {
     profileService
       .getProfile()
       .then((response) => {
-        console.log(response);
         const profile = response.data;
         dispatch(fetchProfileSuccess(profile));
       })
@@ -37,4 +39,33 @@ export const fetchOtherProfile = (username) => {
         dispatch(fetchProfileFailure(errorMsg));
       });
   };
-}
+};
+
+export const updateProfile = (profileDTO, profilePic) => {
+  if (profilePic === null) {
+    profilePic = "";
+  }
+  const profile = JSON.stringify(profileDTO);
+  const profileBlob = new Blob([profile], {
+    type: "application/json",
+  });
+  const profileImage = new File([profilePic], "profile", {
+    type: "image/*",
+  });
+  let formData = new FormData();
+  formData.append("user", profileBlob);
+  formData.append("profile", profileImage);
+  return async (dispatch) => {
+    dispatch(updateProfileRequest());
+    await profileService
+      .updateProfile(formData)
+      .then((response) => {
+        const profile = response.data;
+        dispatch(updateProfileSuccess(profile));
+        console.log(profile);
+      })
+      .catch((error) => {
+        dispatch(updateProfileFailure(error.response.data.fieldErrors));
+      });
+  };
+};

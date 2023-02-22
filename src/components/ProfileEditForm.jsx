@@ -8,7 +8,7 @@ import {
   Tabs,
 } from "@mui/material";
 import { Box, useTheme } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "react-avatar";
 import "../styles/EditProfile.css";
 import PropTypes from "prop-types";
@@ -19,10 +19,12 @@ import {
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
+import * as profileActions from "../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const ProfileEditForm = ({ profile }) => {
-  console.log("ProfileEditForm: ", profile);
+const ProfileEditForm = ({ profile, onOpenDialog }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({
@@ -33,13 +35,15 @@ const ProfileEditForm = ({ profile }) => {
     birthdate: profile.birthdate,
     phone: profile.phone ? profile.phone : "",
     bio: profile.bio ? profile.bio : "",
-    profilePic: profile.profilePic,
   });
+  const [profilePic, setProfilePic] = React.useState(profile.profilePic);
+  const [profilePicUpload, setProfilePicUpload] = useState(null);
   const handleChange = (event) => {
     if (event.target.name === "phone") {
       const newValue = event.target.value;
       const numericValue = newValue.replace(/\D/g, ""); // Remove any non-numeric characters
       setState({ ...state, phone: numericValue });
+      console.log("Phone: ", numericValue);
     } else {
       setState({
         ...state,
@@ -60,29 +64,50 @@ const ProfileEditForm = ({ profile }) => {
     setTab(newValue);
   };
 
+  const success = useSelector((state) => state.success);
+  const loading = useSelector((state) => state.loading);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tab === 0) {
-      console.log("Profile Edit Form: ", state);
+      dispatch(profileActions.updateProfile(state, profilePicUpload));
+      if (loading === false && success === true) {
+        onOpenDialog(false);
+      } else {
+        onOpenDialog(true);
+      }
     } else {
       console.log("Address Edit Form: ", state);
     }
   };
-
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setProfilePicUpload(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProfilePic(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
   return (
     <Grid component="form" onSubmit={handleSubmit}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <div className="profile">
             <div className="profileTitle">
-              <div>
+              <label htmlFor="profilePicInput">
                 <Avatar
                   round={true}
                   size="120"
                   name={profile.name}
-                  src={profile.profilePic}
+                  src={profilePic}
                 ></Avatar>
-              </div>
+                <input
+                  type="file"
+                  id="profilePicInput"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+              </label>
             </div>
           </div>
         </Grid>
@@ -158,7 +183,6 @@ const ProfileEditForm = ({ profile }) => {
                         let format = "yyyy-MM-DD";
                         const date = moment(newValue).format(format);
                         setState({ ...state, birthdate: date });
-                        console.log(state.birthdate);
                       }}
                       renderInput={(params) => (
                         <CustomOutlinedTextField fullWidth {...params} />
