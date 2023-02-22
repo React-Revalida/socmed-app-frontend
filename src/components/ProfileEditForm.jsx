@@ -23,7 +23,7 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
 import * as profileActions from "../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import Joi from "joi";
 const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -40,18 +40,52 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   });
   const [profilePic, setProfilePic] = React.useState(profile.profilePic);
   const [profilePicUpload, setProfilePicUpload] = useState(null);
-  const handleChange = (event) => {
-    if (event.target.name === "phone") {
-      const newValue = event.target.value;
+
+  const schema = Joi.object({
+    firstname: Joi.string().max(50).required(),
+    middlename: Joi.string().max(20),
+    lastname: Joi.string().max(50).required(),
+    gender: Joi.string(),
+    birthdate: Joi.date().allow(null),
+    phone: Joi.string().pattern(new RegExp("^(09)\\d{9}$")).max(11).messages({
+      "string.pattern.base": "Phone number must start with 09",
+    }),
+    bio: Joi.string().max(160),
+  });
+
+  const [fieldErrors, setFieldErrors] = useState({});
+  const handleChange = ({ currentTarget: input }) => {
+    if (input.name === "phone") {
+      const newValue = input.value;
       const numericValue = newValue.replace(/\D/g, ""); // Remove any non-numeric characters
       setState({ ...state, phone: numericValue });
       console.log("Phone: ", numericValue);
     } else {
       setState({
         ...state,
-        [event.target.name]: event.target.value,
+        [input.name]: input.value,
       });
     }
+
+    const { error } = schema
+      .extract(input.name)
+      .label(input.name)
+      .validate(input.value);
+
+    if (error) {
+      setFieldErrors({
+        ...fieldErrors,
+        [input.name]: error.details[0].message,
+      });
+    } else {
+      delete fieldErrors[input.name];
+      setFieldErrors({ ...fieldErrors, [input.name]: "" });
+    }
+  };
+  const isFormInvalid = () => {
+    const result = schema.validate(state);
+
+    return !!result.error;
   };
 
   const handleGenderClose = () => {
@@ -67,14 +101,13 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   };
 
   const success = useSelector((state) => state.success);
-  const fieldErrors = useSelector((state) => state.error);
 
   useEffect(() => {
-    if(success) {
+    if (success) {
       onOpenDialog(false);
       dispatch(profileActions.resetSuccess());
     }
-  }, [fieldErrors, success, onOpenDialog, dispatch]);
+  }, [success, dispatch, onOpenDialog]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -84,6 +117,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
       alert("Address");
     }
   };
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setProfilePicUpload(file);
@@ -134,6 +168,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                     <Grid item xs={12}>
                       <CustomOutlinedTextField
                         name="firstname"
+                        error={!!fieldErrors.firstname}
+                        helperText={fieldErrors.firstname}
                         label="First Name"
                         fullWidth
                         value={state.firstname}
@@ -153,6 +189,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                       <CustomOutlinedTextField
                         name="lastname"
                         label="Last Name"
+                        error={!!fieldErrors.lastname}
+                        helperText={fieldErrors.lastname}
                         fullWidth
                         value={state.lastname}
                         onChange={handleChange}
@@ -188,11 +226,18 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                           disableMaskedInput={true}
                           onChange={(newValue) => {
                             let format = "yyyy-MM-DD";
-                            const date = moment(newValue).format(format);
+                            const date = newValue
+                              ? moment(newValue).format(format)
+                              : null;
                             setState({ ...state, birthdate: date });
                           }}
                           renderInput={(params) => (
-                            <CustomOutlinedTextField fullWidth {...params} />
+                            <CustomOutlinedTextField
+                              error={!!fieldErrors.birthdate}
+                              helperText={fieldErrors.birthdate}
+                              fullWidth
+                              {...params}
+                            />
                           )}
                         />
                       </LocalizationProvider>
@@ -201,6 +246,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                       <CustomOutlinedTextField
                         name="phone"
                         label="Phone"
+                        error={!!fieldErrors.phone}
+                        helperText={fieldErrors.phone}
                         fullWidth
                         value={state.phone}
                         onChange={handleChange}
@@ -219,6 +266,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                         multiline
                         rows={4}
                         value={state.bio}
+                        error={!!fieldErrors.bio}
+                        helperText={fieldErrors.bio}
                         onChange={handleChange}
                       />
                     </Grid>
@@ -231,6 +280,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
               <Grid item xs={12}>
                 <Button
                   type="submit"
+                  disabled={isFormInvalid()}
                   className="editProfile"
                   sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
                 >

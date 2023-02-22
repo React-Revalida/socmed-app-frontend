@@ -9,9 +9,6 @@ const CssTextField = styled(TextField)({
     borderBottomColor: "var(--twitter-color)!important",
   },
   "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "var(--twitter-color)!important",
-    },
     "&:hover fieldset": {
       borderColor: "var(--twitter-color)!important",
     },

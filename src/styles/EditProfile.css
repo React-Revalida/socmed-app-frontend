@@ -1,4 +1,4 @@
-.editProfile__theme{
+.editProfile__theme {
     height: 20rem;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -8,7 +8,7 @@
     background: var(--twittie-background-2);
 }
 
-.editProfile__theme-photoWrapper{
+.editProfile__theme-photoWrapper {
     width: 14rem;
     height: 14rem;
     border-radius: 50%;
@@ -16,37 +16,37 @@
     background: var(--twittie-background);
 }
 
-.editProfile .MuiSvgIcon-root{
+.editProfile .MuiSvgIcon-root {
     font-size: 2.75rem !important;
     color: white;
 }
 
-.editProfile__theme-themeActions{
+.editProfile__theme-themeActions {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 
     position: relative;
     top: -40%;
 
 }
 
-.editProfile__theme-themeActions>div{
+.editProfile__theme-themeActions>div {
     width: 3rem;
     height: 3rem;
     padding: 1rem;
     border-radius: 50%;
     opacity: 0.6;
-    background: var(--twittie-background); 
+    background: var(--twittie-background);
     margin: 1rem;
 }
 
-.editProfile__theme-themeActions>div:hover{
+.editProfile__theme-themeActions>div:hover {
     opacity: 0.3;
 }
 
-.editProfile__theme-photoWrapper>img{
+.editProfile__theme-photoWrapper>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -54,7 +54,7 @@
     border: 4px solid white;
 }
 
-.editProfile__theme-photoWrapper>div{
+.editProfile__theme-photoWrapper>div {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -64,53 +64,60 @@
     cursor: pointer;
 }
 
-.editProfile__theme-photoWrapper>div:hover{
+.editProfile__theme-photoWrapper>div:hover {
     background: var(--twittie-background);
     opacity: 0.6;
 }
 
-.editProfile form{
+.editProfile form {
     margin-top: 9rem;
     width: 100%;
 }
 
-.editProfile .MuiFormControl-root{
+.editProfile .MuiFormControl-root {
     width: 100%;
 }
 
-.editProfile .MuiFilledInput-input{
+.editProfile .MuiFilledInput-input {
     font-size: 1.5rem
 }
 
-.editProfile .MuiInputLabel-filled.MuiInputLabel-shrink{
+.editProfile .MuiInputLabel-filled.MuiInputLabel-shrink {
     padding: 0 2.6rem;
 }
 
-.editProfile .MuiInputLabel-filled{
+.editProfile .MuiInputLabel-filled {
     font-size: 1.6rem;
     font-weight: 700;
     padding: 0 2rem;
 }
 
-.editProfile .MuiFormLabel-root.Mui-focused{
+.editProfile .MuiFormLabel-root.Mui-focused {
     color: var(--twittie-color) !important;
 }
 
-.editProfile .MuiFilledInput-root{
+.editProfile .MuiFilledInput-root {
     background-color: var(--twittie-background-2) !important;
     padding: 0 2rem;
 }
 
-.editProfile .MuiFormControl-root:nth-child(3){
+.editProfile .MuiFormControl-root:nth-child(3) {
     border-radius: 0 0 2rem 2rem;
 }
 
-.editProfile .MuiFilledInput-underline:before{
-    border-bottom: none 
+.editProfile .MuiFilledInput-underline:before {
+    border-bottom: none
 }
 
-.editProfile .MuiFilledInput-underline:after{
+.editProfile .MuiFilledInput-underline:after {
     border-bottom: 3px solid var(--twittie-color);
+}
+
+/* not visible of button if disabled */
+.MuiButton-root:disabled {
+    background-color: gray !important;
+    color: white !important;
+    border: 1px solid gray !important;
 }
 
 /* .cropImageInEditProfile{
@@ -123,4 +130,3 @@
     height: auto;
     max-height: 60vh !important;     
 } */
-

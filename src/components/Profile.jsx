@@ -1,6 +1,6 @@
 import { ArrowBack, Schedule } from "@mui/icons-material";
-import { Backdrop, Button, Dialog, DialogContent } from "@mui/material";
-import React, { useEffect } from "react";
+import { Button } from "@mui/material";
+import React from "react";
 import Avatar from "react-avatar";
 import { useSelector } from "react-redux";
 import ProfileEditForm from "./ProfileEditForm";

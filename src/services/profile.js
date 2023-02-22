@@ -29,3 +29,7 @@ export const updateProfile = async (data) => {
     },
   });
 };
+
+export const updateAddress = async (data) => {
+  return await http.put("/users/me/update-address", data);
+};
