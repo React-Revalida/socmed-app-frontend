@@ -15,7 +15,7 @@ export const fetchProfile = () => {
     profileService
       .getProfile()
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         const profile = response.data;
         dispatch(fetchProfileSuccess(profile));
       })
