@@ -4,7 +4,7 @@ import React from "react";
 import Avatar from "react-avatar";
 import { useSelector } from "react-redux";
 import ProfileEditForm from "./ProfileEditForm";
-const Profile = ({ profile }) => {
+const Profile = ({ profile, isMe }) => {
   const loading = useSelector((state) => state.loading);
   const [open, setOpen] = React.useState(false);
   const handleEditProfile = () => {
@@ -13,7 +13,7 @@ const Profile = ({ profile }) => {
 
   if (loading) return <div>Loading...</div>;
   return (
-    <div>
+    <>
       <Dialog
         open={open}
         closeAfterTransition
@@ -50,9 +50,16 @@ const Profile = ({ profile }) => {
                 size="120"
               ></Avatar>
             </div>
-            <Button className="editProfile" onClick={handleEditProfile}>
-              <span>Edit Profile</span>
-            </Button>
+            {isMe ? (
+              <Button className="editProfile" onClick={handleEditProfile}>
+                <span>Edit Profile</span>
+              </Button>
+            ) : (
+              // to be implemented
+              <Button className="editProfile">
+                <span>Follow</span>
+              </Button>
+            )}
           </div>
           <div className="profileBiography">
             <span>{profile.name}</span>
@@ -76,7 +83,7 @@ const Profile = ({ profile }) => {
         </div>
         <article className="profilePosts"></article>
       </section>
-    </div>
+    </>
   );
 };
 

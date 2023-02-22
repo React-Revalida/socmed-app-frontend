@@ -19,23 +19,9 @@ import {
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-  // change color of data picker
-  datePickerOutline: {
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "white",
-      },
-      "&:hover fieldset": {
-        borderColor: "white",
-      },
-    },
-  },
-}));
 
 const ProfileEditForm = ({ profile }) => {
+  console.log("ProfileEditForm: ", profile);
   const theme = useTheme();
   const [tab, setTab] = React.useState(0);
   const [open, setOpen] = React.useState(false);
@@ -45,15 +31,21 @@ const ProfileEditForm = ({ profile }) => {
     lastname: profile.lastname,
     gender: profile.gender,
     birthdate: profile.birthdate,
-    phone: profile.phone,
-    bio: profile.bio,
+    phone: profile.phone ? profile.phone : "",
+    bio: profile.bio ? profile.bio : "",
     profilePic: profile.profilePic,
   });
   const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "phone") {
+      const newValue = event.target.value;
+      const numericValue = newValue.replace(/\D/g, ""); // Remove any non-numeric characters
+      setState({ ...state, phone: numericValue });
+    } else {
+      setState({
+        ...state,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const handleGenderClose = () => {
@@ -68,8 +60,17 @@ const ProfileEditForm = ({ profile }) => {
     setTab(newValue);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (tab === 0) {
+      console.log("Profile Edit Form: ", state);
+    } else {
+      console.log("Address Edit Form: ", state);
+    }
+  };
+
   return (
-    <form>
+    <Grid component="form" onSubmit={handleSubmit}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <div className="profile">
@@ -167,11 +168,27 @@ const ProfileEditForm = ({ profile }) => {
                 </Grid>
                 <Grid item xs={12}>
                   <CustomOutlinedTextField
+                    name="phone"
+                    label="Phone"
+                    fullWidth
+                    value={state.phone}
+                    onChange={handleChange}
+                    inputProps={{
+                      maxLength: 11,
+                      inputMode: "numeric",
+                      pattern: "[0-9]*",
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomOutlinedTextField
                     name="bio"
                     label="Bio"
                     fullWidth
                     multiline
                     rows={4}
+                    value={state.bio}
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
@@ -191,7 +208,7 @@ const ProfileEditForm = ({ profile }) => {
           </Grid>
         </Grid>
       </Grid>
-    </form>
+    </Grid>
   );
 };
 
