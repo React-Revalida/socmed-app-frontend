@@ -20,17 +20,16 @@ export const fetchProfile = () => {
 };
 
 export const fetchOtherProfile = (username) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(type.fetchOtherProfileRequest(username));
-    profileService
+    await profileService
       .getOtherProfile(username)
       .then((response) => {
         const profile = response.data;
         dispatch(type.fetchProfileSuccess(profile));
       })
       .catch((error) => {
-        const errorMsg = error.message;
-        dispatch(type.fetchProfileFailure(errorMsg));
+        dispatch(type.fetchProfileFailure(error.response));
       });
   };
 };

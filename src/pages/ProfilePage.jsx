@@ -11,7 +11,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (params.username) {
-      // dispatch(profileActions.fetchOtherProfile(params.username));
+      dispatch(profileActions.fetchOtherProfile(params.username));
       setIsMe(false);
     } else {
       dispatch(profileActions.fetchProfile());
