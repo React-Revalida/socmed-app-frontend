@@ -33,7 +33,8 @@ export const loginUser = (usernameOrEmail, password) => {
       .login(usernameOrEmail, password)
       .then((response) => {
         //console.log(response);
-        const accessToken = response.data;
+        localStorage.setItem("accessToken", response.data.accessToken);
+        const accessToken = response.data.accessToken;
         dispatch(fetchLoginSuccess(accessToken));
       })
       .catch((error) => {

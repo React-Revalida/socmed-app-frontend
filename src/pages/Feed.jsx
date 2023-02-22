@@ -25,7 +25,7 @@ const Feed = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  dispatch(fetchProfile());
+  //dispatch(fetchProfile());
 
   return (
     <>
