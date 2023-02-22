@@ -81,7 +81,7 @@ function App() {
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  const accessToken = useSelector((state) => state.user.accessToken);
+  const accessToken = localStorage.getItem("accessToken");
 
   // useEffect(() => {
   //   dispatch(fetchProfile());

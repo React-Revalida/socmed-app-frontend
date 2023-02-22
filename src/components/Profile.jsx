@@ -8,6 +8,12 @@ const Profile = () => {
   const loading = useSelector((state) => state.loading);
   const profile = useSelector((state) => state.user.profile);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
