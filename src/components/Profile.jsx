@@ -1,11 +1,16 @@
 import { ArrowBack, Schedule } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../redux/actions/userActions";
 
-const Profile = ({ profile }) => {
+const Profile = () => {
   const loading = useSelector((state) => state.loading);
-  if (loading) return <div>Loading...</div>;
+  const profile = useSelector((state) => state.user.profile);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="feed">

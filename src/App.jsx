@@ -19,6 +19,7 @@ import { PaletteMode } from "@mui/material";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "./redux/actions/userActions";
 
 const theme = createTheme({
   palette: {
@@ -100,10 +101,7 @@ function App() {
               <Route path="/" element={<Navigate to="/feed" />}></Route>
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
-              <Route
-                path="/profile/me"
-                element={<ProfilePage profile={profile} />}
-              />
+              <Route path="/profile/me" element={<ProfilePage />} />
             </Route>
             <Route
               path="/register"
