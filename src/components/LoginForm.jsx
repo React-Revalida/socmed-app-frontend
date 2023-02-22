@@ -1,11 +1,25 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { Button, CardActions, TextField } from "@mui/material";
 import { Box, fontWeight, textAlign } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../redux/actions/userActions";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    try {
+      dispatch(loginUser("harveysamson", "admin2255"));
+      navigate("/feed");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Card
@@ -47,6 +61,7 @@ const LoginForm = () => {
         </CardContent>
         <CardActions sx={{ padding: "15px" }}>
           <Button
+            onClick={() => handleSubmit()}
             variant="contained"
             sx={{
               width: 250,

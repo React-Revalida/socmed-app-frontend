@@ -19,7 +19,6 @@ import { PaletteMode } from "@mui/material";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../src/redux/actions/userActions";
 
 const theme = createTheme({
   palette: {
@@ -81,9 +80,11 @@ function App() {
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
-  useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
+  const accessToken = useSelector((state) => state.user.accessToken);
+
+  // useEffect(() => {
+  //   dispatch(fetchProfile());
+  // }, [dispatch]);
 
   return (
     <ThemeProvider theme={darkModeTheme}>
@@ -91,7 +92,11 @@ function App() {
         <CssBaseline />
         <Container sx={{ marginTop: 3 }}>
           <Routes>
-            <Route element={<SidebarWidgetLayout />}>
+            <Route
+              element={
+                accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />
+              }
+            >
               <Route path="/" element={<Navigate to="/feed" />}></Route>
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
@@ -100,8 +105,14 @@ function App() {
                 element={<ProfilePage profile={profile} />}
               />
             </Route>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/register"
+              element={accessToken ? <Navigate to="/" /> : <RegisterPage />}
+            />
+            <Route
+              path="/login"
+              element={accessToken ? <Navigate to="/" /> : <LoginPage />}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Container>
