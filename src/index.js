@@ -3,18 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import {
-  UserInterfaceContext,
-  UserInterfaceProvider,
-} from "./contexts/UserInterfaceContext";
-
-import { createStore, applyMiddleware } from "redux";
-import { reducer } from "./store/reducer";
-import thunk from "redux-thunk";
+import { UserInterfaceProvider } from "./contexts/UserInterfaceContext";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import store from "./redux/store";
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { UserInterfaceContext } from "../contexts/UserInterfaceContext";
+import { useDispatch } from "react-redux";
+import { fetchProfile } from "../redux/actions/userActions";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'
@@ -22,6 +24,8 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  dispatch(fetchProfile());
 
   return (
     <>

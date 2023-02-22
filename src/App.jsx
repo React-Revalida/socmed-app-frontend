@@ -1,8 +1,8 @@
 import "./App.css";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   useTheme,
   Container,
@@ -11,8 +11,6 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import Feed from "./pages/Feed";
-import Sidebar from "./components/Sidebar";
-import Widget from "./components/Widget";
 import PostPage from "./pages/PostPage";
 import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
@@ -20,9 +18,8 @@ import { amber, deepOrange, grey } from "@mui/material/colors";
 import { PaletteMode } from "@mui/material";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
-import * as profileService from "./services/profile";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "./store/actions";
+import { fetchProfile } from "./redux/actions/userActions";
 
 const theme = createTheme({
   palette: {
@@ -83,11 +80,12 @@ function App() {
   // });
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
+  const profile = useSelector((state) => state.user.profile);
+  const accessToken = useSelector((state) => state.user.accessToken);
 
-  const profile = useSelector((state) => state.profile);
+  // useEffect(() => {
+  //   dispatch(fetchProfile());
+  // }, [dispatch]);
 
   return (
     <ThemeProvider theme={darkModeTheme}>
@@ -95,17 +93,24 @@ function App() {
         <CssBaseline />
         <Container sx={{ marginTop: 3 }}>
           <Routes>
-            <Route element={<SidebarWidgetLayout />}>
+            <Route
+              element={
+                accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />
+              }
+            >
               <Route path="/" element={<Navigate to="/feed" />}></Route>
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
-              <Route
-                path="/profile/me"
-                element={<ProfilePage profile={profile} />}
-              />
+              <Route path="/profile/me" element={<ProfilePage />} />
             </Route>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/register"
+              element={accessToken ? <Navigate to="/" /> : <RegisterPage />}
+            />
+            <Route
+              path="/login"
+              element={accessToken ? <Navigate to="/" /> : <LoginPage />}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Container>
