@@ -1,12 +1,14 @@
-import * as type from "./types";
-import * as profileService from "../services/profile";
+import * as type from "../types";
+import * as profileService from "../../services/profile";
+import * as authService from "../../services/auth";
 
 export const fetchProfile = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(type.fetchProfileRequest());
     profileService
       .getProfile()
       .then((response) => {
+        console.log(response.data);
         const profile = response.data;
         dispatch(type.fetchProfileSuccess(profile));
       })
@@ -54,6 +56,7 @@ export const updateProfile = (profileDTO, profilePic) => {
       .then(async (response) => {
         const profile = response.data;
         await dispatch(type.updateProfileSuccess(profile));
+        await dispatch(fetchProfile());
       })
       .catch(async (error) => {
         await dispatch(
@@ -71,6 +74,7 @@ export const updateAddress = (addressDTO) => {
       .then(async (response) => {
         const profile = response.data;
         await dispatch(type.updateAddressSuccess(profile));
+        await dispatch(fetchProfile());
       })
       .catch(async (error) => {
         await dispatch(
@@ -83,5 +87,39 @@ export const updateAddress = (addressDTO) => {
 export const resetSuccess = () => {
   return (dispatch) => {
     dispatch(type.resetSuccess());
+  };
+};
+
+export const loginUser = (usernameOrEmail, password) => {
+  return async (dispatch) => {
+    dispatch(type.fetchAuthRequest());
+    authService
+      .login(usernameOrEmail, password)
+      .then((response) => {
+        //console.log(response);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        const accessToken = response.data.accessToken;
+        dispatch(type.fetchLoginSuccess(accessToken));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchLoginFailure(errorMsg));
+      });
+  };
+};
+
+export const logoutUser = () => {
+  return async (dispatch) => {
+    dispatch(type.fetchAuthRequest());
+    authService
+      .logout()
+      .then((response) => {
+        console.log(response);
+        dispatch(type.fetchLoginSuccess(null));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchLoginFailure(errorMsg));
+      });
   };
 };

@@ -21,7 +21,7 @@ import {
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
-import * as profileActions from "../store/actions";
+import * as profileActions from "../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
@@ -145,7 +145,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
     setTab(newValue);
   };
 
-  const success = useSelector((state) => state.success);
+  const success = useSelector((state) => state.user.success);
 
   useEffect(() => {
     if (success) {

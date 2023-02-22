@@ -14,8 +14,12 @@ const staticLogin = (username, password) => {
 
 // This is the function that is called from the Profile component
 export const getProfile = async () => {
-  staticLogin("bryn", "admin2255");
-  return await http.get("/users/me");
+  //staticLogin("bryn", "admin2255");
+  return await http.get("/users/me", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
 };
 
 export const getOtherProfile = async (username) => {

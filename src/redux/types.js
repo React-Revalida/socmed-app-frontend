@@ -70,3 +70,22 @@ export const resetSuccess = () => {
     type: "RESET_SUCCESS",
   };
 };
+export const fetchAuthRequest = () => {
+  return {
+    type: "FETCH_AUTH_REQUEST",
+  };
+};
+
+export const fetchLoginSuccess = (accessToken) => {
+  return {
+    type: "LOGIN_SUCCESS",
+    payload: accessToken,
+  };
+};
+
+export const fetchLoginFailure = (error) => {
+  return {
+    type: "LOGIN_FAILURE",
+    payload: error,
+  };
+};

@@ -14,54 +14,84 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <Box container spacing={2} display={"flex"} justifyContent={"center"}>
-        <Grid item xs={4}>
+      <Grid
+        container
+        spacing={2}
+        display={"flex"}
+        justifyContent={"center"}
+        alignContent={"center"}
+        alignItems={"center"}
+        marginTop={10}
+      >
+        <Grid
+          item
+          xs={8}
+          md={4}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          marginBottom={4}
+        >
           <FlutterDash
             sx={{
               fontSize: 80,
               color: "#00d5bf",
               transform: "rotateY(180deg)",
-              mt: 20,
               position: "relative",
-              left: 50,
+              left: 40,
             }}
           />
-          <Grid
-            sx={{
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
               transform: "rotateX(240deg)",
               position: "relative",
-              left: 50,
-              bottom: 10,
+              top: 55,
+              right: 45,
             }}
           >
             <img src={shadow} width={80} height={50}></img>
-          </Grid>
-        </Grid>
-        <Grid item xs={4} sx={{ mr: 50 }}>
-          <Typography
-            fontSize={30}
-            color={"gray"}
-            fontFamily={"monospace"}
-            sx={{
-              transform: "rotate(357deg)",
+          </div>
+          <div
+            style={{
               position: "relative",
-              top: 65,
-              left: 15,
+              bottom: 100,
+              right: 75,
             }}
           >
-            Error 404!
-          </Typography>
-          <img src={textBox} width={200} height={100} />
+            <Typography
+              fontSize={30}
+              color={"gray"}
+              fontFamily={"monospace"}
+              sx={{
+                transform: "rotate(357deg)",
+                position: "relative",
+                top: 60,
+                left: 15,
+              }}
+            >
+              Error 404!
+            </Typography>
+            <img src={textBox} width={200} height={100} />
+          </div>
         </Grid>
-        <Grid item xs={4} sx={{ mt: 10 }}>
+        <Grid
+          item
+          xs={8}
+          md={4}
+          display={"flex"}
+          justifyContent={"center"}
+          marginBottom={4}
+        >
           <img src={errorPic} width={200} height={200} />
         </Grid>
-      </Box>
+      </Grid>
 
       <Grid container spacing={4} padding={3}>
         <Grid item xs={12} display={"flex"} justifyContent={"center"}>
           <Typography
-            fontSize={40}
+            fontSize={30}
             fontFamily={"monospace"}
             sx={{ color: "#7b847f" }}
           >
@@ -81,6 +111,7 @@ const NotFoundPage = () => {
             sx={{
               backgroundColor: "#00d5bf",
               color: "white",
+              borderRadius: 6,
               "&:hover": {
                 backgroundColor: "#00d5bf",
                 color: "white",

@@ -2,10 +2,8 @@ import { ArrowBack, Schedule } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
 import ProfileEditForm from "./ProfileEditForm";
-const Profile = ({ profile, isMe }) => {
-  const loading = useSelector((state) => state.loading);
+const Profile = ({ profile, isMe, loading }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpenEditDialog = (isOpen) => {
     setOpen(isOpen);

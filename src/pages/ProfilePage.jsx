@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import Profile from "../components/Profile";
 import "../styles/Profile.css";
-import * as profileActions from "../store/actions";
-
+import * as profileActions from "../redux/actions/userActions";
 const ProfilePage = () => {
   const [isMe, setIsMe] = React.useState(false);
   const params = useParams();
@@ -12,18 +11,19 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (params.username) {
-      dispatch(profileActions.fetchOtherProfile(params.username));
+      // dispatch(profileActions.fetchOtherProfile(params.username));
       setIsMe(false);
     } else {
       dispatch(profileActions.fetchProfile());
       setIsMe(true);
     }
   }, [params, dispatch]);
-  
-  const profile = useSelector((state) => state.profile);
+
+  const profile = useSelector((state) => state.user.profile);
+  const loading = useSelector((state) => state.user.loading);
   return (
     <>
-      <Profile profile={profile} isMe={isMe} />
+      <Profile profile={profile} isMe={isMe} loading={loading} />
     </>
   );
 };

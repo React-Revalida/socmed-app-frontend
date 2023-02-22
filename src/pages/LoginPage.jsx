@@ -1,5 +1,6 @@
+import { Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
 import React from "react";
-import { Box } from "@mui/material";
 import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => {
@@ -9,6 +10,7 @@ const LoginPage = () => {
       justifyContent="center"
       alignItems="center"
       minHeight="90vh"
+      sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
     >
       <LoginForm />
     </Box>

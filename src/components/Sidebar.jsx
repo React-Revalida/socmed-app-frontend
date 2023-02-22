@@ -11,9 +11,16 @@ import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
 import { Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
+import * as authService from "../services/auth";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const handleLogout = () => {
+    authService.logout();
+    navigate("/login");
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__twitterIcon">
@@ -24,6 +31,13 @@ const Sidebar = () => {
       <SidebarOpt active Icon={HomeIcon} text="Feed" />
       <SidebarOpt Icon={SearchIcon} text="Explore" />
       <SidebarOpt Icon={PermIdentityIcon} text="Profile" onClick={() => {navigate('/profile')}} />
+      <SidebarOpt
+        Icon={LogoutIcon}
+        text="Logout"
+        onClick={() => {
+          handleLogout();
+        }}
+      />
       <Button variant="outlined" className="sidebar__tweet">
         Tweet
       </Button>
