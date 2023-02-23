@@ -10,6 +10,7 @@ import Actions from "./Actions";
 
 const Post = (post) => {
   console.log(post.post);
+
   return (
     <div className="post">
       <div className="post__avatar">
@@ -24,8 +25,12 @@ const Post = (post) => {
               {/* Test */}
               {post.post.user.firstname + " " + post.post.user.lastname}
               <span className="post__headerSpecial">
-                {/* {verified && <VerifiedUserIcon className = "post__badge" />}
-                            @{username} */}
+                &ensp;
+                {post.post.user.isValidated && (
+                  <VerifiedUserIcon className="post__badge" />
+                )}
+                &ensp;@
+                {post.post.user.username}
               </span>
             </h3>
           </div>
@@ -42,6 +47,7 @@ const Post = (post) => {
       </div>
     </div>
   );
+
   // return (
   //   <>
   //     <div>Post</div>

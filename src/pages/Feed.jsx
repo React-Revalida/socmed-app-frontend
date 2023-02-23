@@ -36,7 +36,7 @@ const Feed = () => {
   const posts = useSelector((state) => state.post.posts);
 
   if (posts.length === undefined) {
-    console.log("wait");
+    console.log(posts.length === undefined);
   } else {
     posts.map((posts) => console.log(posts));
   }
@@ -73,9 +73,9 @@ const Feed = () => {
         <Post />
         <Post /> */}
         {posts.length === undefined ? (
-          <Post />
+          <div>Loading...</div>
         ) : (
-          posts.map((post) => <Post post={post} />)
+          posts.map((post) => <Post key={post.postId} post={post} />)
         )}
         {/* </FlipMove> */}
       </div>
