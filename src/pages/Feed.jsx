@@ -35,11 +35,8 @@ const Feed = () => {
   const loading = useSelector((state) => state.post.loading);
   const posts = useSelector((state) => state.post.posts);
 
-  if (posts.length === undefined) {
-    console.log(posts.length === undefined);
-  } else {
-    posts.map((posts) => console.log(posts));
-  }
+  console.log(loading);
+  console.log(posts);
 
   return (
     <>
@@ -72,7 +69,7 @@ const Feed = () => {
         <Post />
         <Post />
         <Post /> */}
-        {posts.length === undefined ? (
+        {loading === true || posts.length === undefined ? (
           <div>Loading...</div>
         ) : (
           posts.map((post) => <Post key={post.postId} post={post} />)
