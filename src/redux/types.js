@@ -95,4 +95,124 @@ export const unexpectedError = (error) => {
     type: "UNEXPECTED_ERROR",
     payload: error,
   };
-}
+};
+
+export const fetchLikesRequest = () => {
+  return {
+    type: "FETCH_LIKES_REQUEST",
+  };
+};
+
+export const fetchLikesSuccess = (likes) => {
+  return {
+    type: "FETCH_LIKES_SUCCESS",
+    payload: likes,
+  };
+};
+
+export const fetchLikesFailure = (error) => {
+  return {
+    type: "FETCH_LIKES_FAILURE",
+    payload: error,
+  };
+};
+
+export const LikePostRequest = () => {
+  return {
+    type: "LIKES_POST_REQUEST",
+  };
+};
+
+export const LikePostSuccess = (likes) => {
+  return {
+    type: "LIKES_POST_SUCESS",
+    payload: likes,
+  };
+};
+
+export const LikePostFailure = (error) => {
+  return {
+    type: "LIKES_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const UnlikePostRequest = () => {
+  return {
+    type: "UNLIKES_POST_REQUEST",
+  };
+};
+
+export const UnlikePostSuccess = (likes) => {
+  return {
+    type: "UNLIKES_POST_SUCCESS",
+    payload: likes,
+  };
+};
+
+export const UnlikePostFailure = (error) => {
+  return {
+    type: "UNLIKES_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchCommentsRequest = () => {
+  return {
+    type: "FETCH_COMMENTS_REQUEST",
+  };
+};
+
+export const fetchCommentsSuccess = (comments) => {
+  return {
+    type: "FETCH_COMMENTS_SUCCESS",
+    payload: comments,
+  };
+};
+
+export const fetchCommentsFailure = (error) => {
+  return {
+    type: "FETCH_COMMENTS_FAILURE",
+    payload: error,
+  };
+};
+
+export const CommentPostRequest = () => {
+  return {
+    type: "COMMENT_POST_REQUEST",
+  };
+};
+
+export const CommentPostSuccess = (comments) => {
+  return {
+    type: "COMMENT_POST_FAILURE",
+    payload: comments,
+  };
+};
+
+export const CommentPostFailure = (error) => {
+  return {
+    type: "COMMENT_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const UncommentPostRequest = () => {
+  return {
+    type: "UNCOMMENT_POST_REQUEST",
+  };
+};
+
+export const UncommentPostSuccess = (comments) => {
+  return {
+    type: "UNCOMMENT_POST_SUCCESS",
+    payload: comments,
+  };
+};
+
+export const UncommentPostFailure = (error) => {
+  return {
+    type: "UNCOMMENT_POST_FAILURE",
+    payload: error,
+  };
+};
