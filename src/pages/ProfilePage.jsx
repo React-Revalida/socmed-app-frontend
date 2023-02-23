@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import Profile from "../components/Profile";
 import "../styles/Profile.css";
-import * as profileActions from "../redux/actions/userActions";
+import * as profileActions from "../redux/actions/profileActions";
+
 const ProfilePage = () => {
   const [isMe, setIsMe] = React.useState(false);
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));

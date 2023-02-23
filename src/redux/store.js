@@ -1,4 +1,5 @@
-import userReducer from "./reducers/userReducer";
+import profileReducer from "./reducers/profileReducer";
+import authReducer from "./reducers/authReducer";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
 import thunk from "redux-thunk";
@@ -9,8 +10,9 @@ const initialState = {};
 const middleware = [thunk];
 
 const reducers = combineReducers({
-  user: userReducer,
+  user: profileReducer,
   unexpectedError: unexpectedErrorReducer,
+  auth: authReducer,
 });
 
 const composeEnhancers =

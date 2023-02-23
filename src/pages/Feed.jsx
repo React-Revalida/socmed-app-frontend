@@ -14,7 +14,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { UserInterfaceContext } from "../contexts/UserInterfaceContext";
 import { useDispatch } from "react-redux";
-import { fetchProfile } from "../redux/actions/userActions";
+import { fetchProfile } from "../redux/actions/profileActions";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'
