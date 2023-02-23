@@ -3,24 +3,24 @@ const initialState = {
     address: {},
   },
   loading: false,
-  error: {},
+  error: null,
   success: false,
   accessToken: null,
 };
 
-export default function userReducer (state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case "FETCH_PROFILE_REQUEST":
       return {
         ...state,
         loading: true,
-        error: {},
+        error: null,
       };
     case "FETCH_OTHER_PROFILE_REQUEST":
       return {
         ...state,
         loading: true,
-        error: {},
+        error: null,
       };
     case "FETCH_PROFILE_SUCCESS":
       return {
@@ -38,7 +38,7 @@ export default function userReducer (state = initialState, action) {
     case "UPDATE_PROFILE_REQUEST":
       return {
         ...state,
-        error: {},
+        error: null,
       };
     case "UPDATE_PROFILE_SUCCESS":
       return {
@@ -55,7 +55,7 @@ export default function userReducer (state = initialState, action) {
     case "UPDATE_ADDRESS_REQUEST":
       return {
         ...state,
-        error: {},
+        error: null,
       };
     case "UPDATE_ADDRESS_SUCCESS":
       return {

@@ -29,7 +29,7 @@ export const fetchOtherProfile = (username) => {
         dispatch(type.fetchProfileSuccess(profile));
       })
       .catch((error) => {
-        dispatch(type.fetchProfileFailure(error.response));
+        dispatch(type.fetchProfileFailure(error));
       });
   };
 };

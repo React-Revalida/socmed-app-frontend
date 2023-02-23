@@ -89,3 +89,10 @@ export const fetchLoginFailure = (error) => {
     payload: error,
   };
 };
+
+export const unexpectedError = (error) => {
+  return {
+    type: "UNEXPECTED_ERROR",
+    payload: error,
+  };
+}
