@@ -8,7 +8,8 @@ import React, { forwardRef } from "react";
 import "../styles/Post.css";
 import Actions from "./Actions";
 
-const Post = () => {
+const Post = (post) => {
+  console.log(post.post);
   return (
     <div className="post">
       <div className="post__avatar">
@@ -20,8 +21,8 @@ const Post = () => {
         <div className="post__header">
           <div className="post__headerText">
             <h3>
-              Test
-              {/* {displayName} */}
+              {/* Test */}
+              {post.post.user.firstname + " " + post.post.user.lastname}
               <span className="post__headerSpecial">
                 {/* {verified && <VerifiedUserIcon className = "post__badge" />}
                             @{username} */}
@@ -29,14 +30,11 @@ const Post = () => {
             </h3>
           </div>
           <div className="post__headerDescription">
-            <p>Test post desc</p>
-            {/* <p>{text}</p> */}
+            {/* <p>Test post desc</p> */}
+            <p>{post.post.message}</p>
           </div>
         </div>
-        <img
-          // src = {image}
-          alt=""
-        />
+        <img src={post.post.imageUrl} alt="" />
         <div className="post__footer">
           <ChatBubbleOutlineIcon fontSize="small" />
           <FavoriteBorderIcon fontSize="small" />

@@ -23,6 +23,9 @@ const ProfilePage = () => {
 
   const profile = useSelector((state) => state.user.profile);
   const loading = useSelector((state) => state.user.loading);
+  console.log(profile);
+  console.log(loading);
+
   return (
     <>
       <Profile profile={profile} isMe={isMe} loading={loading} />

@@ -216,3 +216,23 @@ export const UncommentPostFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchPostsRequest = () => {
+  return {
+    type: "FETCH_POSTS_REQUEST",
+  };
+};
+
+export const fetchPostsSuccess = (posts) => {
+  return {
+    type: "FETCH_POSTS_SUCCESS",
+    payload: posts,
+  };
+};
+
+export const fetchPostsFailure = (error) => {
+  return {
+    type: "FETCH_POSTS_ERROR",
+    payload: error,
+  };
+};
