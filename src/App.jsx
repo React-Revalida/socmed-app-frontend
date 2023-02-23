@@ -19,8 +19,8 @@ import { PaletteMode } from "@mui/material";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "./redux/actions/userActions";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const theme = createTheme({
   palette: {
     primary: {
@@ -79,8 +79,6 @@ function App() {
   //   },
   // });
 
-  const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
   const accessToken = localStorage.getItem("accessToken");
 
   // useEffect(() => {
@@ -101,7 +99,14 @@ function App() {
               <Route path="/" element={<Navigate to="/feed" />}></Route>
               <Route path="/feed" element={<Feed />} />
               <Route path="/post" element={<PostPage />} />
-              <Route path="/profile/me" element={<ProfilePage />} />
+              <Route
+                path="/profile"
+                element={<ProfilePage />}
+              />
+              <Route
+                path="/profile/:username"
+                element={<ProfilePage />}
+              />
             </Route>
             <Route
               path="/register"
@@ -113,7 +118,8 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Container>
+        </Container> 
+        <ToastContainer />
       </div>
     </ThemeProvider>
   );

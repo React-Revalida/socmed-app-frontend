@@ -1,71 +1,80 @@
 import { ArrowBack, Schedule } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import { Button } from "@mui/material";
+import React from "react";
 import Avatar from "react-avatar";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../redux/actions/userActions";
+import ProfileEditForm from "./ProfileEditForm";
+const Profile = ({ profile, isMe, loading }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpenEditDialog = (isOpen) => {
+    setOpen(isOpen);
+  };
 
-const Profile = () => {
-  const loading = useSelector((state) => state.loading);
-  const profile = useSelector((state) => state.user.profile);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+  if (loading) return <div>Loading...</div>;
   return (
-    <section className="feed">
-      <div className="profileHeader">
-        <div>
-          <ArrowBack />
-        </div>
-        <div>
-          <span>{profile.name}</span>
-          <span>Tweets</span>
-        </div>
-      </div>
-      <div className="profile">
-        <div className="backgroundImage"></div>
-        <div className="profileTitle">
-          <div className="profileImage">
-            <Avatar
-              name={profile.name}
-              src={profile.profilePic}
-              round={true}
-              size="120"
-            ></Avatar>
+    <>
+      <ProfileEditForm
+        profile={profile}
+        isDialogOpen={open}
+        onOpenDialog={handleOpenEditDialog}
+      />
+      <section className="feed">
+        <div className="profileHeader">
+          <div>
+            <ArrowBack />
           </div>
-          <div className="editProfile">
-            <span>Edit Profile</span>
+          <div>
+            <span>{profile.name}</span>
+            <span>Tweets</span>
           </div>
         </div>
-        <div className="profileBiography">
-          <span>{profile.name}</span>
-          <span>{profile.email}</span>
-          <span>{profile.bio}</span>
-          <span>
-            <Schedule />
-            {profile.dateJoined}
-          </span>
+        <div className="profile">
+          <div className="backgroundImage"></div>
+          <div className="profileTitle">
+            <div className="profileImage">
+              <Avatar
+                name={profile.name}
+                src={profile.profilePic}
+                round={true}
+                size="120"
+              ></Avatar>
+            </div>
+            {isMe ? (
+              <Button
+                className="editProfile"
+                onClick={() => handleOpenEditDialog(true)}
+              >
+                <span>Edit Profile</span>
+              </Button>
+            ) : (
+              // to be implemented
+              <Button className="editProfile">
+                <span>Follow</span>
+              </Button>
+            )}
+          </div>
+          <div className="profileBiography">
+            <span>{profile.name}</span>
+            <span>{profile.email}</span>
+            <span>{profile.bio}</span>
+            <span>
+              <Schedule />
+              {profile.dateJoined}
+            </span>
+          </div>
+          <div>
+            <span>
+              <span>{profile.following}</span>
+              <span>Following</span>
+            </span>
+            <span>
+              <span>{profile.followers}</span>
+              <span>Followers</span>
+            </span>
+          </div>
         </div>
-        <div>
-          <span>
-            <span>{profile.following}</span>
-            <span>Following</span>
-          </span>
-          <span>
-            <span>{profile.followers}</span>
-            <span>Followers</span>
-          </span>
-        </div>
-      </div>
-      <article className="profilePosts"></article>
-    </section>
+        <article className="profilePosts"></article>
+      </section>
+    </>
   );
 };
 

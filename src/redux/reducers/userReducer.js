@@ -1,13 +1,22 @@
 const initialState = {
-  profile: {},
+  profile: {
+    address: {},
+  },
   loading: false,
-  accessToken: null,
   error: null,
+  success: false,
+  accessToken: null,
 };
 
-export default function (state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case "FETCH_PROFILE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_OTHER_PROFILE_REQUEST":
       return {
         ...state,
         loading: true,
@@ -24,7 +33,46 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload,
-        profile: null,
+        profile: {},
+      };
+    case "UPDATE_PROFILE_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "UPDATE_PROFILE_SUCCESS":
+      return {
+        ...state,
+        profile: action.payload,
+        success: true,
+      };
+    case "UPDATE_PROFILE_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+      };
+    case "UPDATE_ADDRESS_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "UPDATE_ADDRESS_SUCCESS":
+      return {
+        ...state,
+        profile: action.payload,
+        success: true,
+      };
+    case "UPDATE_ADDRESS_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+      };
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: false,
       };
     case "FETCH_AUTH_REQUEST":
       return {
