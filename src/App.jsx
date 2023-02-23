@@ -1,26 +1,18 @@
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import { useContext, useEffect } from "react";
-import {
-  useTheme,
-  Container,
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-} from "@mui/material";
-import Feed from "./pages/Feed";
-import PostPage from "./pages/PostPage";
-import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
+import { Route, Routes } from "react-router-dom";
+import { useContext } from "react";
+import { useTheme, createTheme } from "@mui/material";
+// import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
-import { amber, deepOrange, grey } from "@mui/material/colors";
-import { PaletteMode } from "@mui/material";
-import NotFoundPage from "./pages/NotFoundPage";
-import ProfilePage from "./pages/ProfilePage";
-import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { grey } from "@mui/material/colors";
+// import ProfilePage from "./pages/ProfilePage";
 import "react-toastify/dist/ReactToastify.css";
+
+import Home from "./pages/Home/Home";
+import Notifications from "./pages/Notifications/Notifications";
+import Profile from "./pages/Profile/Profile";
+import Messages from "./pages/Messages/Messages";
+import LoginPage from "./pages/LoginPage";
 const theme = createTheme({
   palette: {
     primary: {
@@ -73,55 +65,18 @@ function App() {
   const theme = useTheme();
   const mode = darkMode ? "dark" : "light";
   const darkModeTheme = createTheme(getDesignTokens(mode));
-  // const theme = createTheme({
-  //   palette: {
-  //     mode: darkMode ? "dark" : "light",
-  //   },
-  // });
 
   const accessToken = localStorage.getItem("accessToken");
 
-  // useEffect(() => {
-  //   dispatch(fetchProfile());
-  // }, [dispatch]);
-
   return (
-    <ThemeProvider theme={darkModeTheme}>
-      <div className="app">
-        <CssBaseline />
-        <Container sx={{ marginTop: 3 }}>
-          <Routes>
-            <Route
-              element={
-                accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />
-              }
-            >
-              <Route path="/" element={<Navigate to="/feed" />}></Route>
-              <Route path="/feed" element={<Feed />} />
-              <Route path="/post" element={<PostPage />} />
-              <Route
-                path="/profile"
-                element={<ProfilePage />}
-              />
-              <Route
-                path="/profile/:username"
-                element={<ProfilePage />}
-              />
-            </Route>
-            <Route
-              path="/register"
-              element={accessToken ? <Navigate to="/" /> : <RegisterPage />}
-            />
-            <Route
-              path="/login"
-              element={accessToken ? <Navigate to="/" /> : <LoginPage />}
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Container> 
-        <ToastContainer />
-      </div>
-    </ThemeProvider>
+    <Routes>
+      <Route path="/login" element={<LoginPage/>} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/Messages" element={<Messages />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:username" element={<Profile />} />
+    </Routes>
   );
 }
 

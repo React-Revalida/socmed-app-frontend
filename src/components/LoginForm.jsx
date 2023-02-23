@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const handleSubmit = () => {
     try {
-      dispatch(loginUser("harveysamson", "admin2255"));
+      dispatch(loginUser("bryn", "admin2255"));
       navigate("/feed");
     } catch (error) {
       console.log(error);

@@ -12,7 +12,7 @@ import {
 import { Box, useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
-import "../styles/EditProfile.css";
+// import "../styles/EditProfile.css";
 import PropTypes from "prop-types";
 import {
   CustomOutlinedTextField,
@@ -31,40 +31,66 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const [tab, setTab] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [profileState, setProfileState] = React.useState({
-    firstname: profile.firstname,
-    middlename: profile.middlename ? profile.middlename : "",
-    lastname: profile.lastname,
-    gender: profile.gender,
-    birthdate: profile.birthdate,
-    phone: profile.phone ? profile.phone : "",
-    bio: profile.bio ? profile.bio : "",
+    firstname: "",
+    middlename: "",
+    lastname: "",
+    gender: "",
+    birthdate: null,
+    phone: "",
+    bio: "",
   });
   const [addressState, setAddressState] = React.useState({
-    houseNo: profile.address.houseNo,
-    street: profile.address.street,
-    subdivision: profile.address.subdivision,
-    barangay: profile.address.barangay,
-    city: profile.address.city,
-    province: profile.address.province,
-    zip: profile.address.zip,
+    houseNo: "",
+    street: "",
+    subdivision: "",
+    barangay: "",
+    city: "",
+    province: "",
+    zip: "",
   });
-  const [profilePic, setProfilePic] = React.useState(profile.profilePic);
+  const [profilePic, setProfilePic] = React.useState(null);
+  useEffect(() => {
+    setProfileState({
+      firstname: profile.firstname,
+      middlename: profile.middlename ? profile.middlename : "",
+      lastname: profile.lastname,
+      gender: profile.gender,
+      birthdate: profile.birthdate,
+      phone: profile.phone ? profile.phone : "",
+      bio: profile.bio ? profile.bio : "",
+    });
+    setAddressState({
+      houseNo: profile.address.houseNo,
+      street: profile.address.street,
+      subdivision: profile.address.subdivision,
+      barangay: profile.address.barangay,
+      city: profile.address.city,
+      province: profile.address.province,
+      zip: profile.address.zip,
+    });
+    setProfilePic(profile.profilePic);
+  }, [profile]);
+
   const [profilePicUpload, setProfilePicUpload] = useState(null);
 
   const profileSchema = Joi.object({
     firstname: Joi.string().max(50).required(),
-    middlename: Joi.string().max(20),
+    middlename: Joi.string().max(20).allow(""),
     lastname: Joi.string().max(50).required(),
     gender: Joi.string(),
     birthdate: Joi.date().allow(null),
-    phone: Joi.string().pattern(new RegExp("^(09)\\d{9}$")).max(11).messages({
-      "string.pattern.base": "Phone number must start with 09",
-    }),
-    bio: Joi.string().max(160),
+    phone: Joi.string()
+      .pattern(new RegExp("^(09)\\d{9}$"))
+      .max(11)
+      .messages({
+        "string.pattern.base": "Phone number must start with 09",
+      })
+      .allow(""),
+    bio: Joi.string().max(160).allow(""),
   });
 
   const addressSchema = Joi.object({
-    houseNo: Joi.string().max(20).required(),
+    houseNo: Joi.string().max(20).allow(""),
     street: Joi.string().max(20).required(),
     subdivision: Joi.string().max(25).required(),
     barangay: Joi.string().max(25).required(),

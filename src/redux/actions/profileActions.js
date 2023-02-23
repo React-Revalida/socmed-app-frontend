@@ -4,9 +4,9 @@ import * as profileService from "../../services/profile";
 export const fetchProfile = () => {
   return async (dispatch) => {
     dispatch(type.fetchProfileRequest());
-    profileService
+    await profileService
       .getProfile()
-      .then((response) => {
+      .then(async (response) => {
         console.log(response.data);
         const profile = response.data;
         dispatch(type.fetchProfileSuccess(profile));
