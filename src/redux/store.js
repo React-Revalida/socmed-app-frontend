@@ -2,6 +2,7 @@ import userReducer from "./reducers/userReducer";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
 import thunk from "redux-thunk";
+import unexpectedErrorReducer from "./reducers/unexpectedErrorReducer";
 
 const initialState = {};
 
@@ -9,6 +10,7 @@ const middleware = [thunk];
 
 const reducers = combineReducers({
   user: userReducer,
+  unexpectedError: unexpectedErrorReducer,
 });
 
 const composeEnhancers =

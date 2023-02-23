@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { unexpectedError } from "../redux/types";
+import store from "../redux/store";
 const http = axios.create({
   baseURL: "http://localhost:8080/api",
 });
@@ -11,8 +12,8 @@ http.interceptors.response.use(null, (error) => {
     error.response.status < 500;
 
   if (!expectedError) {
-    console.log("inside interceptor");
-    alert("An unexpected error occurred");
+    store.dispatch(unexpectedError(error));
+    console.log("Logging the error", error);
   }
 
   return Promise.reject(error);
