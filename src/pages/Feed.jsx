@@ -13,19 +13,33 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { UserInterfaceContext } from "../contexts/UserInterfaceContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
+import * as postActions from "../redux/actions/postActions";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useSelector((state) => state.post.posts);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //dispatch(fetchProfile());
+
+  useEffect(() => {
+    dispatch(postActions.fetchPosts());
+  }, [dispatch]);
+
+  const loading = useSelector((state) => state.post.loading);
+  const posts = useSelector((state) => state.post.posts);
+
+  if (posts.length === undefined) {
+    console.log("wait");
+  } else {
+    posts.map((posts) => console.log(posts));
+  }
 
   return (
     <>
@@ -42,38 +56,27 @@ const Feed = () => {
             {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </div>
-
         <TweetBox />
         {/* <FlipMove> */}
         {/*test for clicking post*/}
-
+        {/* <CardActionArea onClick={() => navigate("/post")}>
+          <Post />
+        </CardActionArea>
         <CardActionArea onClick={() => navigate("/post")}>
           <Post />
         </CardActionArea>
-
         <CardActionArea onClick={() => navigate("/post")}>
           <Post />
-        </CardActionArea>
-
-        <CardActionArea onClick={() => navigate("/post")}>
-          <Post />
-        </CardActionArea>
-
+        </CardActionArea> */}
         {/* 
         <Post />
         <Post />
         <Post /> */}
-        {posts.map((post) => (
-          <Post
-          // key={post.text}
-          // displayName={post.displayName}
-          // username={post.username}
-          // verified={post.verified}
-          // text={post.text}
-          // image={post.image}
-          // avatar={post.avatar}
-          />
-        ))}
+        {posts.length === undefined ? (
+          <Post />
+        ) : (
+          posts.map((post) => <Post post={post} />)
+        )}
         {/* </FlipMove> */}
       </div>
     </>
