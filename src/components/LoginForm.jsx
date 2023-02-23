@@ -5,7 +5,7 @@ import { Button, CardActions, TextField } from "@mui/material";
 import { Box, fontWeight, textAlign } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/actions/userActions";
+import { loginUser } from "../redux/actions/authActions";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

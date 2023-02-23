@@ -21,9 +21,10 @@ import {
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
-import * as profileActions from "../redux/actions/userActions";
+import * as profileActions from "../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
+
 const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
