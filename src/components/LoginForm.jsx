@@ -4,18 +4,26 @@ import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { Button, CardActions, TextField } from "@mui/material";
 import { Box, fontWeight, textAlign } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { loginUser } from "../redux/actions/authActions";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const handleSubmit = () => {
     try {
-      dispatch(loginUser("bryn", "admin2255"))
+      dispatch(loginUser(username, password))
         .then(() => {
-          navigate("/home");
+          if (localStorage.getItem("accessToken")) {
+            navigate("/home");
+          } else {
+            toast("Invalid username and/or password");
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -52,6 +60,9 @@ const LoginForm = () => {
               variant="outlined"
               margin="normal"
               size="small"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
               fullWidth
             />
             <TextField
@@ -60,6 +71,9 @@ const LoginForm = () => {
               variant="outlined"
               type={"password"}
               size="small"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               fullWidth
             />
           </Box>
@@ -98,6 +112,7 @@ const LoginForm = () => {
           </Link>
         </Box>
       </Card>
+      <ToastContainer />
     </>
   );
 };

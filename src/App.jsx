@@ -73,8 +73,14 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/login" element={accessToken ? <Navigate to="/home" /> : <LoginPage />} />
-      <Route path="/home" element={accessToken ? <Home /> : <Navigate to="/login" />} />
+      <Route
+        path="/login"
+        element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
+      />
+      <Route
+        path="/home"
+        element={accessToken ? <Home /> : <Navigate to="/login" />}
+      />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/Messages" element={<Messages />} />
       <Route path="/profile" element={<Profile />} />
