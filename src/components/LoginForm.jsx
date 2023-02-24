@@ -105,7 +105,7 @@ const LoginForm = () => {
           <Typography variant="caption" marginLeft={"15px"}>
             Don't have an account yet? &nbsp;
           </Typography>
-          <Link to="/register" style={{ textDecoration: "none" }}>
+          <Link to="/signup" style={{ textDecoration: "none" }}>
             <Typography variant="caption" color={"#00d5bf"}>
               Sign up here.
             </Typography>

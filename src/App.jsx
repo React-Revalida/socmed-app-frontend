@@ -6,6 +6,8 @@ import { useTheme, createTheme } from "@mui/material";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { grey } from "@mui/material/colors";
 // import ProfilePage from "./pages/ProfilePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import RegisterPage from "./pages/RegisterPage";
 import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./pages/Home/Home";
@@ -74,17 +76,38 @@ function App() {
   return (
     <Routes>
       <Route
+        path="/"
+        element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
+      />
+      <Route
         path="/login"
         element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
+      />
+      <Route
+        path="/signup"
+        element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
       />
       <Route
         path="/home"
         element={accessToken ? <Home /> : <Navigate to="/login" />}
       />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/Messages" element={<Messages />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/profile/:username" element={<Profile />} />
+      <Route
+        path="/notifications"
+        element={accessToken ? <Notifications /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/Messages"
+        element={accessToken ? <Messages /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/profile"
+        element={accessToken ? <Profile /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/profile/:username"
+        element={accessToken ? <Profile /> : <Navigate to="/login" />}
+      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
