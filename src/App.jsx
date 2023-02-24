@@ -10,13 +10,14 @@ import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import "react-toastify/dist/ReactToastify.css";
 
-import Home from "./pages/Home/Home";
 import Notifications from "./pages/Notifications/Notifications";
 import Profile from "./pages/Profile/Profile";
 import Messages from "./pages/Messages/Messages";
 import LoginPage from "./pages/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLoginSuccess } from "./redux/types";
+import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
+import Feed from "./components/Feed/Feed";
 const theme = createTheme({
   palette: {
     primary: {
@@ -75,37 +76,18 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
-      />
-      <Route
-        path="/login"
-        element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
-      />
+      <Route element={accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />}>
+        <Route path="/home" element={<Feed />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/Messages" element={<Messages />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:username" element={<Profile />} />
+      </Route>
+      
+      <Route path="/login" element={accessToken ? <Navigate to="/home" /> : <LoginPage />} />
       <Route
         path="/signup"
         element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
-      />
-      <Route
-        path="/home"
-        element={accessToken ? <Home /> : <Navigate to="/login" />}
-      />
-      <Route
-        path="/notifications"
-        element={accessToken ? <Notifications /> : <Navigate to="/login" />}
-      />
-      <Route
-        path="/Messages"
-        element={accessToken ? <Messages /> : <Navigate to="/login" />}
-      />
-      <Route
-        path="/profile"
-        element={accessToken ? <Profile /> : <Navigate to="/login" />}
-      />
-      <Route
-        path="/profile/:username"
-        element={accessToken ? <Profile /> : <Navigate to="/login" />}
       />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

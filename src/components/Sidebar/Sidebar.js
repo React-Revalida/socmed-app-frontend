@@ -4,18 +4,12 @@ import SidebarItem from "./SidebarItem/SidebarItem";
 import {
   HomeIcon,
   MessagesIcon,
-  ListIcon,
   UserIcon,
-  ExploreIcon,
   SetTweetIcon,
   NotificationsIcon,
-  BookmarkIcon,
-  MoreIcon,
 } from "../icons/index";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import MoreMenu from "../MoreMenu/MoreMenu";
 import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -27,13 +21,18 @@ function Sidebar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
-  const [moreActive, setMoreActive] = React.useState(false);
   const profile = useSelector((state) => state.user.profile);
+  const [currLocation, setCurrentLocation] = React.useState(location);
+
+  const handleLocationChange = (location) => {
+    setCurrentLocation(location);
+  };
 
   const handleLogout = () => {
     try {
-      dispatch(logoutUser());
-      navigate("/login");
+      dispatch(logoutUser()).then(() => {
+        navigate("/login");
+      });
     } catch (error) {
       console.log(error);
     }
@@ -42,32 +41,48 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <FlutterDashIcon className="twitter-icon" />
-      <Link to="/home" style={{ textDecoration: "none" }}>
+      <Link
+        to="/home"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/home")}
+      >
         <SidebarItem
           text="Home"
           Icon={HomeIcon}
-          active={location === "/home" && true}
+          active={currLocation === "/home" && true}
         />
       </Link>
-      <Link to="/notifications" style={{ textDecoration: "none" }}>
+      <Link
+        to="/notifications"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/notifications")}
+      >
         <SidebarItem
           text="Notifications"
           Icon={NotificationsIcon}
-          active={location === "/notifications" && true}
+          active={currLocation === "/notifications" && true}
         />
       </Link>
-      <Link to="/Messages" style={{ textDecoration: "none" }}>
+      <Link
+        to="/Messages"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/Messages")}
+      >
         <SidebarItem
           text="Messages"
           Icon={MessagesIcon}
-          active={location === "/Messages" && true}
+          active={currLocation === "/Messages" && true}
         />
       </Link>
-      <Link to="/profile" style={{ textDecoration: "none" }}>
+      <Link
+        to="/profile"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/profile")}
+      >
         <SidebarItem
           text="Profile"
           Icon={UserIcon}
-          active={location === "/profile" && true}
+          active={currLocation === "/profile" && true}
         />
       </Link>
       <Button onClick={handleLogout}>

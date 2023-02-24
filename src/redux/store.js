@@ -3,6 +3,7 @@ import authReducer from "./reducers/authReducer";
 import likeReducer from "./reducers/likeReducer";
 import commentReducer from "./reducers/commentReducer";
 import postReducer from "./reducers/postReducer";
+
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
 import thunk from "redux-thunk";
@@ -14,6 +15,7 @@ const middleware = [thunk];
 
 const reducers = combineReducers({
   user: profileReducer,
+  post: postReducer,
   unexpectedError: unexpectedErrorReducer,
   auth: authReducer,
   like: likeReducer,

@@ -20,7 +20,7 @@ function Notifications() {
     setLoading(false);
   }, 2000);
   return (
-    <HomeBox>
+    <>
       <div className="feed">
         {isDrawerBar && (
           <div
@@ -32,7 +32,11 @@ function Notifications() {
         <div className="notificationsHeader">
           <div className="notificationsTitle">
             <div onClick={() => setIsDrawerBar(true)}>
-              <Avatar round={true} size={40} src="https://avatars.githubusercontent.com/u/38807255?s=460&u=deb087d587be7f6a4000e4e710ec4d1daa6fde84&v=4" />
+              <Avatar
+                round={true}
+                size={40}
+                src="https://avatars.githubusercontent.com/u/38807255?s=460&u=deb087d587be7f6a4000e4e710ec4d1daa6fde84&v=4"
+              />
             </div>
             <span>&nbsp;Notifications</span>
             <SettingsIcon />
@@ -63,36 +67,6 @@ function Notifications() {
                     displayName: "Cihat Necati",
                   }}
                 />
-                <LikedYou
-                  likePost={{
-                    id: 1,
-                    likeUser: [
-                      {
-                        displayName: "C Necati",
-                        userImage:
-                          "https://pbs.twimg.com/profile_images/1348390204810407937/BmUVaYGD_400x400.jpg",
-                      },
-                      {
-                        displayName: "Mehmet",
-                        userImage:
-                          "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
-                      },
-                      {
-                        displayName: "Code",
-                        userImage:
-                          "https://pbs.twimg.com/profile_images/1278357302601347072/BGZIBPH9_200x200.jpg",
-                      },
-                    ],
-                    post: "Bu tweeti beğenin.",
-                  }}
-                />
-                <Post
-                  username="cnecati"
-                  userimage="https://pbs.twimg.com/profile_images/1348390204810407937/BmUVaYGD_400x400.jpg"
-                  displayName="Cihat Necati"
-                  text="@mucahitsahin Projelerine github.com/mucahit-sahin adresinden ulaşabilirsiniz"
-                  date="1614077764184"
-                />
               </>
             ) : (
               <>
@@ -112,7 +86,7 @@ function Notifications() {
         <BottomSidebar />
       </div>
       <Widgets />
-    </HomeBox>
+    </>
   );
 }
 

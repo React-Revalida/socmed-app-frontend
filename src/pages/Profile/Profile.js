@@ -15,6 +15,7 @@ import Loading from "../../components/Loading/Loading";
 import { useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
 import ProfileEditForm from "../../components/ProfileEditForm";
+import Widgets from "../../components/Widgets/Widgets";
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
@@ -46,107 +47,100 @@ const Profile = () => {
         isDialogOpen={open}
         onOpenDialog={handleOpenEditDialog}
       />
-      <HomeBox>
-        <section className="feed">
-          <div className="profileHeader">
-            <div>
-              <BackIcon />
+      <section className="feed">
+        <div className="profileHeader">
+          <div>
+            <BackIcon />
+          </div>
+          <div>
+            <span>{profile.name}</span>
+            <span>Tweets</span>
+          </div>
+        </div>
+        <div className="profile">
+          <div className="backgroundImage"></div>
+          <div className="profileTitle">
+            <div className="profileImage">
+              <Avatar
+                name={profile.name}
+                src={profile.profilePic}
+                round={true}
+                size={134}
+              />
             </div>
-            <div>
-              <span>{profile.name}</span>
+            <div
+              className="editProfile"
+              onClick={() => handleOpenEditDialog(true)}
+            >
+              <span>Edit Profile</span>
+            </div>
+          </div>
+          <div className="profileBiography">
+            <span>{profile.name}</span>
+            <span>{profile.email}</span>
+            <span>{profile.bio}</span>
+            <span>
+              <ScheduleIcon />
+              {profile.dateJoined}
+            </span>
+          </div>
+          <div>
+            <span>
+              <span>{profile.following}</span>
+              <span>Following</span>
+            </span>
+            <span>
+              <span>{profile.followers}</span>
+              <span>Followers</span>
+            </span>
+          </div>
+          <div className="profileCategory">
+            <div
+              className={category === 1 && "profileCategoryActive"}
+              onClick={() => setCategory(1)}
+            >
               <span>Tweets</span>
             </div>
-          </div>
-          <div className="profile">
-            <div className="backgroundImage"></div>
-            <div className="profileTitle">
-              <div className="profileImage">
-                <Avatar
-                  name={profile.name}
-                  src={profile.profilePic}
-                  round={true}
-                  size={134}
-                />
-              </div>
-              <div
-                className="editProfile"
-                onClick={() => handleOpenEditDialog(true)}
-              >
-                <span>Edit Profile</span>
-              </div>
+            <div
+              className={category === 2 && "profileCategoryActive"}
+              onClick={() => setCategory(2)}
+            >
+              <span>Tweets & replies</span>
             </div>
-            <div className="profileBiography">
-              <span>{profile.name}</span>
-              <span>{profile.email}</span>
-              <span>{profile.bio}</span>
-              <span>
-                <ScheduleIcon />
-                {profile.dateJoined}
-              </span>
+            <div
+              className={category === 3 && "profileCategoryActive"}
+              onClick={() => setCategory(3)}
+            >
+              <span>Media</span>
             </div>
-            <div>
-              <span>
-                <span>{profile.following}</span>
-                <span>Following</span>
-              </span>
-              <span>
-                <span>{profile.followers}</span>
-                <span>Followers</span>
-              </span>
-            </div>
-            <div className="profileCategory">
-              <div
-                className={category === 1 && "profileCategoryActive"}
-                onClick={() => setCategory(1)}
-              >
-                <span>Tweets</span>
-              </div>
-              <div
-                className={category === 2 && "profileCategoryActive"}
-                onClick={() => setCategory(2)}
-              >
-                <span>Tweets & replies</span>
-              </div>
-              <div
-                className={category === 3 && "profileCategoryActive"}
-                onClick={() => setCategory(3)}
-              >
-                <span>Media</span>
-              </div>
-              <div
-                className={category === 4 && "profileCategoryActive"}
-                onClick={() => setCategory(4)}
-              >
-                <span>Likes</span>
-              </div>
+            <div
+              className={category === 4 && "profileCategoryActive"}
+              onClick={() => setCategory(4)}
+            >
+              <span>Likes</span>
             </div>
           </div>
-          <article className="profilePosts">
-            {!loading ? (
-              posts.map((post) => (
-                <Post
-                  key={post.id}
-                  username={post.username}
-                  userimage={post.userimage}
-                  date={post.date}
-                  displayName={post.displayName}
-                  text={post.text}
-                  shareImage={post.shareImage}
-                />
-              ))
-            ) : (
-              <Loading />
-            )}
-          </article>
-          <BottomSidebar />
-        </section>
-        <div className="widgets">
-          <SearchInput placeholder="Search Twitter" />
-          <FriendSuggestions />
-          <Topics />
-          <Links />
         </div>
-      </HomeBox>
+        <article className="profilePosts">
+          {!loading ? (
+            posts.map((post) => (
+              <Post
+                key={post.id}
+                username={post.username}
+                userimage={post.userimage}
+                date={post.date}
+                displayName={post.displayName}
+                text={post.text}
+                shareImage={post.shareImage}
+              />
+            ))
+          ) : (
+            <Loading />
+          )}
+        </article>
+        <BottomSidebar />
+      </section>
+      <Widgets />
     </>
   );
 };
