@@ -14,18 +14,34 @@ import {
 } from "../icons/index";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MoreMenu from "../MoreMenu/MoreMenu";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Button } from "@mui/material";
+import FlutterDashIcon from "@mui/icons-material/FlutterDash";
+import { logoutUser } from "../../redux/actions/authActions";
 
 function Sidebar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const [moreActive, setMoreActive] = React.useState(false);
   const profile = useSelector((state) => state.user.profile);
+
+  const handleLogout = () => {
+    try {
+      dispatch(logoutUser());
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="sidebar">
-      <TwitterIcon className="twitter-icon" />
+      <FlutterDashIcon className="twitter-icon" />
       <Link to="/home" style={{ textDecoration: "none" }}>
         <SidebarItem
           text="Home"
@@ -54,13 +70,21 @@ function Sidebar() {
           active={location === "/profile" && true}
         />
       </Link>
+      <Button onClick={handleLogout}>
+        <SidebarItem text="Log Out" Icon={LogoutIcon} />
+      </Button>
       <div className="tweetButton">
         <SetTweetIcon className="setTweetIcon" />
         <span>Tweet</span>
       </div>
       <div className="profileCard">
         <div className="profileCardImage">
-          <Avatar round={true} size={40} src={profile.profilePic} name={profile.name} />
+          <Avatar
+            round={true}
+            size={40}
+            src={profile.profilePic}
+            name={profile.name}
+          />
         </div>
         <div className="profileCardNameCol">
           <div className="profileCardNameColName">

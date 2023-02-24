@@ -22,15 +22,7 @@ export const loginUser = (usernameOrEmail, password) => {
 export const logoutUser = () => {
   return async (dispatch) => {
     dispatch(type.fetchAuthRequest());
-    authService
-      .logout()
-      .then((response) => {
-        console.log(response);
-        dispatch(type.fetchLoginSuccess(null));
-      })
-      .catch((error) => {
-        const errorMsg = error.message;
-        dispatch(type.fetchLoginFailure(errorMsg));
-      });
+    authService.logout();
+    dispatch(type.fetchLoginSuccess(null));
   };
 };
