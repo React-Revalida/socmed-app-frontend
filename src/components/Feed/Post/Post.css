@@ -64,6 +64,7 @@
 .post-event {
   display: flex;
   flex: 1;
+  justify-content: space-evenly;
 }
 .post-event > div {
   flex: 0.25;
