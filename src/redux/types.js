@@ -247,6 +247,9 @@ export const fetchSignUpSuccess = (isRegistered) => {
 export const fetchSignUpFailure = (error) => {
   return {
     type: "SIGNUP_FAILURE",
+    payload: error,
+  };
+};
 
 export const addPostRequest = () => {
   return {
