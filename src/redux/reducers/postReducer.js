@@ -45,6 +45,12 @@ export default function authReducer(state = initialState, action) {
         error: action.payload,
         success: false,
       };
+    case "RESET_POST_SUCCESS":
+      return {
+        ...state,
+        success: false,
+        loading: true,
+      };
     default:
       return state;
   }

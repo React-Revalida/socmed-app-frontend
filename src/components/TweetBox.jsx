@@ -57,13 +57,8 @@ const TweetBox = () => {
     reader.readAsDataURL(file);
   };
 
-  const [chosenEmoji, setChosenEmoji] = useState(null);
   const [emojiPicker, setEmojiPicker] = useState(null);
 
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-    console.log(emojiObject);
-  };
   return (
     <>
       <div className="tweetBox emoji">

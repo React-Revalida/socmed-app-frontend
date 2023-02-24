@@ -70,6 +70,12 @@ export const resetSuccess = () => {
     type: "RESET_SUCCESS",
   };
 };
+
+export const resetSuccessPost = () => {
+  return {
+    type: "RESET_POST_SUCCESS",
+  };
+};
 export const fetchAuthRequest = () => {
   return {
     type: "FETCH_AUTH_REQUEST",

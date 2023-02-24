@@ -56,6 +56,6 @@ export const addPost = (message, image) => {
 
 export const resetSuccess = () => {
   return (dispatch) => {
-    dispatch(type.resetSuccess());
+    dispatch(type.resetSuccessPost());
   };
 };
