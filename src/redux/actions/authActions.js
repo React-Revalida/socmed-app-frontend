@@ -26,3 +26,38 @@ export const logoutUser = () => {
     dispatch(type.fetchLoginSuccess(null));
   };
 };
+
+export const signUpUser = (userDetailsDTO, pictureUpload) => {
+  if (pictureUpload === null) {
+    pictureUpload = "";
+  }
+
+  const userDetails = JSON.stringify(userDetailsDTO);
+  const userDetailsBlob = new Blob([userDetails], {
+    type: "application/json",
+  });
+
+  const profileImage = new File([pictureUpload], "profile", {
+    type: "image/*",
+  });
+
+  let formData = new FormData();
+  formData.append("user", userDetailsBlob);
+  formData.append("profile", profileImage);
+
+  console.log(formData.forEach((value, key) => console.log(key, value)));
+
+  return (dispatch) => {
+    dispatch(type.fetchAuthRequest());
+    authService
+      .register(formData)
+      .then(async (response) => {
+        const isRegistered = response.data;
+        await dispatch(type.fetchSignUpSuccess(isRegistered));
+      })
+      .catch(async (error) => {
+        const errorMsg = error.message;
+        await dispatch(type.fetchSignUpFailure(errorMsg));
+      });
+  };
+};
