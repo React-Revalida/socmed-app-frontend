@@ -1,6 +1,6 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import { useContext } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { useTheme, createTheme } from "@mui/material";
 // import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
@@ -13,6 +13,8 @@ import Notifications from "./pages/Notifications/Notifications";
 import Profile from "./pages/Profile/Profile";
 import Messages from "./pages/Messages/Messages";
 import LoginPage from "./pages/LoginPage";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLoginSuccess } from "./redux/types";
 const theme = createTheme({
   palette: {
     primary: {
@@ -66,12 +68,13 @@ function App() {
   const mode = darkMode ? "dark" : "light";
   const darkModeTheme = createTheme(getDesignTokens(mode));
 
-  const accessToken = localStorage.getItem("accessToken");
+  const selectToken = useSelector((state) => state.auth.accessToken);
+  const accessToken = localStorage.getItem("accessToken") || selectToken;
 
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage/>} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={accessToken ? <Navigate to="/home" /> : <LoginPage />} />
+      <Route path="/home" element={accessToken ? <Home /> : <Navigate to="/login" />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/Messages" element={<Messages />} />
       <Route path="/profile" element={<Profile />} />

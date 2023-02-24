@@ -13,8 +13,13 @@ const LoginForm = () => {
 
   const handleSubmit = () => {
     try {
-      dispatch(loginUser("bryn", "admin2255"));
-      navigate("/feed");
+      dispatch(loginUser("bryn", "admin2255"))
+        .then(() => {
+          navigate("/home");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +66,7 @@ const LoginForm = () => {
         </CardContent>
         <CardActions sx={{ padding: "15px" }}>
           <Button
-            onClick={() => handleSubmit()}
+            onClick={handleSubmit}
             variant="contained"
             sx={{
               width: 250,
