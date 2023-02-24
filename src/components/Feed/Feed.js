@@ -9,7 +9,20 @@ import Loading from "../Loading/Loading";
 import { Avatar } from "@mui/material";
 
 function Feed() {
-  const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = React.useState([
+    {
+      id: 1,
+      username: "sahil",
+      userimage:
+        "https://avatars.githubusercontent.com/u/38807255?s=460&u=deb087d587be7f6a4000e4e710ec4d1daa6fde84&v=4",
+
+      date: 1629209847869,
+      displayName: "Sahil",
+      text: "This is a tweet",
+      shareImage:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Korb_mit_Br%C3%B6tchen.JPG/1200px-Korb_mit_Br%C3%B6tchen.JPG",
+    },
+  ]);
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   setTimeout(() => {

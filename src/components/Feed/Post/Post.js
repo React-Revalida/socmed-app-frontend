@@ -15,7 +15,7 @@ function Post({ userimage, username, displayName, text, shareImage, date }) {
     <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
       <ProfileCard active={isVisibleProfileCard && true} />
       <div>
-        <Avatar src={userimage} />
+        <Avatar src={userimage} round={true} size={40} style={{ margin: 10 }} />
       </div>
       <div className="post-content-col">
         <div className="post-header">
