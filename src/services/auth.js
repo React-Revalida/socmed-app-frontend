@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import http from "./http";
 
 export const register = async (data) => {
-  return await http.post("/users/", data, {
+  return await http.post("/users", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

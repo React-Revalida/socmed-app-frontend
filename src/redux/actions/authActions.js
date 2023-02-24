@@ -37,6 +37,8 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
     type: "application/json",
   });
 
+  console.log(userDetails);
+
   const profileImage = new File([pictureUpload], "profile", {
     type: "image/*",
   });
@@ -44,8 +46,6 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
   let formData = new FormData();
   formData.append("user", userDetailsBlob);
   formData.append("profile", profileImage);
-
-  console.log(formData.forEach((value, key) => console.log(key, value)));
 
   return (dispatch) => {
     dispatch(type.fetchAuthRequest());

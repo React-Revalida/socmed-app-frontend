@@ -6,7 +6,10 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  FormControl,
   Input,
+  InputLabel,
+  MenuItem,
   TextField,
   Typography,
 } from "@mui/material";
@@ -19,43 +22,49 @@ import Joi from "joi";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import * as authActions from "../redux/actions/authActions";
+import { CustomSelect } from "../custom/CustomFieldComponents";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const isRegistered = useSelector((state) => state.auth.isRegistered);
   const navigate = useNavigate();
 
-  const genderOptions = [
-    { value: "MALE", label: "Male" },
-    { value: "FEMALE", label: "Female" },
-    { value: "OTHER", label: "Prefer not to say" },
-  ];
+  const [open, setOpen] = React.useState(false);
+
+  const handleGenderClose = () => {
+    setOpen(false);
+  };
+
+  const handleGenderOpen = () => {
+    setOpen(true);
+  };
 
   const [userDetails, setUserDetails] = React.useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
+    firstname: "",
+    middlename: "",
+    lastname: "",
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    gender: "",
   });
 
   const [profilePic, setProfilePic] = React.useState(null);
   const userDetailsSchema = Joi.object({
-    firstName: Joi.string().required(),
-    middleName: Joi.string().allow(""),
-    lastName: Joi.string().required(),
+    firstname: Joi.string().required(),
+    middlename: Joi.string().allow(""),
+    lastname: Joi.string().required(),
     username: Joi.string().required(),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .required(),
     password: Joi.string().min(6).required(),
-    confirmPassword: Joi.any()
-      .equal(Joi.ref("password"))
-      .required()
-      .label("Confirm password")
-      .messages({ "any.only": "Passwords does not match" }),
+    // confirmPassword: Joi.any()
+    //   .equal(Joi.ref("password"))
+    //   .required()
+    //   .label("Confirm password")
+    //   .messages({ "any.only": "Passwords does not match" }),
+    gender: Joi.string().required(),
   });
 
   const [userDetailsFieldErrors, setUserDetailsFieldErrors] = React.useState(
@@ -127,39 +136,39 @@ const RegisterForm = () => {
           <Grid component="form" onSubmit={handleSubmit} container spacing={2}>
             <Grid item xs={12} md={4}>
               <TextField
-                name="firstName"
+                name="firstname"
                 label="First Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                error={!!userDetailsFieldErrors.firstName}
-                helperText={userDetailsFieldErrors.firstName}
+                error={!!userDetailsFieldErrors.firstname}
+                helperText={userDetailsFieldErrors.firstname}
                 onChange={handleUserDetailsChange}
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
-                name="middleName"
+                name="middlename"
                 label="Middle Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                error={!!userDetailsFieldErrors.middleName}
-                helperText={userDetailsFieldErrors.middleName}
+                error={!!userDetailsFieldErrors.middlename}
+                helperText={userDetailsFieldErrors.middlename}
                 onChange={handleUserDetailsChange}
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
-                name="lastName"
+                name="lastname"
                 label="Last Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                error={!!userDetailsFieldErrors.lastName}
-                helperText={userDetailsFieldErrors.lastName}
+                error={!!userDetailsFieldErrors.lastname}
+                helperText={userDetailsFieldErrors.lastname}
                 onChange={handleUserDetailsChange}
                 fullWidth
               />
@@ -214,12 +223,32 @@ const RegisterForm = () => {
                 size="small"
                 error={!!userDetailsFieldErrors.confirmPassword}
                 helperText={userDetailsFieldErrors.confirmPassword}
-                onChange={handleUserDetailsChange}
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Select options={genderOptions} menuPlacement={"auto"} />
+              <FormControl fullWidth>
+                <InputLabel id="gender">Gender</InputLabel>
+                <CustomSelect
+                  labelId="gender"
+                  id="gender"
+                  open={open}
+                  onClose={handleGenderClose}
+                  onOpen={handleGenderOpen}
+                  value={userDetails.gender}
+                  label="Gender"
+                  onChange={(event) => {
+                    setUserDetails({
+                      ...userDetails,
+                      gender: event.target.value,
+                    });
+                  }}
+                >
+                  <MenuItem value="MALE">Male</MenuItem>
+                  <MenuItem value="FEMALE">Female</MenuItem>
+                  <MenuItem value="OTHERS">Others</MenuItem>
+                </CustomSelect>
+              </FormControl>
             </Grid>
             <Grid item xs={12} md={6}>
               <Input type="file" fullWidth onChange={handleFileUpload}>
