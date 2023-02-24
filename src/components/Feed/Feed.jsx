@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./Feed.css";
 import TweetBox from "./TweetBox/TweetBox";
 import Post from "./Post/Post";
@@ -7,27 +7,28 @@ import BottomSidebar from "../BottomSidebar/BottomSidebar";
 import DrawerBar from "../DrawerBar/DrawerBar";
 import Loading from "../Loading/Loading";
 import { Avatar } from "@mui/material";
+import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import * as postActions from "../../redux/actions/postActions";
 
-function Feed() {
-  const [posts, setPosts] = React.useState([
-    {
-      id: 1,
-      username: "sahil",
-      userimage:
-        "https://avatars.githubusercontent.com/u/38807255?s=460&u=deb087d587be7f6a4000e4e710ec4d1daa6fde84&v=4",
+const Feed = () => {
+  const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
+  const posts = useSelector((state) => state.post.posts);
 
-      date: 1629209847869,
-      displayName: "Sahil",
-      text: "This is a tweet",
-      shareImage:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Korb_mit_Br%C3%B6tchen.JPG/1200px-Korb_mit_Br%C3%B6tchen.JPG",
-    },
-  ]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(postActions.fetchPosts());
+  }, [dispatch]);
+
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
-  setTimeout(() => {
-    setLoading(false);
-  }, 2000);
+  const loading = useSelector((state) => state.post.loading);
+  const profileImg = useSelector((state) => state.user.profile.profileImg);
+
+  console.log(loading);
+
   return (
     <section className="feed">
       {isDrawerBar && (
@@ -36,7 +37,7 @@ function Feed() {
       <DrawerBar active={isDrawerBar} />
       <div className="feed-header">
         <div onClick={() => setIsDrawerBar(true)}>
-          <Avatar src="https://avatars.githubusercontent.com/u/38807255?s=460&u=deb087d587be7f6a4000e4e710ec4d1daa6fde84&v=4" />
+          <Avatar />
         </div>
         <div className="feed-headerText">
           <span>Home</span>
@@ -51,21 +52,13 @@ function Feed() {
       ) : (
         <article>
           {posts.map((post) => (
-            <Post
-              key={post.id}
-              username={post.username}
-              userimage={post.userimage}
-              date={post.date}
-              displayName={post.displayName}
-              text={post.text}
-              shareImage={post.shareImage}
-            />
+            <Post key={post.postId} post={post} />
           ))}
         </article>
       )}
       <BottomSidebar />
     </section>
   );
-}
+};
 
 export default Feed;
