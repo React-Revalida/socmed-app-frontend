@@ -18,8 +18,13 @@ const LoginForm = () => {
   const [loginFieldErrors, setLoginFieldErrors] = React.useState({});
 
   const loginSchema = Joi.object({
-    username: Joi.string().required(),
-    password: Joi.string().min(6).required(),
+    username: Joi.string().required().messages({
+      "string.empty": "Username/email is required",
+    }),
+    password: Joi.string().min(6).required().messages({
+      "string.empty": "Password is required",
+      "string.min": "Password must be at least 6 characters",
+    }),
   });
 
   const handleLoginChange = (event) => {

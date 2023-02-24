@@ -236,3 +236,17 @@ export const fetchPostsFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchSignUpSuccess = (isRegistered) => {
+  return {
+    type: "SIGNUP_SUCCESS",
+    payload: isRegistered,
+  };
+};
+
+export const fetchSignUpFailure = (error) => {
+  return {
+    type: "SIGNUP_FAILURE",
+    payload: error,
+  };
+};
