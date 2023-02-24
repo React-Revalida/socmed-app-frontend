@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { loginUser } from "../redux/actions/authActions";
 import { toast, ToastContainer } from "react-toastify";
+import Joi from "joi";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,42 @@ const LoginForm = () => {
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [loginFieldErrors, setLoginFieldErrors] = React.useState({});
+
+  const loginSchema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().min(6).required(),
+  });
+
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    switch (name) {
+      case "username":
+        setUsername(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+
+    const error = loginSchema.extract(name).label(name).validate(value).error;
+
+    if (error) {
+      setLoginFieldErrors({
+        ...loginFieldErrors,
+        [name]: error.details[0].message,
+      });
+    } else {
+      setLoginFieldErrors({ ...loginFieldErrors, [name]: "" });
+    }
+  };
+
+  const isFormInvalid = () => {
+    let result = loginSchema.validate({ username, password });
+    return !!result.error;
+  };
 
   const handleSubmit = () => {
     try {
@@ -60,9 +97,9 @@ const LoginForm = () => {
               variant="outlined"
               margin="normal"
               size="small"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
+              error={!!loginFieldErrors.username}
+              helperText={loginFieldErrors.username}
+              onChange={handleLoginChange}
               fullWidth
             />
             <TextField
@@ -71,9 +108,9 @@ const LoginForm = () => {
               variant="outlined"
               type={"password"}
               size="small"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onChange={handleLoginChange}
+              error={!!loginFieldErrors.password}
+              helperText={loginFieldErrors.password}
               fullWidth
             />
           </Box>
@@ -81,6 +118,7 @@ const LoginForm = () => {
         <CardActions sx={{ padding: "15px" }}>
           <Button
             onClick={handleSubmit}
+            disabled={isFormInvalid()}
             variant="contained"
             sx={{
               width: 250,
@@ -112,7 +150,18 @@ const LoginForm = () => {
           </Link>
         </Box>
       </Card>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
