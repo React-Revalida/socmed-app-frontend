@@ -13,6 +13,9 @@ import {
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import { Grid } from "@mui/material";
+import { Label } from "@mui/icons-material";
+import UploadIcon from "@mui/icons-material/Upload";
 
 const RegisterForm = () => {
   const genderOptions = [
@@ -34,68 +37,66 @@ const RegisterForm = () => {
         }}
       >
         <Box textAlign={"center"}>
-          <FlutterDashIcon />
+          <FlutterDashIcon sx={{ color: "#00d5bf" }} />
         </Box>
 
         <CardHeader
           title="Create an account"
           sx={{ fontWeight: "bold", textAlign: "center" }}
         />
-        <CardContent>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            <Box>
+        <CardContent sx={{ marginBottom: 0 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
               <TextField
                 name="firstName"
                 label="First Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: "200", marginRight: 1 }}
+                fullWidth
               />
+            </Grid>
+            <Grid item xs={12} md={4}>
               <TextField
                 name="middleName"
                 label="Middle Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: "200", marginRight: 1 }}
+                fullWidth
               />
+            </Grid>
+            <Grid item xs={12} md={4}>
               <TextField
                 name="lastName"
                 label="Last Name"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: "200" }}
+                fullWidth
               />
-            </Box>
-            <Box display={"flex"} justifyContent={"space-between"}>
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 name="username"
                 label="Username"
                 variant="outlined"
-                type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ marginRight: 1, width: 340 }}
+                fullWidth
               />
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 name="email"
                 label="Email"
                 variant="outlined"
                 margin="dense"
                 size="small"
-                sx={{ width: 340 }}
+                fullWidth
               />
-            </Box>
-            <Box display={"flex"} justifyContent={"space-between"}>
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 name="password"
                 label="Password"
@@ -103,8 +104,10 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ marginRight: 1, width: 340 }}
+                fullWidth
               />
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 name="confirmPassword"
                 label="Confirm Password"
@@ -112,44 +115,49 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                sx={{ width: 340 }}
+                fullWidth
               />
-            </Box>
-            <Box
-              display={"flex"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Select options={genderOptions} menuPlacement={"auto"} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Button fullWidth>
+                <UploadIcon sx={{ color: "#00d5bf" }}>
+                  <Input type="file" />
+                </UploadIcon>
+                <Typography variant="caption" color={"#00d5bf"}>
+                  Upload Profile Picture
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              sx={{
+                marginTop: 2,
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
-              <Box width={340}>
-                <Select
-                  name="gender"
-                  options={genderOptions}
-                  placeholder="Gender"
-                />
-              </Box>
-              <Box width={340}>
-                <Typography variant="overline">Profile Photo</Typography>
-                <Input type="file" />
-              </Box>
-            </Box>
-          </Box>
+              <Button
+                variant="contained"
+                sx={{
+                  width: 250,
+                  backgroundColor: "#00d5bf",
+                  borderRadius: 8,
+                  ":hover": {
+                    backgroundColor: "#00d5bf",
+                  },
+                }}
+              >
+                Sign Up
+              </Button>
+            </Grid>
+          </Grid>
         </CardContent>
-        <CardActions sx={{ justifyContent: "center" }}>
-          <Button
-            variant="contained"
-            sx={{
-              width: 250,
-              backgroundColor: "#00d5bf",
-              borderRadius: 8,
-              ":hover": {
-                backgroundColor: "#00d5bf",
-              },
-            }}
-          >
-            Sign Up
-          </Button>
-        </CardActions>
-        <Box textAlign={"center"}>
+        <Box textAlign={"center"} marginTop={0}>
           <Link to="/login" style={{ textDecoration: "none" }}>
             <Typography variant="caption" color={"#00d5bf"}>
               Go to Login

@@ -82,7 +82,7 @@ const LoginForm = () => {
         }}
       >
         <Box textAlign={"center"}>
-          <FlutterDashIcon />
+          <FlutterDashIcon sx={{ color: "#00d5bf" }} />
         </Box>
 
         <CardHeader
