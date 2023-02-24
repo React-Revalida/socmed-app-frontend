@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
 import "./Profile.css";
 import BottomSidebar from "../../components/BottomSidebar/BottomSidebar";
-import FriendSuggestions from "../../components/Widgets/FriendSuggestions/FriendSuggestions";
-import Topics from "../../components/Widgets/Topics/Topics";
-import SearchInput from "../../components/Widgets/SearchInput/SearchInput";
 import Post from "../../components/Feed/Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Avatar from "react-avatar";
-import Links from "../../components/Widgets/Links/Links";
-import HomeBox from "../../components/HomeBox/HomeBox";
 import Loading from "../../components/Loading/Loading";
 import { useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
-import ProfileEditForm from "../../components/ProfileEditForm";
 import Widgets from "../../components/Widgets/Widgets";
+import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
