@@ -1,7 +1,7 @@
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { useTheme, createTheme } from "@mui/material";
+import { useTheme, createTheme, ThemeProvider } from "@mui/material";
 // import SidebarWidgetLayout from "./components/SidebarWidgetLayout";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { grey } from "@mui/material/colors";
@@ -73,24 +73,38 @@ function App() {
 
   const selectToken = useSelector((state) => state.auth.accessToken);
   const accessToken = localStorage.getItem("accessToken") || selectToken;
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
 
   return (
-    <Routes>
-      <Route element={accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />}>
-        <Route path="/home" element={<Feed />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/Messages" element={<Messages />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/:username" element={<Profile />} />
-      </Route>
-      
-      <Route path="/login" element={accessToken ? <Navigate to="/home" /> : <LoginPage />} />
-      <Route
-        path="/signup"
-        element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
-      />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <ThemeProvider theme={darkTheme}>
+      <Routes>
+        <Route
+          element={
+            accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />
+          }
+        >
+          <Route path="/home" element={<Feed />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/Messages" element={<Messages />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
+        </Route>
+
+        <Route
+          path="/login"
+          element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
+        />
+        <Route
+          path="/signup"
+          element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 

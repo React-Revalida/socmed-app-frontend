@@ -21,7 +21,8 @@
   --border-color: #38444d;
   --gray: #8899a6;
   --input-background-color: #253341;
-  --from-message-color: #3d5466;
+  --from-message-color: #3d5466; 
+  --twitter-color: #00d5bf;
 }
 body {
   background-color: var(--main-bg-color);

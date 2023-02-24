@@ -12,9 +12,11 @@ import {
 import { Box, useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
-// import "../styles/EditProfile.css";
+import "./EditProfile.css";
+import "../../pages/Profile/Profile.css";
 import PropTypes from "prop-types";
 import {
+  CustomDialog,
   CustomOutlinedTextField,
   CustomSelect,
 } from "../../custom/CustomFieldComponents";
@@ -200,8 +202,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
     reader.readAsDataURL(file);
   };
   return (
-    <Dialog open={isDialogOpen} onClose={() => onOpenDialog(false)} fullWidth>
-      <DialogContent>
+    <CustomDialog open={isDialogOpen} onClose={() => onOpenDialog(false)} fullWidth>
+      <DialogContent sx={{ bgcolor: "background.paper" }}>
         <Grid component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -439,7 +441,8 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                   type="submit"
                   disabled={isFormInvalid()}
                   className="editProfile"
-                  sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
+                  variant="contained"
+                  sx={{ float: "right", mt:3 , mb: 2, mr: 2 }}
                 >
                   Save Changes
                 </Button>
@@ -448,7 +451,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
           </Grid>
         </Grid>
       </DialogContent>
-    </Dialog>
+    </CustomDialog>
   );
 };
 
