@@ -236,3 +236,23 @@ export const fetchPostsFailure = (error) => {
     payload: error,
   };
 };
+
+export const addPostRequest = () => {
+  return {
+    type: "ADD_POST_REQUEST",
+  };
+};
+
+export const addPostSuccess = (addedPost) => {
+  return {
+    type: "ADD_POST_SUCCESS",
+    payload: addedPost,
+  };
+};
+
+export const addPostFailure = (error) => {
+  return {
+    type: "ADD_POST_ERROR",
+    payload: error,
+  };
+};
