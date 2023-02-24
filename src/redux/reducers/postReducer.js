@@ -19,7 +19,7 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        posts: [...action.payload],
+        posts: action.payload,
       };
     case "FETCH_POSTS_FAILURE":
       return {
@@ -27,6 +27,23 @@ export default function authReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         posts: {},
+      };
+    case "ADD_POST_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "ADD_POST_SUCCESS":
+      return {
+        ...state,
+        posts: action.payload,
+        success: true,
+      };
+    case "ADD_POST_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
       };
     default:
       return state;

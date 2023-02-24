@@ -1,5 +1,13 @@
 import http from "./http";
 
-export function getPosts() {
-  return http.get("/posts");
-}
+export const getPosts = async () => {
+  return await http.get("/posts");
+};
+
+export const addPost = async (data) => {
+  return await http.post("/posts", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
