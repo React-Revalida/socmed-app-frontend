@@ -9,9 +9,7 @@ function Widgets() {
   return (
     <div className="widgets">
       <SearchInput placeholder="Search Twitter" />
-      <Topics />
       <FriendSuggestions />
-      <Links />
     </div>
   );
 }

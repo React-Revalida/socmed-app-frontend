@@ -19,7 +19,7 @@ const Messages = () => {
   document.title = "Messages / Twitter";
 
   return (
-    <HomeBox>
+    <>
       <div className={`messages ${path !== "/Messages" && "messagesNone"}`}>
         {isDrawerBar && (
           <div
@@ -66,7 +66,7 @@ const Messages = () => {
       ) : (
         <Chat messages={messages} users={users} />
       )}
-    </HomeBox>
+    </>
   );
 };
 

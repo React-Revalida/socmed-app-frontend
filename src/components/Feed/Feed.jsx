@@ -11,6 +11,7 @@ import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../redux/actions/postActions";
+import Widgets from "../Widgets/Widgets";
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
@@ -30,6 +31,7 @@ const Feed = () => {
   console.log(loading);
 
   return (
+    <>
     <section className="feed">
       {isDrawerBar && (
         <div onClick={() => setIsDrawerBar(false)} className="drawerBarPanel" />
@@ -58,6 +60,9 @@ const Feed = () => {
       )}
       <BottomSidebar />
     </section>
+    
+    <Widgets />
+    </>
   );
 };
 
