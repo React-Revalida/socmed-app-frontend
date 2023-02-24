@@ -4,18 +4,63 @@ import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { Button, CardActions, TextField } from "@mui/material";
 import { Box, fontWeight, textAlign } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { loginUser } from "../redux/actions/authActions";
+import { toast, ToastContainer } from "react-toastify";
+import Joi from "joi";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [loginFieldErrors, setLoginFieldErrors] = React.useState({});
+
+  const loginSchema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().min(6).required(),
+  });
+
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    switch (name) {
+      case "username":
+        setUsername(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+
+    const error = loginSchema.extract(name).label(name).validate(value).error;
+
+    if (error) {
+      setLoginFieldErrors({
+        ...loginFieldErrors,
+        [name]: error.details[0].message,
+      });
+    } else {
+      setLoginFieldErrors({ ...loginFieldErrors, [name]: "" });
+    }
+  };
+
+  const isFormInvalid = () => {
+    let result = loginSchema.validate({ username, password });
+    return !!result.error;
+  };
+
   const handleSubmit = () => {
     try {
-      dispatch(loginUser("bryn", "admin2255"))
+      dispatch(loginUser(username, password))
         .then(() => {
-          navigate("/home");
+          if (localStorage.getItem("accessToken")) {
+            navigate("/home");
+          } else {
+            toast("Invalid username and/or password");
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -52,6 +97,9 @@ const LoginForm = () => {
               variant="outlined"
               margin="normal"
               size="small"
+              error={!!loginFieldErrors.username}
+              helperText={loginFieldErrors.username}
+              onChange={handleLoginChange}
               fullWidth
             />
             <TextField
@@ -60,6 +108,9 @@ const LoginForm = () => {
               variant="outlined"
               type={"password"}
               size="small"
+              onChange={handleLoginChange}
+              error={!!loginFieldErrors.password}
+              helperText={loginFieldErrors.password}
               fullWidth
             />
           </Box>
@@ -67,6 +118,7 @@ const LoginForm = () => {
         <CardActions sx={{ padding: "15px" }}>
           <Button
             onClick={handleSubmit}
+            disabled={isFormInvalid()}
             variant="contained"
             sx={{
               width: 250,
@@ -91,13 +143,25 @@ const LoginForm = () => {
           <Typography variant="caption" marginLeft={"15px"}>
             Don't have an account yet? &nbsp;
           </Typography>
-          <Link to="/register" style={{ textDecoration: "none" }}>
+          <Link to="/signup" style={{ textDecoration: "none" }}>
             <Typography variant="caption" color={"#00d5bf"}>
               Sign up here.
             </Typography>
           </Link>
         </Box>
       </Card>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

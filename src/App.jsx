@@ -6,6 +6,8 @@ import { useTheme, createTheme } from "@mui/material";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { grey } from "@mui/material/colors";
 // import ProfilePage from "./pages/ProfilePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import RegisterPage from "./pages/RegisterPage";
 import "react-toastify/dist/ReactToastify.css";
 
 import Notifications from "./pages/Notifications/Notifications";
@@ -83,6 +85,11 @@ function App() {
       </Route>
       
       <Route path="/login" element={accessToken ? <Navigate to="/home" /> : <LoginPage />} />
+      <Route
+        path="/signup"
+        element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
+      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

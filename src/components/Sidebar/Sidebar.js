@@ -8,13 +8,18 @@ import {
   SetTweetIcon,
   NotificationsIcon,
 } from "../icons/index";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Button } from "@mui/material";
+import FlutterDashIcon from "@mui/icons-material/FlutterDash";
+import { logoutUser } from "../../redux/actions/authActions";
 
 function Sidebar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
   const [currLocation, setCurrentLocation] = React.useState(location);
@@ -22,9 +27,20 @@ function Sidebar() {
   const handleLocationChange = (location) => {
     setCurrentLocation(location);
   };
+
+  const handleLogout = () => {
+    try {
+      dispatch(logoutUser()).then(() => {
+        navigate("/login");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="sidebar">
-      <TwitterIcon className="twitter-icon" />
+      <FlutterDashIcon className="twitter-icon" />
       <Link
         to="/home"
         style={{ textDecoration: "none" }}
@@ -36,27 +52,42 @@ function Sidebar() {
           active={currLocation === "/home" && true}
         />
       </Link>
-      <Link to="/notifications" style={{ textDecoration: "none" }} onClick={() => handleLocationChange("/notifications")}>
+      <Link
+        to="/notifications"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/notifications")}
+      >
         <SidebarItem
           text="Notifications"
           Icon={NotificationsIcon}
           active={currLocation === "/notifications" && true}
         />
       </Link>
-      <Link to="/Messages" style={{ textDecoration: "none" }} onClick={() => handleLocationChange("/Messages")}>
+      <Link
+        to="/Messages"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/Messages")}
+      >
         <SidebarItem
           text="Messages"
           Icon={MessagesIcon}
           active={currLocation === "/Messages" && true}
         />
       </Link>
-      <Link to="/profile" style={{ textDecoration: "none" }} onClick={() => handleLocationChange("/profile")}>
+      <Link
+        to="/profile"
+        style={{ textDecoration: "none" }}
+        onClick={() => handleLocationChange("/profile")}
+      >
         <SidebarItem
           text="Profile"
           Icon={UserIcon}
           active={currLocation === "/profile" && true}
         />
       </Link>
+      <Button onClick={handleLogout}>
+        <SidebarItem text="Log Out" Icon={LogoutIcon} />
+      </Button>
       <div className="tweetButton">
         <SetTweetIcon className="setTweetIcon" />
         <span>Tweet</span>
