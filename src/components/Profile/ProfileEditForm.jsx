@@ -17,11 +17,11 @@ import PropTypes from "prop-types";
 import {
   CustomOutlinedTextField,
   CustomSelect,
-} from "../custom/CustomFieldComponents";
+} from "../../custom/CustomFieldComponents";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import moment from "moment";
-import * as profileActions from "../redux/actions/profileActions";
+import * as profileActions from "../../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 
