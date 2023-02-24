@@ -9,8 +9,6 @@ import "../styles/Post.css";
 import Actions from "./Actions";
 
 const Post = (post) => {
-  console.log(post.post);
-
   return (
     <div className="post">
       <div className="post__avatar">

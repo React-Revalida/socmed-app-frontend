@@ -32,11 +32,10 @@ const Feed = () => {
     dispatch(postActions.fetchPosts());
   }, [dispatch]);
 
-  const loading = useSelector((state) => state.post.loading);
   const posts = useSelector((state) => state.post.posts);
+  const loading = useSelector((state) => state.post.loading);
 
   console.log(loading);
-  console.log(posts);
 
   return (
     <>
@@ -69,7 +68,7 @@ const Feed = () => {
         <Post />
         <Post />
         <Post /> */}
-        {loading === true || posts.length === undefined ? (
+        {loading ? (
           <div>Loading...</div>
         ) : (
           posts.map((post) => <Post key={post.postId} post={post} />)
