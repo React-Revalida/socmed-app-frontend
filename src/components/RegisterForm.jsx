@@ -47,6 +47,7 @@ const RegisterForm = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
     gender: "",
   });
 
@@ -94,11 +95,11 @@ const RegisterForm = () => {
           "Password should contain at least 1 special character",
         "password.noWhiteSpaces": "Password should not contain white spaces",
       }),
-    // confirmPassword: Joi.string()
-    //   .equal(Joi.ref("password"))
-    //   .required()
-    //   .label("Confirm password")
-    //   .messages({ "any.only": "Passwords does not match" }),
+    confirmPassword: Joi.any()
+      .required()
+      .equal(Joi.ref("password"))
+      .label("Confirm password")
+      .messages({ "any.only": "Passwords does not match" }),
     gender: Joi.string().required(),
   });
 
@@ -139,14 +140,13 @@ const RegisterForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(authActions.signUpUser(userDetails, profilePic)).then(() => {
-      if (isRegistered) {
-        toast.success("Registered Successfully");
-        navigate("/login");
+      if (error) {
+        toast.error(error[0].message);
       } else {
-        //console.log(error);
-        if (error) {
-          toast.error(error[0].message);
-        }
+        toast.success("User registered successfully");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       }
     });
   };
@@ -260,8 +260,9 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                error={!!userDetailsFieldErrors.password}
-                helperText={userDetailsFieldErrors.password}
+                error={!!userDetailsFieldErrors.confirmPassword}
+                helperText={userDetailsFieldErrors.confirmPassword}
+                onChange={handleUserDetailsChange}
                 fullWidth
               />
             </Grid>

@@ -32,7 +32,8 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        isRegistered: action.payload,
+        isRegistered: true,
+        error: null,
       };
     case "SIGNUP_FAILURE":
       return {
