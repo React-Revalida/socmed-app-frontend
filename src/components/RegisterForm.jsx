@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Box,
   Button,
@@ -39,6 +39,8 @@ const RegisterForm = () => {
   const handleGenderOpen = () => {
     setOpen(true);
   };
+
+  const inputFile = useRef(null);
 
   const [userDetails, setUserDetails] = React.useState({
     firstname: "",
@@ -286,12 +288,30 @@ const RegisterForm = () => {
               </FormControl>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Input type="file" fullWidth onChange={handleFileUpload}>
+              <Button fullWidth onClick={() => inputFile.current.click()}>
                 <UploadIcon sx={{ color: "#00d5bf" }} />
                 <Typography variant="caption" color={"#00d5bf"}>
                   Upload Profile Picture
                 </Typography>
-              </Input>
+              </Button>
+              <div
+                style={{
+                  overflow: "hidden",
+                  height: 21,
+                  position: "relative",
+                }}
+              >
+                <input
+                  type="file"
+                  onChange={handleFileUpload}
+                  ref={inputFile}
+                  style={{
+                    position: "absolute",
+                    left: -90,
+                    outline: "none",
+                  }}
+                />
+              </div>
             </Grid>
             <Grid
               item
