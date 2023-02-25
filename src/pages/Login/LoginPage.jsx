@@ -1,8 +1,9 @@
+import { Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
 import React from "react";
-import { Box } from "@mui/material";
-import RegisterForm from "../components/LoginSignup/RegisterForm";
+import LoginForm from "../../components/LoginSignup/LoginForm";
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <Box
       display="flex"
@@ -11,9 +12,9 @@ const RegisterPage = () => {
       minHeight="90vh"
       sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
     >
-      <RegisterForm />
+      <LoginForm />
     </Box>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

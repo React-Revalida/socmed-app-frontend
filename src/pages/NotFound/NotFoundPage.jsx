@@ -5,9 +5,9 @@ import { Box } from "@mui/system";
 import { hover } from "@testing-library/user-event/dist/hover";
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
-import errorPic from "../assets/NavigatingError.png";
-import textBox from "../assets/textBox.png";
-import shadow from "../assets/OvalShadow.png";
+import errorPic from "../../assets/NavigatingError.png";
+import textBox from "../../assets/textBox.png";
+import shadow from "../../assets/OvalShadow.png";
 
 const NotFoundPage = () => {
   const accessToken = true;

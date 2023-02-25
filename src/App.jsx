@@ -4,14 +4,14 @@ import { useContext } from "react";
 import { useTheme, createTheme, ThemeProvider } from "@mui/material";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { grey } from "@mui/material/colors";
-import NotFoundPage from "./pages/NotFoundPage";
-import RegisterPage from "./pages/RegisterPage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import SignupPage from "./pages/Signup/SignupPage";
 import "react-toastify/dist/ReactToastify.css";
 
 import Notifications from "./pages/Notifications/Notifications";
 import Profile from "./pages/Profile/Profile";
 import Messages from "./pages/Messages/Messages";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/Login/LoginPage";
 import { useSelector } from "react-redux";
 import SidebarWidgetLayout from "./components/Feed/Layout/SidebarWidgetLayout";
 import Feed from "./components/Feed/Feed";
@@ -102,7 +102,7 @@ function App() {
         />
         <Route
           path="/signup"
-          element={accessToken ? <Navigate to="/home" /> : <RegisterPage />}
+          element={accessToken ? <Navigate to="/home" /> : <SignupPage />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

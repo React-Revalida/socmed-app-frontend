@@ -12,10 +12,10 @@ import {
   IconButton,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { UserInterfaceContext } from "../contexts/UserInterfaceContext";
+import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../redux/actions/profileActions";
-import * as postActions from "../redux/actions/postActions";
+import { fetchProfile } from "../../redux/actions/profileActions";
+import * as postActions from "../../redux/actions/postActions";
 // import Post from './Post'
 // import db from './firebase'
 // import FlipMove from 'react-flip-move'

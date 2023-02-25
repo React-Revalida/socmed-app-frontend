@@ -22,7 +22,7 @@ import * as authActions from "../../redux/actions/authActions";
 import { CustomSelect } from "../../custom/CustomFieldComponents";
 import { joiPasswordExtendCore } from "joi-password";
 
-const RegisterForm = () => {
+const SignupForm = () => {
   const dispatch = useDispatch();
   const isRegistered = useSelector((state) => state.auth.isRegistered);
   const error = useSelector((state) => state.auth.error);
@@ -368,4 +368,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default SignupForm;
