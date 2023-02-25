@@ -49,7 +49,7 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         success: false,
-        loading: true,
+        loading: false,
       };
     default:
       return state;

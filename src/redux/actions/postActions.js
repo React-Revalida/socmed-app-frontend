@@ -43,7 +43,7 @@ export const addPost = (message, image) => {
     postService
       .addPost(formData)
       .then(async (response) => {
-        console.log(response.data);
+        console.log(response);
         const addedPost = response.data;
         await dispatch(type.addPostSuccess(addedPost));
       })
