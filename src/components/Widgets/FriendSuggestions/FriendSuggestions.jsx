@@ -2,7 +2,7 @@ import React from "react";
 import "./FriendSuggestions.css";
 import FriendSuggestionItem from "./FriendSuggestionItem/FriendSuggestionItem";
 
-function FriendSuggestions() {
+const FriendSuggestions = () => {
   return (
     <div className="friendSuggestions">
       <div className="friendSuggestionsHeader">
@@ -28,6 +28,6 @@ function FriendSuggestions() {
       </div>
     </div>
   );
-}
+};
 
 export default FriendSuggestions;

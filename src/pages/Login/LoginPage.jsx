@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React from "react";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../../components/LoginSignup/LoginForm";
 
 const LoginPage = () => {
   return (

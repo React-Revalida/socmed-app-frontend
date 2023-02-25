@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./Feed.css";
-import TweetBox from "./TweetBox/TweetBox";
+import PostBox from "../../components/Feed/PostBox/PostBox";
 import Post from "./Post/Post";
 import HomeStars from "../icons/HomeStars";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
@@ -53,7 +53,7 @@ const Feed = () => {
             <HomeStars className="homeStars" width={22} height={22} />
           </div>
         </div>
-        <TweetBox />
+        <PostBox />
         {loading ? (
           <Loading />
         ) : (

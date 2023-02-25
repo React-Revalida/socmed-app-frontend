@@ -2,7 +2,7 @@ import Avatar from "react-avatar";
 import React from "react";
 import "./FriendSuggestionItem.css";
 
-function FriendSuggestionItem({ image, displayName, username }) {
+const FriendSuggestionItem = ({ image, displayName, username }) => {
   return (
     <div className="friendSuggestionsItem">
       <div className="friendSuggestionImage">
@@ -21,6 +21,6 @@ function FriendSuggestionItem({ image, displayName, username }) {
       </div>
     </div>
   );
-}
+};
 
 export default FriendSuggestionItem;

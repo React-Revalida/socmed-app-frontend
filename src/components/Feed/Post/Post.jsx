@@ -3,8 +3,6 @@ import Avatar from "react-avatar";
 import "./Post.css";
 import FavoriteIcon from "../../icons/FavoriteIcon";
 import CommentIcon from "../../icons/CommentIcon";
-import RetweetIcon from "../../icons/RetweetIcon";
-import SharePostIcon from "../../icons/SharePostIcon";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";

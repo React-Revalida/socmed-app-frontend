@@ -3,7 +3,7 @@ import "./Topics.css";
 import TopicItem from "./TopicItem/TopicItem";
 import { SettingsIcon } from "../../icons/index";
 
-function Topics() {
+const Topics = () => {
   return (
     <div className="widgetsTopics">
       <div className="widgetsTopicsHeader">
@@ -41,6 +41,6 @@ function Topics() {
       </div>
     </div>
   );
-}
+};
 
 export default Topics;

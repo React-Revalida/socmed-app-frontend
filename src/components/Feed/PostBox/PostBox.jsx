@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./TweetBox.css";
+import "./PostBox.css";
 import Avatar from "react-avatar";
-import PhotoIcon from "../../icons/PhotoIcon";
 import GifIcon from "../../icons/GifIcon";
 import EmojiIcon from "../../icons/EmojiIcon";
 import * as profileActions from "../../../redux/actions/profileActions";
@@ -9,7 +8,6 @@ import * as postActions from "../../../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmojiPicker from "emoji-picker-react";
-import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Box } from "@mui/system";
 import { Grid, IconButton } from "@mui/material";

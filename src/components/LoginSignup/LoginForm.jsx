@@ -5,7 +5,7 @@ import { Button, CardActions, TextField } from "@mui/material";
 import { Box, fontWeight, textAlign } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import { loginUser } from "../redux/actions/authActions";
+import { loginUser } from "../../redux/actions/authActions";
 import { toast, ToastContainer } from "react-toastify";
 import Joi from "joi";
 

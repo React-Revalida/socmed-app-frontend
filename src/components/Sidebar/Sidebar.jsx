@@ -17,7 +17,7 @@ import { Button } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { logoutUser } from "../../redux/actions/authActions";
 
-function Sidebar() {
+const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
@@ -85,8 +85,22 @@ function Sidebar() {
           active={currLocation === "/profile" && true}
         />
       </Link>
-      <Button onClick={handleLogout}>
-        <SidebarItem text="Log Out" Icon={LogoutIcon} />
+      <Button
+        style={{
+          textDecoration: "none",
+          textTransform: "none",
+          margin: 0,
+          padding: 0,
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+        onClick={handleLogout}
+      >
+        <SidebarItem
+          text="Logout"
+          Icon={LogoutIcon}
+          //active={currLocation === "/profile" && true}
+        />
       </Button>
       <div className="tweetButton">
         <SetTweetIcon className="setTweetIcon" />
@@ -115,6 +129,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

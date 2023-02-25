@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
-import RegisterForm from "../components/RegisterForm";
+import SignupForm from "../../components/LoginSignup/SignupForm";
 
-const RegisterPage = () => {
+const SignupPage = () => {
   return (
     <Box
       display="flex"
@@ -11,9 +11,9 @@ const RegisterPage = () => {
       minHeight="90vh"
       sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
     >
-      <RegisterForm />
+      <SignupForm />
     </Box>
   );
 };
 
-export default RegisterPage;
+export default SignupPage;

@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
+
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
   const [posts, setPosts] = React.useState([]);

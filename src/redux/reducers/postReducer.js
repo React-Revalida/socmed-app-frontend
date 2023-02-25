@@ -2,7 +2,7 @@ const initialState = {
   posts: {
     user: {},
   },
-  loading: true,
+  loading: false,
   error: null,
   success: false,
 };
