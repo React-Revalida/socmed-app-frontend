@@ -157,8 +157,8 @@ const LoginForm = () => {
       </Card>
       <ToastContainer
         position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
+        autoClose={2500}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}

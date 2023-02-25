@@ -28,13 +28,14 @@ export default function authReducer(state = initialState, action) {
         error: action.payload,
         accessToken: null,
       };
-    case "REGISTER_SUCCESS":
+    case "SIGNUP_SUCCESS":
       return {
         ...state,
         loading: false,
-        isRegistered: action.payload,
+        isRegistered: true,
+        error: null,
       };
-    case "REGISTER_FAILURE":
+    case "SIGNUP_FAILURE":
       return {
         ...state,
         loading: false,

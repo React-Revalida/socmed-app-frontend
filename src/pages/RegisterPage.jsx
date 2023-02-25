@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import LoginForm from "../components/RegisterForm";
+import RegisterForm from "../components/RegisterForm";
 
 const RegisterPage = () => {
   return (
@@ -11,7 +11,7 @@ const RegisterPage = () => {
       minHeight="90vh"
       sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
     >
-      <LoginForm />
+      <RegisterForm />
     </Box>
   );
 };
