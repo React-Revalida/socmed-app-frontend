@@ -3,11 +3,9 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   FormControl,
-  Input,
   InputLabel,
   MenuItem,
   TextField,
@@ -15,12 +13,11 @@ import {
 } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { Link, useNavigate } from "react-router-dom";
-import Select from "react-select";
 import { Grid } from "@mui/material";
 import UploadIcon from "@mui/icons-material/Upload";
 import Joi from "joi";
 import { toast, ToastContainer } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import * as authActions from "../redux/actions/authActions";
 import { CustomSelect } from "../custom/CustomFieldComponents";
 import { joiPasswordExtendCore } from "joi-password";
@@ -28,6 +25,7 @@ import { joiPasswordExtendCore } from "joi-password";
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const isRegistered = useSelector((state) => state.auth.isRegistered);
+  const error = useSelector((state) => state.auth.error);
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
@@ -96,11 +94,11 @@ const RegisterForm = () => {
           "Password should contain at least 1 special character",
         "password.noWhiteSpaces": "Password should not contain white spaces",
       }),
-    confirmPassword: Joi.any()
-      .equal(Joi.ref("password"))
-      .required()
-      .label("Confirm password")
-      .messages({ "any.only": "Passwords does not match" }),
+    // confirmPassword: Joi.string()
+    //   .equal(Joi.ref("password"))
+    //   .required()
+    //   .label("Confirm password")
+    //   .messages({ "any.only": "Passwords does not match" }),
     gender: Joi.string().required(),
   });
 
@@ -140,13 +138,17 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(authActions.signUpUser(userDetails, profilePic));
-    if (isRegistered) {
-      toast.success("Registered Successfully");
-      navigate("/login");
-    } else {
-      toast.error("Registration Failed! Please try again");
-    }
+    dispatch(authActions.signUpUser(userDetails, profilePic)).then(() => {
+      if (isRegistered) {
+        toast.success("Registered Successfully");
+        navigate("/login");
+      } else {
+        //console.log(error);
+        if (error) {
+          toast.error(error[0].message);
+        }
+      }
+    });
   };
 
   return (
@@ -258,8 +260,8 @@ const RegisterForm = () => {
                 type={"password"}
                 margin="dense"
                 size="small"
-                error={!!userDetailsFieldErrors.confirmPassword}
-                helperText={userDetailsFieldErrors.confirmPassword}
+                error={!!userDetailsFieldErrors.password}
+                helperText={userDetailsFieldErrors.password}
                 fullWidth
               />
             </Grid>
@@ -349,7 +351,18 @@ const RegisterForm = () => {
           </Link>
         </Box>
       </Card>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

@@ -7,7 +7,6 @@ export const loginUser = (usernameOrEmail, password) => {
     await authService
       .login(usernameOrEmail, password)
       .then((response) => {
-        //console.log(response);
         localStorage.setItem("accessToken", response.data.accessToken);
         const accessToken = response.data.accessToken;
         dispatch(type.fetchLoginSuccess(accessToken));
@@ -37,8 +36,6 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
     type: "application/json",
   });
 
-  console.log(userDetails);
-
   const profileImage = new File([pictureUpload], "profile", {
     type: "image/*",
   });
@@ -47,17 +44,17 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
   formData.append("user", userDetailsBlob);
   formData.append("profile", profileImage);
 
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(type.fetchAuthRequest());
-    authService
+    await authService
       .register(formData)
       .then(async (response) => {
         const isRegistered = response.data;
         await dispatch(type.fetchSignUpSuccess(isRegistered));
       })
       .catch(async (error) => {
-        const errorMsg = error.message;
-        await dispatch(type.fetchSignUpFailure(errorMsg));
+        const errors = error.response.data.fieldErrors;
+        await dispatch(type.fetchSignUpFailure(errors));
       });
   };
 };
