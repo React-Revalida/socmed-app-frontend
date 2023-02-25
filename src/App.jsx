@@ -95,6 +95,10 @@ function App() {
         </Route>
 
         <Route
+          path="/"
+          element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
+        />
+        <Route
           path="/login"
           element={accessToken ? <Navigate to="/home" /> : <LoginPage />}
         />
