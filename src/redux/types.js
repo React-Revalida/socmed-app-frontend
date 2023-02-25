@@ -243,6 +243,33 @@ export const fetchPostsFailure = (error) => {
   };
 };
 
+export const fetchPostByIdRequest = () => {
+  console.log("FetchPostById");
+  return {
+    type: "FETCH_POST_BY_ID_REQUEST",
+  };
+};
+
+export const fetchPostByIdSuccess = (post) => {
+  return {
+    type: "FETCH_POST_BY_ID_SUCCESS",
+    payload: post,
+  };
+};
+
+export const fetchPostByIdFailure = (error) => {
+  return {
+    type: "FETCH_POST_BY_ID_ERROR",
+    payload: error,
+  };
+};
+
+export const resetLoading = () => {
+  return {
+    type: "RESET_LOADING",
+  };
+};
+
 export const fetchSignUpSuccess = (isRegistered) => {
   return {
     type: "SIGNUP_SUCCESS",

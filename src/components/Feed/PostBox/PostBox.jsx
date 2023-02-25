@@ -149,6 +149,7 @@ const TweetBox = () => {
             <button
               type="submit"
               className="tweetbox-button tweetboxOptionIcon"
+              style={{ cursor: "pointer" }}
             >
               Post
             </button>

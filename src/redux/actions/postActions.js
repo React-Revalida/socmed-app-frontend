@@ -59,3 +59,26 @@ export const resetSuccess = () => {
     dispatch(type.resetSuccessPost());
   };
 };
+
+export const fetchPostById = (postId) => {
+  return async (dispatch) => {
+    dispatch(type.fetchPostByIdRequest());
+    postService
+      .getPostById(postId)
+      .then((response) => {
+        console.log(response.data);
+        const post = response.data;
+        dispatch(type.fetchPostByIdSuccess(post));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchPostByIdFailure(errorMsg));
+      });
+  };
+};
+
+export const resetLoading = () => {
+  return (dispatch) => {
+    dispatch(type.resetLoading());
+  };
+};

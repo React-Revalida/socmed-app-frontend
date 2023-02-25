@@ -7,6 +7,7 @@ import { grey } from "@mui/material/colors";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import "react-toastify/dist/ReactToastify.css";
+import PostPage from "./pages/PostPage";
 
 import Notifications from "./pages/Notifications/Notifications";
 import Profile from "./pages/Profile/Profile";
@@ -90,6 +91,7 @@ function App() {
           <Route path="/Messages" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/post/:postId" element={<PostPage />} />
         </Route>
 
         <Route

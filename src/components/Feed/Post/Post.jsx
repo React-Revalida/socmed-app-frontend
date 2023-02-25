@@ -48,7 +48,9 @@ const Post = (post) => {
           <span className="post-header-username">
             {"@" + post.post.user.username}
           </span>
-          <span className="post-header-date">{MillToDate(post.timestamp)}</span>
+          <span className="post-header-date">
+            {MillToDate(post.post.timestamp)}
+          </span>
           <MoreHorizIcon className="postMoreIcon" />
         </div>
         <div className="post-content">{post.post.message}</div>

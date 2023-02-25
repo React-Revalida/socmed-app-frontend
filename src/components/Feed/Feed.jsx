@@ -6,12 +6,13 @@ import HomeStars from "../icons/HomeStars";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
 import DrawerBar from "../DrawerBar/DrawerBar";
 import Loading from "../Loading/Loading";
-import { Avatar } from "@mui/material";
+import { Avatar, CardActionArea } from "@mui/material";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
+import PostPage from "../../pages/PostPage";
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
@@ -59,7 +60,14 @@ const Feed = () => {
         ) : (
           <article>
             {posts.map((post) => (
-              <Post key={post.postId} post={post} />
+              <CardActionArea
+                onClick={() => [
+                  navigate(`/post/${post.postId}`),
+                  dispatch(postActions.resetLoading()),
+                ]}
+              >
+                <Post key={post.postId} post={post} />
+              </CardActionArea>
             ))}
           </article>
         )}
