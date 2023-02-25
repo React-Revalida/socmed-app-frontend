@@ -95,25 +95,13 @@ const Profile = () => {
               className={category === 1 && "profileCategoryActive"}
               onClick={() => setCategory(1)}
             >
-              <span>Tweets</span>
+              <span>Posts</span>
             </div>
             <div
               className={category === 2 && "profileCategoryActive"}
               onClick={() => setCategory(2)}
             >
-              <span>Tweets & replies</span>
-            </div>
-            <div
-              className={category === 3 && "profileCategoryActive"}
-              onClick={() => setCategory(3)}
-            >
-              <span>Media</span>
-            </div>
-            <div
-              className={category === 4 && "profileCategoryActive"}
-              onClick={() => setCategory(4)}
-            >
-              <span>Likes</span>
+              <span>Liked Posts</span>
             </div>
           </div>
         </div>

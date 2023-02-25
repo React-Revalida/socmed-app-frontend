@@ -112,6 +112,7 @@ const NotFoundPage = () => {
               backgroundColor: "#00d5bf",
               color: "white",
               borderRadius: 6,
+              textTransform: "none",
               "&:hover": {
                 backgroundColor: "#00d5bf",
                 color: "white",
@@ -121,7 +122,7 @@ const NotFoundPage = () => {
             component={Link}
             to="/home"
           >
-            Main Page
+            Back to Main
           </Button>
         </Grid>
       </Grid>
