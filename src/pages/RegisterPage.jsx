@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/LoginSignup/RegisterForm";
 
 const RegisterPage = () => {
   return (

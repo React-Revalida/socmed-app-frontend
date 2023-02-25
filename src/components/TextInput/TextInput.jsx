@@ -1,7 +1,7 @@
 import React from "react";
 import "./TextInput.css";
 
-function TextInput({ text }) {
+const TextInput = ({ text }) => {
   const [clicked, setClicked] = React.useState(false);
   const [inputFocus, setInputFocus] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -41,6 +41,6 @@ function TextInput({ text }) {
       />
     </div>
   );
-}
+};
 
 export default TextInput;

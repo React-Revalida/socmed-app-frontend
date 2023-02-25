@@ -1,6 +1,6 @@
 import React from "react";
 import "./FollowedYou.css";
-import UserIcon from "../../components/icons/UserIcon";
+import UserIcon from "../icons/UserIcon";
 import Avatar from "react-avatar";
 
 const FollowedYou = ({ followingUser }) => {

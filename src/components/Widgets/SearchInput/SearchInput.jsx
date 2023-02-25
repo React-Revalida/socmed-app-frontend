@@ -2,7 +2,7 @@ import React from "react";
 import "./SearchInput.css";
 import SearchIcon from "@mui/icons-material/Search";
 
-function SearchInput({ placeholder }) {
+const SearchInput = ({ placeholder }) => {
   const [isFocus, setIsFocus] = React.useState(false);
   return (
     <div
@@ -24,6 +24,6 @@ function SearchInput({ placeholder }) {
       />
     </div>
   );
-}
+};
 
 export default SearchInput;

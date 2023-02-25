@@ -1,3 +1,6 @@
+.MuiDialog-root {
+  outline: none;
+}
 .profileHeader {
   position: sticky;
   z-index: 2;
@@ -8,19 +11,19 @@
   align-items: center;
   border-bottom: 0.5px solid var(--border-color);
 }
-.profileHeader  .MuiSvgIcon-root {
+.profileHeader .MuiSvgIcon-root {
   margin: 8px 25px 8px 12px;
   padding: 7px;
   color: var(--blue);
   border-radius: 9999px;
 }
-.profileHeader  .MuiSvgIcon-root:hover {
+.profileHeader .MuiSvgIcon-root:hover {
   background-color: var(--hover-blue-color);
 }
 .profileHeader div span:nth-child(1) {
   display: flex;
   flex-direction: column;
-  color: #ffffff;
+  color: #000000;
   font-size: 19px;
   font-weight: 800;
 }
@@ -55,15 +58,15 @@
   height: 134px;
 }
 .editProfile {
-  height: auto;
-  margin-left: auto;
-  margin-top: -7px;
-  padding: 10px 15px;
-  border: 1px var(--blue) solid;
-  border-radius: 9999px;
-  color: var(--blue);
-  font-size: 15px;
-  font-weight: 700;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-top: -7px !important;
+  padding: 10px 15px !important;
+  border: 1px var(--twitter-color) solid !important;
+  border-radius: 9999px !important;
+  color: var(--twitter-color) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
 }
 .editProfile:hover {
   background-color: var(--hover-blue-color);
@@ -74,17 +77,17 @@
   padding: 0px 15px;
 }
 .profileBiography span:nth-child(1) {
-  color: #ffffff;
+  color: var(--gray);
   font-size: 19px;
   font-weight: 800;
 }
 .profileBiography span:nth-child(2) {
-  color: var(--gray);
+  color: #8899a6;
   font-size: 15px;
 }
 .profileBiography span:nth-child(3) {
   margin: 5px 0px;
-  color: #ffffff;
+  color: #000000;
   font-size: 15px;
 }
 .profileBiography span:nth-child(4) {
@@ -105,7 +108,7 @@
   margin-right: 15px;
 }
 .profile div:nth-child(4) span span:nth-child(1) {
-  color: #ffffff;
+  color: #000000;
   font-weight: 700;
   font-size: 15px;
   margin-right: 5px;
@@ -155,4 +158,9 @@
   .backgroundImage {
     height: 100px;
   }
+}
+
+/* change indicatorColor of tabs */
+.MuiTabs-indicator {
+  background-color: var(--twitter-color) !important;
 }

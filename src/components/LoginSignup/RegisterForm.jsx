@@ -18,8 +18,8 @@ import UploadIcon from "@mui/icons-material/Upload";
 import Joi from "joi";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import * as authActions from "../redux/actions/authActions";
-import { CustomSelect } from "../custom/CustomFieldComponents";
+import * as authActions from "../../redux/actions/authActions";
+import { CustomSelect } from "../../custom/CustomFieldComponents";
 import { joiPasswordExtendCore } from "joi-password";
 
 const RegisterForm = () => {

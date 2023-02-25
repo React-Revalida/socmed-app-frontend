@@ -11,7 +11,7 @@ import DrawerBar from "../../components/DrawerBar/DrawerBar";
 import HomeBox from "../../components/HomeBox/HomeBox";
 import Loading from "../../components/Loading/Loading";
 
-function Notifications() {
+const Notifications = () => {
   const [isAll, setIsAll] = React.useState(true);
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   document.title = "Notifications / Twitter";
@@ -88,6 +88,6 @@ function Notifications() {
       <Widgets />
     </>
   );
-}
+};
 
 export default Notifications;

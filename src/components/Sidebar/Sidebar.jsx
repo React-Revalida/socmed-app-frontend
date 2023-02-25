@@ -17,7 +17,7 @@ import { Button } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { logoutUser } from "../../redux/actions/authActions";
 
-function Sidebar() {
+const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
@@ -115,6 +115,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

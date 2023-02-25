@@ -18,6 +18,7 @@ import {
 } from "../icons";
 import MoreMenuItem from "../MoreMenu/MoreMenuItem/MoreMenuItem";
 import "./DrawerBar.css";
+
 const DrawerBar = ({ active }) => {
   return (
     <div className={`drawerBar ${active && "active"}`}>
