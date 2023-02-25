@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
-import PostPage from "../../pages/PostPage";
+import PostPage from "../../pages/Post/PostPage";
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);

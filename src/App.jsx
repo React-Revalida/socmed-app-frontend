@@ -7,7 +7,7 @@ import { grey } from "@mui/material/colors";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import "react-toastify/dist/ReactToastify.css";
-import PostPage from "./pages/PostPage";
+import PostPage from "./pages/Post/PostPage";
 
 import Notifications from "./pages/Notifications/Notifications";
 import Profile from "./pages/Profile/Profile";

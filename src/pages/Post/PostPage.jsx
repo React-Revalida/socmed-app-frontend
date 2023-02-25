@@ -4,11 +4,11 @@ import { padding } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../components/Comment";
-import Post from "../components/Feed/Post/Post";
-import "../components/Feed/Post/Post.css";
-import Loading from "../components/Loading/Loading";
-import * as postActions from "../redux/actions/postActions";
+import Comment from "../../components/Comment/Comment";
+import Post from "../../components/Feed/Post/Post";
+import "../../components/Feed/Post/Post.css";
+import Loading from "../../components/Loading/Loading";
+import * as postActions from "../../redux/actions/postActions";
 
 const PostPage = () => {
   const dispatch = useDispatch();
