@@ -85,8 +85,22 @@ const Sidebar = () => {
           active={currLocation === "/profile" && true}
         />
       </Link>
-      <Button onClick={handleLogout}>
-        <SidebarItem text="Log Out" Icon={LogoutIcon} />
+      <Button
+        style={{
+          textDecoration: "none",
+          textTransform: "none",
+          margin: 0,
+          padding: 0,
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+        onClick={handleLogout}
+      >
+        <SidebarItem
+          text="Logout"
+          Icon={LogoutIcon}
+          //active={currLocation === "/profile" && true}
+        />
       </Button>
       <div className="tweetButton">
         <SetTweetIcon className="setTweetIcon" />
