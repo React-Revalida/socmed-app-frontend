@@ -23,6 +23,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import * as authActions from "../redux/actions/authActions";
 import { CustomSelect } from "../custom/CustomFieldComponents";
+import { joiPasswordExtendCore } from "joi-password";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -50,20 +51,54 @@ const RegisterForm = () => {
   });
 
   const [profilePic, setProfilePic] = React.useState(null);
+
+  const joiPassword = Joi.extend(joiPasswordExtendCore);
   const userDetailsSchema = Joi.object({
-    firstname: Joi.string().required(),
+    firstname: Joi.string().required().messages({
+      "string.empty": "First name is required",
+    }),
     middlename: Joi.string().allow(""),
-    lastname: Joi.string().required(),
-    username: Joi.string().required(),
+    lastname: Joi.string().required().messages({
+      "string.empty": "Last name is required",
+    }),
+    username: Joi.string().required().messages({
+      "string.empty": "Username is required",
+    }),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
-      .required(),
-    password: Joi.string().min(6).required(),
-    // confirmPassword: Joi.any()
-    //   .equal(Joi.ref("password"))
-    //   .required()
-    //   .label("Confirm password")
-    //   .messages({ "any.only": "Passwords does not match" }),
+      .required()
+      .messages({
+        "string.empty": "Email is required",
+      }),
+    password: joiPassword
+      .string()
+      .minOfSpecialCharacters(1)
+      .minOfLowercase(1)
+      .minOfUppercase(1)
+      .minOfNumeric(1)
+      .noWhiteSpaces()
+      .required()
+      .min(6)
+      .max(20)
+      .messages({
+        "string.empty": "Password is required",
+        "string.min": "Password should be 6-20 characters",
+        "string.min": "Password should be 6-20 characters",
+        "password.minOfLowercase":
+          "Password should contain at least 1 lowercase character",
+        "password.minOfUppercase":
+          "Password should contain at least 1 uppercase character",
+        "password.minOfNumeric":
+          "Password should contain at least 1 numeric character",
+        "password.minOfSpecialCharacters":
+          "Password should contain at least 1 special character",
+        "password.noWhiteSpaces": "Password should not contain white spaces",
+      }),
+    confirmPassword: Joi.any()
+      .equal(Joi.ref("password"))
+      .required()
+      .label("Confirm password")
+      .messages({ "any.only": "Passwords does not match" }),
     gender: Joi.string().required(),
   });
 
