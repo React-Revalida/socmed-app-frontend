@@ -53,7 +53,7 @@ const TweetBox = () => {
     dispatch(postActions.addPost(tweet, profilePicUpload));
     // Workaround for bug in feed after adding a post
 
-    setTweet("");
+    setTweet({ ...tweet, message: "" });
     setProfilePicUpload(null);
     setCurrentImage("");
     dispatch(postActions.resetSuccess());

@@ -17,6 +17,8 @@ const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
   const posts = useSelector((state) => state.post.posts);
 
+  console.log(posts);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
