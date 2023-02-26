@@ -28,7 +28,7 @@ const TweetBox = () => {
   }, [success, dispatch]);
 
   const [tweet, setTweet] = useState({
-    message: " ",
+    message: "",
   });
 
   const [profilePicUpload, setProfilePicUpload] = useState(null);

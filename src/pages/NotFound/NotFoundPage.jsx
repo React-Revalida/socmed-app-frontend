@@ -62,7 +62,7 @@ const NotFoundPage = () => {
           >
             <Typography
               fontSize={30}
-              color={"gray"}
+              color={"white"}
               fontFamily={"monospace"}
               sx={{
                 transform: "rotate(357deg)",
@@ -93,13 +93,13 @@ const NotFoundPage = () => {
           <Typography
             fontSize={30}
             fontFamily={"monospace"}
-            sx={{ color: "#7b847f" }}
+            sx={{ color: "white" }}
           >
             Sorry, page not found...
           </Typography>
         </Grid>
         <Grid item xs={12} display={"flex"} justifyContent={"center"}>
-          <Typography fontSize={15} fontFamily={"unset"} color={"#7b847f"}>
+          <Typography fontSize={15} fontFamily={"unset"} color={"white"}>
             We couldn't find the page you are looking for, or maybe it never
             existed. Try heading back to the main page.
           </Typography>
