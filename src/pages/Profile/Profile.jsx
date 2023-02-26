@@ -7,35 +7,44 @@ import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Avatar from "react-avatar";
 import Loading from "../../components/Loading/Loading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
+import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
+import { CardActionArea } from "@mui/material";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
   const [isMe, setIsMe] = React.useState(false);
   const params = useParams();
-  const [loading, setLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
   const handleOpenEditDialog = (isOpen) => {
     setOpen(isOpen);
   };
 
+  const profile = useSelector((state) => state.user.profile);
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
+      dispatch(postActions.fetchUserPosts(params.username));
       setIsMe(false);
     } else {
       dispatch(profileActions.fetchProfile());
+      dispatch(postActions.fetchUserPosts(profile.username));
       setIsMe(true);
     }
   }, [params, dispatch]);
 
-  const profile = useSelector((state) => state.user.profile);
+  const userPosts = useSelector((state) => state.post.userPosts);
+  const loading = useSelector((state) => state.post.loading);
+  console.log(loading, userPosts);
+
   return (
     <>
       <ProfileEditForm
@@ -106,17 +115,16 @@ const Profile = () => {
           </div>
         </div>
         <article className="profilePosts">
-          {!loading ? (
-            posts.map((post) => (
-              <Post
-                key={post.id}
-                username={post.username}
-                userimage={post.userimage}
-                date={post.date}
-                displayName={post.displayName}
-                text={post.text}
-                shareImage={post.shareImage}
-              />
+          {loading === false ? (
+            userPosts.map((post) => (
+              <CardActionArea
+                onClick={() => [
+                  navigate(`/post/${post.postId}`),
+                  dispatch(postActions.resetLoading()),
+                ]}
+              >
+                <Post key={post.postId} post={post} />
+              </CardActionArea>
             ))
           ) : (
             <Loading />

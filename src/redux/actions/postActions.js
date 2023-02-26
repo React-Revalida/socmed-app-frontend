@@ -82,3 +82,20 @@ export const resetLoading = () => {
     dispatch(type.resetLoading());
   };
 };
+
+export const fetchUserPosts = (username) => {
+  return async (dispatch) => {
+    dispatch(type.fetchUserPostsRequest());
+    postService
+      .getUserPosts(username)
+      .then((response) => {
+        console.log(response.data);
+        const posts = response.data;
+        dispatch(type.fetchUserPostsSuccess(posts));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchUserPostsFailure(errorMsg));
+      });
+  };
+};

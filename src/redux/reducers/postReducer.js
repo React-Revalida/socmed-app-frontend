@@ -5,6 +5,9 @@ const initialState = {
   post: {
     user: {},
   },
+  userPosts: {
+    user: {},
+  },
   loading: true,
   error: null,
   success: false,
@@ -56,7 +59,6 @@ export default function authReducer(state = initialState, action) {
       };
 
     case "FETCH_POST_BY_ID_REQUEST":
-      console.log(state.loading, "post reducer");
       return {
         ...state,
         loading: true,
@@ -75,6 +77,27 @@ export default function authReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         post: {},
+      };
+
+    case "FETCH_USER_POSTS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case "FETCH_USER_POSTS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        userPosts: action.payload,
+      };
+    case "FETCH_USER_POSTS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        userPosts: {},
       };
 
     case "RESET_LOADING":

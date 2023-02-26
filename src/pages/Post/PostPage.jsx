@@ -43,7 +43,7 @@ const PostPage = () => {
             <Post post={post} />
             <div className="postFooter">
               <Typography
-                color={"gray"}
+                color={"#8899a6"}
                 fontStyle="oblique"
                 fontSize={12}
                 padding={1}

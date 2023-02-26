@@ -303,3 +303,23 @@ export const addPostFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchUserPostsRequest = () => {
+  return {
+    type: "FETCH_USER_POSTS_REQUEST",
+  };
+};
+
+export const fetchUserPostsSuccess = (posts) => {
+  return {
+    type: "FETCH_USER_POSTS_SUCCESS",
+    payload: posts,
+  };
+};
+
+export const fetchUserPostsFailure = (error) => {
+  return {
+    type: "FETCH_USER_POSTS_FAILURE",
+    payload: error,
+  };
+};

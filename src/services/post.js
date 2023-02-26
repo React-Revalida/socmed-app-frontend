@@ -15,3 +15,7 @@ export const addPost = async (post) => {
 export const getPostById = async (postId) => {
   return await http.get(`/post/${postId}`);
 };
+
+export const getUserPosts = async (username) => {
+  return await http.get(`/profile/${username}/posts`);
+};
