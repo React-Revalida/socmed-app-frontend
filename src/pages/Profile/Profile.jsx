@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import BottomSidebar from "../../components/BottomSidebar/BottomSidebar";
 import Post from "../../components/Feed/Post/Post";
@@ -25,17 +25,23 @@ const Profile = () => {
   };
 
   const dispatch = useDispatch();
+  
+  const selectProfile = useSelector((state) => state.user.profile);
+  const selectOtherProfile = useSelector((state) => state.user.otherProfile);
+  const [profile, setProfile] = useState(selectProfile);
+
   useEffect(() => {
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
+      setProfile(selectOtherProfile);
       setIsMe(false);
     } else {
       dispatch(profileActions.fetchProfile());
+      setProfile(selectProfile);
       setIsMe(true);
     }
-  }, [params, dispatch]);
+  }, [params, dispatch, selectProfile, selectOtherProfile]);
 
-  const profile = useSelector((state) => state.user.profile);
   return (
     <>
       <ProfileEditForm

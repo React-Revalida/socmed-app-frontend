@@ -4,13 +4,6 @@ export const fetchProfileRequest = () => {
   };
 };
 
-export const fetchOtherProfileRequest = (username) => {
-  return {
-    type: "FETCH_OTHER_PROFILE_REQUEST",
-    payload: username,
-  };
-};
-
 export const fetchProfileSuccess = (profile) => {
   return {
     type: "FETCH_PROFILE_SUCCESS",
@@ -21,6 +14,28 @@ export const fetchProfileSuccess = (profile) => {
 export const fetchProfileFailure = (error) => {
   return {
     type: "FETCH_PROFILE_FAILURE",
+    payload: error,
+  };
+};
+
+
+export const fetchOtherProfileRequest = (username) => {
+  return {
+    type: "FETCH_OTHER_PROFILE_REQUEST",
+    payload: username,
+  };
+};
+
+export const fetchOtherProfileSuccess = (profile) => {
+  return {
+    type: "FETCH_OTHER_PROFILE_SUCCESS",
+    payload: profile,
+  };
+};
+
+export const fetchOtherProfileFailure = (error) => {
+  return {
+    type: "FETCH_OTHER_PROFILE_FAILURE",
     payload: error,
   };
 };

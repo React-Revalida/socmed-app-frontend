@@ -25,10 +25,10 @@ export const fetchOtherProfile = (username) => {
       .getOtherProfile(username)
       .then((response) => {
         const profile = response.data;
-        dispatch(type.fetchProfileSuccess(profile));
+        dispatch(type.fetchOtherProfileSuccess(profile));
       })
       .catch((error) => {
-        dispatch(type.fetchProfileFailure(error));
+        dispatch(type.fetchOtherProfileFailure(error));
       });
   };
 };

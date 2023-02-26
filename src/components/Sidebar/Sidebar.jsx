@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import {
@@ -16,13 +16,17 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { Button } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import { logoutUser } from "../../redux/actions/authActions";
-
+import * as profileActions from "../../redux/actions/profileActions";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
   const [currLocation, setCurrentLocation] = React.useState(location);
+
+  useEffect(() => {
+    dispatch(profileActions.fetchProfile());
+  }, [dispatch]);
 
   const handleLocationChange = (location) => {
     setCurrentLocation(location);

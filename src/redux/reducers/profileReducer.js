@@ -2,6 +2,9 @@ const initialState = {
   profile: {
     address: {},
   },
+  otherProfile: {
+    address: {},
+  },
   loading: false,
   error: null,
   success: false,
@@ -10,12 +13,6 @@ const initialState = {
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case "FETCH_PROFILE_REQUEST":
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case "FETCH_OTHER_PROFILE_REQUEST":
       return {
         ...state,
         loading: true,
@@ -33,6 +30,25 @@ export default function userReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         profile: {},
+      };
+    case "FETCH_OTHER_PROFILE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_OTHER_PROFILE_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        otherProfile: action.payload,
+      };
+    case "FETCH_OTHER_PROFILE_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        otherProfile: {},
       };
     case "UPDATE_PROFILE_REQUEST":
       return {
