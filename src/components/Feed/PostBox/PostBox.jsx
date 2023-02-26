@@ -84,13 +84,11 @@ const TweetBox = () => {
                 display={"flex"}
                 justifyContent={"center"}
                 alignContent={"center"}
-                marginLeft={5}
               >
                 <img src={currentImage} alt="no picture"></img>
                 <div className="tweetboxOptions">
                   <Close
-                    className="tweetboxOptionIcon"
-                    sx={{ position: "relative", bottom: 140 }}
+                    className="uploadedImage-closeButton"
                     onClick={() => setCurrentImage("")}
                   />
                 </div>
