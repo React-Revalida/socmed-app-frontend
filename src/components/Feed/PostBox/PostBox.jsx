@@ -74,29 +74,30 @@ const TweetBox = () => {
               style={{ outline: "none" }}
             />
           </div>
-          {currentImage === "" ? (
-            <div></div>
-          ) : (
-            <Box
-              display={"flex"}
-              justifyContent={"center"}
-              alignContent={"center"}
-              marginLeft={5}
-            >
-              <img
-                src={currentImage}
-                alt="no picture"
-                height={100}
-                width={100}
-              ></img>
-              <Grid>
-                <IconButton onClick={() => setCurrentImage("")}>
-                  <Close />
-                </IconButton>
-              </Grid>
-            </Box>
-          )}
         </div>
+        {currentImage === "" ? (
+          <div></div>
+        ) : (
+          <div className="uploadImage">
+            <div className="uploadedImage">
+              <Box
+                display={"flex"}
+                justifyContent={"center"}
+                alignContent={"center"}
+                marginLeft={5}
+              >
+                <img src={currentImage} alt="no picture"></img>
+                <div className="tweetboxOptions">
+                  <Close
+                    className="tweetboxOptionIcon"
+                    sx={{ position: "relative", bottom: 140 }}
+                    onClick={() => setCurrentImage("")}
+                  />
+                </div>
+              </Box>
+            </div>
+          </div>
+        )}
         <div className="tweetboxRow">
           <div style={{ flex: 0.1 }}></div>
           <div className="tweetboxOptions">
@@ -105,7 +106,7 @@ const TweetBox = () => {
                 className="tweetboxOptionIcon"
                 width={25}
                 height={25}
-                sx={{ fill: "var(--blue)", mt: 0.5, cursor: "pointer" }}
+                sx={{ fill: "var(--blue)", mt: 0.5 }}
               />
               <input
                 id="profilePicInput"
@@ -114,7 +115,7 @@ const TweetBox = () => {
                 style={{ display: "none" }}
               />
             </label>
-            <GifIcon className="tweetboxOptionIcon" width={22} height={22} />
+            {/* To be implemented <GifIcon className="tweetboxOptionIcon" width={22} height={22} /> */}
             {!emojiPicker ? (
               <EmojiIcon
                 className="tweetboxOptionIcon"
