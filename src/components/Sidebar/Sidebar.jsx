@@ -16,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { Button } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import LogoutDialog from "./LogoutDialog";
+import { resetLoading } from "../../redux/actions/postActions";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Sidebar = () => {
   const [currLocation, setCurrentLocation] = React.useState(location);
 
   const handleLocationChange = (location) => {
+    dispatch(resetLoading());
     setCurrentLocation(location);
   };
 

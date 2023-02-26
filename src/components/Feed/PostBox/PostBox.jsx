@@ -49,8 +49,6 @@ const TweetBox = () => {
   const tweetSubmit = (e) => {
     e.preventDefault();
     dispatch(postActions.addPost(tweet, profilePicUpload));
-    // Workaround for bug in feed after adding a post
-
     setTweet({ ...tweet, message: "" });
     setProfilePicUpload(null);
     setCurrentImage("");

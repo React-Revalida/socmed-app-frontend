@@ -32,6 +32,7 @@
   color: #ffffff;
   font-size: 19px;
   line-height: 24.9375px;
+  word-wrap: break-word;
 }
 
 .tweetboxOptions {
