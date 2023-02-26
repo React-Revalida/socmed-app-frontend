@@ -14,10 +14,12 @@ const Post = (post) => {
 
   useEffect(() => {
     dispatch(likeActions.fetchLikesByPost(post.post.postId));
+    console.log(post.post);
   }, [dispatch]);
 
   const loading = useSelector((state) => state.like.loading);
-  const likes = useSelector((state) => state.like.likes);
+  const likes = post.post.likes;
+  const comments = post.post.comments;
 
   const [isVisibleProfileCard, setIsVisibleProfileCard] = React.useState(false);
 
@@ -62,11 +64,12 @@ const Post = (post) => {
         <div className="post-event">
           <div>
             <FavoriteIcon className="postIcon" />
-            <span>{likes.length}</span>
+            <span>{likes.length > 0 ? likes.length : ""}</span>
           </div>
           <div>
+            comments
             <CommentIcon className="postIcon" />
-            <span></span>
+            <span>{comments.length > 0 ? comments.length : ""}</span>
           </div>
         </div>
       </div>
