@@ -8,6 +8,7 @@ export const fetchLikesByPost = (postId) => {
       .getLikes(postId)
       .then((response) => {
         const likes = response.data;
+        console.log(likes);
         dispatch(type.fetchLikesSuccess(likes));
       })
       .catch((error) => {

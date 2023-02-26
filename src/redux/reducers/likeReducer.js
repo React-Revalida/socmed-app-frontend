@@ -1,5 +1,5 @@
 const initialState = {
-  likes: [],
+  likes: {},
   loading: false,
   error: null,
   success: false,
