@@ -318,3 +318,23 @@ export const addPostFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchMutualsRequest = () => {
+  return {
+    type: "FETCH_MUTUALS_REQUEST",
+  };
+}
+
+export const fetchMutualsSuccess = (mutuals) => {
+  return {
+    type: "FETCH_MUTUALS_SUCCESS",
+    payload: mutuals,
+  };
+}
+
+export const fetchMutualsFailure = (error) => {
+  return {
+    type: "FETCH_MUTUALS_FAILURE",
+    payload: error,
+  };
+}

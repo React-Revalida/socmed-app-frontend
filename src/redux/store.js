@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
 import thunk from "redux-thunk";
 import unexpectedErrorReducer from "./reducers/unexpectedErrorReducer";
+import mutualFollowReducer from "./reducers/mutualFollow";
 
 const initialState = {};
 
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   auth: authReducer,
   like: likeReducer,
   comment: commentReducer,
+  mutuals: mutualFollowReducer,
 });
 
 const composeEnhancers =

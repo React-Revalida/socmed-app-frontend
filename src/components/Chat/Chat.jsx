@@ -9,7 +9,7 @@ import "./Chat.css";
 import Loading from "../Loading/Loading";
 import Avatar from "react-avatar";
 
-const Chat = ({ messages, users }) => {
+const Chat = ({ messages, mutuals }) => {
   //let { id } = useParams();
   var id = useLocation().pathname;
   const [user, setUser] = React.useState({
@@ -32,9 +32,9 @@ const Chat = ({ messages, users }) => {
 
   React.useEffect(() => {
     if (id) {
-      let userid = id.split("-")[1];
-      let messageid = id.split("/")[2];
-      setUser(users.find((user) => user.username === userid));
+      // let userid = id.split("-")[1];
+      // let messageid = id.split("/")[2];
+      // setUser(mutuals.find((user) => user.username === userid));
       // setMessagesData(
       //   messages.find((message) => message.fromto === messageid).messages
       // );
