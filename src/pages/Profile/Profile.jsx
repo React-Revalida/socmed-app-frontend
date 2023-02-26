@@ -80,7 +80,14 @@ const Profile = () => {
       setFollowing(selectFollowing);
       setIsMe(true);
     }
-  }, [params.username, selectProfile, selectOtherProfile, selectUserPosts, selectFollowers, selectFollowing]);
+  }, [
+    params.username,
+    selectProfile,
+    selectOtherProfile,
+    selectUserPosts,
+    selectFollowers,
+    selectFollowing,
+  ]);
 
   useEffect(() => {
     setLoading(selectLoading);

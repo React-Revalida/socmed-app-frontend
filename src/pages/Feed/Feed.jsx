@@ -55,19 +55,6 @@ const Feed = () => {
         <TweetBox />
         {/* <FlipMove> */}
         {/*test for clicking post*/}
-        {/* <CardActionArea onClick={() => navigate("/post")}>
-          <Post />
-        </CardActionArea>
-        <CardActionArea onClick={() => navigate("/post")}>
-          <Post />
-        </CardActionArea>
-        <CardActionArea onClick={() => navigate("/post")}>
-          <Post />
-        </CardActionArea> */}
-        {/* 
-        <Post />
-        <Post />
-        <Post /> */}
         {loading ? (
           <div>Loading...</div>
         ) : (

@@ -33,14 +33,16 @@ const PostPage = () => {
     <>
       <section className="feed">
         <div className="postHeader">
-          <BackIcon onClick={() => navigate("/")} />
+          <BackIcon
+            onClick={() => [navigate("/"), postActions.resetLoading()]}
+          />
           <span>Feeds</span>
         </div>
         {loading ? (
           <Loading />
         ) : (
           <>
-            <Post post={post} />
+            <Post key={post.postId} post={post} />
             <div className="postFooter">
               <Typography
                 color={"#8899a6"}

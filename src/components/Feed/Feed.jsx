@@ -13,12 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
 import PostPage from "../../pages/Post/PostPage";
+import { useState } from "react";
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
-  const posts = useSelector((state) => state.post.posts);
 
-  console.log(posts);
+  const selectPosts = useSelector((state) => state.post.posts);
+  const [posts, setPosts] = useState(selectPosts);
+
+  const selectLoading = useSelector((state) => state.post.loading);
+  const [loading, setLoading] = useState(selectLoading);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,11 +31,14 @@ const Feed = () => {
     dispatch(postActions.fetchPosts());
   }, [dispatch]);
 
-  const [isDrawerBar, setIsDrawerBar] = React.useState(false);
-  const loading = useSelector((state) => state.post.loading);
-  const profileImg = useSelector((state) => state.user.profile.profileImg);
+  useEffect(() => {
+    setPosts(selectPosts);
+    setLoading(selectLoading);
+    //params
+  }, [selectPosts, selectLoading]);
 
-  console.log(loading);
+  const [isDrawerBar, setIsDrawerBar] = React.useState(false);
+  const profileImg = useSelector((state) => state.user.profile.profileImg);
 
   return (
     <>
