@@ -323,3 +323,57 @@ export const fetchUserPostsFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchFollowsRequest = () => {
+  return {
+    type: "FETCH_FOLLOWS_REQUEST",
+  };
+};
+
+export const fetchFollowersSuccess = (followers) => {
+  return {
+    type: "FETCH_FOLLOWS_SUCCESS",
+    payload: followers,
+  };
+};
+
+export const fetchFollowersFailure = (error) => {
+  return {
+    type: "FETCH_FOLLOWS_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchFollowingSuccess = (following) => {
+  return {
+    type: "FETCH_FOLLOWING_SUCCESS",
+    payload: following,
+  };
+};
+
+export const fetchFollowingFailure = (error) => {
+  return {
+    type: "FETCH_FOLLOWING_FAILURE",
+    payload: error,
+  };
+};
+
+export const followUserRequest = () => {
+  return {
+    type: "FOLLOW_USER_REQUEST",
+  };
+};
+
+export const followUserSuccess = (follows) => {
+  return {
+    type: "FOLLOW_USER_SUCCESS",
+    payload: follows,
+  };
+};
+
+export const followUserFailure = (error) => {
+  return {
+    type: "FOLLOW_USER_FAILURE",
+    payload: error,
+  };
+};

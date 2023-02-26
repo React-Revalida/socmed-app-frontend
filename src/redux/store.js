@@ -3,6 +3,7 @@ import authReducer from "./reducers/authReducer";
 import likeReducer from "./reducers/likeReducer";
 import commentReducer from "./reducers/commentReducer";
 import postReducer from "./reducers/postReducer";
+import followReducer from "./reducers/followReducer";
 
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   auth: authReducer,
   like: likeReducer,
   comment: commentReducer,
+  follow: followReducer,
 });
 
 const composeEnhancers =
