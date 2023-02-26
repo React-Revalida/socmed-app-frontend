@@ -78,6 +78,7 @@ const LoginForm = () => {
   return (
     <>
       <Card
+        color="red"
         sx={{
           paddingLeft: 5,
           paddingRight: 5,
