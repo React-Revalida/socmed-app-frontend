@@ -43,7 +43,7 @@ export const addPost = (message, image) => {
     postService
       .addPost(formData)
       .then(async (response) => {
-        console.log(response.data);
+        console.log(response);
         const addedPost = response.data;
         await dispatch(type.addPostSuccess(addedPost));
       })
@@ -57,5 +57,28 @@ export const addPost = (message, image) => {
 export const resetSuccess = () => {
   return (dispatch) => {
     dispatch(type.resetSuccessPost());
+  };
+};
+
+export const fetchPostById = (postId) => {
+  return async (dispatch) => {
+    dispatch(type.fetchPostByIdRequest());
+    postService
+      .getPostById(postId)
+      .then((response) => {
+        console.log(response.data);
+        const post = response.data;
+        dispatch(type.fetchPostByIdSuccess(post));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchPostByIdFailure(errorMsg));
+      });
+  };
+};
+
+export const resetLoading = () => {
+  return (dispatch) => {
+    dispatch(type.resetLoading());
   };
 };

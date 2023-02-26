@@ -1,21 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import "./Feed.css";
-import TweetBox from "./TweetBox/TweetBox";
+import PostBox from "../../components/Feed/PostBox/PostBox";
 import Post from "./Post/Post";
 import HomeStars from "../icons/HomeStars";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
 import DrawerBar from "../DrawerBar/DrawerBar";
 import Loading from "../Loading/Loading";
-import { Avatar } from "@mui/material";
+import { Avatar, CardActionArea } from "@mui/material";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
+import PostPage from "../../pages/Post/PostPage";
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
   const posts = useSelector((state) => state.post.posts);
+
+  console.log(posts);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,13 +54,20 @@ const Feed = () => {
             <HomeStars className="homeStars" width={22} height={22} />
           </div>
         </div>
-        <TweetBox />
+        <PostBox />
         {loading ? (
           <Loading />
         ) : (
           <article>
             {posts.map((post) => (
-              <Post key={post.postId} post={post} />
+              <CardActionArea
+                onClick={() => [
+                  navigate(`/post/${post.postId}`),
+                  dispatch(postActions.resetLoading()),
+                ]}
+              >
+                <Post key={post.postId} post={post} />
+              </CardActionArea>
             ))}
           </article>
         )}
