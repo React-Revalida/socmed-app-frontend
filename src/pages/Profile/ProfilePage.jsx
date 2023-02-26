@@ -6,28 +6,28 @@ import "./Profile.css";
 import * as profileActions from "../../redux/actions/profileActions";
 
 const ProfilePage = () => {
-  const [isMe, setIsMe] = React.useState(false);
-  const params = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const [isMe, setIsMe] = React.useState(false);
+  // const params = useParams();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (params.username) {
-      dispatch(profileActions.fetchOtherProfile(params.username));
-      setIsMe(false);
-    } else {
-      dispatch(profileActions.fetchProfile());
-      setIsMe(true);
-    }
-  }, [params, dispatch]);
+  // useEffect(() => {
+  //   if (params.username) {
+  //     dispatch(profileActions.fetchOtherProfile(params.username));
+  //     setIsMe(false);
+  //   } else {
+  //     dispatch(profileActions.fetchProfile());
+  //     setIsMe(true);
+  //   }
+  // }, [params, dispatch]);
 
-  const profile = useSelector((state) => state.user.profile);
-  const loading = useSelector((state) => state.user.loading);
-  console.log(loading);
+  // const profile = useSelector((state) => state.user.profile);
+  // const loading = useSelector((state) => state.user.loading);
+  // console.log(loading);
 
   return (
     <>
-      <Profile profile={profile} isMe={isMe} loading={loading} />
+      <Profile />
     </>
   );
 };

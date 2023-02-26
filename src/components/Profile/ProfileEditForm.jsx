@@ -13,7 +13,7 @@ import { Box, useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./EditProfile.css";
-import "../../pages/Profile/Profile.css";
+import "./Profile.css";
 import PropTypes from "prop-types";
 import {
   CustomDialog,
@@ -202,7 +202,11 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
     reader.readAsDataURL(file);
   };
   return (
-    <CustomDialog open={isDialogOpen} onClose={() => onOpenDialog(false)} fullWidth>
+    <CustomDialog
+      open={isDialogOpen}
+      onClose={() => onOpenDialog(false)}
+      fullWidth
+    >
       <DialogContent sx={{ bgcolor: "background.paper" }}>
         <Grid component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -442,7 +446,7 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
                   disabled={isFormInvalid()}
                   className="editProfile"
                   variant="contained"
-                  sx={{ float: "right", mt:3 , mb: 2, mr: 2 }}
+                  sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
                 >
                   Save Changes
                 </Button>

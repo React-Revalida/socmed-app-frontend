@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PostPage from "./pages/Post/PostPage";
 
 import Notifications from "./pages/Notifications/Notifications";
-import Profile from "./pages/Profile/Profile";
+import Profile from "./components/Profile/Profile";
 import Messages from "./pages/Messages/Messages";
 import LoginPage from "./pages/Login/LoginPage";
 import { useSelector } from "react-redux";
