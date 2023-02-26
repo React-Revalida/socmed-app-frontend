@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Box } from "@mui/system";
 import React from "react";
 import LoginForm from "../../components/LoginSignup/LoginForm";
+import Banner from "../../assets/socmed-banner-1.jpg";
 
 const LoginPage = () => {
   return (
@@ -9,8 +9,14 @@ const LoginPage = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="90vh"
-      sx={{ backgroundColor: "#999999", boxShadow: 3, borderRadius: 3 }}
+      minHeight="100vh"
+      sx={{
+        backgroundImage: `url(${Banner})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
     >
       <LoginForm />
     </Box>
