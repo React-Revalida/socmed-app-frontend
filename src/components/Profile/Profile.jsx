@@ -24,7 +24,7 @@ const Profile = ({ profile, isMe, loading }) => {
           </div>
           <div>
             <span>{profile.name}</span>
-            <span>Tweets</span>
+            <span>Posts</span>
           </div>
         </div>
         <div className="profile">
