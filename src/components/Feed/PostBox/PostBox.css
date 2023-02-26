@@ -25,14 +25,16 @@
   flex: 0.9;
 }
 .tweetbox-input {
-  flex: 1;
   border-radius: 10px;
   border: none;
   background-color: var(--main-bg-color);
   color: #ffffff;
   font-size: 19px;
   line-height: 24.9375px;
-  word-wrap: break-word;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: "Gill Sans", sans-serif;
 }
 
 .tweetboxOptions {

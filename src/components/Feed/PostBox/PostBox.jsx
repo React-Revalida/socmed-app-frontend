@@ -12,6 +12,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Box } from "@mui/system";
 import { Grid, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { blue } from "@mui/material/colors";
 
 const TweetBox = () => {
   const dispatch = useDispatch();
@@ -63,13 +64,14 @@ const TweetBox = () => {
             <Avatar round={true} size={40} />
           </div>
           <div className="tweetbox-input-row">
-            <input
+            <textarea
+              className="tweetbox-input"
+              rows={2}
+              cols={5}
               value={tweet.message}
               onChange={(e) => setTweet({ ...tweet, message: e.target.value })}
-              className="tweetbox-input"
               placeholder="What's happening?"
-              type="text"
-              style={{ outline: "none" }}
+              style={{ height: "auto" }}
             />
           </div>
         </div>

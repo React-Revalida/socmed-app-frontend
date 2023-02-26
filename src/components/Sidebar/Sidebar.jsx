@@ -26,7 +26,6 @@ const Sidebar = () => {
   const [currLocation, setCurrentLocation] = React.useState(location);
 
   const handleLocationChange = (location) => {
-    dispatch(resetLoading());
     setCurrentLocation(location);
   };
 
