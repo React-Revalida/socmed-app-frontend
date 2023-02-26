@@ -12,8 +12,18 @@ import Avatar from "react-avatar";
 const Chat = ({ messages, users }) => {
   //let { id } = useParams();
   var id = useLocation().pathname;
-  const [user, setUser] = React.useState({});
-  const [messagesData, setMessagesData] = React.useState();
+  const [user, setUser] = React.useState({
+    userimage: "",
+    displayName: "",
+    username: "",
+    biograpfy: "",
+    followingCount: "",
+    followersCount: "",
+    joinMonth: "",
+    joinYear: "",
+  });
+  const [messagesData, setMessagesData] = React.useState(
+  );
 
   const [loading, setLoading] = React.useState(true);
   setTimeout(() => {
@@ -25,9 +35,9 @@ const Chat = ({ messages, users }) => {
       let userid = id.split("-")[1];
       let messageid = id.split("/")[2];
       setUser(users.find((user) => user.username === userid));
-      setMessagesData(
-        messages.find((message) => message.fromto === messageid).messages
-      );
+      // setMessagesData(
+      //   messages.find((message) => message.fromto === messageid).messages
+      // );
     }
   }, [id]);
 

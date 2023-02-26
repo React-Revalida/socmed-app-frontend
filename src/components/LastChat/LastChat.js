@@ -15,7 +15,7 @@ const LastChat = ({
   return (
     <Link className="lastChat" to={`/Messages/mucahitsahin6-${username}`}>
       <div>
-        <Avatar src={userimage} />
+        <Avatar size={40} round={true} src={userimage} />
       </div>
       <div>
         <div>
