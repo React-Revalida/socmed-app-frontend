@@ -32,7 +32,6 @@ const Sidebar = () => {
   }, [dispatch]);
 
   const handleLocationChange = (location) => {
-    dispatch(resetLoading());
     setCurrentLocation(location);
   };
 
