@@ -7,24 +7,46 @@ import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Avatar from "react-avatar";
 import Loading from "../../components/Loading/Loading";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
+import * as postActions from "../../redux/actions/postActions";
+import * as followActions from "../../redux/actions/followActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
+import { CardActionArea } from "@mui/material";
+import FollowsModal from "../../components/Profile/FollowsModal";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
+  const [followTab, setFollowTab] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
   const [isMe, setIsMe] = React.useState(false);
   const params = useParams();
-  const [loading, setLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(false);
   const handleOpenEditDialog = (isOpen) => {
     setOpen(isOpen);
   };
 
+  const [openFollows, setOpenFollows] = React.useState(false);
+  const handleOpenFollowsDialog = (isOpen) => {
+    setOpenFollows(isOpen);
+  };
+
   const dispatch = useDispatch();
+
+  const selectLoading = useSelector((state) => state.post.loading);
+  const [loading, setLoading] = useState(selectLoading);
+
+  const selectUserPosts = useSelector((state) => state.post.userPosts);
+  const [userPosts, setUserPosts] = useState(selectUserPosts);
+
+  const selectFollowers = useSelector((state) => state.follow.followers);
+  const [followers, setFollowers] = useState(selectFollowers);
+
+  const selectFollowing = useSelector((state) => state.follow.following);
+  const [following, setFollowing] = useState(selectFollowing);
 
   const selectProfile = useSelector((state) => state.user.profile);
   const selectOtherProfile = useSelector((state) => state.user.otherProfile);
@@ -33,20 +55,36 @@ const Profile = () => {
   useEffect(() => {
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
+      dispatch(postActions.fetchUserPosts(params.username));
+      dispatch(followActions.getUserFollowers(params.username));
+      dispatch(followActions.getUserFollowing(params.username));
     } else {
       dispatch(profileActions.fetchProfile());
+      dispatch(postActions.fetchUserPosts(profile.username));
+      dispatch(followActions.getUserFollowers(profile.username));
+      dispatch(followActions.getUserFollowing(profile.username));
     }
-  }, [params, dispatch]);
-  
+  }, [params, dispatch, profile.username]);
+
   useEffect(() => {
     if (params.username) {
       setProfile(selectOtherProfile);
+      setUserPosts(selectUserPosts);
+      setFollowers(selectFollowers);
+      setFollowing(selectFollowing);
       setIsMe(false);
     } else {
       setProfile(selectProfile);
+      setUserPosts(selectUserPosts);
+      setFollowers(selectFollowers);
+      setFollowing(selectFollowing);
       setIsMe(true);
     }
-  }, [params.username, selectProfile, selectOtherProfile]);
+  }, [params.username, selectProfile, selectOtherProfile, selectUserPosts, selectFollowers, selectFollowing]);
+
+  useEffect(() => {
+    setLoading(selectLoading);
+  }, [selectLoading]);
 
   return (
     <>
@@ -55,6 +93,12 @@ const Profile = () => {
         isDialogOpen={open}
         onOpenDialog={handleOpenEditDialog}
       />
+      <FollowsModal
+        isDialogOpen={openFollows}
+        onOpenDialog={handleOpenFollowsDialog}
+        followTab={followTab}
+        data={followTab === 1 ? following : followers}
+      />
       <section className="feed">
         <div className="profileHeader">
           <div>
@@ -62,7 +106,7 @@ const Profile = () => {
           </div>
           <div>
             <span>{profile.name}</span>
-            <span>Tweets</span>
+            <span>Posts</span>
           </div>
         </div>
         <div className="profile">
@@ -93,11 +137,29 @@ const Profile = () => {
             </span>
           </div>
           <div>
-            <span>
+            <span
+              className={followTab === 1 && "followTabActive"}
+              onClick={() => {
+                handleOpenFollowsDialog(true);
+                setFollowTab(1);
+              }}
+              style={{
+                cursor: "pointer",
+              }}
+            >
               <span>{profile.following}</span>
               <span>Following</span>
             </span>
-            <span>
+            <span
+              className={followTab === 2 && "followTabActive"}
+              onClick={() => {
+                handleOpenFollowsDialog(true);
+                setFollowTab(2);
+              }}
+              style={{
+                cursor: "pointer",
+              }}
+            >
               <span>{profile.followers}</span>
               <span>Followers</span>
             </span>
@@ -118,17 +180,16 @@ const Profile = () => {
           </div>
         </div>
         <article className="profilePosts">
-          {!loading ? (
-            posts.map((post) => (
-              <Post
-                key={post.id}
-                username={post.username}
-                userimage={post.userimage}
-                date={post.date}
-                displayName={post.displayName}
-                text={post.text}
-                shareImage={post.shareImage}
-              />
+          {loading === false ? (
+            userPosts.map((post) => (
+              <CardActionArea
+                onClick={() => [
+                  navigate(`/post/${post.postId}`),
+                  dispatch(postActions.resetLoading()),
+                ]}
+              >
+                <Post key={post.postId} post={post} />
+              </CardActionArea>
             ))
           ) : (
             <Loading />

@@ -10,12 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 import PostPage from "./pages/Post/PostPage";
 
 import Notifications from "./pages/Notifications/Notifications";
-import Profile from "./components/Profile/Profile";
 import Messages from "./pages/Messages/Messages";
 import LoginPage from "./pages/Login/LoginPage";
 import { useSelector } from "react-redux";
 import SidebarWidgetLayout from "./components/Feed/Layout/SidebarWidgetLayout";
 import Feed from "./components/Feed/Feed";
+import Profile from "./pages/Profile/Profile";
 
 const theme = createTheme({
   palette: {

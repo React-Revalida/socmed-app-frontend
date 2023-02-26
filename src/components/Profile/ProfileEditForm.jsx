@@ -13,7 +13,6 @@ import { Box, useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./EditProfile.css";
-import "./Profile.css";
 import PropTypes from "prop-types";
 import {
   CustomDialog,
