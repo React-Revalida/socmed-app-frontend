@@ -1,9 +1,13 @@
 import jwtDecode from "jwt-decode";
 import http from "./http";
 
-export function register(name, username, password) {
-  return http.post("/users", { name, username, password });
-}
+export const register = async (data) => {
+  return await http.post("/users", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
 
 export function login(username, password) {
   return http.post("/auth", { username, password });

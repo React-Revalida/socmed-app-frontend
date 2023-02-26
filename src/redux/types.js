@@ -70,6 +70,12 @@ export const resetSuccess = () => {
     type: "RESET_SUCCESS",
   };
 };
+
+export const resetSuccessPost = () => {
+  return {
+    type: "RESET_POST_SUCCESS",
+  };
+};
 export const fetchAuthRequest = () => {
   return {
     type: "FETCH_AUTH_REQUEST",
@@ -233,6 +239,40 @@ export const fetchPostsSuccess = (posts) => {
 export const fetchPostsFailure = (error) => {
   return {
     type: "FETCH_POSTS_ERROR",
+    payload: error,
+  };
+};
+
+export const fetchSignUpSuccess = (isRegistered) => {
+  return {
+    type: "SIGNUP_SUCCESS",
+    payload: isRegistered,
+  };
+};
+
+export const fetchSignUpFailure = (error) => {
+  return {
+    type: "SIGNUP_FAILURE",
+    payload: error,
+  };
+};
+
+export const addPostRequest = () => {
+  return {
+    type: "ADD_POST_REQUEST",
+  };
+};
+
+export const addPostSuccess = (addedPost) => {
+  return {
+    type: "ADD_POST_SUCCESS",
+    payload: addedPost,
+  };
+};
+
+export const addPostFailure = (error) => {
+  return {
+    type: "ADD_POST_ERROR",
     payload: error,
   };
 };

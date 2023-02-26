@@ -119,7 +119,7 @@ const NotFoundPage = () => {
               },
             }}
             component={Link}
-            to="/"
+            to="/home"
           >
             Main Page
           </Button>

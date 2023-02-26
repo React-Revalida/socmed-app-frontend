@@ -20,7 +20,6 @@ const reducers = combineReducers({
   auth: authReducer,
   like: likeReducer,
   comment: commentReducer,
-  post: postReducer,
 });
 
 const composeEnhancers =

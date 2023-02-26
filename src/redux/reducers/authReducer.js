@@ -3,6 +3,7 @@ const initialState = {
   error: null,
   success: false,
   accessToken: null,
+  isRegistered: false,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -12,6 +13,7 @@ export default function authReducer(state = initialState, action) {
         ...state,
         loading: true,
         error: null,
+        isRegistered: false,
       };
     case "LOGIN_SUCCESS":
       return {
@@ -25,6 +27,20 @@ export default function authReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         accessToken: null,
+      };
+    case "SIGNUP_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        isRegistered: true,
+        error: null,
+      };
+    case "SIGNUP_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        isRegistered: false,
       };
     default:
       return state;

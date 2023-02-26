@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as likeActions from "../redux/actions/likeActions";
 
 const Post = (post) => {
-  console.log(post.post);
-
   const dispatch = useDispatch();
   //dispatch(fetchProfile());
 
@@ -27,7 +25,7 @@ const Post = (post) => {
   // console.log(state);
   // console.log(loading);
   // console.log(post.post);
-  console.log(likes);
+
   return (
     <div className="post.post">
       <div className="post__avatar">

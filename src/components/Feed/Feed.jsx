@@ -32,36 +32,39 @@ const Feed = () => {
 
   return (
     <>
-    <section className="feed">
-      {isDrawerBar && (
-        <div onClick={() => setIsDrawerBar(false)} className="drawerBarPanel" />
-      )}
-      <DrawerBar active={isDrawerBar} />
-      <div className="feed-header">
-        <div onClick={() => setIsDrawerBar(true)}>
-          <Avatar />
+      <section className="feed">
+        {isDrawerBar && (
+          <div
+            onClick={() => setIsDrawerBar(false)}
+            className="drawerBarPanel"
+          />
+        )}
+        <DrawerBar active={isDrawerBar} />
+        <div className="feed-header">
+          <div onClick={() => setIsDrawerBar(true)}>
+            <Avatar />
+          </div>
+          <div className="feed-headerText">
+            <span>Home</span>
+          </div>
+          <div className="homeStarsCol">
+            <HomeStars className="homeStars" width={22} height={22} />
+          </div>
         </div>
-        <div className="feed-headerText">
-          <span>Home</span>
-        </div>
-        <div className="homeStarsCol">
-          <HomeStars className="homeStars" width={22} height={22} />
-        </div>
-      </div>
-      <TweetBox />
-      {loading ? (
-        <Loading />
-      ) : (
-        <article>
-          {posts.map((post) => (
-            <Post key={post.postId} post={post} />
-          ))}
-        </article>
-      )}
-      <BottomSidebar />
-    </section>
-    
-    <Widgets />
+        <TweetBox />
+        {loading ? (
+          <Loading />
+        ) : (
+          <article>
+            {posts.map((post) => (
+              <Post key={post.postId} post={post} />
+            ))}
+          </article>
+        )}
+        <BottomSidebar />
+      </section>
+
+      <Widgets />
     </>
   );
 };
