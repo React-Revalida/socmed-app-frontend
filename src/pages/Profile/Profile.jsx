@@ -25,7 +25,7 @@ const Profile = () => {
   };
 
   const dispatch = useDispatch();
-  
+
   const selectProfile = useSelector((state) => state.user.profile);
   const selectOtherProfile = useSelector((state) => state.user.otherProfile);
   const [profile, setProfile] = useState(selectProfile);
@@ -33,14 +33,20 @@ const Profile = () => {
   useEffect(() => {
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
+    } else {
+      dispatch(profileActions.fetchProfile());
+    }
+  }, [params, dispatch]);
+  
+  useEffect(() => {
+    if (params.username) {
       setProfile(selectOtherProfile);
       setIsMe(false);
     } else {
-      dispatch(profileActions.fetchProfile());
       setProfile(selectProfile);
       setIsMe(true);
     }
-  }, [params, dispatch, selectProfile, selectOtherProfile]);
+  }, [params.username, selectProfile, selectOtherProfile]);
 
   return (
     <>
