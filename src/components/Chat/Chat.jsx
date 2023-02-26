@@ -51,7 +51,7 @@ const Chat = ({ messages, users }) => {
             <div>
               <BackIcon />
             </div>
-            <Avatar src={user && user.userimage} />
+            <Avatar src={user && user.userimage} size={40} round={true}/>
             <div>
               <span>{user && user.displayName}</span>
               <span>@{user && user.username}</span>
