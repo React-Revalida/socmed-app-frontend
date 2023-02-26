@@ -13,7 +13,7 @@ const LastChat = ({
   verified,
 }) => {
   return (
-    <Link className="lastChat" to={`/Messages/mucahitsahin6-${username}`}>
+    <Link className="lastChat" to={`/messages/mucahitsahin6-${username}`}>
       <div>
         <Avatar size={40} round={true} src={userimage} />
       </div>

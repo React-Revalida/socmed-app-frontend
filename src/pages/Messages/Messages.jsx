@@ -89,7 +89,7 @@ const Messages = () => {
         </div>
         <BottomSidebar />
       </div>
-      {path === "/Messages" ? (
+      {path === "/messages" ? (
         <h1>Walang Message</h1>
       ) : (
         <Chat messages={messages} users={users} />

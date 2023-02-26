@@ -5,7 +5,7 @@ import "./FromMessage.css";
 const FromMessage = ({ message, userimage }) => {
   return (
     <div className="fromMessage">
-      <Avatar src={userimage} />
+      <Avatar round={true} size={40} src={userimage} />
       <div>
         <span>{message}</span>
       </div>

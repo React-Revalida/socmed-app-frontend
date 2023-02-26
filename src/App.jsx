@@ -88,8 +88,8 @@ function App() {
         >
           <Route path="/home" element={<Feed />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/Messages" element={<Messages />} />
-          <Route path="/Messages/:username" element={<Messages />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/:username" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/post/:postId" element={<PostPage />} />

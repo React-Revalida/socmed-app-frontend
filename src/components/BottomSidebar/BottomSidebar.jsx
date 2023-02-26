@@ -23,16 +23,7 @@ const BottomSidebar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/explore" style={{ textDecoration: "none" }}>
-          <SidebarItem
-            text="Explore"
-            Icon={ExploreIcon}
-            active={location === "/explore" && true}
-          />
-        </Link>
-      </div>
-      <div>
-        <Link to="/Notifications" style={{ textDecoration: "none" }}>
+        <Link to="/notifications" style={{ textDecoration: "none" }}>
           <SidebarItem
             text="Notifications"
             Icon={NotificationsIcon}
@@ -41,11 +32,11 @@ const BottomSidebar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/Messages" style={{ textDecoration: "none" }}>
+        <Link to="/messages" style={{ textDecoration: "none" }}>
           <SidebarItem
             text="Messages"
             Icon={MessagesIcon}
-            active={location === "/Messages" && true}
+            active={location === "/messages" && true}
           />
         </Link>
       </div>
