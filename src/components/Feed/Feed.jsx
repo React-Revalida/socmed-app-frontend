@@ -52,12 +52,12 @@ const Feed = () => {
       user: selectProfile.userId,
       post: postId,
     });
-    dispatch(likeActions.likePost(like));
+    await dispatch(likeActions.likePost(like));
   };
 
-  const onUnlikePost = (postId) => {
+  const onUnlikePost = async (postId) => {
     console.log("unlike post" + postId);
-    dispatch(likeActions.unlikePost(postId, selectProfile.userId));
+    await dispatch(likeActions.unlikePost(postId, selectProfile.userId));
   };
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);

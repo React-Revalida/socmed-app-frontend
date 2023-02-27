@@ -20,15 +20,17 @@ const Post = ({ post, onLike, onUnlike }) => {
   const profile = useSelector((state) => state.user.profile);
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
-    dispatch(profileActions.fetchProfile());
+    // dispatch(profileActions.fetchProfile());
     likedByYou();
   }, [dispatch]);
 
-  const likePost = () => {
+  const likePost = (e) => {
+    e.preventDefault();
     onLike(post.postId);
     // setLiked(!liked);
   };
-  const unlikePost = () => {
+  const unlikePost = (e) => {
+    e.preventDefault();
     onUnlike(post.postId);
     // setLiked(!liked);
   };
@@ -102,16 +104,16 @@ const Post = ({ post, onLike, onUnlike }) => {
             {liked ? (
               <FavoriteOutlinedIcon
                 className="postIcon"
-                onClick={() => {
-                  unlikePost();
+                onClick={(e) => {
+                  unlikePost(e);
                 }}
                 sx={{ color: teal[50] }}
               />
             ) : (
               <FavoriteIcon
                 className="postIcon"
-                onClick={() => {
-                  likePost();
+                onClick={(e) => {
+                  likePost(e);
                 }}
               />
             )}

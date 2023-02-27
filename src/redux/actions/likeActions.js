@@ -27,9 +27,9 @@ export const likePost = (likes) => {
 
   let formData = new FormData();
   formData.append("like", likesDetailsBlob);
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(type.LikePostRequest());
-    likesService
+    await likesService
       .likePost(formData)
       .then(async (response) => {
         const likes = response.data;
