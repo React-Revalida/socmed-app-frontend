@@ -33,11 +33,14 @@ const Feed = () => {
 
   const selectProfile = useSelector((state) => state.user.profile);
   useEffect(() => {
-    console.log(selectProfile);
     setPosts(selectPosts);
     setLoading(selectLoading);
     //params
   }, [selectPosts, selectLoading]);
+
+  const onLikePost = () => {
+    console.log("like post");
+  };
 
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
@@ -69,18 +72,12 @@ const Feed = () => {
         ) : (
           <article>
             {posts.map((post) => (
-              <CardActionArea
-                onClick={() => [
-                  navigate(`/post/${post.postId}`),
-                  dispatch(postActions.resetLoading()),
-                ]}
-              >
-                <Post
-                  key={post.postId}
-                  post={post}
-                  userLoggedIn={selectProfile}
-                />
-              </CardActionArea>
+              <Post
+                key={post.postId}
+                post={post}
+                userLoggedIn={selectProfile}
+                onLike={onLikePost}
+              />
             ))}
           </article>
         )}

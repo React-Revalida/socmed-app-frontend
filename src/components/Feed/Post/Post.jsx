@@ -9,25 +9,35 @@ import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";
 import * as likeActions from "../../../redux/actions/likeActions";
 import { useDispatch, useSelector } from "react-redux";
+import * as profileActions from "../../../redux/actions/profileActions";
+import * as postActions from "../../../redux/actions/postActions";
+import { teal } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
+import { CardActionArea } from "@mui/material";
 
-const Post = (post, userLoggedIn) => {
+const Post = ({ post, onLike }) => {
   const dispatch = useDispatch();
-
+  const profile = useSelector((state) => state.user.profile);
   useEffect(() => {
-    dispatch(likeActions.fetchLikesByPost(post.post.postId));
-    console.log(likedByYou());
+    dispatch(likeActions.fetchLikesByPost(post.postId));
+    dispatch(profileActions.fetchProfile());
+    likedByYou();
   }, [dispatch]);
 
+  const likePost = () => {
+    onLike();
+  };
   const loading = useSelector((state) => state.like.loading);
-  const likes = post.post.likes;
-  const comments = post.post.comments;
+  const likes = post.likes;
+  const comments = post.comments;
+  let [liked, setLiked] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const likedByYou = () => {
     likes.map((user) => {
-      // userLoggedIn.userId == post.post.user.userId
-      console.log(user);
-      if (userLoggedIn.userId == user.userId) {
-        return true;
+      if (profile.userId == user.userId) {
+        setLiked(true);
       }
     });
   };
@@ -39,46 +49,63 @@ const Post = (post, userLoggedIn) => {
       <ProfileCard active={isVisibleProfileCard && true} />
       <div>
         <Avatar
-          src={post.post.user.profilePic}
-          name={post.post.user.firstname + " " + post.post.user.lastname}
+          src={post.user.profilePic}
+          name={post.user.firstname + " " + post.user.lastname}
           round={true}
           size={40}
           style={{ margin: 10 }}
         />
       </div>
       <div className="post-content-col">
-        <div className="post-header">
-          <span
-            className="post-header-displayname"
-            onMouseEnter={() => setIsVisibleProfileCard(true)}
-            onMouseLeave={() => {
-              setTimeout(function () {
-                setIsVisibleProfileCard(false);
-              }, 1000);
-            }}
-          >
-            {post.post.user.firstname + " " + post.post.user.lastname}
-          </span>
-          <span className="post-header-username">
-            {"@" + post.post.user.username}
-          </span>
-          <span className="post-header-date">
-            {MillToDate(post.post.timestamp)}
-          </span>
-          <MoreHorizIcon className="postMoreIcon" />
-        </div>
-        <div className="post-content">{post.post.message}</div>
-        {post.post.imageUrl && (
-          <div className="post-image">
-            <img src={post.post.imageUrl} alt="shareimage" />
+        <CardActionArea
+          onClick={() => [
+            navigate(`/post/${post.postId}`),
+            dispatch(postActions.resetLoading()),
+          ]}
+        >
+          <div className="post-header">
+            <span
+              className="post-header-displayname"
+              onMouseEnter={() => setIsVisibleProfileCard(true)}
+              onMouseLeave={() => {
+                setTimeout(function () {
+                  setIsVisibleProfileCard(false);
+                }, 1000);
+              }}
+            >
+              {post.user.firstname + " " + post.user.lastname}
+            </span>
+            <span className="post-header-username">
+              {"@" + post.user.username}
+            </span>
+            <span className="post-header-date">
+              {MillToDate(post.timestamp)}
+            </span>
+            <MoreHorizIcon className="postMoreIcon" />
           </div>
-        )}
+          <div className="post-content">
+            {post.message} {liked ? liked : liked}
+          </div>
+          {post.imageUrl && (
+            <div className="post-image">
+              <img src={post.imageUrl} alt="shareimage" />
+            </div>
+          )}
+        </CardActionArea>
         <div className="post-event">
           <div>
-            {userLoggedIn.userId == post.post.user.userId ? (
-              <FavoriteOutlinedIcon className="postIcon" />
+            {liked ? (
+              <FavoriteOutlinedIcon
+                className="postIcon"
+                sx={{ color: teal[50] }}
+              />
             ) : (
-              <FavoriteIcon className="postIcon" />
+              <FavoriteIcon
+                className="postIcon"
+                onClick={() => {
+                  likePost();
+                }}
+              />
             )}
 
             <span>{likes.length > 0 ? likes.length : ""}</span>
