@@ -16,7 +16,6 @@ import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import { CardActionArea, Container, Menu, MenuItem } from "@mui/material";
 import FollowsModal from "../../components/Profile/FollowsModal";
-import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);

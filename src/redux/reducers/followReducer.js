@@ -6,6 +6,7 @@ const initialState = {
   following: [],
   userFollowed: false,
   loggedInUserFollowing: [],
+  whoToFollow: [],
 };
 
 export default function followReducer(state = initialState, action) {
@@ -41,6 +42,25 @@ export default function followReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         following: [],
+      };
+    case "FETCH_WHO_TO_FOLLOW_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_WHO_TO_FOLLOW_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        whoToFollow: action.payload,
+      };
+    case "FETCH_WHO_TO_FOLLOW_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        whoToFollow: [],
       };
     case "FETCH_LOGGED_IN_USER_FOLLOWING_SUCCESS":
       return {

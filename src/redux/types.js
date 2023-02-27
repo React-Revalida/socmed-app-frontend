@@ -426,6 +426,26 @@ export const unfollowUserFailure = (error) => {
   };
 };
 
+export const fetchWhoToFollowRequest = () => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_REQUEST",
+  };
+};
+
+export const fetchWhoToFollowSuccess = (follows) => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_SUCCESS",
+    payload: follows,
+  };
+};
+
+export const fetchWhoToFollowFailure = (error) => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_FAILURE",
+    payload: error,
+  };
+};
+
 export const fetchMutualsRequest = () => {
   return {
     type: "FETCH_MUTUALS_REQUEST",
