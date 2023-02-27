@@ -8,7 +8,7 @@ import Links from "./Links/Links";
 const Widgets = () => {
   return (
     <div className="widgets">
-      <SearchInput placeholder="Search Twitter" />
+      <SearchInput placeholder="Search" />
       <FriendSuggestions />
     </div>
   );
