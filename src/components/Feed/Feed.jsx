@@ -15,6 +15,7 @@ import Widgets from "../Widgets/Widgets";
 import PostPage from "../../pages/Post/PostPage";
 import { useState } from "react";
 
+import * as likeActions from "../../redux/actions/likeActions";
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
 
@@ -38,10 +39,26 @@ const Feed = () => {
     //params
   }, [selectPosts, selectLoading]);
 
-  const onLikePost = () => {
+  const [like, setLike] = React.useState({
+    liked: false,
+    post: "",
+    user: "",
+  });
+  const onLikePost = async (postId) => {
     console.log("like post");
+    await setLike({
+      ...like,
+      liked: true,
+      user: selectProfile.userId,
+      post: postId,
+    });
+    dispatch(likeActions.likePost(like));
   };
 
+  const onUnlikePost = (postId) => {
+    console.log("unlike post" + postId);
+    dispatch(likeActions.unlikePost(postId, selectProfile.userId));
+  };
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
 
@@ -77,6 +94,7 @@ const Feed = () => {
                 post={post}
                 userLoggedIn={selectProfile}
                 onLike={onLikePost}
+                onUnlike={onUnlikePost}
               />
             ))}
           </article>

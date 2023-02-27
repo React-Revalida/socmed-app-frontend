@@ -4,6 +4,10 @@ export const getLikes = async (postId) => {
   return await http.get(`/likes/post/${postId}`);
 };
 
-export function likePost(liked, post, user) {
-  return http.post("/likes/post", { liked, post, user });
+export function likePost(data) {
+  return http.post("/likes/post", data);
+}
+
+export function unlikePost(postId, userId) {
+  return http.post(`/likes/unlike/${postId}/${userId}`);
 }
