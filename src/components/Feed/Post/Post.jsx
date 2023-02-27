@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Avatar from "react-avatar";
 import "./Post.css";
 import FavoriteIcon from "../../icons/FavoriteIcon";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import CommentIcon from "../../icons/CommentIcon";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { MillToDate } from "../../../utils/MillToDate";
@@ -9,17 +10,27 @@ import ProfileCard from "../../ProfileCard/ProfileCard";
 import * as likeActions from "../../../redux/actions/likeActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const Post = (post) => {
+const Post = (post, userLoggedIn) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(likeActions.fetchLikesByPost(post.post.postId));
-    console.log(post.post);
+    console.log(likedByYou());
   }, [dispatch]);
 
   const loading = useSelector((state) => state.like.loading);
   const likes = post.post.likes;
   const comments = post.post.comments;
+
+  const likedByYou = () => {
+    likes.map((user) => {
+      // userLoggedIn.userId == post.post.user.userId
+      console.log(user);
+      if (userLoggedIn.userId == user.userId) {
+        return true;
+      }
+    });
+  };
 
   const [isVisibleProfileCard, setIsVisibleProfileCard] = React.useState(false);
 
@@ -63,7 +74,12 @@ const Post = (post) => {
         )}
         <div className="post-event">
           <div>
-            <FavoriteIcon className="postIcon" />
+            {userLoggedIn.userId == post.post.user.userId ? (
+              <FavoriteOutlinedIcon className="postIcon" />
+            ) : (
+              <FavoriteIcon className="postIcon" />
+            )}
+
             <span>{likes.length > 0 ? likes.length : ""}</span>
           </div>
           <div>
