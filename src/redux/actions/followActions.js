@@ -31,6 +31,21 @@ export const getUserFollowing = (username) => {
   };
 };
 
+export const getLoggedInUserFollowing = (username) => {
+  return async (dispatch) => {
+    dispatch(type.fetchFollowsRequest());
+    await followService
+      .getFollowing(username)
+      .then((response) => {
+        const following = response.data;
+        dispatch(type.fetchLoggedInUserFollowingSuccess(following));
+      })
+      .catch((error) => {
+        dispatch(type.fetchLoggedInUserFollowingFailure(error));
+      });
+  };
+};
+
 export const followUser = (username) => {
   return async (dispatch) => {
     dispatch(type.followUserRequest());

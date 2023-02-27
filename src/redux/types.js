@@ -372,6 +372,20 @@ export const fetchFollowingFailure = (error) => {
   };
 };
 
+export const fetchLoggedInUserFollowingSuccess = (following) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWING_SUCCESS",
+    payload: following,
+  };
+};
+
+export const fetchLoggedInUserFollowingFailure = (error) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWING_FAILURE",
+    payload: error,
+  };
+};
+
 export const followUserRequest = () => {
   return {
     type: "FOLLOW_USER_REQUEST",
