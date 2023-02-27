@@ -18,7 +18,6 @@ export const fetchProfileFailure = (error) => {
   };
 };
 
-
 export const fetchOtherProfileRequest = (username) => {
   return {
     type: "FETCH_OTHER_PROFILE_REQUEST",
@@ -392,22 +391,43 @@ export const followUserFailure = (error) => {
     payload: error,
   };
 };
+
+export const unfollowUserRequest = () => {
+  return {
+    type: "UNFOLLOW_USER_REQUEST",
+  };
+};
+
+export const unfollowUserSuccess = (follows) => {
+  return {
+    type: "UNFOLLOW_USER_SUCCESS",
+    payload: follows,
+  };
+};
+
+export const unfollowUserFailure = (error) => {
+  return {
+    type: "UNFOLLOW_USER_FAILURE",
+    payload: error,
+  };
+};
+
 export const fetchMutualsRequest = () => {
   return {
     type: "FETCH_MUTUALS_REQUEST",
   };
-}
+};
 
 export const fetchMutualsSuccess = (mutuals) => {
   return {
     type: "FETCH_MUTUALS_SUCCESS",
     payload: mutuals,
   };
-}
+};
 
 export const fetchMutualsFailure = (error) => {
   return {
     type: "FETCH_MUTUALS_FAILURE",
     payload: error,
   };
-}
+};

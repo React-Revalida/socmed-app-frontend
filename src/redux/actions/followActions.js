@@ -30,3 +30,33 @@ export const getUserFollowing = (username) => {
       });
   };
 };
+
+export const followUser = (username) => {
+  return async (dispatch) => {
+    dispatch(type.followUserRequest());
+    await followService
+      .followUser(username)
+      .then((response) => {
+        const follows = response.data;
+        dispatch(type.followUserSuccess(follows));
+      })
+      .catch((error) => {
+        dispatch(type.followUserFailure(error));
+      });
+  };
+};
+
+export const unfollowUser = (username) => {
+  return async (dispatch) => {
+    dispatch(type.unfollowUserRequest());
+    await followService
+      .unfollowUser(username)
+      .then((response) => {
+        const follows = response.data;
+        dispatch(type.unfollowUserSuccess(follows));
+      })
+      .catch((error) => {
+        dispatch(type.unfollowUserFailure(error));
+      });
+  };
+};

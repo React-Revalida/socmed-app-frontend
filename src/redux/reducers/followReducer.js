@@ -58,6 +58,23 @@ export default function followReducer(state = initialState, action) {
         error: action.payload,
         success: false,
       };
+    case "UNFOLLOW_USER_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "UNFOLLOW_USER_SUCCESS":
+      return {
+        ...state,
+        userFollowed: false,
+        success: true,
+      };
+    case "UNFOLLOW_USER_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+      };
     default:
       return state;
   }

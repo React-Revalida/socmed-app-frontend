@@ -35,13 +35,7 @@ const Profile = () => {
   };
 
   const handleToggleFollow = () => {
-    alert(isUserFollowed());
-  };
-
-  const isUserFollowed = () => {
-    console.log(params.username);
-    console.log(following);
-    return following.some((user) => user.username === params.username);
+    alert("test");
   };
 
   const dispatch = useDispatch();
