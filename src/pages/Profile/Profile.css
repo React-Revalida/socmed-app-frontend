@@ -166,3 +166,22 @@
 .MuiTabs-indicator {
   background-color: var(--twitter-color) !important;
 }
+
+.moreOption {
+  margin-left: 550px;
+  color: var(--gray);
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: row;
+}
+
+.moreOption:hover {
+  color: var(--blue);
+  background-color: var(--hover-blue-color);
+  cursor: pointer;
+}
+
+.profilePost {
+  margin: 0px;
+  margin-top: 0px;
+}

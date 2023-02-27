@@ -4,7 +4,6 @@ import "./Post.css";
 import FavoriteIcon from "../../icons/FavoriteIcon";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import CommentIcon from "../../icons/CommentIcon";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";
 import * as likeActions from "../../../redux/actions/likeActions";
@@ -81,7 +80,6 @@ const Post = ({ post, onLike }) => {
             <span className="post-header-date">
               {MillToDate(post.timestamp)}
             </span>
-            <MoreHorizIcon className="postMoreIcon" />
           </div>
           <div className="post-content">
             {post.message} {liked ? liked : liked}
