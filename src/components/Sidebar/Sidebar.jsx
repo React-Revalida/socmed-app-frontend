@@ -69,14 +69,14 @@ const Sidebar = () => {
           />
         </Link>
         <Link
-          to="/Messages"
+          to="/messages"
           style={{ textDecoration: "none" }}
-          onClick={() => handleLocationChange("/Messages")}
+          onClick={() => handleLocationChange("/messages")}
         >
           <SidebarItem
             text="Messages"
             Icon={MessagesIcon}
-            active={currLocation === "/Messages" && true}
+            active={currLocation === "/messages" && true}
           />
         </Link>
         <Link

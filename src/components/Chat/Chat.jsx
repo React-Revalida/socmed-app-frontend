@@ -13,14 +13,13 @@ const Chat = ({ messages, mutuals }) => {
   //let { id } = useParams();
   var id = useLocation().pathname;
   const [user, setUser] = React.useState({
-    userimage: "",
-    displayName: "",
+    profilePic: "",
+    name: "",
     username: "",
-    biograpfy: "",
-    followingCount: "",
-    followersCount: "",
-    joinMonth: "",
-    joinYear: "",
+    bio: "",
+    following: "",
+    followers: "",
+    dateJoined: "",
   });
   const [messagesData, setMessagesData] = React.useState(
   );
@@ -32,14 +31,14 @@ const Chat = ({ messages, mutuals }) => {
 
   React.useEffect(() => {
     if (id) {
-      // let userid = id.split("-")[1];
-      // let messageid = id.split("/")[2];
-      // setUser(mutuals.find((user) => user.username === userid));
+      let messageid = id.split("/")[2];
+      console.log(messageid);
+      setUser(mutuals.find((user) => user.username === messageid));
       // setMessagesData(
       //   messages.find((message) => message.fromto === messageid).messages
       // );
     }
-  }, [id]);
+  }, [id, mutuals, messages]);
 
   return (
     <div className="chat">
@@ -51,9 +50,9 @@ const Chat = ({ messages, mutuals }) => {
             <div>
               <BackIcon />
             </div>
-            <Avatar src={user && user.userimage} size={40} round={true}/>
+            <Avatar src={user && user.profilePic} size={40} round={true}/>
             <div>
-              <span>{user && user.displayName}</span>
+              <span>{user && user.name}</span>
               <span>@{user && user.username}</span>
             </div>
             <InfoIcon />
@@ -61,23 +60,23 @@ const Chat = ({ messages, mutuals }) => {
           <div className="chatRoom">
             <div className="chatInfo">
               <div>
-                <span>{user.displayName}</span>
+                <span>{user.name}</span>
                 <span>@{user.username}</span>
               </div>
-              <span>{user.biograpfy}</span>
+              <span>{user.bio}</span>
               <div>
                 <span>
-                  <span>{user.followingCount}</span>
+                  <span>{user.following}</span>
                   <span>Following</span>
                 </span>
                 <span>
-                  <span>{user.followersCount}</span>
+                  <span>{user.followers}</span>
                   <span>Followers</span>
                 </span>
               </div>
               <span>
                 <CalenderIcon />
-                Joined {user.joinMonth} {user.joinYear}
+                Joined {user.dateJoined}
               </span>
             </div>
             <div className="chatMessages">
