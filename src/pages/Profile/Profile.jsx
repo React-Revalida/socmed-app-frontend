@@ -34,6 +34,16 @@ const Profile = () => {
     setOpenFollows(isOpen);
   };
 
+  const handleToggleFollow = () => {
+    alert(isUserFollowed());
+  };
+
+  const isUserFollowed = () => {
+    console.log(params.username);
+    console.log(following);
+    return following.some((user) => user.username === params.username);
+  };
+
   const dispatch = useDispatch();
 
   const selectLoading = useSelector((state) => state.post.loading);
@@ -127,12 +137,18 @@ const Profile = () => {
                 size={134}
               />
             </div>
-            <div
-              className="editProfile"
-              onClick={() => handleOpenEditDialog(true)}
-            >
-              <span>Edit Profile</span>
-            </div>
+            {isMe ? (
+              <div
+                className="editProfile"
+                onClick={() => handleOpenEditDialog(true)}
+              >
+                <span>Edit Profile</span>
+              </div>
+            ) : (
+              <div className="followBtn" onClick={() => handleToggleFollow()}>
+                <span>Follow</span>
+              </div>
+            )}
           </div>
           <div className="profileBiography">
             <span>{profile.name}</span>
