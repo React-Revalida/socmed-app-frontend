@@ -21,6 +21,7 @@ export const fetchLikesByPost = (postId) => {
 
 export const likePost = (likes) => {
   const likesDetails = JSON.stringify(likes);
+  console.log(likes);
   const likesDetailsBlob = new Blob([likesDetails], {
     type: "application/json",
   });
@@ -29,7 +30,7 @@ export const likePost = (likes) => {
   formData.append("like", likesDetailsBlob);
   return async (dispatch) => {
     dispatch(type.LikePostRequest());
-    await likesService
+    likesService
       .likePost(formData)
       .then(async (response) => {
         const likes = response.data;
