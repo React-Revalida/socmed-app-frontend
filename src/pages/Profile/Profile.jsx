@@ -14,8 +14,9 @@ import * as postActions from "../../redux/actions/postActions";
 import * as followActions from "../../redux/actions/followActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Container, Menu, MenuItem } from "@mui/material";
 import FollowsModal from "../../components/Profile/FollowsModal";
+import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -227,10 +228,7 @@ const Profile = () => {
           {loading === false ? (
             userPosts.map((post) => (
               <>
-                <MoreHorizIcon className="moreOption" />
-                <div className="profilePost">
-                  <Post key={post.postId} post={post} />
-                </div>
+                <Post key={post.postId} post={post} from={"profile"} />
               </>
             ))
           ) : (

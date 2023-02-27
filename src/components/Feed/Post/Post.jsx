@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./Post.css";
 import FavoriteIcon from "../../icons/FavoriteIcon";
@@ -12,9 +12,18 @@ import * as profileActions from "../../../redux/actions/profileActions";
 import * as postActions from "../../../redux/actions/postActions";
 import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Menu, MenuItem } from "@mui/material";
+import FollowsModal from "../../../components/Profile/FollowsModal";
+import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
+import {
+  BorderColor,
+  DeleteForever,
+  Edit,
+  MoreHoriz,
+} from "@mui/icons-material";
 
-const Post = ({ post, onLike, onUnlike }) => {
+const Post = ({ post, onLike, onUnlike, from }) => {
+  const fromComponent = from || " ";
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   useEffect(() => {
@@ -64,31 +73,53 @@ const Post = ({ post, onLike, onUnlike }) => {
         />
       </div>
       <div className="post-content-col">
+        <div className="post-header">
+          <span
+            className="post-header-displayname"
+            onMouseEnter={() => setIsVisibleProfileCard(true)}
+            onMouseLeave={() => {
+              setTimeout(function () {
+                setIsVisibleProfileCard(false);
+              }, 1000);
+            }}
+          >
+            {post.user.firstname + " " + post.user.lastname}
+          </span>
+          <span className="post-header-username">
+            {"@" + post.user.username}
+          </span>
+          <span className="post-header-date">{MillToDate(post.timestamp)}</span>
+          {fromComponent == "profile" ? (
+            <PopupState variant="popover" popupId="demo-popup-menu">
+              {(popupState) => (
+                <React.Fragment>
+                  <MoreHoriz
+                    className="postMoreIcon"
+                    variant="contained"
+                    {...bindTrigger(popupState)}
+                  />
+                  <Menu {...bindMenu(popupState)}>
+                    <MenuItem onClick={popupState.close}>
+                      <DeleteForever />
+                      &ensp; Delete
+                    </MenuItem>
+                    <MenuItem onClick={popupState.close}>
+                      <BorderColor /> &ensp; Edit (To be follow)
+                    </MenuItem>
+                  </Menu>
+                </React.Fragment>
+              )}
+            </PopupState>
+          ) : (
+            <div />
+          )}
+        </div>
         <CardActionArea
           onClick={() => [
             navigate(`/post/${post.postId}`),
             dispatch(postActions.resetLoading()),
           ]}
         >
-          <div className="post-header">
-            <span
-              className="post-header-displayname"
-              onMouseEnter={() => setIsVisibleProfileCard(true)}
-              onMouseLeave={() => {
-                setTimeout(function () {
-                  setIsVisibleProfileCard(false);
-                }, 1000);
-              }}
-            >
-              {post.user.firstname + " " + post.user.lastname}
-            </span>
-            <span className="post-header-username">
-              {"@" + post.user.username}
-            </span>
-            <span className="post-header-date">
-              {MillToDate(post.timestamp)}
-            </span>
-          </div>
           <div className="post-content">
             {post.message} {liked ? liked : liked}
           </div>
