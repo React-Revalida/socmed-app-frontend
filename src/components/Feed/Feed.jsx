@@ -31,7 +31,9 @@ const Feed = () => {
     dispatch(postActions.fetchPosts());
   }, [dispatch]);
 
+  const selectProfile = useSelector((state) => state.user.profile);
   useEffect(() => {
+    console.log(selectProfile);
     setPosts(selectPosts);
     setLoading(selectLoading);
     //params
@@ -73,7 +75,11 @@ const Feed = () => {
                   dispatch(postActions.resetLoading()),
                 ]}
               >
-                <Post key={post.postId} post={post} />
+                <Post
+                  key={post.postId}
+                  post={post}
+                  userLoggedIn={selectProfile}
+                />
               </CardActionArea>
             ))}
           </article>

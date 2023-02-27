@@ -18,7 +18,10 @@ const TweetBox = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const profileImg = useSelector((state) => state.user.profile.profileImg);
+  const profileImg = useSelector((state) => state.user.profile.profilePic);
+  const name = useSelector(
+    (state) => state.user.profile.firstname + " " + state.user.profile.lastname
+  );
   const success = useSelector((state) => state.post.success);
 
   useEffect(() => {
@@ -61,7 +64,7 @@ const TweetBox = () => {
       <form className="tweetbox" onSubmit={(e) => tweetSubmit(e)}>
         <div className="tweetboxRow">
           <div className="tweetboxUserIcon">
-            <Avatar round={true} size={40} />
+            <Avatar round={true} size={40} src={profileImg} name={name} />
           </div>
           <div className="tweetbox-input-row">
             <textarea
