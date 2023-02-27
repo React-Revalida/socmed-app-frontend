@@ -143,8 +143,6 @@ const TweetBox = () => {
                       message: tweet.message + e.emoji,
                     })
                   }
-                  height={400}
-                  width="60%"
                 />
               </>
             )}

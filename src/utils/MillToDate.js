@@ -1,5 +1,6 @@
-export function MillToDate(ms) {
-  var miliseconds = Date.now() - ms;
+export function MillToDate(dateStr) {
+  const date = Date.parse(dateStr);
+  var miliseconds = Date.now() - date;
   var seconds = Math.floor(miliseconds / 1000);
   var minutes = Math.floor(miliseconds / 60000);
   var hours = Math.floor(miliseconds / 60000 / 60);
