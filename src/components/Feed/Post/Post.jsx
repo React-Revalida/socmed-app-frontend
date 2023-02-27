@@ -39,7 +39,8 @@ const Post = (post, userLoggedIn) => {
       <ProfileCard active={isVisibleProfileCard && true} />
       <div>
         <Avatar
-          // src={post.post.imageUrl}
+          src={post.post.user.profilePic}
+          name={post.post.user.firstname + " " + post.post.user.lastname}
           round={true}
           size={40}
           style={{ margin: 10 }}
