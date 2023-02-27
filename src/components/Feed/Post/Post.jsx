@@ -64,12 +64,11 @@ const Post = (post) => {
         <div className="post-event">
           <div>
             <FavoriteIcon className="postIcon" />
-            {/* <span>{likes.length > 0 ? likes.length : ""}</span> */}
+            <span>{likes.length > 0 ? likes.length : ""}</span>
           </div>
           <div>
-            comments
             <CommentIcon className="postIcon" />
-            {/* <span>{comments.length > 0 ? comments.length : ""}</span> */}
+            <span>{comments.length > 0 ? comments.length : ""}</span>
           </div>
         </div>
       </div>
