@@ -20,6 +20,8 @@ const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
     navigate(`/profile/${username}`);
   };
 
+  console.log("data: ", data);
+
   return (
     <CustomDialog
       open={isDialogOpen}
@@ -48,7 +50,12 @@ const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
                 onClick={() => handleRedirect(user.username)}
               >
                 <ListItemAvatar>
-                  <Avatar src={user.profilePic} round={true} size={30} />
+                  <Avatar
+                    round={true}
+                    size={40}
+                    src={user.profilePic}
+                    name={user.name}
+                  />
                 </ListItemAvatar>
                 <ListItemText
                   primary={user.name}
