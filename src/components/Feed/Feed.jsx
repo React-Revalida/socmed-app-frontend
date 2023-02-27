@@ -45,14 +45,14 @@ const Feed = () => {
     user: "",
   });
   const onLikePost = async (postId) => {
-    console.log("like post");
-    await setLike({
-      ...like,
-      liked: true,
-      user: selectProfile.userId,
-      post: postId,
-    });
-    await dispatch(likeActions.likePost(like));
+    console.log("like post" + postId);
+    await dispatch(
+      likeActions.likePost({
+        liked: true,
+        user: selectProfile.userId,
+        post: postId,
+      })
+    );
   };
 
   const onUnlikePost = async (postId) => {

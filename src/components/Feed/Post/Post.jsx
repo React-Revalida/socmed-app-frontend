@@ -23,14 +23,15 @@ const Post = ({ post, onLike, onUnlike }) => {
     likedByYou();
   }, [dispatch]);
 
-  const likePost = (e) => {
+  const likePost = (e, id) => {
+    console.log(post.postId);
+    onLike(id);
     e.preventDefault();
-    onLike(post.postId);
     // setLiked(!liked);
   };
-  const unlikePost = (e) => {
+  const unlikePost = (e, id) => {
+    onUnlike(id);
     e.preventDefault();
-    onUnlike(post.postId);
     // setLiked(!liked);
   };
   const loading = useSelector((state) => state.like.loading);
@@ -103,7 +104,7 @@ const Post = ({ post, onLike, onUnlike }) => {
               <FavoriteOutlinedIcon
                 className="postIcon"
                 onClick={(e) => {
-                  unlikePost(e);
+                  unlikePost(e, post.postId);
                 }}
                 sx={{ color: teal[50] }}
               />
@@ -111,7 +112,7 @@ const Post = ({ post, onLike, onUnlike }) => {
               <FavoriteIcon
                 className="postIcon"
                 onClick={(e) => {
-                  likePost(e);
+                  likePost(e, post.postId);
                 }}
               />
             )}
