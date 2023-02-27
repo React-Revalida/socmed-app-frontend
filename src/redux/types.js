@@ -304,10 +304,10 @@ export const addPostRequest = () => {
   };
 };
 
-export const addPostSuccess = (addedPost) => {
+export const addPostSuccess = (userPosts) => {
   return {
     type: "ADD_POST_SUCCESS",
-    payload: addedPost,
+    payload: userPosts,
   };
 };
 
@@ -442,6 +442,26 @@ export const fetchMutualsSuccess = (mutuals) => {
 export const fetchMutualsFailure = (error) => {
   return {
     type: "FETCH_MUTUALS_FAILURE",
+    payload: error,
+  };
+};
+
+export const deletePostRequest = () => {
+  return {
+    type: "DELETE_POST_REQUEST",
+  };
+};
+
+export const deletePostSuccess = (userPosts) => {
+  return {
+    type: "DELETE_POST_SUCCESS",
+    payload: userPosts,
+  };
+};
+
+export const deletePostFailure = (error) => {
+  return {
+    type: "DELETE_POST_FAILURE",
     payload: error,
   };
 };

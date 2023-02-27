@@ -41,7 +41,7 @@ export const addPost = (message, image) => {
   return (dispatch) => {
     dispatch(type.addPostRequest());
     postService
-      .addPost(formData)
+      .insertPost(formData)
       .then(async (response) => {
         console.log(response);
         const addedPost = response.data;
@@ -96,6 +96,22 @@ export const fetchUserPosts = (username) => {
       .catch((error) => {
         const errorMsg = error.message;
         dispatch(type.fetchUserPostsFailure(errorMsg));
+      });
+  };
+};
+
+export const deletePost = (postId) => {
+  return async (dispatch) => {
+    dispatch(type.deletePostRequest());
+    postService
+      .removePost(postId)
+      .then((response) => {
+        const success = response.data;
+        dispatch(type.deletePostSuccess(success));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.deletePostFailure(errorMsg));
       });
   };
 };

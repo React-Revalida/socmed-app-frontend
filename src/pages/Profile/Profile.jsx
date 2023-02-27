@@ -125,6 +125,11 @@ const Profile = () => {
     setLoading(selectLoading);
   }, [selectLoading]);
 
+  const handleDeletePost = (postId) => {
+    dispatch(postActions.deletePost(postId));
+    dispatch(postActions.resetSuccess());
+  };
+
   return (
     <>
       <ProfileEditForm
@@ -141,7 +146,10 @@ const Profile = () => {
       <section className="feed">
         <div className="profileHeader">
           <div>
-            <BackIcon />
+            <BackIcon
+              onClick={() => navigate("/home")}
+              sx={{ "&:hover": { cursor: "pointer" } }}
+            />
           </div>
           <div>
             <span>{profile.name}</span>
@@ -228,7 +236,12 @@ const Profile = () => {
           {loading === false ? (
             userPosts.map((post) => (
               <>
-                <Post key={post.postId} post={post} from={"profile"} />
+                <Post
+                  key={post.postId}
+                  post={post}
+                  from={"profile"}
+                  onDelete={handleDeletePost}
+                />
               </>
             ))
           ) : (

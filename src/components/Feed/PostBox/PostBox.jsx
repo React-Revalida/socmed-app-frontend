@@ -57,7 +57,6 @@ const TweetBox = () => {
     setProfilePicUpload(null);
     setCurrentImage("");
     dispatch(postActions.resetSuccess());
-    navigate("/home");
   };
   return (
     <>

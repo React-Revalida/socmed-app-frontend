@@ -22,7 +22,7 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 
-const Post = ({ post, onLike, onUnlike, from }) => {
+const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   const fromComponent = from || " ";
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
@@ -56,6 +56,11 @@ const Post = ({ post, onLike, onUnlike, from }) => {
         setLiked(true);
       }
     });
+  };
+
+  const deletePost = (e, postId) => {
+    onDelete(postId);
+    e.preventDefault();
   };
 
   const [isVisibleProfileCard, setIsVisibleProfileCard] = React.useState(false);
@@ -99,7 +104,12 @@ const Post = ({ post, onLike, onUnlike, from }) => {
                     {...bindTrigger(popupState)}
                   />
                   <Menu {...bindMenu(popupState)}>
-                    <MenuItem onClick={popupState.close}>
+                    <MenuItem
+                      onClick={(e) => {
+                        deletePost(e, post.postId);
+                        popupState.close();
+                      }}
+                    >
                       <DeleteForever />
                       &ensp; Delete
                     </MenuItem>
@@ -111,12 +121,12 @@ const Post = ({ post, onLike, onUnlike, from }) => {
               )}
             </PopupState>
           ) : (
-            <div />
+            <div></div>
           )}
         </div>
         <CardActionArea
           onClick={() => [
-            navigate(`/post/${post.postId}`),
+            navigate(`/posts/${post.postId}`),
             dispatch(postActions.resetLoading()),
           ]}
         >

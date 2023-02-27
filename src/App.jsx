@@ -92,7 +92,7 @@ function App() {
           <Route path="/messages/:username" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/post/:postId" element={<PostPage />} />
+          <Route path="/posts/:postId" element={<PostPage />} />
         </Route>
 
         <Route
