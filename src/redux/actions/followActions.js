@@ -75,3 +75,18 @@ export const unfollowUser = (username) => {
       });
   };
 };
+
+export const getWhoToFollow = () => {
+  return async (dispatch) => {
+    dispatch(type.fetchWhoToFollowRequest());
+    await followService
+      .getWhoToFollow()
+      .then((response) => {
+        const follows = response.data;
+        dispatch(type.fetchWhoToFollowSuccess(follows));
+      })
+      .catch((error) => {
+        dispatch(type.fetchWhoToFollowFailure(error));
+      });
+  };
+};
