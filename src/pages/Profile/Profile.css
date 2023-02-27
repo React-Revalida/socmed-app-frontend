@@ -57,7 +57,8 @@
   width: 134px;
   height: 134px;
 }
-.editProfile {
+.editProfile,
+.followBtn {
   height: auto !important;
   margin-left: auto !important;
   margin-top: -7px !important;
@@ -68,7 +69,8 @@
   font-size: 15px !important;
   font-weight: 700 !important;
 }
-.editProfile:hover {
+.editProfile:hover,
+.followBtn {
   background-color: var(--hover-blue-color);
 }
 .profileBiography {

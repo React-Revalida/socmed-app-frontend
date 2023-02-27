@@ -20,8 +20,6 @@ const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
     navigate(`/profile/${username}`);
   };
 
-  console.log("data: ", data);
-
   return (
     <CustomDialog
       open={isDialogOpen}

@@ -30,3 +30,48 @@ export const getUserFollowing = (username) => {
       });
   };
 };
+
+export const getLoggedInUserFollowing = (username) => {
+  return async (dispatch) => {
+    dispatch(type.fetchFollowsRequest());
+    await followService
+      .getFollowing(username)
+      .then((response) => {
+        const following = response.data;
+        dispatch(type.fetchLoggedInUserFollowingSuccess(following));
+      })
+      .catch((error) => {
+        dispatch(type.fetchLoggedInUserFollowingFailure(error));
+      });
+  };
+};
+
+export const followUser = (username) => {
+  return async (dispatch) => {
+    dispatch(type.followUserRequest());
+    await followService
+      .followUser(username)
+      .then((response) => {
+        const follows = response.data;
+        dispatch(type.followUserSuccess(follows));
+      })
+      .catch((error) => {
+        dispatch(type.followUserFailure(error));
+      });
+  };
+};
+
+export const unfollowUser = (username) => {
+  return async (dispatch) => {
+    dispatch(type.unfollowUserRequest());
+    await followService
+      .unfollowUser(username)
+      .then((response) => {
+        const follows = response.data;
+        dispatch(type.unfollowUserSuccess(follows));
+      })
+      .catch((error) => {
+        dispatch(type.unfollowUserFailure(error));
+      });
+  };
+};

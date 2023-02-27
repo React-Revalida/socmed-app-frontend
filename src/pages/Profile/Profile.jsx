@@ -19,6 +19,7 @@ import FollowsModal from "../../components/Profile/FollowsModal";
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
   const [followTab, setFollowTab] = React.useState(1);
+  const [userFollowed, setUserFollowed] = React.useState(false);
   const [posts, setPosts] = React.useState([]);
   const [isMe, setIsMe] = React.useState(false);
   const params = useParams();
@@ -34,6 +35,24 @@ const Profile = () => {
     setOpenFollows(isOpen);
   };
 
+  const checkIfUserFollowed = (username) => {
+    loggedInUserFollowing.map((user) => {
+      if (user.username == username) {
+        console.log(user.username);
+        setUserFollowed(true);
+      }
+    });
+  };
+
+  const handleToggleFollow = () => {
+    if (userFollowed) {
+      dispatch(followActions.unfollowUser(params.username));
+    } else {
+      dispatch(followActions.followUser(params.username));
+    }
+    setUserFollowed(!userFollowed);
+  };
+
   const dispatch = useDispatch();
 
   const selectLoading = useSelector((state) => state.post.loading);
@@ -41,6 +60,13 @@ const Profile = () => {
 
   const selectUserPosts = useSelector((state) => state.post.userPosts);
   const [userPosts, setUserPosts] = useState(selectUserPosts);
+
+  const selectLoggedInUserFollowing = useSelector(
+    (state) => state.follow.loggedInUserFollowing
+  );
+  const [loggedInUserFollowing, setLoggedInUserFollowing] = useState(
+    selectLoggedInUserFollowing
+  );
 
   const selectFollowers = useSelector((state) => state.follow.followers);
   const [followers, setFollowers] = useState(selectFollowers);
@@ -63,6 +89,7 @@ const Profile = () => {
       dispatch(postActions.fetchUserPosts(profile.username));
       dispatch(followActions.getUserFollowers(profile.username));
       dispatch(followActions.getUserFollowing(profile.username));
+      dispatch(followActions.getLoggedInUserFollowing(profile.username));
     }
   }, [params, dispatch, profile.username]);
 
@@ -73,11 +100,13 @@ const Profile = () => {
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
       setIsMe(false);
+      checkIfUserFollowed(params.username);
     } else {
       setProfile(selectProfile);
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
+      setLoggedInUserFollowing(selectLoggedInUserFollowing);
       setIsMe(true);
     }
   }, [
@@ -87,6 +116,7 @@ const Profile = () => {
     selectUserPosts,
     selectFollowers,
     selectFollowing,
+    selectLoggedInUserFollowing,
   ]);
 
   useEffect(() => {
@@ -127,12 +157,18 @@ const Profile = () => {
                 size={134}
               />
             </div>
-            <div
-              className="editProfile"
-              onClick={() => handleOpenEditDialog(true)}
-            >
-              <span>Edit Profile</span>
-            </div>
+            {isMe ? (
+              <div
+                className="editProfile"
+                onClick={() => handleOpenEditDialog(true)}
+              >
+                <span>Edit Profile</span>
+              </div>
+            ) : (
+              <div className="followBtn" onClick={() => handleToggleFollow()}>
+                <span>{userFollowed ? "Following" : "Follow"}</span>
+              </div>
+            )}
           </div>
           <div className="profileBiography">
             <span>{profile.name}</span>
