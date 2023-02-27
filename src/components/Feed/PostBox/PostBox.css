@@ -3,6 +3,12 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  position: relative;
+}
+aside.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  top: 125px;
+  z-index: 999;
 }
 .bottomBorder {
   height: 8px;

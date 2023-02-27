@@ -81,7 +81,6 @@ const Post = ({ post, onLike }) => {
             <span className="post-header-date">
               {MillToDate(post.timestamp)}
             </span>
-            <MoreHorizIcon className="postMoreIcon" />
           </div>
           <div className="post-content">
             {post.message} {liked ? liked : liked}
