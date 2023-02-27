@@ -14,17 +14,24 @@ import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea } from "@mui/material";
 
-const Post = ({ post, onLike }) => {
+const Post = ({ post, onLike, onUnlike }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   useEffect(() => {
-    dispatch(likeActions.fetchLikesByPost(post.postId));
-    dispatch(profileActions.fetchProfile());
+    // dispatch(likeActions.fetchLikesByPost(post.postId));
+    // dispatch(profileActions.fetchProfile());
     likedByYou();
   }, [dispatch]);
 
-  const likePost = () => {
-    onLike();
+  const likePost = (e) => {
+    e.preventDefault();
+    onLike(post.postId);
+    // setLiked(!liked);
+  };
+  const unlikePost = (e) => {
+    e.preventDefault();
+    onUnlike(post.postId);
+    // setLiked(!liked);
   };
   const loading = useSelector((state) => state.like.loading);
   const likes = post.likes;
@@ -95,13 +102,16 @@ const Post = ({ post, onLike }) => {
             {liked ? (
               <FavoriteOutlinedIcon
                 className="postIcon"
+                onClick={(e) => {
+                  unlikePost(e);
+                }}
                 sx={{ color: teal[50] }}
               />
             ) : (
               <FavoriteIcon
                 className="postIcon"
-                onClick={() => {
-                  likePost();
+                onClick={(e) => {
+                  likePost(e);
                 }}
               />
             )}
