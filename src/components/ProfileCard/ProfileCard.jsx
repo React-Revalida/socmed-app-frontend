@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 const ProfileCard = ({ active, profile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.profile.username);
   const [userFollowed, setUserFollowed] = React.useState(false);
   const [followsUser, setFollowsUser] = React.useState(false);
 
@@ -86,9 +87,13 @@ const ProfileCard = ({ active, profile }) => {
           onClick={() => navigate("/profile/" + profile.username)}
           style={{ cursor: "pointer" }}
         />
-        <div onClick={handleToggleFollow} style={{ cursor: "pointer" }}>
-          <span>{userFollowed ? "Following" : "Follow"}</span>
-        </div>
+        {user !== profile.username ? (
+          <div onClick={handleToggleFollow} style={{ cursor: "pointer" }}>
+            <span>{userFollowed ? "Following" : "Follow"}</span>
+          </div>
+        ) : (
+          <> </>
+        )}
       </div>
       <div
         onClick={() => navigate("/profile/" + profile.username)}

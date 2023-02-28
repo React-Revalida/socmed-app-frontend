@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import SidebarItem from "../Sidebar/SidebarItem/SidebarItem";
 import HomeIcon from "@mui/icons-material/Home";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import PersonIcon from "@mui/icons-material/Person";
 
 const BottomSidebar = () => {
   const [location] = React.useState(useLocation().pathname);
@@ -23,6 +24,15 @@ const BottomSidebar = () => {
           <SidebarItem
             text="Chats"
             Icon={QuestionAnswerIcon}
+            active={location === "/messages" && true}
+          />
+        </Link>
+      </div>
+      <div>
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <SidebarItem
+            text="Profile"
+            Icon={PersonIcon}
             active={location === "/messages" && true}
           />
         </Link>

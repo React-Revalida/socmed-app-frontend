@@ -53,50 +53,47 @@ const Sidebar = () => {
       <LogoutDialog isDialogOpen={open} onOpenDialog={handleOpenLogoutDialog} />
       <div className="sidebar">
         <FlutterDashIcon className="twitter-icon" />
-        <Link
-          to="/home"
-          style={{ textDecoration: "none" }}
-          onClick={() => handleLocationChange("/home")}
-        >
-          <SidebarItem
-            text="Home"
-            Icon={HomeIcon}
-            active={currLocation === "/home" && true}
-          />
-        </Link>
-        <Link
-          to="/messages"
-          style={{ textDecoration: "none" }}
-          onClick={() => handleLocationChange("/messages")}
-        >
-          <SidebarItem
-            text="Chats"
-            Icon={QuestionAnswerIcon}
-            active={currLocation === "/messages" && true}
-          />
-        </Link>
-        <Link
-          to="/profile"
-          style={{ textDecoration: "none" }}
-          onClick={() => handleLocationChange("/profile")}
-        >
-          <SidebarItem
-            text="Profile"
-            Icon={PersonIcon}
-            active={currLocation === "/profile" && true}
-          />
-        </Link>
-        <Button
-          style={{
-            textDecoration: "none",
-            textTransform: "none",
-            margin: 0,
-            padding: 0,
-            display: "flex",
-            justifyContent: "flex-start",
-          }}
-          onClick={handleOpenLogoutDialog}
-        >
+        <Button className="navButton">
+          <Link
+            to="/home"
+            style={{ textDecoration: "none" }}
+            onClick={() => handleLocationChange("/home")}
+          >
+            <SidebarItem
+              text="Home"
+              Icon={HomeIcon}
+              active={currLocation === "/home" && true}
+            />
+          </Link>
+        </Button>
+        <Button className="navButton">
+          <Link
+            to="/messages"
+            style={{ textDecoration: "none" }}
+            onClick={() => handleLocationChange("/messages")}
+          >
+            <SidebarItem
+              text="Chats"
+              Icon={QuestionAnswerIcon}
+              active={currLocation === "/messages" && true}
+            />
+          </Link>
+        </Button>
+        <Button className="navButton">
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none" }}
+            onClick={() => handleLocationChange("/profile")}
+          >
+            <SidebarItem
+              text="Profile"
+              Icon={PersonIcon}
+              active={currLocation === "/profile" && true}
+            />
+          </Link>
+        </Button>
+
+        <Button className="navButton" onClick={handleOpenLogoutDialog}>
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
         {currLocation === "/home" ? (
@@ -109,7 +106,7 @@ const Sidebar = () => {
               handleAddPost(true);
             }}
           >
-            {/* <SetTweetIcon className="setTweetIcon" /> */}
+            <PostAddIcon className="addPostIcon" />
             <span>Create Post</span>
           </div>
         )}
