@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./PostEditForm.css";
 import PropTypes from "prop-types";
-import EmojiIcon from "../../icons/EmojiIcon";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import EmojiPicker from "emoji-picker-react";
 import {
   CustomDialog,
@@ -184,7 +184,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                   </Grid>
                   <Grid item xs={1}>
                     {!emojiPicker ? (
-                      <EmojiIcon
+                      <EmojiEmotionsIcon
                         className="emojiOption"
                         width={22}
                         height={22}
@@ -192,7 +192,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                       />
                     ) : (
                       <>
-                        <EmojiIcon
+                        <EmojiEmotionsIcon
                           className="emojiOption"
                           width={22}
                           height={22}

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ChatInputs from "../ChatInputs/ChatInputs";
 import FromMessage from "../FromMessage/FromMessage";
-import { InfoIcon, CalenderIcon, SendIcon } from "../icons";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import MyMessage from "../MyMessage/MyMessage";
 import "./Chat.css";
@@ -202,7 +202,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
                 </span>
               </div>
               <span>
-                <CalenderIcon />
+                <CalendarMonthIcon />
                 Joined {user.dateJoined}
               </span>
             </div>
@@ -222,7 +222,11 @@ const Chat = ({ messages, username2Chat, profile }) => {
                   </Fragment>
                 ))}
             </div>
-            <ChatInputs onChange={handleMessage} value={userData.message} onClick={sendPrivateValue} />
+            <ChatInputs
+              onChange={handleMessage}
+              value={userData.message}
+              onClick={sendPrivateValue}
+            />
           </div>
         </>
       )}

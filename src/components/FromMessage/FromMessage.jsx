@@ -1,6 +1,7 @@
 import Avatar from "react-avatar";
 import React from "react";
-import { MessageLikeIcon, MoreIcon } from "../icons";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./FromMessage.css";
 const FromMessage = ({ message, userimage }) => {
   return (
@@ -9,8 +10,8 @@ const FromMessage = ({ message, userimage }) => {
       <div>
         <span>{message}</span>
       </div>
-      <MessageLikeIcon />
-      <MoreIcon />
+      <FavoriteBorderIcon />
+      <MoreHorizIcon />
     </div>
   );
 };

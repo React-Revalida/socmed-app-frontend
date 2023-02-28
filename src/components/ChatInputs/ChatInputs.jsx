@@ -1,6 +1,7 @@
 import { IconButton } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import { EmojiIcon, SendIcon } from "../icons";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import SendIcon from "@mui/icons-material/Send";
 import "./ChatInputs.css";
 import EmojiPicker from "emoji-picker-react";
 
@@ -60,7 +61,7 @@ const ChatInputs = ({ onChange, onClick, value }) => {
             value={message}
             onChange={onChange}
           />
-          <EmojiIcon
+          <EmojiEmotionsIcon
             onClick={(e) => {
               e.stopPropagation();
               setShowPicker(!showPicker);

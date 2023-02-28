@@ -2,9 +2,8 @@ import React, { useContext, useEffect } from "react";
 import "./Feed.css";
 import PostBox from "../../components/Feed/PostBox/PostBox";
 import Post from "./Post/Post";
-import HomeStars from "../icons/HomeStars";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
-import DrawerBar from "../DrawerBar/DrawerBar";
 import Loading from "../Loading/Loading";
 import { Avatar, CardActionArea } from "@mui/material";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
@@ -60,13 +59,6 @@ const Feed = () => {
   return (
     <>
       <section className="feed">
-        {isDrawerBar && (
-          <div
-            onClick={() => setIsDrawerBar(false)}
-            className="drawerBarPanel"
-          />
-        )}
-        <DrawerBar active={isDrawerBar} />
         <div className="feed-header">
           <div onClick={() => setIsDrawerBar(true)}>
             <Avatar />
@@ -75,7 +67,7 @@ const Feed = () => {
             <span>Home</span>
           </div>
           <div className="homeStarsCol">
-            <HomeStars className="homeStars" width={22} height={22} />
+            <AutoAwesomeIcon />
           </div>
         </div>
         <PostBox />
