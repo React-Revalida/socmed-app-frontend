@@ -23,33 +23,59 @@ export const addPost = (message, image) => {
     image = "";
   }
   const postMessage = JSON.stringify(message);
-  console.log(postMessage);
   const postMessageBlob = new Blob([postMessage], {
     type: "application/json",
   });
-  console.log(postMessageBlob);
-  console.log(image);
   const postImage = new File([image], "image", {
     type: "image/*",
   });
-  console.log(postImage);
   let formData = new FormData();
   formData.append("post", postMessageBlob);
   formData.append("image", postImage);
-  console.log(formData);
 
   return (dispatch) => {
     dispatch(type.addPostRequest());
     postService
       .insertPost(formData)
       .then(async (response) => {
-        console.log(response);
         const addedPost = response.data;
         await dispatch(type.addPostSuccess(addedPost));
       })
       .catch(async (error) => {
         const errorMsg = error.message;
         await dispatch(type.addPostFailure(errorMsg));
+      });
+  };
+};
+
+export const editPost = (postId, message, image) => {
+  console.log(image);
+  if (image === null) {
+    image = "";
+  }
+  console.log(image);
+  const postMessage = JSON.stringify(message);
+  const postMessageBlob = new Blob([postMessage], {
+    type: "application/json",
+  });
+  const postImage = new File([image], "image", {
+    type: "image/*",
+  });
+  let formData = new FormData();
+  formData.append("post", postMessageBlob);
+  formData.append("image", postImage);
+
+  return (dispatch) => {
+    dispatch(type.editPostRequest());
+    postService
+      .updatePost(postId, formData)
+      .then(async (response) => {
+        const editedPost = response.data;
+        await dispatch(type.editPostSuccess(editedPost));
+      })
+      .catch(async (error) => {
+        const errorMsg = error.message;
+        await dispatch(type.editPostFailure(errorMsg));
       });
   };
 };

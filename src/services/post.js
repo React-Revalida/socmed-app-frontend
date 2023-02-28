@@ -21,5 +21,14 @@ export const getUserPosts = async (username) => {
 };
 
 export const removePost = async (postId) => {
-  return await http.post(`/posts/delete/${postId}`);
+  return await http.put(`/posts/delete/${postId}`);
+};
+
+export const updatePost = async (postId, post) => {
+  console.log(post);
+  return await http.put(`/posts/edit/${postId}`, post, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
