@@ -38,7 +38,6 @@ const Profile = () => {
   const checkIfUserFollowed = (username) => {
     loggedInUserFollowing.map((user) => {
       if (user.username == username) {
-        console.log(user.username);
         setUserFollowed(true);
       }
     });
@@ -50,6 +49,7 @@ const Profile = () => {
     } else {
       dispatch(followActions.followUser(params.username));
     }
+
     setUserFollowed(!userFollowed);
   };
 
@@ -82,7 +82,7 @@ const Profile = () => {
   const [profile, setProfile] = useState(selectProfile);
 
   useEffect(() => {
-    console.log();
+    dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
       dispatch(likeActions.fetchLikedPostByUser(profile.userId));
@@ -95,11 +95,11 @@ const Profile = () => {
       dispatch(postActions.fetchUserPosts(profile.username));
       dispatch(followActions.getUserFollowers(profile.username));
       dispatch(followActions.getUserFollowing(profile.username));
-      dispatch(followActions.getLoggedInUserFollowing(profile.username));
     }
   }, [params, dispatch, profile.username]);
 
   useEffect(() => {
+    setLoggedInUserFollowing(selectLoggedInUserFollowing);
     if (params.username) {
       setProfile(selectOtherProfile);
       setUserPosts(selectUserPosts);
@@ -113,7 +113,6 @@ const Profile = () => {
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
-      setLoggedInUserFollowing(selectLoggedInUserFollowing);
       setIsMe(true);
       setUserLikedPosts(selectUserLikedPosts);
     }
@@ -185,7 +184,7 @@ const Profile = () => {
                 <span>Edit Profile</span>
               </div>
             ) : (
-              <div className="followBtn" onClick={() => handleToggleFollow()}>
+              <div className="followBtn" onClick={handleToggleFollow}>
                 <span>{userFollowed ? "Following" : "Follow"}</span>
               </div>
             )}

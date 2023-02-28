@@ -37,3 +37,11 @@ export const updateProfile = async (data) => {
 export const updateAddress = async (data) => {
   return await http.put("/users/me/update-address", data);
 };
+
+export const getAllUsers = async () => {
+  return await http.get("/users/all", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+};

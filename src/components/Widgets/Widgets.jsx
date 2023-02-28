@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Widgets.css";
 import SearchInput from "./SearchInput/SearchInput";
 import FriendSuggestions from "./FriendSuggestions/FriendSuggestions";
