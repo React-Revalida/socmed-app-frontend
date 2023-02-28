@@ -53,17 +53,7 @@ const Messages = () => {
   return (
     <>
       <div className={`messages ${path !== "/messages" && "messagesNone"}`}>
-        {/* {isDrawerBar && (
-          <div
-            onClick={() => setIsDrawerBar(false)}
-            className="drawerBarPanel"
-          />
-        )}
-        <DrawerBar active={isDrawerBar} /> */}
         <div className="messagesHeader">
-          <div onClick={() => setIsDrawerBar(true)}>
-            <Avatar round={true} size={40} src={profile.profilePic} />
-          </div>
           <span>&nbsp;Messages</span>
           <QuestionAnswerIcon />
         </div>

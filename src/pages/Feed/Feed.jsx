@@ -4,21 +4,11 @@ import "../styles/Feed.css";
 import TweetBox from "../components/TweetBox";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  Container,
-  IconButton,
-} from "@mui/material";
+import { IconButton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../../redux/actions/profileActions";
 import * as postActions from "../../redux/actions/postActions";
-// import Post from './Post'
-// import db from './firebase'
-// import FlipMove from 'react-flip-move'
 
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);

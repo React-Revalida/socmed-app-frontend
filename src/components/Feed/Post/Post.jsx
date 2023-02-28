@@ -223,7 +223,6 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                   }}
                 />
               )}
-
               <span>{likes.length > 0 ? likes.length : ""}</span>
             </div>
             <div>

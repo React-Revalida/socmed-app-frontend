@@ -7,6 +7,15 @@
   min-height: 100vh;
 }
 
+.navButton {
+  text-decoration: none !important;
+  text-transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+
 .sidebar::-webkit-scrollbar {
   display: none;
 }
@@ -41,10 +50,10 @@
   color: white;
   font-weight: 700;
 }
-.setTweetIcon {
-  display: none;
-  fill: white;
-  width: 24px;
+.addPostIcon {
+  display: none !important;
+  fill: white !important;
+  width: 24px !important;
 }
 .profileCard {
   display: flex;
@@ -122,8 +131,8 @@
   .tweetButton > span {
     display: none;
   }
-  .setTweetIcon {
-    display: block;
+  .addPostIcon {
+    display: block !important;
   }
   .twitter-icon {
     width: 20px;
