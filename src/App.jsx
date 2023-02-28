@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import SidebarWidgetLayout from "./components/Feed/Layout/SidebarWidgetLayout";
 import Feed from "./components/Feed/Feed";
 import Profile from "./pages/Profile/Profile";
+import jwtDecode from "jwt-decode";
 
 const theme = createTheme({
   palette: {

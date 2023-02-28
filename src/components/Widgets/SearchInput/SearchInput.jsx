@@ -1,28 +1,60 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./SearchInput.css";
 import SearchIcon from "@mui/icons-material/Search";
+import { Autocomplete } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { useDispatch, useSelector } from "react-redux";
+import * as profileActions from "../../../redux/actions/profileActions";
+import { useNavigate } from "react-router";
 
 const SearchInput = ({ placeholder }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const selectAllUsers = useSelector((state) => state.user.allUsers);
+  const [allUsers, setAllUsers] = React.useState(selectAllUsers);
+
+  useEffect(() => {
+    dispatch(profileActions.getAllUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setAllUsers(selectAllUsers);
+  }, [selectAllUsers]);
+
   const [isFocus, setIsFocus] = React.useState(false);
+
   return (
-    <div
-      className={isFocus ? "widgetsSearch widgetsSearchFocus" : "widgetsSearch"}
-    >
-      <SearchIcon
-        className={
-          isFocus
-            ? "widgetsSearchIcon widgetsSearchIconFocus"
-            : "widgetsSearchIcon"
+    <Autocomplete
+      fullWidth
+      popupIcon={""}
+      options={Object.values(allUsers)}
+      onChange={(event, newValue) => {
+        event.preventDefault();
+        if (newValue) {
+          const username = Object.keys(allUsers).find(
+            (key) => allUsers[key] === newValue
+          );
+          navigate(`/profile/${username}`);
         }
-      />
-      <input
-        className="widgetsSearchInput"
-        type="text"
-        placeholder={placeholder}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-      />
-    </div>
+      }}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          placeholder={placeholder}
+          InputProps={{
+            ...params.InputProps,
+            startAdornment: (
+              <SearchIcon
+                style={{ color: "gray", marginLeft: "10px" }}
+                fontSize="small"
+              />
+            ),
+          }}
+        />
+      )}
+    />
   );
 };
 

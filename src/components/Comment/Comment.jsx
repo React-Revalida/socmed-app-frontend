@@ -1,20 +1,7 @@
-import { Typography } from "@mui/material";
 import Avatar from "react-avatar";
 import React from "react";
-import FavoriteIcon from "../icons/FavoriteIcon";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import CommentIcon from "../icons/CommentIcon";
 import { MillToDate } from "../../utils/MillToDate";
-import ProfileCard from "../ProfileCard/ProfileCard";
-import * as likeActions from "../../redux/actions/likeActions";
-import { useDispatch, useSelector } from "react-redux";
-import * as profileActions from "../../redux/actions/profileActions";
-import * as postActions from "../../redux/actions/postActions";
-import { teal } from "@mui/material/colors";
-import { useNavigate } from "react-router-dom";
-import { CardActionArea, Menu, MenuItem } from "@mui/material";
-import FollowsModal from "../../components/Profile/FollowsModal";
-import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
+import { CardActionArea } from "@mui/material";
 
 const Comment = ({ comment }) => {
   return (

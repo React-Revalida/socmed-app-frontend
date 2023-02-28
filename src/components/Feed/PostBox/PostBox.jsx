@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./PostBox.css";
 import Avatar from "react-avatar";
-import GifIcon from "../../icons/GifIcon";
-import EmojiIcon from "../../icons/EmojiIcon";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import * as profileActions from "../../../redux/actions/profileActions";
 import * as postActions from "../../../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -117,7 +116,7 @@ const TweetBox = () => {
             </label>
             {/* To be implemented <GifIcon className="tweetboxOptionIcon" width={22} height={22} /> */}
             {!emojiPicker ? (
-              <EmojiIcon
+              <EmojiEmotionsIcon
                 className="tweetboxOptionIcon"
                 width={22}
                 height={22}
@@ -125,7 +124,7 @@ const TweetBox = () => {
               />
             ) : (
               <>
-                <EmojiIcon
+                <EmojiEmotionsIcon
                   className="tweetboxOptionIcon"
                   width={22}
                   height={22}

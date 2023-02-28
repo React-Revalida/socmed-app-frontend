@@ -31,17 +31,32 @@ export const getUserFollowing = (username) => {
   };
 };
 
-export const getLoggedInUserFollowing = (username) => {
+export const getLoggedInUserFollowing = () => {
   return async (dispatch) => {
     dispatch(type.fetchFollowsRequest());
     await followService
-      .getFollowing(username)
+      .getLoggedInUserFollowing()
       .then((response) => {
         const following = response.data;
         dispatch(type.fetchLoggedInUserFollowingSuccess(following));
       })
       .catch((error) => {
         dispatch(type.fetchLoggedInUserFollowingFailure(error));
+      });
+  };
+};
+
+export const getLoggedInUserFollowers = () => {
+  return async (dispatch) => {
+    dispatch(type.fetchFollowsRequest());
+    await followService
+      .getLoggedInUserFollowers()
+      .then((response) => {
+        const followers = response.data;
+        dispatch(type.fetchLoggedInUserFollowersSuccess(followers));
+      })
+      .catch((error) => {
+        dispatch(type.fetchLoggedInUserFollowersFailure(error));
       });
   };
 };

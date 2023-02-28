@@ -1,12 +1,13 @@
 import React from "react";
-import { MessageLikeIcon, MoreIcon } from "../icons";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./MyMessage.css";
 
 const MyMessage = ({ message }) => {
   return (
     <div className="myMessage">
-      <MessageLikeIcon />
-      <MoreIcon />
+      <FavoriteBorderIcon />
+      <MoreHorizIcon />
       <div>
         <span>{message}</span>
       </div>

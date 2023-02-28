@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   error: null,
   success: false,
+  allUsers: [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -89,6 +90,25 @@ export default function userReducer(state = initialState, action) {
         ...state,
         success: false,
         loading: true,
+      };
+    case "FETCH_ALL_USERS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_ALL_USERS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        allUsers: action.payload,
+      };
+    case "FETCH_ALL_USERS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        allUsers: [],
       };
     default:
       return state;

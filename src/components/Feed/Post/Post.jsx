@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./Post.css";
 import PostEditForm from "./PostEditForm";
-import FavoriteIcon from "../../icons/FavoriteIcon";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import CommentIcon from "../../icons/CommentIcon";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";
 import * as likeActions from "../../../redux/actions/likeActions";
 import { useDispatch, useSelector } from "react-redux";
-import * as profileActions from "../../../redux/actions/profileActions";
 import * as postActions from "../../../redux/actions/postActions";
 import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea, Menu, MenuItem } from "@mui/material";
-import FollowsModal from "../../../components/Profile/FollowsModal";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 import {
@@ -33,7 +31,6 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
     // dispatch(profileActions.fetchProfile());
-    console.log(post.user);
     likedByYou();
   }, [dispatch]);
 
@@ -72,7 +69,10 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
         onOpenPostModal={editPost}
       />
       <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
-        <ProfileCard active={isVisibleProfileCard && true} user={post.user} />
+        <ProfileCard
+          active={isVisibleProfileCard && true}
+          profile={post.user}
+        />
         <div>
           <Avatar
             src={post.user.profilePic}
@@ -227,7 +227,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
               <span>{likes.length > 0 ? likes.length : ""}</span>
             </div>
             <div>
-              <CommentIcon
+              <ChatBubbleOutlineIcon
                 onClick={() => [
                   navigate(`/posts/${post.postId}`),
                   dispatch(postActions.resetLoading()),

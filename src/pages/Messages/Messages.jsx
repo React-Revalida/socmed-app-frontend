@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import BottomSidebar from "../../components/BottomSidebar/BottomSidebar";
 import Chat from "../../components/Chat/Chat";
-import DrawerBar from "../../components/DrawerBar/DrawerBar";
-import { MessagesIcon } from "../../components/icons";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import LastChat from "../../components/LastChat/LastChat";
 import SearchInput from "../../components/Widgets/SearchInput/SearchInput";
 import "./Messages.css";
@@ -54,19 +53,19 @@ const Messages = () => {
   return (
     <>
       <div className={`messages ${path !== "/messages" && "messagesNone"}`}>
-        {isDrawerBar && (
+        {/* {isDrawerBar && (
           <div
             onClick={() => setIsDrawerBar(false)}
             className="drawerBarPanel"
           />
         )}
-        <DrawerBar active={isDrawerBar} />
+        <DrawerBar active={isDrawerBar} /> */}
         <div className="messagesHeader">
           <div onClick={() => setIsDrawerBar(true)}>
             <Avatar round={true} size={40} src={profile.profilePic} />
           </div>
           <span>&nbsp;Messages</span>
-          <MessagesIcon />
+          <QuestionAnswerIcon />
         </div>
         <div className="messagesSearchInput">
           <SearchInput placeholder="Search for people and groups" />
@@ -90,7 +89,11 @@ const Messages = () => {
       {path === "/messages" ? (
         <NotSelectedMessage />
       ) : (
-        <Chat messages={messages} profile={profile} username2Chat={username2Chat} />
+        <Chat
+          messages={messages}
+          profile={profile}
+          username2Chat={username2Chat}
+        />
       )}
     </>
   );

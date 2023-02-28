@@ -1,24 +1,20 @@
 import React, { useEffect } from "react";
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem/SidebarItem";
-import {
-  HomeIcon,
-  MessagesIcon,
-  UserIcon,
-  SetTweetIcon,
-  NotificationsIcon,
-} from "../icons/index";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
 import LogoutIcon from "@mui/icons-material/Logout";
+import HomeIcon from "@mui/icons-material/Home";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import PersonIcon from "@mui/icons-material/Person";
 import { Button } from "@mui/material";
 import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import LogoutDialog from "./LogoutDialog";
 import { resetLoading } from "../../redux/actions/postActions";
 
-import { logoutUser } from "../../redux/actions/authActions";
 import * as profileActions from "../../redux/actions/profileActions";
 import PostEditForm from "../Feed/Post/PostEditForm";
 const Sidebar = () => {
@@ -75,7 +71,7 @@ const Sidebar = () => {
         >
           <SidebarItem
             text="Chats"
-            Icon={MessagesIcon}
+            Icon={QuestionAnswerIcon}
             active={currLocation === "/messages" && true}
           />
         </Link>
@@ -86,7 +82,7 @@ const Sidebar = () => {
         >
           <SidebarItem
             text="Profile"
-            Icon={UserIcon}
+            Icon={PersonIcon}
             active={currLocation === "/profile" && true}
           />
         </Link>
@@ -103,16 +99,20 @@ const Sidebar = () => {
         >
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        <div
-          className="tweetButton"
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            handleAddPost(true);
-          }}
-        >
-          <SetTweetIcon className="setTweetIcon" />
-          <span>Create Post</span>
-        </div>
+        {currLocation === "/home" ? (
+          <></>
+        ) : (
+          <div
+            className="tweetButton"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              handleAddPost(true);
+            }}
+          >
+            {/* <SetTweetIcon className="setTweetIcon" /> */}
+            <span>Create Post</span>
+          </div>
+        )}
         <div className="profileCard">
           <div className="profileCardImage">
             <Avatar
