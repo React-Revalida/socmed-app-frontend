@@ -175,7 +175,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
       ) : (
         <>
           <div className="chatHeader">
-            <div>
+            <div onClick={() => navigate("/messages")}>
               <BackIcon />
             </div>
             <Avatar src={user && user.profilePic} size={40} round={true} />
