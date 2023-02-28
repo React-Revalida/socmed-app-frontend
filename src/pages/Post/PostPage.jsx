@@ -11,19 +11,19 @@ import "./PostPage.css";
 import Loading from "../../components/Loading/Loading";
 import Widgets from "../../components/Widgets/Widgets";
 import * as postActions from "../../redux/actions/postActions";
+import CommentBox from "./CommentBox/CommentBox";
 
 const PostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
 
+  const loading = useSelector((state) => state.post.loading);
+  const post = useSelector((state) => state.post.post);
   useEffect(() => {
     dispatch(postActions.fetchPostById(params.postId));
     console.log(post);
   }, [dispatch]);
-
-  const loading = useSelector((state) => state.post.loading);
-  const post = useSelector((state) => state.post.post);
 
   let dateFormat = new Date(post.timestamp).toLocaleString("en-US", {
     dateStyle: "full",
@@ -43,7 +43,7 @@ const PostPage = () => {
           <Loading />
         ) : (
           <>
-            <Post key={post.postId} post={post} />
+            <Post key={post.postId} post={post} from={"postpage"} />
             <div className="postFooter">
               <Typography
                 color={"#8899a6"}
@@ -52,21 +52,17 @@ const PostPage = () => {
                 padding={1}
               >
                 {post.timestamp === null ? (
-                  <div>
-                    Test: 26{/*totalComments*/} comments · 130{/*totalLikes*/}{" "}
-                    likes
-                  </div>
+                  <div>No timestamp available</div>
                 ) : (
                   <>
                     {dateFormat}
                     <br />
-                    Test: 26{/*totalComments*/} comments · 130{/*totalLikes*/}{" "}
-                    likes
                   </>
                 )}
               </Typography>
             </div>
             <div className="postFooter">
+              <CommentBox postUser={post.user} pid={post.postId} />
               {post.comments.map((comment) => (
                 <Comment comment={comment} />
               ))}

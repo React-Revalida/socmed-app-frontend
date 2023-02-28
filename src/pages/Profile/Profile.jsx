@@ -7,14 +7,12 @@ import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Avatar from "react-avatar";
 import Loading from "../../components/Loading/Loading";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
 import * as postActions from "../../redux/actions/postActions";
 import * as followActions from "../../redux/actions/followActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
-import { CardActionArea, Container, Menu, MenuItem } from "@mui/material";
 import FollowsModal from "../../components/Profile/FollowsModal";
 
 const Profile = () => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./Post.css";
+import PostEditForm from "./PostEditForm";
 import FavoriteIcon from "../../icons/FavoriteIcon";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import CommentIcon from "../../icons/CommentIcon";
@@ -15,13 +16,13 @@ import { useNavigate } from "react-router-dom";
 import { CardActionArea, Menu, MenuItem } from "@mui/material";
 import FollowsModal from "../../../components/Profile/FollowsModal";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
+
 import {
   BorderColor,
   DeleteForever,
   Edit,
   MoreHoriz,
 } from "@mui/icons-material";
-import PostEditForm from "./PostEditForm";
 
 const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   const fromComponent = from || " ";
@@ -32,7 +33,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
     // dispatch(profileActions.fetchProfile());
-    console.log(fromComponent);
+    console.log(post.user);
     likedByYou();
   }, [dispatch]);
 
@@ -66,7 +67,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
     <>
       <PostEditForm post={post} isDialogOpen={open} onOpenDialog={editPost} />
       <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
-        <ProfileCard active={isVisibleProfileCard && true} />
+        <ProfileCard active={isVisibleProfileCard && true} user={post.user} />
         <div>
           <Avatar
             src={post.user.profilePic}
@@ -155,7 +156,17 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                         likeActions.unlikePost(
                           post.postId,
                           profile.userId,
-                          profile.username
+                          profile.username,
+                          fromComponent
+                        )
+                      );
+                    } else if (fromComponent === "postpage") {
+                      await dispatch(
+                        likeActions.unlikePost(
+                          post.postId,
+                          profile.userId,
+                          post.postId,
+                          fromComponent
                         )
                       );
                     } else {
@@ -179,7 +190,20 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                             user: profile.userId,
                             post: post.postId,
                           },
-                          profile.username
+                          profile.username,
+                          fromComponent
+                        )
+                      );
+                    } else if (fromComponent === "postpage") {
+                      await dispatch(
+                        likeActions.likePost(
+                          {
+                            liked: true,
+                            user: profile.userId,
+                            post: post.postId,
+                          },
+                          post.postId,
+                          fromComponent
                         )
                       );
                     } else {
