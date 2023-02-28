@@ -11,27 +11,45 @@ import SearchInput from "../../components/Widgets/SearchInput/SearchInput";
 import "./Messages.css";
 import NotSelectedMessage from "../../components/NotSelectedMessage/NotSelectedMessage";
 import * as chatActions from "../../redux/actions/chatActions";
+import * as profileActions from "../../redux/actions/profileActions";
 const Messages = () => {
   document.title = "Messages";
   const dispatch = useDispatch();
 
   const selectMutuals = useSelector((state) => state.mutuals.mutuals);
-  const profile = useSelector((state) => state.user.profile);
+  const selectProfile = useSelector((state) => state.user.profile);
   const [mutuals, setMutuals] = React.useState([]);
+  const [profile, setProfile] = React.useState(selectProfile);
 
   useEffect(() => {
     dispatch(chatActions.getMutualFollows());
+    dispatch(profileActions.fetchProfile());
   }, [dispatch]);
 
   useEffect(() => {
     setMutuals(selectMutuals);
-    console.log(selectMutuals);
-  }, [selectMutuals, mutuals]);
+    setProfile(selectProfile);
+  }, [selectMutuals, selectProfile]);
 
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const [messages, setMessages] = React.useState([]);
 
   let path = useLocation().pathname;
+  const [username2Chat, setUsername2Chat] = React.useState();
+
+  const handleGetUsername2Chat = (username) => {
+    let mutual = mutuals.find((mutual) => mutual.username === username);
+    setUsername2Chat(mutual);
+  };
+
+  let id = useLocation().pathname;
+  React.useEffect(() => {
+    if (id) {
+      let messageid = id.split("/")[2];
+      let mutual = mutuals.find((mutual) => mutual.username === messageid);
+      setUsername2Chat(mutual);
+    }
+  }, [id, mutuals]);
 
   return (
     <>
@@ -62,6 +80,7 @@ const Messages = () => {
                 displayName={mutual.name}
                 datetime={mutual.dateJoined}
                 userimage={mutual.profilePic}
+                onChoose={handleGetUsername2Chat}
               />
             );
           })}
@@ -71,7 +90,7 @@ const Messages = () => {
       {path === "/messages" ? (
         <NotSelectedMessage />
       ) : (
-        <Chat messages={messages} mutuals={mutuals} />
+        <Chat messages={messages} profile={profile} username2Chat={username2Chat} />
       )}
     </>
   );

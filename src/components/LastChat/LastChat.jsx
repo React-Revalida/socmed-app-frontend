@@ -12,9 +12,10 @@ const LastChat = ({
   datetime,
   lastMessage,
   verified,
+  onChoose
 }) => {
   return (
-    <Link className="lastChat" to={`/messages/${username}`}>
+    <Link className="lastChat" to={`/messages/${username}`} onClick={() => onChoose(username)}>
       <div>
         <Avatar size={40} round={true} src={userimage} name={displayName} />
       </div>
