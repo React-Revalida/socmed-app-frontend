@@ -19,6 +19,23 @@ export const fetchLikesByPost = (postId) => {
   };
 };
 
+export const fetchLikedPostByUser = (userId) => {
+  return async (dispatch) => {
+    dispatch(type.fetchLikedPostRequest());
+    likesService
+      .getPostsLikedByUser(userId)
+      .then((response) => {
+        const likes = response.data;
+        console.log(likes);
+        dispatch(type.fetchLikedPostSuccess(likes));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchLikedPostFailure(errorMsg));
+      });
+  };
+};
+
 export const likePost = (likes, param, method) => {
   const likesDetails = JSON.stringify(likes);
   console.log(likes);
