@@ -1,0 +1,78 @@
+.tweetbox {
+  border-bottom: 1px solid var(--border-color);
+  /* display: flex; */
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+aside.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  top: 125px;
+  z-index: 999;
+}
+.bottomBorder {
+  height: 8px;
+  background-color: var(--element-bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.tweetboxRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+.tweetboxUserIcon {
+  flex: 0.1;
+  /* padding: 10px;
+  padding-bottom: 15px; */
+}
+.tweetbox-input-row {
+  display: flex;
+  flex-direction: column;
+  flex: 0.9;
+}
+.tweetbox-input {
+  border-radius: 10px;
+  border: none;
+  background-color: var(--main-bg-color);
+  color: #ffffff;
+  font-size: 19px;
+  line-height: 24.9375px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: "Gill Sans", sans-serif;
+  /* padding-top: 20px; */
+}
+
+.tweetboxOptions {
+  flex: 0.9;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  fill: var(--blue);
+}
+
+.tweetboxOptionIcon {
+  padding: 10px;
+  color: var(--blue);
+}
+
+.tweetboxOptionIcon:hover {
+  background-color: var(--hover-blue-color);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.tweetbox-button {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: var(--blue);
+  border-radius: 9999px;
+  color: white;
+  font-weight: 900;
+  font-size: 15px;
+  padding: 10px 15px;
+}

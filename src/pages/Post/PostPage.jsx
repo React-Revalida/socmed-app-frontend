@@ -11,19 +11,19 @@ import "./PostPage.css";
 import Loading from "../../components/Loading/Loading";
 import Widgets from "../../components/Widgets/Widgets";
 import * as postActions from "../../redux/actions/postActions";
+import CommentBox from "./CommentBox/CommentBox";
 
 const PostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
 
+  const loading = useSelector((state) => state.post.loading);
+  const post = useSelector((state) => state.post.post);
   useEffect(() => {
     dispatch(postActions.fetchPostById(params.postId));
     console.log(post);
   }, [dispatch]);
-
-  const loading = useSelector((state) => state.post.loading);
-  const post = useSelector((state) => state.post.post);
 
   let dateFormat = new Date(post.timestamp).toLocaleString("en-US", {
     dateStyle: "full",
@@ -62,6 +62,7 @@ const PostPage = () => {
               </Typography>
             </div>
             <div className="postFooter">
+              <CommentBox postUser={post.user} pid={post.postId} />
               {post.comments.map((comment) => (
                 <Comment comment={comment} />
               ))}

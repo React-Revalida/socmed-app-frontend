@@ -8,6 +8,16 @@ export const getComments = async (postId) => {
 //     "userId": 10002,
 //     "username": "aynuson"
 // }
-export function likePost(message, timestamp, post, user) {
-  return http.post("/comments", { message, timestamp, post, user });
+// post is object
+//      {
+//  "message": "Great!!! This is a new comment",
+//  "timestamp": "02/23/2023",
+//       "post": 10001,
+//       "user": {
+//              "userId": 10002,
+//              "username": "aynuson"
+//          }
+//   }
+export function commentPost(comment) {
+  return http.post("/comments", comment);
 }
