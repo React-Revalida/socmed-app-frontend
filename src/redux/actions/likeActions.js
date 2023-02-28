@@ -1,6 +1,6 @@
 import * as likesService from "../../services/likes";
 import * as type from "../types";
-import { fetchPosts } from "./postActions";
+import { fetchPosts, fetchUserPosts } from "./postActions";
 
 export const fetchLikesByPost = (postId) => {
   return async (dispatch) => {
@@ -19,7 +19,7 @@ export const fetchLikesByPost = (postId) => {
   };
 };
 
-export const likePost = (likes) => {
+export const likePost = (likes, usern) => {
   const likesDetails = JSON.stringify(likes);
   console.log(likes);
   const likesDetailsBlob = new Blob([likesDetails], {
@@ -35,7 +35,11 @@ export const likePost = (likes) => {
       .then(async (response) => {
         const likes = response.data;
         await dispatch(type.LikePostSuccess(likes));
-        await dispatch(fetchPosts());
+        if (!usern) {
+          await dispatch(fetchPosts());
+        } else {
+          await dispatch(fetchUserPosts(usern));
+        }
       })
       .catch(async (error) => {
         await dispatch(type.LikePostFailure(error.response.data.fieldErrors));
@@ -43,7 +47,7 @@ export const likePost = (likes) => {
   };
 };
 
-export const unlikePost = (postId, userId) => {
+export const unlikePost = (postId, userId, usern) => {
   return async (dispatch) => {
     dispatch(type.UnlikePostRequest());
     likesService
@@ -52,7 +56,11 @@ export const unlikePost = (postId, userId) => {
         const likes = response.data;
         console.log(likes);
         dispatch(type.UnlikePostSuccess(likes));
-        await dispatch(fetchPosts());
+        if (!usern) {
+          await dispatch(fetchPosts());
+        } else {
+          await dispatch(fetchUserPosts(usern));
+        }
       })
       .catch((error) => {
         const errorMsg = error.message;

@@ -39,11 +39,6 @@ const Feed = () => {
     //params
   }, [selectPosts, selectLoading]);
 
-  const [like, setLike] = React.useState({
-    liked: false,
-    post: "",
-    user: "",
-  });
   const onLikePost = async (postId) => {
     console.log("like post" + postId);
     await dispatch(
