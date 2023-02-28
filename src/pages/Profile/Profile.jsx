@@ -83,7 +83,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(followActions.getLoggedInUserFollowing());
-    if (params.username && params.username !== profile.username) {
+    if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
       dispatch(likeActions.fetchLikedPostByUser(profile.userId));
       dispatch(postActions.fetchUserPosts(params.username));
@@ -100,7 +100,7 @@ const Profile = () => {
 
   useEffect(() => {
     setLoggedInUserFollowing(selectLoggedInUserFollowing);
-    if (params.username && params.username !== profile.username) {
+    if (params.username) {
       setProfile(selectOtherProfile);
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
