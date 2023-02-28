@@ -11,7 +11,8 @@ import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./PostEditForm.css";
 import PropTypes from "prop-types";
-
+import EmojiIcon from "../../icons/EmojiIcon";
+import EmojiPicker from "emoji-picker-react";
 import {
   CustomDialog,
   CustomOutlinedTextField,
@@ -53,6 +54,8 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
   const postSchema = Joi.object({
     message: Joi.string().max(200).required(),
   });
+
+  const [emojiPicker, setEmojiPicker] = useState(null);
 
   const [profileFieldErrors, setProfileFieldErrors] = useState({});
 
@@ -125,8 +128,8 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
       <Tabs value={tab} textColor="inherit" variant="fullWidth">
         <Tab label={post ? "Edit Post" : "Create Post"} {...a11yProps(0)} />
       </Tabs>
-      <DialogContent sx={{ bgcolor: "background.paper" }}>
-        <Grid component="form" onSubmit={handleSubmit}>
+      <DialogContent sx={{ bgcolor: "background.paper", position: "relative" }}>
+        <Grid component="form" onSubmit={handleSubmit} position={"relative"}>
           <Grid container spacing={2}>
             <Grid item xs={1}>
               <div className="profile">
@@ -165,6 +168,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                 sx={{ bgcolor: "background.paper" }}
                 marginLeft={3}
                 marginRight={3}
+                position={"relative"}
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -178,6 +182,38 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                       onChange={handleProfileChange}
                     />
                   </Grid>
+                  <Grid item xs={1}>
+                    {!emojiPicker ? (
+                      <EmojiIcon
+                        className="emojiOption"
+                        width={22}
+                        height={22}
+                        onClick={() => setEmojiPicker((prev) => !prev)}
+                      />
+                    ) : (
+                      <>
+                        <EmojiIcon
+                          className="emojiOption"
+                          width={22}
+                          height={22}
+                          onClick={() => setEmojiPicker((prev) => !prev)}
+                        />
+                        <EmojiPicker
+                          // searchDisabled="true"
+                          previewConfig={{ showPreview: false }}
+                          // emojiStyle="google"
+                          suggestedEmojisMode="recent"
+                          onEmojiClick={(e) =>
+                            setPostState({
+                              ...postState,
+                              message: postState.message + e.emoji,
+                            })
+                          }
+                        />
+                      </>
+                    )}
+                  </Grid>
+
                   {currentImage === "" || currentImage === null ? (
                     <label htmlFor="profilePicInput">
                       <div className="tweetboxOptionIcon">
