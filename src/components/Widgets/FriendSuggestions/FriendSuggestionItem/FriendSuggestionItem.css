@@ -5,6 +5,7 @@
 }
 .friendSuggestionImage {
   padding: 15px 10px;
+  cursor: pointer;
 }
 .friendSuggestionImage .MuiAvatar-root {
   z-index: 1;
@@ -22,4 +23,9 @@
 }
 .friendFollowButton:hover {
   background-color: var(--hover-blue-color);
+}
+
+.profileCardNameColName:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
