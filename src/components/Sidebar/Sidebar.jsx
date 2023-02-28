@@ -58,23 +58,12 @@ const Sidebar = () => {
           />
         </Link>
         <Link
-          to="/notifications"
-          style={{ textDecoration: "none" }}
-          onClick={() => handleLocationChange("/notifications")}
-        >
-          <SidebarItem
-            text="Notifications"
-            Icon={NotificationsIcon}
-            active={currLocation === "/notifications" && true}
-          />
-        </Link>
-        <Link
           to="/messages"
           style={{ textDecoration: "none" }}
           onClick={() => handleLocationChange("/messages")}
         >
           <SidebarItem
-            text="Messages"
+            text="Chats"
             Icon={MessagesIcon}
             active={currLocation === "/messages" && true}
           />
@@ -103,7 +92,7 @@ const Sidebar = () => {
         >
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        <div className="tweetButton">
+        <div className="tweetButton" style={{ cursor: "pointer" }}>
           <SetTweetIcon className="setTweetIcon" />
           <span>Create Post</span>
         </div>

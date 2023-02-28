@@ -9,7 +9,6 @@ import SignupPage from "./pages/Signup/SignupPage";
 import "react-toastify/dist/ReactToastify.css";
 import PostPage from "./pages/Post/PostPage";
 
-import Notifications from "./pages/Notifications/Notifications";
 import Messages from "./pages/Messages/Messages";
 import LoginPage from "./pages/Login/LoginPage";
 import { useSelector } from "react-redux";
@@ -87,7 +86,6 @@ function App() {
           }
         >
           <Route path="/home" element={<Feed />} />
-          <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/messages/:username" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
