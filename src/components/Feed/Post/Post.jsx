@@ -9,12 +9,10 @@ import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";
 import * as likeActions from "../../../redux/actions/likeActions";
 import { useDispatch, useSelector } from "react-redux";
-import * as profileActions from "../../../redux/actions/profileActions";
 import * as postActions from "../../../redux/actions/postActions";
 import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea, Menu, MenuItem } from "@mui/material";
-import FollowsModal from "../../../components/Profile/FollowsModal";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 import {
@@ -67,7 +65,10 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
     <>
       <PostEditForm post={post} isDialogOpen={open} onOpenDialog={editPost} />
       <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
-        <ProfileCard active={isVisibleProfileCard && true} user={post.user} />
+        <ProfileCard
+          active={isVisibleProfileCard && true}
+          profile={post.user}
+        />
         <div>
           <Avatar
             src={post.user.profilePic}

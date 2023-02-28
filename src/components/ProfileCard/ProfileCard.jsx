@@ -1,8 +1,57 @@
 import Avatar from "react-avatar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProfileCard.css";
+import { useDispatch, useSelector } from "react-redux";
+import * as followActions from "../../redux/actions/followActions";
+import { useNavigate } from "react-router";
 
-const ProfileCard = ({ active, user }) => {
+const ProfileCard = ({ active, profile }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userFollowed, setUserFollowed] = React.useState(false);
+
+  const selectLoggedInUserFollowing = useSelector(
+    (state) => state.follow.loggedInUserFollowing
+  );
+  const [loggedInUserFollowing, setLoggedInUserFollowing] = useState(
+    selectLoggedInUserFollowing
+  );
+
+  useEffect(() => {
+    dispatch(followActions.getLoggedInUserFollowing());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setLoggedInUserFollowing(selectLoggedInUserFollowing);
+    checkIfUserFollowed();
+  }, [selectLoggedInUserFollowing]);
+
+  const checkIfUserFollowed = () => {
+    if (loggedInUserFollowing) {
+      loggedInUserFollowing.map((user) => {
+        if (user.username == profile.username) {
+          setUserFollowed(true);
+        }
+      });
+    }
+  };
+
+  const handleToggleFollow = () => {
+    if (userFollowed) {
+      dispatch(followActions.unfollowUser(profile.username)).then(() => {
+        setUserFollowed(false);
+      });
+    } else {
+      dispatch(followActions.followUser(profile.username)).then(() => {
+        setUserFollowed(true);
+      });
+    }
+  };
+
+  const redirectToProfile = () => {
+    navigate("/profile/" + profile.username);
+  };
+
   const [isVisible, setIsVisible] = React.useState(false);
   return (
     <div
@@ -14,23 +63,25 @@ const ProfileCard = ({ active, user }) => {
     >
       <div>
         <Avatar
-          src={user.profilePic}
-          name={user.firstname + " " + user.lastname}
+          src={profile.profilePic}
+          name={profile.firstname + " " + profile.lastname}
           round={true}
           size={60}
+          onClick={redirectToProfile}
+          style={{ cursor: "pointer" }}
         />
-        <div>
-          <span>Follow</span>
+        <div onClick={handleToggleFollow} style={{ cursor: "pointer" }}>
+          <span>{userFollowed ? "Following" : "Follow"}</span>
         </div>
       </div>
-      <div>
-        <span>{user.firstname + " " + user.lastname}</span>
+      <div onClick={redirectToProfile} style={{ cursor: "pointer" }}>
+        <span>{profile.firstname + " " + profile.lastname}</span>
       </div>
       <div>
-        <span>@{user.username}</span>
+        <span>@{profile.username}</span>
       </div>
       <div>
-        <span>{user.dateJoined}</span>
+        <span>{profile.dateJoined}</span>
       </div>
       <div>
         <span>

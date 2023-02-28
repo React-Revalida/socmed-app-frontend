@@ -31,11 +31,11 @@ export const getUserFollowing = (username) => {
   };
 };
 
-export const getLoggedInUserFollowing = (username) => {
+export const getLoggedInUserFollowing = () => {
   return async (dispatch) => {
     dispatch(type.fetchFollowsRequest());
     await followService
-      .getFollowing(username)
+      .getLoggedInUserFollowing()
       .then((response) => {
         const following = response.data;
         dispatch(type.fetchLoggedInUserFollowingSuccess(following));
