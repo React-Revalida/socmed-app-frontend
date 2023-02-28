@@ -9,6 +9,7 @@ const ProfileCard = ({ active, profile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userFollowed, setUserFollowed] = React.useState(false);
+  const [followsUser, setFollowsUser] = React.useState(false);
 
   const selectLoggedInUserFollowing = useSelector(
     (state) => state.follow.loggedInUserFollowing
@@ -17,14 +18,24 @@ const ProfileCard = ({ active, profile }) => {
     selectLoggedInUserFollowing
   );
 
+  const selectLoggedInUserFollowers = useSelector(
+    (state) => state.follow.loggedInUserFollowers
+  );
+  const [loggedInUserFollowers, setLoggedInUserFollowers] = useState(
+    selectLoggedInUserFollowers
+  );
+
   useEffect(() => {
     dispatch(followActions.getLoggedInUserFollowing());
+    dispatch(followActions.getLoggedInUserFollowers());
   }, [dispatch]);
 
   useEffect(() => {
     setLoggedInUserFollowing(selectLoggedInUserFollowing);
+    setLoggedInUserFollowers(selectLoggedInUserFollowers);
     checkIfUserFollowed();
-  }, [selectLoggedInUserFollowing]);
+    handleFollowsUser();
+  }, [selectLoggedInUserFollowing, selectLoggedInUserFollowers]);
 
   const checkIfUserFollowed = () => {
     if (loggedInUserFollowing) {
@@ -48,8 +59,13 @@ const ProfileCard = ({ active, profile }) => {
     }
   };
 
-  const redirectToProfile = () => {
-    navigate("/profile/" + profile.username);
+  const handleFollowsUser = () => {
+    loggedInUserFollowers.map((user) => {
+      if (user.username == profile.username) {
+        setFollowsUser(true);
+        return;
+      }
+    });
   };
 
   const [isVisible, setIsVisible] = React.useState(false);
@@ -67,30 +83,34 @@ const ProfileCard = ({ active, profile }) => {
           name={profile.firstname + " " + profile.lastname}
           round={true}
           size={60}
-          onClick={redirectToProfile}
+          onClick={() => navigate("/profile/" + profile.username)}
           style={{ cursor: "pointer" }}
         />
         <div onClick={handleToggleFollow} style={{ cursor: "pointer" }}>
           <span>{userFollowed ? "Following" : "Follow"}</span>
         </div>
       </div>
-      <div onClick={redirectToProfile} style={{ cursor: "pointer" }}>
+      <div
+        onClick={() => navigate("/profile/" + profile.username)}
+        style={{ cursor: "pointer" }}
+      >
         <span>{profile.firstname + " " + profile.lastname}</span>
       </div>
       <div>
         <span>@{profile.username}</span>
       </div>
       <div>
-        <span>{profile.dateJoined}</span>
+        <span></span>
+        <span></span>
       </div>
       <div>
         <span>
-          <span>{}</span>
-          <span>Following</span>
+          <span></span>
+          <span>{profile.email}</span>
         </span>
         <span>
-          <span>{}</span>
-          <span>Followers</span>
+          <span></span>
+          <span>{followsUser ? "Follows you" : ""}</span>
         </span>
       </div>
     </div>

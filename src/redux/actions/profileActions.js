@@ -87,3 +87,18 @@ export const resetSuccess = () => {
     dispatch(type.resetSuccess());
   };
 };
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    dispatch(type.fetchAllUsersRequest());
+    await profileService
+      .getAllUsers()
+      .then((response) => {
+        const users = response.data;
+        dispatch(type.fetchAllUsersSuccess(users));
+      })
+      .catch((error) => {
+        dispatch(type.fetchAllUsersFailure(error));
+      });
+  };
+};

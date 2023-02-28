@@ -46,6 +46,21 @@ export const getLoggedInUserFollowing = () => {
   };
 };
 
+export const getLoggedInUserFollowers = () => {
+  return async (dispatch) => {
+    dispatch(type.fetchFollowsRequest());
+    await followService
+      .getLoggedInUserFollowers()
+      .then((response) => {
+        const followers = response.data;
+        dispatch(type.fetchLoggedInUserFollowersSuccess(followers));
+      })
+      .catch((error) => {
+        dispatch(type.fetchLoggedInUserFollowersFailure(error));
+      });
+  };
+};
+
 export const followUser = (username) => {
   return async (dispatch) => {
     dispatch(type.followUserRequest());

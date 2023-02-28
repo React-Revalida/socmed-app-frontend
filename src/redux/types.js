@@ -386,6 +386,20 @@ export const fetchLoggedInUserFollowingFailure = (error) => {
   };
 };
 
+export const fetchLoggedInUserFollowersSuccess = (followers) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWERS_SUCCESS",
+    payload: followers,
+  };
+};
+
+export const fetchLoggedInUserFollowersFailure = (error) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWERS_FAILURE",
+    payload: error,
+  };
+};
+
 export const followUserRequest = () => {
   return {
     type: "FOLLOW_USER_REQUEST",
@@ -482,6 +496,26 @@ export const deletePostSuccess = (userPosts) => {
 export const deletePostFailure = (error) => {
   return {
     type: "DELETE_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchAllUsersRequest = () => {
+  return {
+    type: "FETCH_ALL_USERS_REQUEST",
+  };
+};
+
+export const fetchAllUsersSuccess = (users) => {
+  return {
+    type: "FETCH_ALL_USERS_SUCCESS",
+    payload: users,
+  };
+};
+
+export const fetchAllUsersFailure = (error) => {
+  return {
+    type: "FETCH_ALL_USERS_FAILURE",
     payload: error,
   };
 };
