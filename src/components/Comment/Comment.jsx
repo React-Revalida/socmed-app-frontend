@@ -1,7 +1,7 @@
 import { Avatar, Typography } from "@mui/material";
 import React from "react";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <div className="comment">
       <div className="comment__avatar">
@@ -13,7 +13,7 @@ const Comment = () => {
         <div className="comment__header">
           <div className="comment__headerText">
             <h3>
-              Test User
+              {comment.user.name}
               {/* {displayName} */}
               <span className="comment__headerSpecial">
                 {/* {verified && <VerifiedUserIcon className = "post__badge" />}
@@ -22,7 +22,7 @@ const Comment = () => {
             </h3>
           </div>
           <div className="comment__headerDescription">
-            <p>Test comment desc</p>
+            <p>{comment.message}</p>
             {/* <p>{text}</p> */}
           </div>
         </div>
