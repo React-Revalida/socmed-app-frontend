@@ -13,7 +13,7 @@ export const insertPost = async (post) => {
 };
 
 export const getPostById = async (postId) => {
-  return await http.get(`/posts/${postId}`);
+  return await http.get(`/post/${postId}`);
 };
 
 export const getUserPosts = async (username) => {
