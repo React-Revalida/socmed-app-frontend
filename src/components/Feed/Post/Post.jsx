@@ -67,7 +67,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
     <>
       <PostEditForm post={post} isDialogOpen={open} onOpenDialog={editPost} />
       <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
-        <ProfileCard active={isVisibleProfileCard && true} />
+        <ProfileCard active={isVisibleProfileCard && true} user={post.user} />
         <div>
           <Avatar
             src={post.user.profilePic}
