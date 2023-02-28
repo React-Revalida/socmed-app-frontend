@@ -1,6 +1,6 @@
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { useTheme, createTheme, ThemeProvider } from "@mui/material";
 import { UserInterfaceContext } from "./contexts/UserInterfaceContext";
 import { grey } from "@mui/material/colors";
@@ -70,6 +70,14 @@ function App() {
   const darkModeTheme = createTheme(getDesignTokens(mode));
   const selectToken = useSelector((state) => state.auth.accessToken);
   const accessToken = localStorage.getItem("accessToken") || selectToken;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login");
+    }
+  }, [accessToken]);
+      
+
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
