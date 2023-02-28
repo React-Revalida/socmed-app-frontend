@@ -11,11 +11,11 @@ import Avatar from "react-avatar";
 import SockJS from "sockjs-client";
 import { over } from "stompjs";
 import "../ChatInputs/ChatInputs.css";
+import { chatURI, getMessages } from "../../services/chat";
 var stompClient = null;
 const Chat = ({ messages, username2Chat, profile }) => {
   const [privateChats, setPrivateChats] = useState(new Map());
-  const [tab, setTab] = useState("");
-  const [isFocus, setIsFocus] = React.useState(false);
+  const [receiver, setReceiver] = useState("");
   const [loading, setLoading] = React.useState(true);
   setTimeout(() => {
     setLoading(false);
@@ -57,7 +57,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
 
   useEffect(() => {
     if (id) {
-      let messageid = id.split("/")[2];
+      const messageid = id.split("/")[2];
       setUserData({
         ...userData,
         username: profile.username,
@@ -67,7 +67,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
         privateChats.set(messageid, []);
         setPrivateChats(new Map(privateChats));
       }
-      setTab(messageid);
+      setReceiver(messageid);
     }
   }, [id]);
 
@@ -87,7 +87,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
   }, [userData.username, userData.connected]);
 
   const connect = () => {
-    let Sock = new SockJS("http://localhost:8085/ws");
+    let Sock = new SockJS(chatURI);
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
   };
@@ -100,6 +100,13 @@ const Chat = ({ messages, username2Chat, profile }) => {
       onPrivateMessage
     );
     userJoin();
+    const messages = privateChats.get(userData.receivername);
+    if (messages.length === 0) {
+      getMessages(profile.username, userData.receivername).then((data) => {
+        privateChats.set(userData.receivername, data);
+        setPrivateChats(new Map(privateChats));
+      });
+    }
   };
 
   const userJoin = () => {
@@ -207,8 +214,8 @@ const Chat = ({ messages, username2Chat, profile }) => {
               </span>
             </div>
             <div className="chatMessages">
-              {privateChats.get(tab) &&
-                [...privateChats.get(tab)].map((chat, index) => (
+              {privateChats.get(receiver) &&
+                [...privateChats.get(receiver)].map((chat, index) => (
                   <Fragment key={index}>
                     {chat.senderName !== userData.username && (
                       <FromMessage
