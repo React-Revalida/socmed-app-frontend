@@ -11,3 +11,7 @@ export function likePost(data) {
 export function unlikePost(postId, userId) {
   return http.post(`/likes/unlike/${postId}/${userId}`);
 }
+
+export function getPostsLikedByUser(userId) {
+  return http.get(`/likes/likedpost/${userId}`);
+}

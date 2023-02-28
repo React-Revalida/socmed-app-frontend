@@ -183,7 +183,6 @@ const Chat = ({ messages, username2Chat, profile }) => {
               <span>{user && user.name}</span>
               <span>@{user && user.username}</span>
             </div>
-            <InfoIcon />
           </div>
           <div className="chatRoom">
             <div className="chatInfo">

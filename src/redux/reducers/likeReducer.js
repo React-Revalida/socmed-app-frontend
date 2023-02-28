@@ -1,5 +1,6 @@
 const initialState = {
   likes: {},
+  posts: {},
   loading: false,
   error: null,
   success: false,
@@ -52,6 +53,21 @@ export default function likeReducer(state = initialState, action) {
         success: action.payload,
       };
     case "UNLIKES_POST_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case "FETCH_LIKED_POST_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "FETCH_LIKED_POST_SUCCESS":
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    case "FETCH_LIKED_POST_FAILURE":
       return {
         ...state,
         error: action.payload,
