@@ -20,6 +20,7 @@ import { resetLoading } from "../../redux/actions/postActions";
 
 import { logoutUser } from "../../redux/actions/authActions";
 import * as profileActions from "../../redux/actions/profileActions";
+import PostEditForm from "../Feed/Post/PostEditForm";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,8 +42,18 @@ const Sidebar = () => {
     setOpen(isOpen);
   };
 
+  const [openPostModal, setOpenPostModal] = React.useState(false);
+  const handleAddPost = (isOpen) => {
+    setOpenPostModal(isOpen);
+  };
+
   return (
     <>
+      <PostEditForm
+        profile={profile}
+        isPostModalOpen={openPostModal}
+        onOpenPostModal={handleAddPost}
+      />
       <LogoutDialog isDialogOpen={open} onOpenDialog={handleOpenLogoutDialog} />
       <div className="sidebar">
         <FlutterDashIcon className="twitter-icon" />
@@ -92,7 +103,13 @@ const Sidebar = () => {
         >
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        <div className="tweetButton" style={{ cursor: "pointer" }}>
+        <div
+          className="tweetButton"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            handleAddPost(true);
+          }}
+        >
           <SetTweetIcon className="setTweetIcon" />
           <span>Create Post</span>
         </div>

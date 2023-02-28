@@ -516,6 +516,46 @@ export const fetchAllUsersSuccess = (users) => {
 export const fetchAllUsersFailure = (error) => {
   return {
     type: "FETCH_ALL_USERS_FAILURE",
+       payload: error,
+  };
+};
+
+export const fetchLikedPostRequest = () => {
+  return {
+    type: "FETCH_LIKED_POST_REQUEST",
+  };
+};
+
+export const fetchLikedPostSuccess = (posts) => {
+  return {
+    type: "FETCH_LIKED_POST_SUCCESS",
+    payload: posts,
+  };
+};
+
+export const fetchLikedPostFailure = (error) => {
+  return {
+    type: "FETCH_LIKED_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const editPostRequest = () => {
+  return {
+    type: "EDIT_POST_REQUEST",
+  };
+};
+
+export const editPostSuccess = (userPosts) => {
+  return {
+    type: "EDIT_POST_SUCCESS",
+    payload: userPosts,
+  };
+};
+
+export const editPostFailure = (error) => {
+  return {
+    type: "EDIT_POST_FAILURE",
     payload: error,
   };
 };

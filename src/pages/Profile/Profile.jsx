@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
 import * as postActions from "../../redux/actions/postActions";
 import * as followActions from "../../redux/actions/followActions";
+import * as likeActions from "../../redux/actions/likeActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
@@ -60,6 +61,9 @@ const Profile = () => {
   const selectUserPosts = useSelector((state) => state.post.userPosts);
   const [userPosts, setUserPosts] = useState(selectUserPosts);
 
+  const selectUserLikedPosts = useSelector((state) => state.like.posts);
+  const [likedPost, setUserLikedPosts] = useState([]);
+
   const selectLoggedInUserFollowing = useSelector(
     (state) => state.follow.loggedInUserFollowing
   );
@@ -81,11 +85,13 @@ const Profile = () => {
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
+      dispatch(likeActions.fetchLikedPostByUser(profile.userId));
       dispatch(postActions.fetchUserPosts(params.username));
       dispatch(followActions.getUserFollowers(params.username));
       dispatch(followActions.getUserFollowing(params.username));
     } else {
       dispatch(profileActions.fetchProfile());
+      dispatch(likeActions.fetchLikedPostByUser(profile.userId));
       dispatch(postActions.fetchUserPosts(profile.username));
       dispatch(followActions.getUserFollowers(profile.username));
       dispatch(followActions.getUserFollowing(profile.username));
@@ -101,13 +107,17 @@ const Profile = () => {
       setFollowing(selectFollowing);
       setIsMe(false);
       checkIfUserFollowed(params.username);
+      setUserLikedPosts(selectUserLikedPosts);
     } else {
       setProfile(selectProfile);
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
       setIsMe(true);
+      setUserLikedPosts(selectUserLikedPosts);
     }
+    console.log(userPosts);
+    console.log(likedPost);
   }, [
     params.username,
     selectProfile,
@@ -116,11 +126,13 @@ const Profile = () => {
     selectFollowers,
     selectFollowing,
     selectLoggedInUserFollowing,
+    selectUserLikedPosts,
   ]);
 
   useEffect(() => {
+    dispatch(likeActions.fetchLikedPostByUser(profile.userId));
     setLoading(selectLoading);
-  }, [selectLoading]);
+  }, [selectLoading, dispatch]);
 
   const handleDeletePost = (postId) => {
     dispatch(postActions.deletePost(postId));
@@ -231,16 +243,29 @@ const Profile = () => {
         </div>
         <article className="profilePosts">
           {loading === false ? (
-            userPosts.map((post) => (
-              <>
-                <Post
-                  key={post.postId}
-                  post={post}
-                  from={"profile"}
-                  onDelete={handleDeletePost}
-                />
-              </>
-            ))
+            category === 1 ? (
+              userPosts.map((post) => (
+                <>
+                  <Post
+                    key={post.postId}
+                    post={post}
+                    from={"profile"}
+                    onDelete={handleDeletePost}
+                  />
+                </>
+              ))
+            ) : (
+              likedPost.map((post) => (
+                <>
+                  <Post
+                    // key={post.postId}
+                    post={post}
+                    from={"profile"}
+                    // onDelete={handleDeletePost}
+                  />
+                </>
+              ))
+            )
           ) : (
             <Loading />
           )}

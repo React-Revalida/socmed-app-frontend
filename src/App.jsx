@@ -69,7 +69,6 @@ function App() {
   const theme = useTheme();
   const mode = darkMode ? "dark" : "light";
   const darkModeTheme = createTheme(getDesignTokens(mode));
-
   const selectToken = useSelector((state) => state.auth.accessToken);
   const accessToken = localStorage.getItem("accessToken") || selectToken;
   const darkTheme = createTheme({

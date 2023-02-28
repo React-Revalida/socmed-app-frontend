@@ -161,11 +161,28 @@
   fill: var(--blue);
 }
 
+.emojiOption {
+  color: var(--blue);
+  flex: 0.9;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  fill: var(--blue);
+  padding: 10px;
+}
+
+.emojiOption:hover {
+  background-color: var(--hover-blue-color);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
 .tweetboxOptionIcon {
-  margin-top: 5px;
+  margin-top: 15px;
   margin-left: 20px;
   padding: 10px;
   color: var(--blue);
+  fill: var(--blue);
 }
 
 .tweetboxOptionIcon text {
@@ -178,4 +195,10 @@
   background-color: var(--hover-blue-color);
   border-radius: 9999px;
   cursor: pointer;
+}
+
+aside.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  top: 125px;
+  z-index: 999;
 }

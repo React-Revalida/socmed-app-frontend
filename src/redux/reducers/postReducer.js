@@ -116,6 +116,27 @@ export default function authReducer(state = initialState, action) {
         userPosts: {},
       };
 
+    case "EDIT_POST_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+
+    case "EDIT_POST_SUCCESS":
+      return {
+        ...state,
+        userPosts: action.payload,
+        success: true,
+      };
+
+    case "EDIT_POST_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+        userPosts: {},
+      };
+
     case "RESET_POST_SUCCESS":
       return {
         ...state,
