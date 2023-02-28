@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ChatInputs from "../ChatInputs/ChatInputs";
 import FromMessage from "../FromMessage/FromMessage";
@@ -210,7 +210,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
             <div className="chatMessages">
               {privateChats.get(tab) &&
                 [...privateChats.get(tab)].map((chat, index) => (
-                  <>
+                  <Fragment key={index}>
                     {chat.senderName !== userData.username && (
                       <FromMessage
                         message={chat.message}
@@ -220,7 +220,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
                     {chat.senderName === userData.username && (
                       <MyMessage message={chat.message} />
                     )}
-                  </>
+                  </Fragment>
                 ))}
             </div>
             <ChatInputs onChange={handleMessage} value={userData.message} onClick={sendPrivateValue} />
