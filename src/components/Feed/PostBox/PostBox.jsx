@@ -36,7 +36,7 @@ const TweetBox = () => {
   });
 
   const [profilePicUpload, setProfilePicUpload] = useState(null);
-  const [currentImage, setCurrentImage] = useState("");
+  const [postImage, setPostImage] = useState("");
   const [emojiPicker, setEmojiPicker] = useState(null);
 
   const uploadImage = (e) => {
@@ -45,7 +45,7 @@ const TweetBox = () => {
     setProfilePicUpload(file);
     const reader = new FileReader();
     reader.onload = () => {
-      setCurrentImage(reader.result);
+      setPostImage(reader.result);
     };
     reader.readAsDataURL(file);
   };
@@ -55,7 +55,7 @@ const TweetBox = () => {
     dispatch(postActions.addPost(tweet, profilePicUpload));
     setTweet({ ...tweet, message: "" });
     setProfilePicUpload(null);
-    setCurrentImage("");
+    setPostImage("");
     dispatch(postActions.resetSuccess());
   };
   return (
@@ -77,7 +77,7 @@ const TweetBox = () => {
             />
           </div>
         </div>
-        {currentImage === "" ? (
+        {postImage === "" ? (
           <div></div>
         ) : (
           <div className="uploadImage">
@@ -87,11 +87,11 @@ const TweetBox = () => {
                 justifyContent={"center"}
                 alignContent={"center"}
               >
-                <img src={currentImage} alt="no picture"></img>
+                <img src={postImage} alt="no picture"></img>
                 <div className="tweetboxOptions">
                   <Close
                     className="uploadedImage-closeButton"
-                    onClick={() => setCurrentImage("")}
+                    onClick={() => setPostImage("")}
                   />
                 </div>
               </Box>

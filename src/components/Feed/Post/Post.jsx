@@ -65,7 +65,12 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
 
   return (
     <>
-      <PostEditForm post={post} isDialogOpen={open} onOpenDialog={editPost} />
+      <PostEditForm
+        profile={profile}
+        post={post}
+        isPostModalOpen={open}
+        onOpenPostModal={editPost}
+      />
       <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
         <ProfileCard active={isVisibleProfileCard && true} user={post.user} />
         <div>

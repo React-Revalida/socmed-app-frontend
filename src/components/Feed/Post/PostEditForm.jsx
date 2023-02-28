@@ -21,24 +21,32 @@ import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 import { Close } from "@mui/icons-material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useNavigate } from "react-router-dom";
 
-const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
+const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
   const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
-  const [postState, setPostState] = React.useState({
-    message: "",
-  });
+  const [postState, setPostState] = React.useState(
+    post
+      ? { message: post.message }
+      : {
+          message: "",
+        }
+  );
 
-  const [profilePicUpload, setProfilePicUpload] = useState(null);
-  const [currentImage, setCurrentImage] = useState("");
+  const [newPicUpload, setNewPicUpload] = useState(null);
+  const [currentImage, setCurrentImage] = useState(post ? post.imageUrl : "");
+  console.log(currentImage);
 
-  useEffect(() => {
-    setPostState({
-      message: post.message ? post.message : "",
-    });
+  const navigate = useNavigate();
 
-    setCurrentImage(post.imageUrl ? post.imageUrl : "");
-  }, [post]);
+  // useEffect(() => {
+  //   setPostState({
+  //     message: post.message != null ? post.message : "",
+  //   });
+
+  //   setCurrentImage(post.imageUrl != null ? post.imageUrl : "");
+  // }, [post]);
 
   // const [postImageUpload, setPostImageUpload] = useState(null);
 
@@ -79,21 +87,29 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
 
   useEffect(() => {
     if (success) {
-      onOpenDialog(false);
+      onOpenPostModal(false);
       dispatch(postActions.resetSuccess());
     }
-  }, [success, dispatch, onOpenDialog]);
+  }, [success, dispatch, onOpenPostModal]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postActions.editPost(post.postId, postState, profilePicUpload));
-    dispatch(postActions.resetSuccess());
-    onOpenDialog(false);
+    if (post) {
+      dispatch(postActions.editPost(post.postId, postState, newPicUpload));
+      dispatch(postActions.resetSuccess());
+    } else {
+      dispatch(postActions.addPost(postState, newPicUpload));
+      dispatch(postActions.resetSuccess());
+      setPostState({ ...postState, message: "" });
+      setNewPicUpload(null);
+      setCurrentImage("");
+    }
+    onOpenPostModal(false);
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setProfilePicUpload(file);
+    setNewPicUpload(file);
     const reader = new FileReader();
     reader.onload = () => {
       setCurrentImage(reader.result);
@@ -102,12 +118,12 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
   };
   return (
     <CustomDialog
-      open={isDialogOpen}
-      onClose={() => onOpenDialog(false)}
+      open={isPostModalOpen}
+      onClose={() => onOpenPostModal(false)}
       fullWidth
     >
       <Tabs value={tab} textColor="inherit" variant="fullWidth">
-        <Tab label="Edit Post" {...a11yProps(0)} />
+        <Tab label={post ? "Edit Post" : "Create Post"} {...a11yProps(0)} />
       </Tabs>
       <DialogContent sx={{ bgcolor: "background.paper" }}>
         <Grid component="form" onSubmit={handleSubmit}>
@@ -116,11 +132,14 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
               <div className="profile">
                 <div className="profileTitle">
                   <label htmlFor="profilePicInput">
-                    <Avatar
-                      round={true}
-                      size="50"
-                      src={post.user.profilePic}
-                    ></Avatar>
+                    <div>
+                      <Avatar
+                        round={true}
+                        size="50"
+                        src={profile.profilePic}
+                        name={profile.firstname + " " + profile.lastname}
+                      ></Avatar>
+                    </div>
                     <input
                       type="file"
                       id="profilePicInput"
@@ -135,10 +154,8 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
               <div className="profile">
                 <div className="profileTitle">
                   <Typography sx={{ ml: 2, mb: 1, fontStyle: "inherit" }}>
-                    {post.user.firstname}&ensp;{post.user.lastname}
-                    <Typography color={"gray"}>
-                      @{post.user.username}
-                    </Typography>
+                    {profile.firstname}&ensp;{profile.lastname}
+                    <Typography color={"gray"}>@{profile.username}</Typography>
                   </Typography>
                 </div>
               </div>
@@ -161,7 +178,7 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
                       onChange={handleProfileChange}
                     />
                   </Grid>
-                  {currentImage === "" ? (
+                  {currentImage === "" || currentImage === null ? (
                     <label htmlFor="profilePicInput">
                       <div className="tweetboxOptionIcon">
                         <AddPhotoAlternateIcon />
@@ -188,7 +205,10 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
                               <Close
                                 sx={{ mt: 1, ml: 1 }}
                                 className="uploadedImage-closeButton"
-                                onClick={() => setCurrentImage("")}
+                                onClick={() => {
+                                  setCurrentImage("");
+                                  setNewPicUpload(null);
+                                }}
                               />
                             </div>
                           </Box>
@@ -199,15 +219,27 @@ const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
                 </Grid>
               </Box>
               <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  disabled={isFormInvalid()}
-                  className="editProfile"
-                  variant="contained"
-                  sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
-                >
-                  Save Changes
-                </Button>
+                {post ? (
+                  <Button
+                    type="submit"
+                    disabled={isFormInvalid()}
+                    className="editProfile"
+                    variant="contained"
+                    sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
+                  >
+                    Save Changes
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    className="editProfile"
+                    variant="contained"
+                    disabled={isFormInvalid()}
+                    sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
+                  >
+                    Add Post
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </Grid>
