@@ -13,7 +13,7 @@ export function login(username, password) {
   return http.post("/auth", { username, password });
 }
 
-export async function logout() {
+export function logout() {
   localStorage.removeItem("accessToken");
 }
 

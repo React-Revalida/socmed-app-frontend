@@ -20,9 +20,9 @@ export const loginUser = (usernameOrEmail, password) => {
 
 export const logoutUser = () => {
   return async (dispatch) => {
-    await authService.logout().then(() => {
-      dispatch(type.fetchLoginSuccess(null));
-    });
+    dispatch(type.fetchAuthRequest());
+    authService.logout();
+    dispatch(type.fetchLoginSuccess(null));
   };
 };
 
