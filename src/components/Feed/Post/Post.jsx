@@ -29,20 +29,10 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
     // dispatch(profileActions.fetchProfile());
+    console.log(fromComponent);
     likedByYou();
   }, [dispatch]);
 
-  const likePost = (e, id) => {
-    console.log(post.postId);
-    onLike(id);
-    e.preventDefault();
-    // setLiked(!liked);
-  };
-  const unlikePost = (e, id) => {
-    onUnlike(id);
-    e.preventDefault();
-    // setLiked(!liked);
-  };
   const loading = useSelector((state) => state.like.loading);
   const likes = post.likes;
   const comments = post.comments;
@@ -130,9 +120,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
             dispatch(postActions.resetLoading()),
           ]}
         >
-          <div className="post-content">
-            {post.message} {liked ? liked : liked}
-          </div>
+          <div className="post-content">{post.message}</div>
           {post.imageUrl && (
             <div className="post-image">
               <img src={post.imageUrl} alt="shareimage" />
@@ -144,16 +132,49 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
             {liked ? (
               <FavoriteOutlinedIcon
                 className="postIcon"
-                onClick={(e) => {
-                  unlikePost(e, post.postId);
+                onClick={async (e) => {
+                  // unlikePost(e, post.postId);
+                  if (fromComponent === "profile") {
+                    await dispatch(
+                      likeActions.unlikePost(
+                        post.postId,
+                        profile.userId,
+                        profile.username
+                      )
+                    );
+                  } else {
+                    await dispatch(
+                      likeActions.unlikePost(post.postId, profile.userId)
+                    );
+                  }
                 }}
                 sx={{ color: teal[50] }}
               />
             ) : (
               <FavoriteIcon
                 className="postIcon"
-                onClick={(e) => {
-                  likePost(e, post.postId);
+                onClick={async (e) => {
+                  // likePost(e, post.postId);
+                  if (fromComponent === "profile") {
+                    await dispatch(
+                      likeActions.likePost(
+                        {
+                          liked: true,
+                          user: profile.userId,
+                          post: post.postId,
+                        },
+                        profile.username
+                      )
+                    );
+                  } else {
+                    await dispatch(
+                      likeActions.likePost({
+                        liked: true,
+                        user: profile.userId,
+                        post: post.postId,
+                      })
+                    );
+                  }
                 }}
               />
             )}
