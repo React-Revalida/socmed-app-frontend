@@ -115,7 +115,6 @@ export const fetchUserPosts = (username) => {
     postService
       .getUserPosts(username)
       .then((response) => {
-        console.log(response.data);
         const posts = response.data;
         dispatch(type.fetchUserPostsSuccess(posts));
       })

@@ -99,16 +99,20 @@ const Sidebar = () => {
         >
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        <div
-          className="tweetButton"
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            handleAddPost(true);
-          }}
-        >
-          {/* <PostAddIcon className="setTweetIcon" /> */}
-          <span>Create Post</span>
-        </div>
+        {currLocation === "/home" ? (
+          <></>
+        ) : (
+          <div
+            className="tweetButton"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              handleAddPost(true);
+            }}
+          >
+            {/* <SetTweetIcon className="setTweetIcon" /> */}
+            <span>Create Post</span>
+          </div>
+        )}
         <div className="profileCard">
           <div className="profileCardImage">
             <Avatar

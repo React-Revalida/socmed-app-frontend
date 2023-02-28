@@ -1,9 +1,10 @@
 import Avatar from "react-avatar";
-import React from "react";
+import React, { useEffect } from "react";
 import "./FriendSuggestionItem.css";
 import * as followActions from "../../../../redux/actions/followActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { resetLoading } from "../../../../redux/actions/postActions";
 
 const FriendSuggestionItem = ({ image, displayName, username }) => {
   const dispatch = useDispatch();
@@ -26,14 +27,20 @@ const FriendSuggestionItem = ({ image, displayName, username }) => {
     <div className="friendSuggestionsItem">
       <div
         className="friendSuggestionImage"
-        onClick={() => navigate(`/profile/${username}`)}
+        onClick={() => {
+          dispatch(resetLoading());
+          navigate(`/profile/${username}`);
+        }}
       >
         <Avatar src={image} name={displayName} round={true} size={50} />
       </div>
       <div className="profileCardNameCol">
         <div
           className="profileCardNameColName"
-          onClick={() => navigate(`/profile/${username}`)}
+          onClick={() => {
+            dispatch(resetLoading());
+            navigate(`/profile/${username}`);
+          }}
         >
           <span>{displayName}</span>
         </div>

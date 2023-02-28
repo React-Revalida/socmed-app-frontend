@@ -26,7 +26,6 @@ export const fetchLikedPostByUser = (userId) => {
       .getPostsLikedByUser(userId)
       .then((response) => {
         const likes = response.data;
-        console.log(likes);
         dispatch(type.fetchLikedPostSuccess(likes));
       })
       .catch((error) => {

@@ -37,7 +37,6 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
 
   const [newPicUpload, setNewPicUpload] = useState(null);
   const [currentImage, setCurrentImage] = useState(post ? post.imageUrl : "");
-  console.log(currentImage);
 
   const navigate = useNavigate();
 
