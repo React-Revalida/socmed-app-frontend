@@ -83,6 +83,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
   useEffect(() => {
     if (userData.username && !userData.connected) {
       connect();
+      loadMessages();
     }
   }, [userData.username, userData.connected]);
 
@@ -100,6 +101,10 @@ const Chat = ({ messages, username2Chat, profile }) => {
       onPrivateMessage
     );
     userJoin();
+    loadMessages();
+  };
+
+  const loadMessages = () => {
     const messages = privateChats.get(userData.receivername);
     if (messages.length === 0) {
       getMessages(profile.username, userData.receivername).then((data) => {
