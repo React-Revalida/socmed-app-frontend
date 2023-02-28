@@ -222,7 +222,13 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
               <span>{likes.length > 0 ? likes.length : ""}</span>
             </div>
             <div>
-              <CommentIcon className="postIcon" />
+              <CommentIcon
+                onClick={() => [
+                  navigate(`/posts/${post.postId}`),
+                  dispatch(postActions.resetLoading()),
+                ]}
+                className="postIcon"
+              />
               <span>{comments.length > 0 ? comments.length : ""}</span>
             </div>
           </div>
