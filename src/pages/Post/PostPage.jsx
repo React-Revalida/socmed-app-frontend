@@ -19,6 +19,7 @@ const PostPage = () => {
 
   useEffect(() => {
     dispatch(postActions.fetchPostById(params.postId));
+    console.log(post);
   }, [dispatch]);
 
   const loading = useSelector((state) => state.post.loading);
@@ -66,8 +67,9 @@ const PostPage = () => {
               </Typography>
             </div>
             <div className="postFooter">
-              {/* {post.comment.map.(comment) => (<Comment comment={comment.message})/>)} */}
-              <Comment />
+              {post.comments.map((comment) => (
+                <Comment comment={comment} />
+              ))}
             </div>
           </>
         )}

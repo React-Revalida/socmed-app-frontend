@@ -6,7 +6,7 @@ const FriendSuggestionItem = ({ image, displayName, username }) => {
   return (
     <div className="friendSuggestionsItem">
       <div className="friendSuggestionImage">
-        <Avatar src={image} round={true} size={50} />
+        <Avatar src={image} name={displayName} round={true} size={50} />
       </div>
       <div className="profileCardNameCol">
         <div className="profileCardNameColName">

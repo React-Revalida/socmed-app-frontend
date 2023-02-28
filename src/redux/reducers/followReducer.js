@@ -5,6 +5,8 @@ const initialState = {
   followers: [],
   following: [],
   userFollowed: false,
+  loggedInUserFollowing: [],
+  whoToFollow: [],
 };
 
 export default function followReducer(state = initialState, action) {
@@ -41,6 +43,38 @@ export default function followReducer(state = initialState, action) {
         error: action.payload,
         following: [],
       };
+    case "FETCH_WHO_TO_FOLLOW_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_WHO_TO_FOLLOW_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        whoToFollow: action.payload,
+      };
+    case "FETCH_WHO_TO_FOLLOW_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        whoToFollow: [],
+      };
+    case "FETCH_LOGGED_IN_USER_FOLLOWING_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        loggedInUserFollowing: action.payload,
+      };
+    case "FETCH_LOGGED_IN_USER_FOLLOWING_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        loggedInUserFollowing: [],
+      };
     case "FOLLOW_USER_REQUEST":
       return {
         ...state,
@@ -53,6 +87,23 @@ export default function followReducer(state = initialState, action) {
         success: true,
       };
     case "FOLLOW_USER_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+      };
+    case "UNFOLLOW_USER_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+    case "UNFOLLOW_USER_SUCCESS":
+      return {
+        ...state,
+        userFollowed: false,
+        success: true,
+      };
+    case "UNFOLLOW_USER_FAILURE":
       return {
         ...state,
         error: action.payload,

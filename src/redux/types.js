@@ -18,7 +18,6 @@ export const fetchProfileFailure = (error) => {
   };
 };
 
-
 export const fetchOtherProfileRequest = (username) => {
   return {
     type: "FETCH_OTHER_PROFILE_REQUEST",
@@ -305,10 +304,10 @@ export const addPostRequest = () => {
   };
 };
 
-export const addPostSuccess = (addedPost) => {
+export const addPostSuccess = (userPosts) => {
   return {
     type: "ADD_POST_SUCCESS",
-    payload: addedPost,
+    payload: userPosts,
   };
 };
 
@@ -373,6 +372,20 @@ export const fetchFollowingFailure = (error) => {
   };
 };
 
+export const fetchLoggedInUserFollowingSuccess = (following) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWING_SUCCESS",
+    payload: following,
+  };
+};
+
+export const fetchLoggedInUserFollowingFailure = (error) => {
+  return {
+    type: "FETCH_LOGGED_IN_USER_FOLLOWING_FAILURE",
+    payload: error,
+  };
+};
+
 export const followUserRequest = () => {
   return {
     type: "FOLLOW_USER_REQUEST",
@@ -392,22 +405,83 @@ export const followUserFailure = (error) => {
     payload: error,
   };
 };
+
+export const unfollowUserRequest = () => {
+  return {
+    type: "UNFOLLOW_USER_REQUEST",
+  };
+};
+
+export const unfollowUserSuccess = (follows) => {
+  return {
+    type: "UNFOLLOW_USER_SUCCESS",
+    payload: follows,
+  };
+};
+
+export const unfollowUserFailure = (error) => {
+  return {
+    type: "UNFOLLOW_USER_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchWhoToFollowRequest = () => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_REQUEST",
+  };
+};
+
+export const fetchWhoToFollowSuccess = (follows) => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_SUCCESS",
+    payload: follows,
+  };
+};
+
+export const fetchWhoToFollowFailure = (error) => {
+  return {
+    type: "FETCH_WHO_TO_FOLLOW_FAILURE",
+    payload: error,
+  };
+};
+
 export const fetchMutualsRequest = () => {
   return {
     type: "FETCH_MUTUALS_REQUEST",
   };
-}
+};
 
 export const fetchMutualsSuccess = (mutuals) => {
   return {
     type: "FETCH_MUTUALS_SUCCESS",
     payload: mutuals,
   };
-}
+};
 
 export const fetchMutualsFailure = (error) => {
   return {
     type: "FETCH_MUTUALS_FAILURE",
     payload: error,
   };
-}
+};
+
+export const deletePostRequest = () => {
+  return {
+    type: "DELETE_POST_REQUEST",
+  };
+};
+
+export const deletePostSuccess = (userPosts) => {
+  return {
+    type: "DELETE_POST_SUCCESS",
+    payload: userPosts,
+  };
+};
+
+export const deletePostFailure = (error) => {
+  return {
+    type: "DELETE_POST_FAILURE",
+    payload: error,
+  };
+};

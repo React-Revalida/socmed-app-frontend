@@ -15,6 +15,7 @@ import Widgets from "../Widgets/Widgets";
 import PostPage from "../../pages/Post/PostPage";
 import { useState } from "react";
 
+import * as likeActions from "../../redux/actions/likeActions";
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
 
@@ -33,12 +34,26 @@ const Feed = () => {
 
   const selectProfile = useSelector((state) => state.user.profile);
   useEffect(() => {
-    console.log(selectProfile);
     setPosts(selectPosts);
     setLoading(selectLoading);
     //params
   }, [selectPosts, selectLoading]);
 
+  const onLikePost = async (postId) => {
+    console.log("like post" + postId);
+    await dispatch(
+      likeActions.likePost({
+        liked: true,
+        user: selectProfile.userId,
+        post: postId,
+      })
+    );
+  };
+
+  const onUnlikePost = async (postId) => {
+    console.log("unlike post" + postId);
+    await dispatch(likeActions.unlikePost(postId, selectProfile.userId));
+  };
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
 
@@ -69,18 +84,13 @@ const Feed = () => {
         ) : (
           <article>
             {posts.map((post) => (
-              <CardActionArea
-                onClick={() => [
-                  navigate(`/post/${post.postId}`),
-                  dispatch(postActions.resetLoading()),
-                ]}
-              >
-                <Post
-                  key={post.postId}
-                  post={post}
-                  userLoggedIn={selectProfile}
-                />
-              </CardActionArea>
+              <Post
+                key={post.postId}
+                post={post}
+                userLoggedIn={selectProfile}
+                onLike={onLikePost}
+                onUnlike={onUnlikePost}
+              />
             ))}
           </article>
         )}

@@ -3,6 +3,12 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  position: relative;
+}
+aside.EmojiPickerReact.epr-main {
+  position: absolute !important;
+  top: 125px;
+  z-index: 999;
 }
 .bottomBorder {
   height: 8px;
@@ -18,6 +24,7 @@
 .tweetboxUserIcon {
   flex: 0.1;
   padding: 10px;
+  padding-bottom: 15px;
 }
 .tweetbox-input-row {
   display: flex;
@@ -35,6 +42,7 @@
   outline: none;
   resize: none;
   font-family: "Gill Sans", sans-serif;
+  padding-top: 20px;
 }
 
 .tweetboxOptions {
@@ -71,7 +79,6 @@
 
 .uploadImage {
   border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
 }
 
 .uploadedImage {

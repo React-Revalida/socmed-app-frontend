@@ -4,7 +4,7 @@ export const getPosts = async () => {
   return await http.get("/posts");
 };
 
-export const addPost = async (post) => {
+export const insertPost = async (post) => {
   return await http.post("/posts", post, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -13,9 +13,13 @@ export const addPost = async (post) => {
 };
 
 export const getPostById = async (postId) => {
-  return await http.get(`/post/${postId}`);
+  return await http.get(`/posts/${postId}`);
 };
 
 export const getUserPosts = async (username) => {
   return await http.get(`/profile/${username}/posts`);
+};
+
+export const removePost = async (postId) => {
+  return await http.post(`/posts/delete/${postId}`);
 };

@@ -7,3 +7,19 @@ export const getFollowers = async (username) => {
 export const getFollowing = async (username) => {
   return await http.get(`/following/${username}`);
 };
+
+export const followUser = async (username) => {
+  return await http.post(`/follow/${username}`);
+};
+
+export const unfollowUser = async (username) => {
+  return await http.post(`/unfollow/${username}`);
+};
+
+export const getWhoToFollow = async () => {
+  return await http.get("/who-to-follow", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+};

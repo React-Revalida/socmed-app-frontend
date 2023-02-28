@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./FriendSuggestions.css";
 import FriendSuggestionItem from "./FriendSuggestionItem/FriendSuggestionItem";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import * as followActions from "../../../redux/actions/followActions";
 
 const FriendSuggestions = () => {
+  const dispatch = useDispatch();
+  const whoToFollow = useSelector((state) => state.follow.whoToFollow);
+  const store = useStore();
+
+  useEffect(() => {
+    dispatch(followActions.getWhoToFollow());
+  }, [dispatch]);
+
+  console.log(whoToFollow);
+
   return (
     <div className="friendSuggestions">
       <div className="friendSuggestionsHeader">
         <span>Who to follow</span>
       </div>
-      <FriendSuggestionItem
-        username="code"
-        displayName="Visual Studio Code"
-        image="https://pbs.twimg.com/profile_images/1278357302601347072/BGZIBPH9_200x200.jpg"
-      />
-      <FriendSuggestionItem
-        username="gitHub"
-        displayName="GitHub"
-        image="https://pbs.twimg.com/profile_images/1338344493234286592/C_ujKIUa_200x200.png"
-      />
-      <FriendSuggestionItem
-        username="nodejs"
-        displayName="Node.js"
-        image="https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_200x200.jpg"
-      />
-      <div className="widgetsTopicMore">
-        <span>Show more</span>
-      </div>
+      {whoToFollow.map((user) => (
+        <FriendSuggestionItem
+          key={user.userId}
+          username={user.username}
+          displayName={user.name}
+          image={user.profilePic}
+        />
+      ))}
     </div>
   );
 };

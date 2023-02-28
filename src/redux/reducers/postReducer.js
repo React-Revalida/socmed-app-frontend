@@ -50,12 +50,7 @@ export default function authReducer(state = initialState, action) {
         ...state,
         error: action.payload,
         success: false,
-      };
-    case "RESET_POST_SUCCESS":
-      return {
-        ...state,
-        success: false,
-        loading: false,
+        userPosts: {},
       };
 
     case "FETCH_POST_BY_ID_REQUEST":
@@ -100,11 +95,40 @@ export default function authReducer(state = initialState, action) {
         userPosts: {},
       };
 
+    case "DELETE_POST_REQUEST":
+      return {
+        ...state,
+        error: null,
+      };
+
+    case "DELETE_POST_SUCCESS":
+      return {
+        ...state,
+        userPosts: action.payload,
+        success: true,
+      };
+
+    case "DELETE_POST_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+        success: false,
+        userPosts: {},
+      };
+
+    case "RESET_POST_SUCCESS":
+      return {
+        ...state,
+        success: false,
+        loading: false,
+      };
+
     case "RESET_LOADING":
       return {
         ...state,
         loading: true,
       };
+
     default:
       return state;
   }
