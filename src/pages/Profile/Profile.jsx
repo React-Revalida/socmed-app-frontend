@@ -116,8 +116,6 @@ const Profile = () => {
       setIsMe(true);
       setUserLikedPosts(selectUserLikedPosts);
     }
-    console.log(userPosts);
-    console.log(likedPost);
   }, [
     params.username,
     selectProfile,
@@ -156,7 +154,10 @@ const Profile = () => {
         <div className="profileHeader">
           <div>
             <BackIcon
-              onClick={() => navigate("/home")}
+              onClick={() => {
+                navigate("/home");
+                dispatch(postActions.resetLoading());
+              }}
               sx={{ "&:hover": { cursor: "pointer" } }}
             />
           </div>
@@ -249,7 +250,7 @@ const Profile = () => {
                   <Post
                     key={post.postId}
                     post={post}
-                    from={"profile"}
+                    from={isMe ? "profile" : "*"}
                     onDelete={handleDeletePost}
                   />
                 </>
@@ -260,7 +261,7 @@ const Profile = () => {
                   <Post
                     // key={post.postId}
                     post={post}
-                    from={"profile"}
+                    from={isMe ? "profile" : "*"}
                     // onDelete={handleDeletePost}
                   />
                 </>

@@ -31,7 +31,6 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
     // dispatch(profileActions.fetchProfile());
-    console.log(post.user);
     likedByYou();
   }, [dispatch]);
 
