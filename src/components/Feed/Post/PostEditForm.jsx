@@ -1,12 +1,7 @@
 import {
   Button,
-  Dialog,
   DialogContent,
-  FormControl,
   Grid,
-  IconButton,
-  InputLabel,
-  MenuItem,
   Tab,
   Tabs,
   Typography,
@@ -20,38 +15,32 @@ import PropTypes from "prop-types";
 import {
   CustomDialog,
   CustomOutlinedTextField,
-  CustomSelect,
 } from "../../../custom/CustomFieldComponents";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import moment from "moment";
-import * as profileActions from "../../../redux/actions/profileActions";
+import * as postActions from "../../../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 import { Close } from "@mui/icons-material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-const PostEditForm = ({ post, profile, onOpenDialog, isDialogOpen }) => {
-  console.log(post);
-  const theme = useTheme();
+const PostEditForm = ({ post, onOpenDialog, isDialogOpen }) => {
   const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
   const [postState, setPostState] = React.useState({
     message: "",
   });
 
-  const [imageUrl, setImageUrl] = React.useState("");
+  const [profilePicUpload, setProfilePicUpload] = useState(null);
+  const [currentImage, setCurrentImage] = useState("");
 
   useEffect(() => {
     setPostState({
       message: post.message ? post.message : "",
     });
 
-    setImageUrl(post.imageUrl ? post.imageUrl : "");
+    setCurrentImage(post.imageUrl ? post.imageUrl : "");
   }, [post]);
 
-  const [postImageUpload, setPostImageUpload] = useState(null);
+  // const [postImageUpload, setPostImageUpload] = useState(null);
 
   const postSchema = Joi.object({
     message: Joi.string().max(200).required(),
@@ -91,21 +80,23 @@ const PostEditForm = ({ post, profile, onOpenDialog, isDialogOpen }) => {
   useEffect(() => {
     if (success) {
       onOpenDialog(false);
-      dispatch(profileActions.resetSuccess());
+      dispatch(postActions.resetSuccess());
     }
   }, [success, dispatch, onOpenDialog]);
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
-    // dispatch(profileActions.updateProfile(postState, postImageUpload));
+    event.preventDefault();
+    dispatch(postActions.editPost(post.postId, postState, profilePicUpload));
+    dispatch(postActions.resetSuccess());
+    onOpenDialog(false);
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setPostImageUpload(file);
+    setProfilePicUpload(file);
     const reader = new FileReader();
     reader.onload = () => {
-      setImageUrl(reader.result);
+      setCurrentImage(reader.result);
     };
     reader.readAsDataURL(file);
   };
@@ -170,7 +161,7 @@ const PostEditForm = ({ post, profile, onOpenDialog, isDialogOpen }) => {
                       onChange={handleProfileChange}
                     />
                   </Grid>
-                  {imageUrl === "" ? (
+                  {currentImage === "" ? (
                     <label htmlFor="profilePicInput">
                       <div className="tweetboxOptionIcon">
                         <AddPhotoAlternateIcon />
@@ -192,12 +183,12 @@ const PostEditForm = ({ post, profile, onOpenDialog, isDialogOpen }) => {
                             justifyContent={"center"}
                             alignContent={"center"}
                           >
-                            <img src={imageUrl} alt="no picture"></img>
+                            <img src={currentImage} alt="no picture"></img>
                             <div className="tweetboxOptions">
                               <Close
                                 sx={{ mt: 1, ml: 1 }}
                                 className="uploadedImage-closeButton"
-                                onClick={() => setImageUrl("")}
+                                onClick={() => setCurrentImage("")}
                               />
                             </div>
                           </Box>

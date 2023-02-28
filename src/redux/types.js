@@ -505,3 +505,23 @@ export const fetchLikedPostFailure = (error) => {
     payload: error,
   };
 };
+
+export const editPostRequest = () => {
+  return {
+    type: "EDIT_POST_REQUEST",
+  };
+};
+
+export const editPostSuccess = (userPosts) => {
+  return {
+    type: "EDIT_POST_SUCCESS",
+    payload: userPosts,
+  };
+};
+
+export const editPostFailure = (error) => {
+  return {
+    type: "EDIT_POST_FAILURE",
+    payload: error,
+  };
+};

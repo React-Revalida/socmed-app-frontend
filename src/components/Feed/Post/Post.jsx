@@ -121,7 +121,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                           popupState.close();
                         }}
                       >
-                        <BorderColor /> &ensp; Edit (To be follow)
+                        <BorderColor /> &ensp; Edit
                       </MenuItem>
                     </Menu>
                   </React.Fragment>
