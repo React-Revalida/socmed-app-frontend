@@ -1,6 +1,6 @@
 import * as likesService from "../../services/likes";
 import * as type from "../types";
-import { fetchPosts, fetchUserPosts } from "./postActions";
+import { fetchPostById, fetchPosts, fetchUserPosts } from "./postActions";
 
 export const fetchLikesByPost = (postId) => {
   return async (dispatch) => {
@@ -19,7 +19,7 @@ export const fetchLikesByPost = (postId) => {
   };
 };
 
-export const likePost = (likes, usern) => {
+export const likePost = (likes, param, method) => {
   const likesDetails = JSON.stringify(likes);
   console.log(likes);
   const likesDetailsBlob = new Blob([likesDetails], {
@@ -35,10 +35,12 @@ export const likePost = (likes, usern) => {
       .then(async (response) => {
         const likes = response.data;
         await dispatch(type.LikePostSuccess(likes));
-        if (!usern) {
+        if (!param) {
           await dispatch(fetchPosts());
-        } else {
-          await dispatch(fetchUserPosts(usern));
+        } else if (method === "profile") {
+          await dispatch(fetchUserPosts(param));
+        } else if (method === "postpage") {
+          await dispatch(fetchPostById(param));
         }
       })
       .catch(async (error) => {
@@ -47,7 +49,7 @@ export const likePost = (likes, usern) => {
   };
 };
 
-export const unlikePost = (postId, userId, usern) => {
+export const unlikePost = (postId, userId, param, method) => {
   return async (dispatch) => {
     dispatch(type.UnlikePostRequest());
     likesService
@@ -56,10 +58,12 @@ export const unlikePost = (postId, userId, usern) => {
         const likes = response.data;
         console.log(likes);
         dispatch(type.UnlikePostSuccess(likes));
-        if (!usern) {
+        if (!param) {
           await dispatch(fetchPosts());
-        } else {
-          await dispatch(fetchUserPosts(usern));
+        } else if (method === "profile") {
+          await dispatch(fetchUserPosts(param));
+        } else if (method === "postpage") {
+          await dispatch(fetchPostById(param));
         }
       })
       .catch((error) => {
