@@ -1,7 +1,7 @@
 import { Button, DialogContent, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { CustomDialog } from "../../custom/CustomFieldComponents";
 import { logoutUser } from "../../redux/actions/authActions";
@@ -9,16 +9,20 @@ import { logoutUser } from "../../redux/actions/authActions";
 const LogoutDialog = ({ isDialogOpen, onOpenDialog }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const loginSuccess = useSelector((state) => state.auth.accessToken);
   const handleLogout = () => {
     try {
-      dispatch(logoutUser()).then(() => {
-        navigate("/login");
-      });
+      dispatch(logoutUser());
     } catch (error) {
       console.log(error);
     }
   };
+
+  React.useEffect(() => {
+    if (loginSuccess === null) {
+      navigate("/login");
+    }
+  }, [loginSuccess, navigate]);
 
   return (
     <CustomDialog
