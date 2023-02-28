@@ -43,7 +43,7 @@ const PostPage = () => {
           <Loading />
         ) : (
           <>
-            <Post key={post.postId} post={post} />
+            <Post key={post.postId} post={post} from={"postpage"} />
             <div className="postFooter">
               <Typography
                 color={"#8899a6"}
@@ -52,16 +52,11 @@ const PostPage = () => {
                 padding={1}
               >
                 {post.timestamp === null ? (
-                  <div>
-                    Test: 26{/*totalComments*/} comments · 130{/*totalLikes*/}{" "}
-                    likes
-                  </div>
+                  <div>No timestamp available</div>
                 ) : (
                   <>
                     {dateFormat}
                     <br />
-                    Test: 26{/*totalComments*/} comments · 130{/*totalLikes*/}{" "}
-                    likes
                   </>
                 )}
               </Typography>
