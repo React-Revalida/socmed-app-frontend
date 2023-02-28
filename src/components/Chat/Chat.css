@@ -11,6 +11,8 @@
   align-items: center;
   border-bottom: 0.5px solid var(--border-color);
   padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .chatHeader svg:nth-child(1){
   display: none;
