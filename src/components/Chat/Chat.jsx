@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ChatInputs from "../ChatInputs/ChatInputs";
 import FromMessage from "../FromMessage/FromMessage";
 import { InfoIcon, CalenderIcon, SendIcon } from "../icons";
@@ -37,9 +37,10 @@ const Chat = ({ messages, username2Chat, profile }) => {
     dateJoined: "",
   });
   var id = useLocation().pathname;
+
+  const navigate = useNavigate();
   useEffect(() => {
-    if (id) {
-      let messageid = id.split("/")[2];
+    if (username2Chat) {
       setUser({
         profilePic: username2Chat.profilePic,
         name: username2Chat.name,
@@ -49,6 +50,14 @@ const Chat = ({ messages, username2Chat, profile }) => {
         followers: username2Chat.followers,
         dateJoined: username2Chat.dateJoined,
       });
+    }else{
+      navigate("/messages");
+    }
+  }, [username2Chat]);
+
+  useEffect(() => {
+    if (id) {
+      let messageid = id.split("/")[2];
       setUserData({
         ...userData,
         username: profile.username,
