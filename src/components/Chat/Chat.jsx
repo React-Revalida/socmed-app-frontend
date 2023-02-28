@@ -50,7 +50,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
         followers: username2Chat.followers,
         dateJoined: username2Chat.dateJoined,
       });
-    }else{
+    } else {
       navigate("/messages");
     }
   }, [username2Chat]);
@@ -223,25 +223,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
                   </>
                 ))}
             </div>
-            <div className="chatInputs">
-              <div
-                className={
-                  isFocus ? "chatTextInput chatTextInputFocus" : "chatTextInput"
-                }
-              >
-                <input
-                  type="text"
-                  placeholder="Start a new message"
-                  onFocus={() => setIsFocus(true)}
-                  onBlur={() => setIsFocus(false)}
-                  value={userData.message}
-                  onChange={handleMessage}
-                />
-              </div>
-              <div onClick={sendPrivateValue}>
-                <SendIcon />
-              </div>
-            </div>
+            <ChatInputs onChange={handleMessage} value={userData.message} onClick={sendPrivateValue} />
           </div>
         </>
       )}
