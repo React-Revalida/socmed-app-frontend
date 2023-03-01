@@ -80,6 +80,9 @@ const Profile = () => {
   const selectProfile = useSelector((state) => state.user.profile);
   const selectOtherProfile = useSelector((state) => state.user.otherProfile);
   const [profile, setProfile] = useState(selectProfile);
+  
+  const selectAddress = useSelector((state) => state.user.address);
+  const [address, setAddress] = useState(selectAddress);
 
   useEffect(() => {
     dispatch(followActions.getLoggedInUserFollowing());
@@ -110,6 +113,7 @@ const Profile = () => {
       setUserLikedPosts(selectUserLikedPosts);
     } else {
       setProfile(selectProfile);
+      setAddress(selectAddress);
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
@@ -119,6 +123,7 @@ const Profile = () => {
   }, [
     params.username,
     selectProfile,
+    selectAddress,
     selectOtherProfile,
     selectUserPosts,
     selectFollowers,
@@ -141,6 +146,7 @@ const Profile = () => {
     <>
       <ProfileEditForm
         profile={profile}
+        address={address}
         isDialogOpen={open}
         onOpenDialog={handleOpenEditDialog}
       />
