@@ -69,7 +69,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
       }
       setReceiver(messageid);
     }
-  }, [id, userData.receivername]);
+  }, [id]);
 
   useEffect(() => {
     if (profile.username) {
@@ -87,6 +87,12 @@ const Chat = ({ messages, username2Chat, profile }) => {
     }
   }, [userData.username, userData.connected]);
 
+  useEffect(() => {
+    if (userData.connected) {
+      loadMessages();
+    }
+  }, [userData.receivername, id]);
+
   const connect = () => {
     let Sock = new SockJS(chatURI);
     stompClient = over(Sock);
@@ -95,6 +101,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
 
   const onConnected = () => {
     setUserData({ ...userData, connected: true });
+    stompClient.subscribe("/chatroom/public", onMessageReceived);
     stompClient.subscribe(
       "/user/" + userData.username + "/private",
       onPrivateMessage
@@ -103,20 +110,11 @@ const Chat = ({ messages, username2Chat, profile }) => {
     loadMessages();
   };
 
-  useEffect(() => {
-    if (userData.connected) {
-      loadMessages();
-    }
-  }, [userData.connected, userData.receivername]);
-
   const loadMessages = () => {
-    const messages = privateChats.get(userData.receivername);
-    if (messages.length === 0) {
-      getMessages(profile.username, userData.receivername).then((data) => {
-        privateChats.set(userData.receivername, data);
-        setPrivateChats(new Map(privateChats));
-      });
-    }
+    getMessages(profile.username, userData.receivername).then((data) => {
+      privateChats.set(userData.receivername, data);
+      setPrivateChats(new Map(privateChats));
+    });
   };
 
   const userJoin = () => {
