@@ -17,9 +17,10 @@ import { resetLoading } from "../../redux/actions/postActions";
 
 import * as profileActions from "../../redux/actions/profileActions";
 import PostEditForm from "../Feed/Post/PostEditForm";
-import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
+
 const Sidebar = (otherLoc) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
   const [currLocation, setCurrentLocation] = React.useState(location);
@@ -126,11 +127,20 @@ const Sidebar = (otherLoc) => {
               size={40}
               src={profile.profilePic}
               name={profile.name}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate("/profile");
+              }}
             />
           </div>
           <div className="profileCardNameCol">
-            <div className="profileCardNameColName">
-              <span>&nbsp;{profile.firstname}</span>
+            <div
+              className="profileCardNameColName"
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              <span>&nbsp;{profile.firstname + " " + profile.lastname}</span>
             </div>
             <div className="profileCardNameColuserName">
               <span>&nbsp;@{profile.username}</span>
