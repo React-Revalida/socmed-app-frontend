@@ -69,7 +69,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
       }
       setReceiver(messageid);
     }
-  }, [id]);
+  }, [id, userData.messageid]);
 
   useEffect(() => {
     if (profile.username) {
