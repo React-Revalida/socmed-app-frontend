@@ -1,13 +1,13 @@
 .friendSuggestions {
   display: flex;
   flex-direction: column;
-  background-color: #192734;
+  background-color: var(--hover-color);
   border-radius: 20px;
   margin: 15px 0px;
 }
 .friendSuggestionsHeader {
   padding: 10px 15px;
-  color: #ffffff;
+  color: var(--plain-text);
   display: inline;
   font-size: 19px;
   font-weight: 800;

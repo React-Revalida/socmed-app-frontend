@@ -11,7 +11,7 @@
 
 .sidebarItem > span {
   margin-right: 20px;
-  color: white;
+  color: var(--plain-text);
   font-size: 19px;
   font-weight: 700;
   line-height: 24.9375px;
@@ -21,27 +21,27 @@
   border-radius: 30px;
   color: var(--blue);
   transition: color 100ms ease-out;
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .sidebarItem:hover > span {
-  color: var(--blue);
+  color: var(--twitter-color);
 }
 
 .sidebarItem:hover > .sidebaricon {
-  color: var(--blue);
-  fill: var(--blue);
+  color: var(--twitter-color);
+  fill: var(--twitter-color);
 }
 .sidebarItem--active > .sidebaricon {
-  color: var(--blue);
-  fill: var(--blue);
+  color: var(--twitter-color);
+  fill: var(--twitter-color);
 }
 .sidebarItem--active > span {
-  color: var(--blue);
+  color: var(--twitter-color);
 }
 .sidebaricon {
-  color: white;
-  fill: white;
+  color: var(--plain-text);
+  fill: var(--plain-text);
   padding: 15px;
   width: 24px;
 }

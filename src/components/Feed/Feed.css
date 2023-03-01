@@ -21,9 +21,10 @@
   flex: 0.5;
   font-size: 20px;
   font-weight: 800;
-  color: white;
+  color: var(--plain-text);
 }
 .homeStarsCol {
+  color: var(--plain-text);
   flex: 0.5;
   display: flex;
   justify-content: flex-end;
