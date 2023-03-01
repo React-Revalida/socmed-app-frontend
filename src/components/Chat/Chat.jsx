@@ -95,7 +95,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
     if (userData.username && !userData.connected) {
       connect();
     }
-  }, [userData.username, userData.connected, selectChatMessages]);
+  }, [userData.username, userData.connected]);
 
   useEffect(() => {
     if (userData.username && !userData.connected) {
@@ -109,7 +109,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
       privateChats.set(userData.receivername, selectChatMessages);
       setPrivateChats(new Map(privateChats));
     }
-  }, [selectChatMessages]);
+  }, [selectChatMessages,userData.receivername]);
 
   const onConnected = () => {
     setUserData({ ...userData, connected: true });
