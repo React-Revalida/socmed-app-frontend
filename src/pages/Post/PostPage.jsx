@@ -21,7 +21,10 @@ const PostPage = () => {
 
   const loading = useSelector((state) => state.post.loading);
   const post = useSelector((state) => state.post.post);
+
   useEffect(() => {
+    dispatch(postActions.resetLoading());
+    console.log("reset loading in post");
     dispatch(postActions.fetchPostById(params.postId));
     console.log(post);
   }, [dispatch]);
@@ -36,7 +39,10 @@ const PostPage = () => {
       <section className="feed">
         <div className="postHeader">
           <BackIcon
-            onClick={() => [navigate("/home"), postActions.resetLoading()]}
+            onClick={() => [
+              navigate("/home"),
+              dispatch(postActions.resetLoading()),
+            ]}
           />
           <span>Feeds</span>
         </div>

@@ -84,6 +84,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(postActions.resetLoading());
+    console.log("reset loading in post");
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
@@ -156,10 +157,10 @@ const Profile = () => {
         <div className="profileHeader">
           <div>
             <BackIcon
-              onClick={() => {
-                navigate("/home");
-                dispatch(postActions.resetLoading());
-              }}
+              onClick={() => [
+                navigate("/home"),
+                dispatch(postActions.resetLoading()),
+              ]}
               sx={{ "&:hover": { cursor: "pointer" } }}
             />
           </div>
