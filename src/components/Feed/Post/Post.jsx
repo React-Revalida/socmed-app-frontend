@@ -73,7 +73,10 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
           active={isVisibleProfileCard && true}
           profile={post.user}
         />
-        <div>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate(`/profile/${post.user.username}`)}
+        >
           <Avatar
             src={post.user.profilePic}
             name={post.user.firstname + " " + post.user.lastname}
@@ -86,6 +89,8 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
           <div className="post-header">
             <span
               className="post-header-displayname"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(`/profile/${post.user.username}`)}
               onMouseEnter={() => setIsVisibleProfileCard(true)}
               onMouseLeave={() => {
                 setTimeout(function () {

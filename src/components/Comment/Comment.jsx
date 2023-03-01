@@ -2,8 +2,11 @@ import Avatar from "react-avatar";
 import React from "react";
 import { MillToDate } from "../../utils/MillToDate";
 import { CardActionArea } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const Comment = ({ comment }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="post">
       <div className="comment__avatar">
@@ -13,7 +16,8 @@ const Comment = ({ comment }) => {
             name={comment.user.name}
             round={true}
             size={40}
-            style={{ margin: 10 }}
+            style={{ margin: 10, cursor: "pointer" }}
+            onClick={() => navigate(`/profile/${comment.user.username}`)}
           />
         </div>
       </div>
@@ -21,12 +25,10 @@ const Comment = ({ comment }) => {
         <div className="post-header">
           <span
             className="post-header-displayname"
-            // onMouseEnter={() => setIsVisibleProfileCard(true)}
-            // onMouseLeave={() => {
-            //   setTimeout(function () {
-            //     setIsVisibleProfileCard(false);
-            //   }, 1000);
-            // }}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate(`/profile/${comment.user.username}`);
+            }}
           >
             {comment.user.name}
           </span>

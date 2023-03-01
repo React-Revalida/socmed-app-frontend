@@ -15,6 +15,7 @@ import * as likeActions from "../../redux/actions/likeActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -85,6 +86,8 @@ const Profile = () => {
   const [address, setAddress] = useState(selectAddress);
 
   useEffect(() => {
+    dispatch(postActions.resetLoading());
+    console.log("reset loading in post");
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
@@ -160,10 +163,10 @@ const Profile = () => {
         <div className="profileHeader">
           <div>
             <BackIcon
-              onClick={() => {
-                navigate("/home");
-                dispatch(postActions.resetLoading());
-              }}
+              onClick={() => [
+                navigate("/home"),
+                dispatch(postActions.resetLoading()),
+              ]}
               sx={{ "&:hover": { cursor: "pointer" } }}
             />
           </div>
@@ -277,7 +280,6 @@ const Profile = () => {
             <Loading />
           )}
         </article>
-        <BottomSidebar />
       </section>
       <Widgets />
     </>
