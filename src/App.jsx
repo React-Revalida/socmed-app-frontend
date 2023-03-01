@@ -84,7 +84,18 @@ function App() {
     },
   });
 
+  // const handleStringReplace = (url) => {
+  //   if (url.length > 33) {
+  //     let newUrl = url.replace(/profile.*/, "profile");
+  //     return newUrl;
+  //   } else {
+  //     return url;
+  //   }
+  // };
+
   const otherLoc = window.location.href;
+
+  console.log(otherLoc.length);
 
   return (
     <ThemeProvider theme={darkTheme}>

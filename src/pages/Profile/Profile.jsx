@@ -16,6 +16,8 @@ import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { Grid, Typography } from "@mui/material";
+import { CameraAlt, ThumbUp } from "@mui/icons-material";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -81,7 +83,7 @@ const Profile = () => {
   const selectProfile = useSelector((state) => state.user.profile);
   const selectOtherProfile = useSelector((state) => state.user.otherProfile);
   const [profile, setProfile] = useState(selectProfile);
-  
+
   const selectAddress = useSelector((state) => state.user.address);
   const [address, setAddress] = useState(selectAddress);
 
@@ -254,16 +256,110 @@ const Profile = () => {
         <article className="profilePosts">
           {loading === false ? (
             category === 1 ? (
-              userPosts.map((post) => (
+              userPosts == 0 ? (
                 <>
-                  <Post
-                    key={post.postId}
-                    post={post}
-                    from={isMe ? "profile" : "*"}
-                    onDelete={handleDeletePost}
-                  />
+                  <Grid
+                    container
+                    spacing={2}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignContent={"center"}
+                    alignItems={"center"}
+                    marginTop={3}
+                  >
+                    <Grid
+                      item
+                      xs={12}
+                      md={12}
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                    >
+                      <CameraAlt
+                        sx={{
+                          fontSize: 80,
+                          color: "#6198c1",
+                          borderRadius: 50,
+                        }}
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      md={12}
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                    >
+                      <Typography
+                        fontSize={30}
+                        color={"#6198c1"}
+                        font-size={20}
+                        sx={{ fontWeight: 600 }}
+                      >
+                        No posts yet...
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </>
-              ))
+              ) : (
+                userPosts.map((post) => (
+                  <>
+                    <Post
+                      key={post.postId}
+                      post={post}
+                      from={isMe ? "profile" : "*"}
+                      onDelete={handleDeletePost}
+                    />
+                  </>
+                ))
+              )
+            ) : likedPost == 0 ? (
+              <>
+                <Grid
+                  container
+                  spacing={2}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignContent={"center"}
+                  alignItems={"center"}
+                  marginTop={3}
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    md={12}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                  >
+                    <ThumbUp
+                      sx={{
+                        fontSize: 80,
+                        color: "#6198c1",
+                        borderRadius: 50,
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={12}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                  >
+                    <Typography
+                      fontSize={30}
+                      color={"#6198c1"}
+                      font-size={20}
+                      sx={{ fontWeight: 600 }}
+                    >
+                      No liked post yet...
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </>
             ) : (
               likedPost.map((post) => (
                 <>

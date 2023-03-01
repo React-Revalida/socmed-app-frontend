@@ -65,7 +65,11 @@ const Sidebar = (otherLoc) => {
             <SidebarItem
               text="Home"
               Icon={HomeIcon}
-              active={currLocation === "/home" && true}
+              active={
+                otherLoc.otherLoc.otherLoc.length < 30 &&
+                currLocation === "/home" &&
+                true
+              }
             />
           </Link>
         </Button>
@@ -97,7 +101,11 @@ const Sidebar = (otherLoc) => {
             <SidebarItem
               text="Profile"
               Icon={PersonIcon}
-              active={currLocation === "/profile" && true}
+              active={
+                otherLoc.otherLoc.otherLoc.length < 30 &&
+                currLocation === "/profile" &&
+                true
+              }
             />
           </Link>
         </Button>
@@ -105,8 +113,7 @@ const Sidebar = (otherLoc) => {
         <Button className="navButton" onClick={handleOpenLogoutDialog}>
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        {otherLoc.otherLoc.otherLoc != "http://localhost:3000/home" ||
-        currLocation != "/home" ? (
+        {otherLoc.otherLoc.otherLoc != "http://localhost:3000/home" ? (
           <div
             className="tweetButton"
             style={{ cursor: "pointer" }}
