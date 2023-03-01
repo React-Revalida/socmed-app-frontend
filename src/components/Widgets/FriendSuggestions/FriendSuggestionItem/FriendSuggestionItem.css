@@ -25,6 +25,9 @@
   background-color: var(--hover-blue-color);
 }
 
+.dname {
+  color: var(--plain-text);
+}
 .profileCardNameColName:hover {
   cursor: pointer;
   text-decoration: underline;

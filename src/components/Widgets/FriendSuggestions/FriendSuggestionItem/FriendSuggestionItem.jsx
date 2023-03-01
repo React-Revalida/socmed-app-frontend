@@ -42,7 +42,7 @@ const FriendSuggestionItem = ({ image, displayName, username }) => {
             navigate(`/profile/${username}`);
           }}
         >
-          <span>{displayName}</span>
+          <span className="dname">{displayName}</span>
         </div>
         <div className="profileCardNameColuserName">
           <span>@{username}</span>
