@@ -280,7 +280,7 @@ const Profile = () => {
                       <CameraAlt
                         sx={{
                           fontSize: 80,
-                          color: "#6198c1",
+                          color: "var(--twitter-color)",
                           borderRadius: 50,
                         }}
                       />
@@ -295,9 +295,8 @@ const Profile = () => {
                     >
                       <Typography
                         fontSize={30}
-                        color={"#6198c1"}
-                        font-size={20}
-                        sx={{ fontWeight: 600 }}
+                        color={"var(--twitter-color)"}
+                        sx={{ fontWeight: 400 }}
                       >
                         No posts yet...
                       </Typography>
@@ -338,7 +337,7 @@ const Profile = () => {
                     <ThumbUp
                       sx={{
                         fontSize: 80,
-                        color: "#6198c1",
+                        color: "var(--twitter-color)",
                         borderRadius: 50,
                       }}
                     />
@@ -353,11 +352,10 @@ const Profile = () => {
                   >
                     <Typography
                       fontSize={30}
-                      color={"#6198c1"}
-                      font-size={20}
-                      sx={{ fontWeight: 600 }}
+                      color={"var(--twitter-color)"}
+                      sx={{ fontWeight: 400 }}
                     >
-                      No liked post yet...
+                      No liked posts yet...
                     </Typography>
                   </Grid>
                 </Grid>

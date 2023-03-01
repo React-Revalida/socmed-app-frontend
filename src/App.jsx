@@ -60,8 +60,6 @@ function App() {
 
   const otherLoc = window.location.href;
 
-  console.log(otherLoc.length);
-
   return (
     <Routes>
       <Route

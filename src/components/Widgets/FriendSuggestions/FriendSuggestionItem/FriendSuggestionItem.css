@@ -12,8 +12,8 @@
 }
 .friendFollowButton {
   border-radius: 9999px;
-  border: 1px var(--blue) solid;
-  color: var(--blue);
+  border: 1px var(--twitter-color) solid;
+  color: var(--twitter-color);
   font-size: 15px;
   font-weight: 700;
   text-align: center;
