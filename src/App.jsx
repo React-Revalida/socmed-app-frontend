@@ -26,12 +26,18 @@ function App() {
     document.querySelector("body").setAttribute("data-theme", theme);
     localStorage.setItem("darkMode", theme);
   };
+
+  const [appTheme, setAppTheme] = useState();
+
   const toggleTheme = (e) => {
     const datatheme = localStorage.getItem("darkMode");
+    console.log(e.target.checked);
     if (datatheme === "light") {
       setTheme("dark");
+      setAppTheme("dark");
     } else {
       setTheme("light");
+      setAppTheme("light");
     }
   };
 
@@ -61,7 +67,11 @@ function App() {
       <Route
         element={
           accessToken ? (
-            <SidebarWidgetLayout otherLoc={otherLoc} />
+            <SidebarWidgetLayout
+              appTheme
+              switchTheme={toggleTheme}
+              otherLoc={otherLoc}
+            />
           ) : (
             <Navigate to="/login" />
           )
@@ -78,7 +88,10 @@ function App() {
       <Route
         element={
           accessToken ? (
-            <SidebarWidgetLayout otherLoc={otherLoc} />
+            <SidebarWidgetLayout
+              switchTheme={toggleTheme}
+              otherLoc={otherLoc}
+            />
           ) : (
             <Navigate to="/login" />
           )

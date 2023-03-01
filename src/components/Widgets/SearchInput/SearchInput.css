@@ -2,22 +2,22 @@
   z-index: 2;
   position: sticky;
   top: 0;
-  background-color: var(--input-background-color);
+  border-color: var(--plain-text);
   display: flex;
   flex-direction: row;
   align-items: center;
   flex: 1;
   border-radius: 9999px;
-  border-color: var(--input-background-color);
+  border-color: var(--plain-text);
   padding: 10px 18px;
 }
 .widgetsSearchIcon {
-  color: var(--gray);
+  border-color: var(--plain-text);
   font-size: 15px;
 }
 .widgetsSearchInput {
   width: 100%;
-  background-color: transparent;
+  background-color: var(--main-bg-color);
   border: none;
   font-size: 15px;
   color: var(--plain-text);
@@ -28,7 +28,7 @@
   font-size: 15px;
 }
 .widgetsSearchFocus {
-  border: 1px solid var(--blue);
+  border: 1px solid var(--twitter-color);
   background-color: var(--main-bg-color);
 }
 .widgetsSearchIconFocus {

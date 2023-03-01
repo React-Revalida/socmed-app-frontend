@@ -65,6 +65,7 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .tweetbox-button {
+  border: none;
   margin-top: 10px;
   margin-left: auto;
   margin-right: 10px;

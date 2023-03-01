@@ -221,7 +221,7 @@ const Profile = () => {
                 cursor: "pointer",
               }}
             >
-              <span>{profile.following}</span>
+              <span className="numFollow">{profile.following}</span>
               <span>Following</span>
             </span>
             <span
@@ -234,7 +234,7 @@ const Profile = () => {
                 cursor: "pointer",
               }}
             >
-              <span>{profile.followers}</span>
+              <span className="numFollow">{profile.followers}</span>
               <span>Followers</span>
             </span>
           </div>
