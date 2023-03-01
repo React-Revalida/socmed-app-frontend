@@ -579,3 +579,23 @@ export const fetchResetTokenFailure = (error) => {
     payload: error,
   };
 };
+
+export const fetchResetPasswordRequest = () => {
+  return {
+    type: "FETCH_RESET_PASSWORD_REQUEST",
+  };
+};
+
+export const fetchResetPasswordSuccess = (message) => {
+  return {
+    type: "FETCH_RESET_PASSWORD_SUCCESS",
+    payload: message,
+  };
+};
+
+export const fetchResetPasswordFailure = (error) => {
+  return {
+    type: "FETCH_RESET_PASSWORD_FAILURE",
+    payload: error,
+  };
+};

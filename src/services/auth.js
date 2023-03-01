@@ -37,3 +37,14 @@ export const getResetPasswordToken = async (email) => {
     },
   });
 };
+
+export const resetPassword = async (resetToken, password) => {
+  return await http.put("/users/update-password", null, {
+    headers: {
+      Authorization: `Bearer ${resetToken}}`,
+    },
+    params: {
+      password: password,
+    },
+  });
+};

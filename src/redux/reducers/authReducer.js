@@ -62,6 +62,27 @@ export default function authReducer(state = initialState, action) {
         error: action.payload,
         resetToken: null,
       };
+    case "RESET_PASSWORD_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        success: false,
+      };
+    case "RESET_PASSWORD_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        success: true,
+      };
+    case "RESET_PASSWORD_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        success: false,
+      };
     default:
       return state;
   }

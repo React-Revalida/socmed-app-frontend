@@ -45,14 +45,15 @@ function App() {
 
   const selectToken = useSelector((state) => state.auth.accessToken);
   const accessToken = localStorage.getItem("accessToken") || selectToken;
+  const resetToken = localStorage.getItem("resetToken");
   const navigate = useNavigate();
   useEffect(() => {
     const datatheme = localStorage.getItem("darkMode");
     setTheme(datatheme);
-    if (!accessToken) {
+    if (!accessToken && !resetToken) {
       navigate("/login");
     }
-  }, [accessToken]);
+  }, [accessToken, resetToken]);
 
   const darkTheme = createTheme({
     palette: {

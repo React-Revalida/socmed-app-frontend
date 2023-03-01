@@ -75,3 +75,22 @@ export const generateResetPasswordToken = (email) => {
       });
   };
 };
+
+export const resetPassword = (resetToken, password) => {
+  return async (dispatch) => {
+    dispatch(type.fetchResetPasswordRequest());
+    await authService
+      .resetPassword(resetToken, password)
+      .then((response) => {
+        const isReset = response;
+        console.log(response);
+        localStorage.removeItem("resetToken");
+        dispatch(type.fetchResetPasswordSuccess(isReset));
+      })
+      .catch((error) => {
+        const errorMsg = error.response.status;
+        console.log(error);
+        dispatch(type.fetchResetPasswordFailure(errorMsg));
+      });
+  };
+};
