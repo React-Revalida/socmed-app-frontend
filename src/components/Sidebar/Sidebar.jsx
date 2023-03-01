@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -17,9 +17,9 @@ import { resetLoading } from "../../redux/actions/postActions";
 
 import * as profileActions from "../../redux/actions/profileActions";
 import PostEditForm from "../Feed/Post/PostEditForm";
-const Sidebar = () => {
+import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
+const Sidebar = (otherLoc) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
   const [currLocation, setCurrentLocation] = React.useState(location);
@@ -29,7 +29,6 @@ const Sidebar = () => {
   }, [dispatch]);
 
   const handleLocationChange = (location) => {
-    dispatch(resetLoading());
     setCurrentLocation(location);
   };
 
@@ -57,7 +56,10 @@ const Sidebar = () => {
           <Link
             to="/home"
             style={{ textDecoration: "none" }}
-            onClick={() => handleLocationChange("/home")}
+            onClick={() => [
+              dispatch(resetLoading()),
+              handleLocationChange("/home"),
+            ]}
           >
             <SidebarItem
               text="Home"
@@ -70,7 +72,10 @@ const Sidebar = () => {
           <Link
             to="/messages"
             style={{ textDecoration: "none" }}
-            onClick={() => handleLocationChange("/messages")}
+            onClick={() => [
+              dispatch(resetLoading()),
+              handleLocationChange("/messages"),
+            ]}
           >
             <SidebarItem
               text="Chats"
@@ -83,7 +88,10 @@ const Sidebar = () => {
           <Link
             to="/profile"
             style={{ textDecoration: "none" }}
-            onClick={() => handleLocationChange("/profile")}
+            onClick={() => [
+              dispatch(resetLoading()),
+              handleLocationChange("/profile"),
+            ]}
           >
             <SidebarItem
               text="Profile"
@@ -96,9 +104,8 @@ const Sidebar = () => {
         <Button className="navButton" onClick={handleOpenLogoutDialog}>
           <SidebarItem text="Logout" Icon={LogoutIcon} />
         </Button>
-        {currLocation === "/home" ? (
-          <></>
-        ) : (
+        {otherLoc.otherLoc.otherLoc != "http://localhost:3000/home" ||
+        currLocation != "/home" ? (
           <div
             className="tweetButton"
             style={{ cursor: "pointer" }}
@@ -109,6 +116,8 @@ const Sidebar = () => {
             <PostAddIcon className="addPostIcon" />
             <span>Create Post</span>
           </div>
+        ) : (
+          <></>
         )}
         <div className="profileCard">
           <div className="profileCardImage">

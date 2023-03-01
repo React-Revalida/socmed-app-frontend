@@ -15,6 +15,7 @@ import PostPage from "../../pages/Post/PostPage";
 import { useState } from "react";
 
 import * as likeActions from "../../redux/actions/likeActions";
+import Sidebar from "../Sidebar/Sidebar";
 const Feed = () => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
 

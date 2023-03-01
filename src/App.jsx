@@ -77,7 +77,6 @@ function App() {
       navigate("/login");
     }
   }, [accessToken]);
-      
 
   const darkTheme = createTheme({
     palette: {
@@ -85,12 +84,18 @@ function App() {
     },
   });
 
+  const otherLoc = window.location.href;
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Routes>
         <Route
           element={
-            accessToken ? <SidebarWidgetLayout /> : <Navigate to="/login" />
+            accessToken ? (
+              <SidebarWidgetLayout otherLoc={otherLoc} />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         >
           <Route path="/home" element={<Feed />} />

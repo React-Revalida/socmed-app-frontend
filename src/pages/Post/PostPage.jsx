@@ -4,7 +4,7 @@ import { padding } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import BottomSidebar from "../../components/BottomSidebar/BottomSidebar";
+
 import Comment from "../../components/Comment/Comment";
 import Post from "../../components/Feed/Post/Post";
 import "./PostPage.css";
@@ -12,6 +12,7 @@ import Loading from "../../components/Loading/Loading";
 import Widgets from "../../components/Widgets/Widgets";
 import * as postActions from "../../redux/actions/postActions";
 import CommentBox from "./CommentBox/CommentBox";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const PostPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const PostPage = () => {
       <section className="feed">
         <div className="postHeader">
           <BackIcon
-            onClick={() => [navigate("/"), postActions.resetLoading()]}
+            onClick={() => [navigate("/home"), postActions.resetLoading()]}
           />
           <span>Feeds</span>
         </div>
@@ -69,8 +70,6 @@ const PostPage = () => {
             </div>
           </>
         )}
-
-        <BottomSidebar />
       </section>
       <Widgets />
     </>
