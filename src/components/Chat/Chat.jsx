@@ -12,8 +12,6 @@ import SockJS from "sockjs-client";
 import { over } from "stompjs";
 import "../ChatInputs/ChatInputs.css";
 import { chatURI, getMessages } from "../../services/chat";
-import * as chatActions from "../../redux/actions/chatActions";
-import { useDispatch, useSelector } from "react-redux";
 var stompClient = null;
 const Chat = ({ messages, username2Chat, profile }) => {
   const [privateChats, setPrivateChats] = useState(new Map());
@@ -82,34 +80,18 @@ const Chat = ({ messages, username2Chat, profile }) => {
     }
   }, [profile.username]);
 
+  useEffect(() => {
+    if (userData.username && !userData.connected) {
+      connect();
+      loadMessages();
+    }
+  }, [userData.username, userData.connected]);
+
   const connect = () => {
     let Sock = new SockJS(chatURI);
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
   };
-
-  const dispatch = useDispatch();
-  const selectChatMessages = useSelector((state) => state.chat.messages);
-
-  useEffect(() => {
-    if (userData.username && !userData.connected) {
-      connect();
-    }
-  }, [userData.username, userData.connected]);
-
-  useEffect(() => {
-    if (userData.username && !userData.connected) {
-      dispatch(chatActions.getMessages(userData.username, userData.receivername));
-      loadMessages();
-    }
-  }, [userData.connected, userData.receivername, selectChatMessages]);
-
-  useEffect(() => {
-    if (userData.connected) {
-      privateChats.set(userData.receivername, selectChatMessages);
-      setPrivateChats(new Map(privateChats));
-    }
-  }, [selectChatMessages,userData.receivername]);
 
   const onConnected = () => {
     setUserData({ ...userData, connected: true });
@@ -121,11 +103,19 @@ const Chat = ({ messages, username2Chat, profile }) => {
     loadMessages();
   };
 
+  useEffect(() => {
+    if (userData.connected) {
+      loadMessages();
+    }
+  }, [userData.connected, userData.receivername]);
+
   const loadMessages = () => {
     const messages = privateChats.get(userData.receivername);
     if (messages.length === 0) {
-      privateChats.set(userData.receivername, selectChatMessages);
-      setPrivateChats(new Map(privateChats));
+      getMessages(profile.username, userData.receivername).then((data) => {
+        privateChats.set(userData.receivername, data);
+        setPrivateChats(new Map(privateChats));
+      });
     }
   };
 
