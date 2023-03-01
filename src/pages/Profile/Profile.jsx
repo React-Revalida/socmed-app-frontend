@@ -17,7 +17,7 @@ import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Grid, Typography } from "@mui/material";
-import { CameraAlt, ThumbUp } from "@mui/icons-material";
+import { CameraAlt, CircleOutlined, ThumbUp } from "@mui/icons-material";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -260,15 +260,7 @@ const Profile = () => {
             category === 1 ? (
               userPosts == 0 ? (
                 <>
-                  <Grid
-                    container
-                    spacing={2}
-                    display={"flex"}
-                    justifyContent={"center"}
-                    alignContent={"center"}
-                    alignItems={"center"}
-                    marginTop={3}
-                  >
+                  <Grid container spacing={2} marginTop={2}>
                     <Grid
                       item
                       xs={12}
@@ -281,9 +273,12 @@ const Profile = () => {
                         sx={{
                           fontSize: 80,
                           color: "var(--twitter-color)",
-                          borderRadius: 50,
+                          border: 1,
+                          borderRadius: "16px",
+                          width: "5rem",
+                          height: "5rem",
                         }}
-                      />
+                      ></CameraAlt>
                     </Grid>
                     <Grid
                       item
@@ -317,15 +312,7 @@ const Profile = () => {
               )
             ) : likedPost == 0 ? (
               <>
-                <Grid
-                  container
-                  spacing={2}
-                  display={"flex"}
-                  justifyContent={"center"}
-                  alignContent={"center"}
-                  alignItems={"center"}
-                  marginTop={3}
-                >
+                <Grid container spacing={2} marginTop={2}>
                   <Grid
                     item
                     xs={12}
@@ -338,7 +325,10 @@ const Profile = () => {
                       sx={{
                         fontSize: 80,
                         color: "var(--twitter-color)",
-                        borderRadius: 50,
+                        border: 1,
+                        borderRadius: "16px",
+                        width: "5rem",
+                        height: "5rem",
                       }}
                     />
                   </Grid>
