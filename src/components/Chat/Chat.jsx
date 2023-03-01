@@ -57,6 +57,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
       const messageid = id.split("/")[2];
       setUserData({
         ...userData,
