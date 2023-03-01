@@ -23,7 +23,7 @@
   align-items: center;
 }
 .post-header-displayname {
-  color: white;
+  color: var(--plain-text);
   font-size: 15px;
   font-weight: 700;
   margin-right: 5px;
@@ -56,7 +56,7 @@
 
 .post-content {
   text-align: justify;
-  color: #ffffff;
+  color: var(--plain-text);
   display: inline;
   font-size: 15px;
 }
@@ -77,9 +77,10 @@
 }
 .postIcon {
   fill: var(--gray);
-  width: 18px;
-  padding: 10px;
+  width: 25px;
+  padding: 5px;
   border-radius: 9999px;
+  margin: 5px;
 }
 .post-event div:nth-child(1) .postIcon:hover,
 .post-event div:nth-child(4) .postIcon:hover {
