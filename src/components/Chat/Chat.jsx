@@ -182,7 +182,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
             <div onClick={() => navigate("/messages")}>
               <BackIcon />
             </div>
-            <Avatar src={user && user.profilePic} size={40} round={true} />
+            <Avatar src={user && user.profilePic} size={40} round={true} name={user && user.name} />
             <div>
               <span>{user && user.name}</span>
               <span>@{user && user.username}</span>
