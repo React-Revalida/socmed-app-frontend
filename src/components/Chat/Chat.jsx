@@ -104,7 +104,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
 
   useEffect(() => {
     if (userData.connected && userData.receivername) {
-      loadMessages(); 
+      loadMessages();
     }
   }, [userData.connected, userData.receivername, id]);
 
@@ -112,7 +112,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
     getMessages(userData.username, userData.receivername).then((data) => {
       privateChats.set(userData.receivername, data);
       setPrivateChats(new Map(privateChats));
-    })
+    });
   };
 
   const userJoin = () => {
@@ -131,10 +131,17 @@ const Chat = ({ messages, username2Chat, profile }) => {
       privateChats.get(payloadData.senderName).push(payloadData);
       setPrivateChats(new Map(privateChats));
     } else {
-      let list = [];
-      list.push(payloadData);
-      privateChats.set(payloadData.senderName, list);
-      setPrivateChats(new Map(privateChats));
+      getMessages(userData.username, payloadData.senderName).then((data) => {
+        if (data) {
+          privateChats.set(payloadData.senderName, data);
+          setPrivateChats(new Map(privateChats));
+        } else {
+          let list = [];
+          list.push(payloadData);
+          privateChats.set(payloadData.senderName, list);
+          setPrivateChats(new Map(privateChats));
+        }
+      });
     }
   };
 
