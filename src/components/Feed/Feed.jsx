@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
 import Loading from "../Loading/Loading";
-import { Avatar, CardActionArea, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +18,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 import * as likeActions from "../../redux/actions/likeActions";
 import Sidebar from "../Sidebar/Sidebar";
+import Avatar from "react-avatar";
 const Feed = ({ switchTheme }) => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
 
@@ -37,11 +38,13 @@ const Feed = ({ switchTheme }) => {
   }, [dispatch]);
 
   const selectProfile = useSelector((state) => state.user.profile);
+  const [profile, setProfile] = useState(selectProfile);
   useEffect(() => {
     setPosts(selectPosts);
     setLoading(selectLoading);
+    setProfile(selectProfile);
     //params
-  }, [selectPosts, selectLoading]);
+  }, [selectPosts, selectLoading, selectProfile]);
 
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
@@ -50,9 +53,14 @@ const Feed = ({ switchTheme }) => {
     <>
       <section className="feed">
         <div className="feed-header">
-          <div onClick={() => setIsDrawerBar(true)}>
-            <Avatar />
-          </div>
+          <div onClick={() => setIsDrawerBar(true)} className="feed-headerAvatar">
+              <Avatar
+                name={profile.name}
+                src={profile.profilePic}
+                size={40}
+                round={true}
+              />
+            </div>
           <div className="feed-headerText">
             <span>Home</span>
           </div>
