@@ -58,3 +58,20 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
       });
   };
 };
+
+export const generateResetPasswordToken = (email) => {
+  return async (dispatch) => {
+    dispatch(type.fetchResetTokenRequest());
+    await authService
+      .getResetPasswordToken(email)
+      .then((response) => {
+        const token = response.data.accessToken;
+        localStorage.setItem("resetToken", token);
+        dispatch(type.fetchResetTokenSuccess(token));
+      })
+      .catch((error) => {
+        const errorMsg = error.response.data.message;
+        dispatch(type.fetchResetTokenFailure(errorMsg));
+      });
+  };
+};

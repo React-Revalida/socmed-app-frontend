@@ -1,9 +1,9 @@
 import React from "react";
-import { Box } from "@mui/material";
-import SignupForm from "../../components/LoginSignup/SignupForm";
+import ResetPasswordForm from "../../components/ForgotPassword/ResetPasswordForm";
 import Banner from "../../assets/socmed-banner-2-min.jpg";
+import { Box } from "@mui/system";
 
-const SignupPage = () => {
+const ResetPasswordPage = () => {
   return (
     <Box
       display="flex"
@@ -18,9 +18,9 @@ const SignupPage = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <SignupForm />
+      <ResetPasswordForm />
     </Box>
   );
 };
 
-export default SignupPage;
+export default ResetPasswordPage;

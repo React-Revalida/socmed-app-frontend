@@ -516,7 +516,7 @@ export const fetchAllUsersSuccess = (users) => {
 export const fetchAllUsersFailure = (error) => {
   return {
     type: "FETCH_ALL_USERS_FAILURE",
-       payload: error,
+    payload: error,
   };
 };
 
@@ -556,6 +556,26 @@ export const editPostSuccess = (userPosts) => {
 export const editPostFailure = (error) => {
   return {
     type: "EDIT_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchResetTokenRequest = () => {
+  return {
+    type: "FETCH_RESET_TOKEN_REQUEST",
+  };
+};
+
+export const fetchResetTokenSuccess = (token) => {
+  return {
+    type: "FETCH_RESET_TOKEN_SUCCESS",
+    payload: token,
+  };
+};
+
+export const fetchResetTokenFailure = (error) => {
+  return {
+    type: "FETCH_RESET_TOKEN_FAILURE",
     payload: error,
   };
 };

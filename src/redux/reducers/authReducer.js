@@ -4,6 +4,7 @@ const initialState = {
   success: false,
   accessToken: null,
   isRegistered: false,
+  resetToken: null,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -41,6 +42,25 @@ export default function authReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
         isRegistered: false,
+      };
+    case "RESET_TOKEN_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "RESET_TOKEN_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        resetToken: action.payload,
+      };
+    case "RESET_TOKEN_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        resetToken: null,
       };
     default:
       return state;
