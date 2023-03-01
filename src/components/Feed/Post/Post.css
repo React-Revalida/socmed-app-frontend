@@ -76,7 +76,7 @@
   font-size: 13px;
 }
 .postIcon {
-  fill: var(--gray);
+  color: var(--post-icon);
   width: 25px;
   padding: 5px;
   border-radius: 9999px;

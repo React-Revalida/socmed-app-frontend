@@ -186,7 +186,6 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                       );
                     }
                   }}
-                  sx={{ color: teal[50] }}
                 />
               ) : (
                 <FavoriteBorderIcon

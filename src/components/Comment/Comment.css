@@ -76,10 +76,11 @@
   font-size: 13px;
 }
 .postIcon {
-  fill: var(--gray);
-  width: 18px;
-  padding: 10px;
+  color: var(--post-icon);
+  width: 25px;
+  padding: 5px;
   border-radius: 9999px;
+  margin: 5px;
 }
 .post-event div:nth-child(1) .postIcon:hover,
 .post-event div:nth-child(4) .postIcon:hover {
