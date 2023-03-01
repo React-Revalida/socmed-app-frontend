@@ -58,9 +58,18 @@ function App() {
     },
   });
 
-  const otherLoc = window.location.href;
+  const { handleDisableCardAction } = useContext(UserInterfaceContext);
 
-  console.log(otherLoc.length);
+  const handleOnPostPage = (url) => {
+    if (url.includes("/post")) {
+      handleDisableCardAction(true);
+    } else {
+      handleDisableCardAction(false);
+    }
+    return url;
+  };
+
+  const otherLoc = handleOnPostPage(window.location.href);
 
   return (
     <Routes>

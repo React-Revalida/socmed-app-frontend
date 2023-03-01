@@ -40,7 +40,6 @@ const TweetBox = () => {
 
   const uploadImage = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     setProfilePicUpload(file);
     const reader = new FileReader();
     reader.onload = () => {
@@ -90,7 +89,10 @@ const TweetBox = () => {
                 <div className="tweetboxOptions">
                   <Close
                     className="uploadedImage-closeButton"
-                    onClick={() => setPostImage("")}
+                    onClick={() => [
+                      setPostImage(""),
+                      setProfilePicUpload(null),
+                    ]}
                   />
                 </div>
               </Box>
@@ -103,9 +105,7 @@ const TweetBox = () => {
             <label htmlFor="profilePicInput">
               <AddPhotoAlternateIcon
                 className="tweetboxOptionIcon"
-                width={25}
-                height={25}
-                sx={{ fill: "var(--twitter-color)", mt: 0.5 }}
+                sx={{ fill: "var(--twitter-color)" }}
               />
               <input
                 id="profilePicInput"
@@ -121,6 +121,7 @@ const TweetBox = () => {
                 width={22}
                 height={22}
                 onClick={() => setEmojiPicker((prev) => !prev)}
+                sx={{ marginBottom: 0.5 }}
               />
             ) : (
               <>

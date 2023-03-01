@@ -17,7 +17,7 @@ import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Grid, Typography } from "@mui/material";
-import { CameraAlt, ThumbUp } from "@mui/icons-material";
+import { CameraAlt, CircleOutlined, ThumbUp } from "@mui/icons-material";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -89,7 +89,6 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(postActions.resetLoading());
-    console.log("reset loading in post");
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
@@ -260,15 +259,7 @@ const Profile = () => {
             category === 1 ? (
               userPosts == 0 ? (
                 <>
-                  <Grid
-                    container
-                    spacing={2}
-                    display={"flex"}
-                    justifyContent={"center"}
-                    alignContent={"center"}
-                    alignItems={"center"}
-                    marginTop={3}
-                  >
+                  <Grid container spacing={2} marginTop={2}>
                     <Grid
                       item
                       xs={12}
@@ -280,10 +271,13 @@ const Profile = () => {
                       <CameraAlt
                         sx={{
                           fontSize: 80,
-                          color: "#6198c1",
-                          borderRadius: 50,
+                          color: "var(--twitter-color)",
+                          border: 1,
+                          borderRadius: "16px",
+                          width: "5rem",
+                          height: "5rem",
                         }}
-                      />
+                      ></CameraAlt>
                     </Grid>
                     <Grid
                       item
@@ -295,9 +289,8 @@ const Profile = () => {
                     >
                       <Typography
                         fontSize={30}
-                        color={"#6198c1"}
-                        font-size={20}
-                        sx={{ fontWeight: 600 }}
+                        color={"var(--twitter-color)"}
+                        sx={{ fontWeight: 400 }}
                       >
                         No posts yet...
                       </Typography>
@@ -318,15 +311,7 @@ const Profile = () => {
               )
             ) : likedPost == 0 ? (
               <>
-                <Grid
-                  container
-                  spacing={2}
-                  display={"flex"}
-                  justifyContent={"center"}
-                  alignContent={"center"}
-                  alignItems={"center"}
-                  marginTop={3}
-                >
+                <Grid container spacing={2} marginTop={2}>
                   <Grid
                     item
                     xs={12}
@@ -338,8 +323,11 @@ const Profile = () => {
                     <ThumbUp
                       sx={{
                         fontSize: 80,
-                        color: "#6198c1",
-                        borderRadius: 50,
+                        color: "var(--twitter-color)",
+                        border: 1,
+                        borderRadius: "16px",
+                        width: "5rem",
+                        height: "5rem",
                       }}
                     />
                   </Grid>
@@ -353,11 +341,10 @@ const Profile = () => {
                   >
                     <Typography
                       fontSize={30}
-                      color={"#6198c1"}
-                      font-size={20}
-                      sx={{ fontWeight: 600 }}
+                      color={"var(--twitter-color)"}
+                      sx={{ fontWeight: 400 }}
                     >
-                      No liked post yet...
+                      No liked posts yet...
                     </Typography>
                   </Grid>
                 </Grid>

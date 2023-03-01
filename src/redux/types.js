@@ -258,7 +258,6 @@ export const fetchPostsFailure = (error) => {
 };
 
 export const fetchPostByIdRequest = () => {
-  console.log("FetchPostById");
   return {
     type: "FETCH_POST_BY_ID_REQUEST",
   };

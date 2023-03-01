@@ -13,7 +13,7 @@
 .postHeader .MuiSvgIcon-root {
   margin: 8px 8px 8px 12px;
   padding: 7px;
-  color: var(--blue);
+  color: var(--twitter-color);
   border-radius: 9999px;
 }
 .postHeader .MuiSvgIcon-root:hover {

@@ -14,7 +14,7 @@
 .profileHeader .MuiSvgIcon-root {
   margin: 8px 25px 8px 12px;
   padding: 7px;
-  color: var(--blue);
+  color: var(--twitter-color);
   border-radius: 9999px;
 }
 .profileHeader .MuiSvgIcon-root:hover {
@@ -23,7 +23,7 @@
 .profileHeader div span:nth-child(1) {
   display: flex;
   flex-direction: column;
-  color: #6198c1;
+  color: var(--twitter-color);
   font-size: 20px;
   font-weight: 800;
 }
@@ -147,13 +147,13 @@
 }
 .profileCategory > div:hover {
   background-color: var(--hover-blue-color);
-  color: var(--blue);
+  color: var(--twitter-color);
 }
 .profileCategoryActive {
-  border-bottom: 2px var(--blue) solid;
+  border-bottom: 2px var(--twitter-color) solid;
 }
 .profileCategoryActive > span {
-  color: var(--blue);
+  color: var(--twitter-color);
 }
 
 @media (min-width: 0) and (max-width: 1000px) {

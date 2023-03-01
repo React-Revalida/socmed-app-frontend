@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import "./Post.css";
 import PostEditForm from "./PostEditForm";
@@ -22,12 +22,14 @@ import {
   Edit,
   MoreHoriz,
 } from "@mui/icons-material";
+import { UserInterfaceContext } from "../../../contexts/UserInterfaceContext";
 
 const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   const fromComponent = from || " ";
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const [open, setOpen] = React.useState(false);
+  const { onPostPage } = useContext(UserInterfaceContext);
 
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
@@ -142,19 +144,31 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
               <div></div>
             )}
           </div>
-          <CardActionArea
-            onClick={() => [
-              navigate(`/posts/${post.postId}`),
-              dispatch(postActions.resetLoading()),
-            ]}
-          >
-            <div className="post-content">{post.message}</div>
-            {post.imageUrl && (
-              <div className="post-image">
-                <img src={post.imageUrl} alt="shareimage" />
-              </div>
-            )}
-          </CardActionArea>
+          {onPostPage ? (
+            <>
+              <div className="post-content">{post.message}</div>
+              {post.imageUrl && (
+                <div className="post-image">
+                  <img src={post.imageUrl} alt="shareimage" />
+                </div>
+              )}
+            </>
+          ) : (
+            <CardActionArea
+              onClick={() => [
+                navigate(`/posts/${post.postId}`),
+                dispatch(postActions.resetLoading()),
+              ]}
+            >
+              <div className="post-content">{post.message}</div>
+              {post.imageUrl && (
+                <div className="post-image">
+                  <img src={post.imageUrl} alt="shareimage" />
+                </div>
+              )}
+            </CardActionArea>
+          )}
+
           <div className="post-event">
             <div>
               {liked ? (
