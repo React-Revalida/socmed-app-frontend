@@ -16,3 +16,20 @@ export const getMutualFollows = () => {
       });
   };
 };
+
+export const getMessages = (senderName, receiverName) => {
+  return async (dispatch) => {
+    dispatch(type.fetchMessagesRequest());
+    await chatService
+      .getMessages(senderName, receiverName)
+      .then((response) => {
+        const messages = response;
+        console.log(messages);
+        dispatch(type.fetchMessagesSuccess(messages));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(type.fetchMessagesFailure(errorMsg));
+      });
+  };
+};

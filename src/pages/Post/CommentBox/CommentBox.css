@@ -41,7 +41,7 @@ aside.EmojiPickerReact.epr-main {
   border: none;
   outline: none;
   resize: none;
-  font-family: "Gill Sans", sans-serif;
+  /* font-family: "Gill Sans", sans-serif; */
   /* padding-top: 20px; */
 }
 

@@ -57,6 +57,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
       const messageid = id.split("/")[2];
       setUserData({
         ...userData,
@@ -71,6 +72,21 @@ const Chat = ({ messages, username2Chat, profile }) => {
     }
   }, [id]);
 
+  const connect = () => {
+    let Sock = new SockJS(chatURI);
+    stompClient = over(Sock);
+    stompClient.connect({}, onConnected, onError);
+  };
+
+  const onConnected = () => {
+    setUserData({ ...userData, connected: true });
+    stompClient.subscribe(
+      "/user/" + userData.username + "/private",
+      onPrivateMessage
+    );
+    userJoin();
+  };
+
   useEffect(() => {
     if (profile.username) {
       setUserData((prevUserData) => ({
@@ -83,35 +99,20 @@ const Chat = ({ messages, username2Chat, profile }) => {
   useEffect(() => {
     if (userData.username && !userData.connected) {
       connect();
+    }
+  }, [userData.username, userData.connected, id]);
+
+  useEffect(() => {
+    if (userData.connected && userData.receivername) {
       loadMessages();
     }
-  }, [userData.username, userData.connected]);
-
-  const connect = () => {
-    let Sock = new SockJS(chatURI);
-    stompClient = over(Sock);
-    stompClient.connect({}, onConnected, onError);
-  };
-
-  const onConnected = () => {
-    setUserData({ ...userData, connected: true });
-    stompClient.subscribe("/chatroom/public", onMessageReceived);
-    stompClient.subscribe(
-      "/user/" + userData.username + "/private",
-      onPrivateMessage
-    );
-    userJoin();
-    loadMessages();
-  };
+  }, [userData.connected, userData.receivername, id]);
 
   const loadMessages = () => {
-    const messages = privateChats.get(userData.receivername);
-    if (messages.length === 0) {
-      getMessages(profile.username, userData.receivername).then((data) => {
-        privateChats.set(userData.receivername, data);
-        setPrivateChats(new Map(privateChats));
-      });
-    }
+    getMessages(userData.username, userData.receivername).then((data) => {
+      privateChats.set(userData.receivername, data);
+      setPrivateChats(new Map(privateChats));
+    });
   };
 
   const userJoin = () => {
@@ -122,34 +123,25 @@ const Chat = ({ messages, username2Chat, profile }) => {
     stompClient.send("/app/message", {}, JSON.stringify(chatMessage));
   };
 
-  const onMessageReceived = (payload) => {
-    var payloadData = JSON.parse(payload.body);
-    switch (payloadData.status) {
-      case "JOIN":
-        if (!privateChats.get(payloadData.senderName)) {
-          privateChats.set(payloadData.senderName, []);
-          setPrivateChats(new Map(privateChats));
-        }
-        break;
-      default:
-        if (!privateChats.get(payloadData.senderName)) {
-          privateChats.set(payloadData.senderName, []);
-          setPrivateChats(new Map(privateChats));
-        }
-    }
-  };
-
   const onPrivateMessage = (payload) => {
     console.log(payload);
+    console.log(privateChats, "privateChats");
     var payloadData = JSON.parse(payload.body);
     if (privateChats.get(payloadData.senderName)) {
       privateChats.get(payloadData.senderName).push(payloadData);
       setPrivateChats(new Map(privateChats));
     } else {
-      let list = [];
-      list.push(payloadData);
-      privateChats.set(payloadData.senderName, list);
-      setPrivateChats(new Map(privateChats));
+      getMessages(userData.username, payloadData.senderName).then((data) => {
+        if (data) {
+          privateChats.set(payloadData.senderName, data);
+          setPrivateChats(new Map(privateChats));
+        } else {
+          let list = [];
+          list.push(payloadData);
+          privateChats.set(payloadData.senderName, list);
+          setPrivateChats(new Map(privateChats));
+        }
+      });
     }
   };
 
@@ -190,7 +182,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
             <div onClick={() => navigate("/messages")}>
               <BackIcon />
             </div>
-            <Avatar src={user && user.profilePic} size={40} round={true} />
+            <Avatar src={user && user.profilePic} size={40} round={true} name={user && user.name} />
             <div>
               <span>{user && user.name}</span>
               <span>@{user && user.username}</span>

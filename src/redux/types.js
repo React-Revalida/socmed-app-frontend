@@ -258,7 +258,6 @@ export const fetchPostsFailure = (error) => {
 };
 
 export const fetchPostByIdRequest = () => {
-  console.log("FetchPostById");
   return {
     type: "FETCH_POST_BY_ID_REQUEST",
   };
@@ -596,6 +595,26 @@ export const fetchResetPasswordSuccess = (message) => {
 export const fetchResetPasswordFailure = (error) => {
   return {
     type: "FETCH_RESET_PASSWORD_FAILURE",
+        payload: error,
+  };
+};
+
+export const fetchMessagesRequest = () => {
+  return {
+    type: "FETCH_MESSAGES_REQUEST",
+  };
+};
+
+export const fetchMessagesSuccess = (messages) => {
+  return {
+    type: "FETCH_MESSAGES_SUCCESS",
+    payload: messages,
+  };
+};
+
+export const fetchMessagesFailure = (error) => {
+  return {
+    type: "FETCH_MESSAGES_FAILURE",
     payload: error,
   };
 };

@@ -1,7 +1,7 @@
 import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Card, Grid, IconButton, TableRow, Typography } from "@mui/material";
 import { padding } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import Widgets from "../../components/Widgets/Widgets";
 import * as postActions from "../../redux/actions/postActions";
 import CommentBox from "./CommentBox/CommentBox";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 
 const PostPage = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,7 @@ const PostPage = () => {
 
   useEffect(() => {
     dispatch(postActions.resetLoading());
-    console.log("reset loading in post");
     dispatch(postActions.fetchPostById(params.postId));
-    console.log(post);
   }, [dispatch]);
 
   let dateFormat = new Date(post.timestamp).toLocaleString("en-US", {

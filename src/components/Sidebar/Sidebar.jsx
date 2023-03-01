@@ -43,16 +43,15 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
   const navigate = useNavigate();
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
-  const [currLocation, setCurrentLocation] = React.useState(location);
+  // const [currLocation, setCurrentLocation] = React.useState(location);
 
   useEffect(() => {
-    console.log(otherLoc);
     dispatch(profileActions.fetchProfile());
   }, [dispatch]);
 
-  const handleLocationChange = (location) => {
-    setCurrentLocation(location);
-  };
+  // const handleLocationChange = (location) => {
+  //   setCurrentLocation(location);
+  // };
 
   const [open, setOpen] = React.useState(false);
   const handleOpenLogoutDialog = (isOpen) => {
@@ -78,18 +77,13 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
           <Link
             to="/home"
             style={{ textDecoration: "none" }}
-            onClick={() => [
-              dispatch(resetLoading()),
-              handleLocationChange("/home"),
-            ]}
+            onClick={() => [dispatch(resetLoading())]}
           >
             <SidebarItem
               text="Home"
               Icon={HomeIcon}
               active={
-                otherLoc.otherLoc.length < 30 &&
-                currLocation === "/home" &&
-                true
+                otherLoc.otherLoc === "http://localhost:3000/home" && true
               }
             />
           </Link>
@@ -98,15 +92,14 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
           <Link
             to="/messages"
             style={{ textDecoration: "none" }}
-            onClick={() => [
-              dispatch(resetLoading()),
-              handleLocationChange("/messages"),
-            ]}
+            onClick={() => [dispatch(resetLoading())]}
           >
             <SidebarItem
               text="Chats"
               Icon={QuestionAnswerIcon}
-              active={currLocation === "/messages" && true}
+              active={
+                otherLoc.otherLoc === "http://localhost:3000/messages" && true
+              }
             />
           </Link>
         </Button>
@@ -114,18 +107,13 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
           <Link
             to="/profile"
             style={{ textDecoration: "none" }}
-            onClick={() => [
-              dispatch(resetLoading()),
-              handleLocationChange("/profile"),
-            ]}
+            onClick={() => [dispatch(resetLoading())]}
           >
             <SidebarItem
               text="Profile"
               Icon={PersonIcon}
               active={
-                otherLoc.otherLoc.length < 30 &&
-                currLocation === "/profile" &&
-                true
+                otherLoc.otherLoc === "http://localhost:3000/profile" && true
               }
             />
           </Link>

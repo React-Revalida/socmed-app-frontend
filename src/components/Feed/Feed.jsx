@@ -33,7 +33,6 @@ const Feed = ({ switchTheme }) => {
 
   useEffect(() => {
     dispatch(postActions.resetLoading());
-    console.log("reset loading in post");
     dispatch(postActions.fetchPosts());
   }, [dispatch]);
 
@@ -53,14 +52,17 @@ const Feed = ({ switchTheme }) => {
     <>
       <section className="feed">
         <div className="feed-header">
-          <div onClick={() => setIsDrawerBar(true)} className="feed-headerAvatar">
-              <Avatar
-                name={profile.name}
-                src={profile.profilePic}
-                size={40}
-                round={true}
-              />
-            </div>
+          <div
+            onClick={() => setIsDrawerBar(true)}
+            className="feed-headerAvatar"
+          >
+            <Avatar
+              name={profile.name}
+              src={profile.profilePic}
+              size={40}
+              round={true}
+            />
+          </div>
           <div className="feed-headerText">
             <span>Home</span>
           </div>
