@@ -95,7 +95,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
     if (userData.username && !userData.connected) {
       connect();
     }
-  }, [userData.username]);
+  }, [userData.username, userData.connected, selectChatMessages]);
 
   useEffect(() => {
     if (userData.username && !userData.connected) {
