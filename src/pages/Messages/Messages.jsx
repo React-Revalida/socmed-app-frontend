@@ -57,9 +57,9 @@ const Messages = () => {
           <span>&nbsp;Messages</span>
           <QuestionAnswerIcon />
         </div>
-        <div className="messagesSearchInput">
+        {/* <div className="messagesSearchInput">
           <SearchInput placeholder="Search for people and groups" />
-        </div>
+        </div> */}
         <div className="lastMessages">
           {mutuals.map((mutual) => {
             return (

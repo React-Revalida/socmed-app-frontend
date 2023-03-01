@@ -35,7 +35,7 @@ aside.EmojiPickerReact.epr-main {
   border-radius: 10px;
   border: none;
   background-color: var(--main-bg-color);
-  color: #ffffff;
+  color: var(--plain-text);
   font-size: 19px;
   line-height: 24.9375px;
   border: none;
@@ -50,12 +50,12 @@ aside.EmojiPickerReact.epr-main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  fill: var(--blue);
+  fill: var(--twitter-color);
 }
 
 .tweetboxOptionIcon {
   padding: 10px;
-  color: var(--blue);
+  color: var(--twitter-color);
 }
 
 .tweetboxOptionIcon:hover {
@@ -65,11 +65,12 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .tweetbox-button {
+  border: none;
   margin-top: 10px;
   margin-left: auto;
   margin-right: 10px;
   margin-bottom: 10px;
-  background-color: var(--blue);
+  background-color: var(--twitter-color);
   border-radius: 9999px;
   color: white;
   font-weight: 900;
@@ -82,11 +83,13 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .uploadedImage {
+  color: var(--twitter-color);
   padding: 20px;
   position: relative;
 }
 
 .uploadedImage img {
+  color: var(--twitter-color);
   margin-left: 25px;
   width: 90%;
   border-radius: 10px;
@@ -96,15 +99,15 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .uploadedImage-closeButton {
+  color: var(--twitter-color);
   position: absolute;
   top: 0;
   right: 0;
   padding: 10px;
-  color: var(--blue);
 }
 
 .uploadedImage-closeButton:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--twitter-color);
   border-radius: 9999px;
   cursor: pointer;
 }

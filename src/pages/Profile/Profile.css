@@ -185,3 +185,7 @@
   margin: 0px;
   margin-top: 0px;
 }
+
+.numFollow {
+  color: var(--plain-text) !important;
+}

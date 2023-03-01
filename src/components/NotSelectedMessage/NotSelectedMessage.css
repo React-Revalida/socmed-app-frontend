@@ -7,7 +7,7 @@
   border-right: 0.5px var(--border-color) solid;
 }
 .notSelectedMessage > span:nth-child(1) {
-  color: white;
+  color: var(--plain-text);
   font-size: 19px;
   font-weight: 700;
 }

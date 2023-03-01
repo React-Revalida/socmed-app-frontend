@@ -21,9 +21,10 @@
   flex: 0.5;
   font-size: 20px;
   font-weight: 800;
-  color: white;
+  color: var(--plain-text);
 }
 .homeStarsCol {
+  color: var(--plain-text);
   flex: 0.5;
   display: flex;
   justify-content: flex-end;
@@ -38,7 +39,7 @@
   border-radius: 9999px;
 }
 
-.feed-header .MuiAvatar-root {
+.feed-header .feed-headerAvatar {
   display: none;
 }
 @media (min-width: 0) and (max-width: 1000px) {
@@ -51,9 +52,11 @@
     flex: 1;
     margin: 0px;
   }
-  .feed-header .MuiAvatar-root {
+  .feed-header .feed-headerAvatar {
     display: block;
     margin-right: 20px;
+    margin-bottom: 10px;
+    margin-top: 2px;
     height: 32px;
     width: 32px;
   }

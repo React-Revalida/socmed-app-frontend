@@ -11,7 +11,7 @@
 .textInput {
   background-color: var(--main-bg-color);
   border: none;
-  color: white;
+  color: var(--plain-text);
   font-size: 16px;
   padding: 16px 0px 10px;
   width: 100%;
