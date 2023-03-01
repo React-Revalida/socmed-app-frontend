@@ -10,6 +10,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import unexpectedErrorReducer from "./reducers/unexpectedErrorReducer";
 import mutualFollowReducer from "./reducers/mutualFollow";
+import { chatReducer } from "./reducers/chatReducer";
 
 const initialState = {};
 
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   comment: commentReducer,
   follow: followReducer,
   mutuals: mutualFollowReducer,
+  chat: chatReducer,
 });
 
 const composeEnhancers =

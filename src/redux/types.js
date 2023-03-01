@@ -516,7 +516,7 @@ export const fetchAllUsersSuccess = (users) => {
 export const fetchAllUsersFailure = (error) => {
   return {
     type: "FETCH_ALL_USERS_FAILURE",
-       payload: error,
+    payload: error,
   };
 };
 
@@ -556,6 +556,26 @@ export const editPostSuccess = (userPosts) => {
 export const editPostFailure = (error) => {
   return {
     type: "EDIT_POST_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchMessagesRequest = () => {
+  return {
+    type: "FETCH_MESSAGES_REQUEST",
+  };
+};
+
+export const fetchMessagesSuccess = (messages) => {
+  return {
+    type: "FETCH_MESSAGES_SUCCESS",
+    payload: messages,
+  };
+};
+
+export const fetchMessagesFailure = (error) => {
+  return {
+    type: "FETCH_MESSAGES_FAILURE",
     payload: error,
   };
 };
