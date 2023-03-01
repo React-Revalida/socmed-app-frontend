@@ -202,7 +202,9 @@ const Profile = () => {
             )}
           </div>
           <div className="profileBiography">
-            <span>{profile.name}</span>
+            <span style={{ color: "var(--plain-text) !important" }}>
+              {profile.name}
+            </span>
             <span>{profile.email}</span>
             <span>{profile.bio}</span>
             <span>
