@@ -21,7 +21,7 @@
 }
 .twitter-icon {
   color: var(--twitter-color);
-  font-size: 30px !important;
+  font-size: 40px !important;
   margin-top: 12px;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -83,7 +83,7 @@
 }
 
 .profileCardNameColName {
-  color: #d9d9d9;
+  color: var(--plain-text) !important;
   font-size: 15px;
   font-weight: 700;
   line-height: 19.6875px;

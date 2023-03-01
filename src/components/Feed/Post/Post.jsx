@@ -158,7 +158,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
           <div className="post-event">
             <div>
               {liked ? (
-                <FavoriteOutlinedIcon
+                <FavoriteIcon
                   className="postIcon"
                   onClick={async (e) => {
                     // unlikePost(e, post.postId);
@@ -186,7 +186,6 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                       );
                     }
                   }}
-                  sx={{ color: teal[50] }}
                 />
               ) : (
                 <FavoriteBorderIcon

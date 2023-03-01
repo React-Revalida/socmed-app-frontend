@@ -202,7 +202,9 @@ const Profile = () => {
             )}
           </div>
           <div className="profileBiography">
-            <span>{profile.name}</span>
+            <span style={{ color: "var(--plain-text) !important" }}>
+              {profile.name}
+            </span>
             <span>{profile.email}</span>
             <span>{profile.bio}</span>
             <span>
@@ -221,7 +223,7 @@ const Profile = () => {
                 cursor: "pointer",
               }}
             >
-              <span>{profile.following}</span>
+              <span className="numFollow">{profile.following}</span>
               <span>Following</span>
             </span>
             <span
@@ -234,7 +236,7 @@ const Profile = () => {
                 cursor: "pointer",
               }}
             >
-              <span>{profile.followers}</span>
+              <span className="numFollow">{profile.followers}</span>
               <span>Followers</span>
             </span>
           </div>

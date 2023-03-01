@@ -43,7 +43,9 @@ const SearchInput = ({ placeholder }) => {
           {...params}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          style={{ color: "var(--plain-text)" }}
+          sx={{
+            "& > :not(style)": { color: "var(--plain-text)" },
+          }}
           placeholder={placeholder}
           InputProps={{
             ...params.InputProps,

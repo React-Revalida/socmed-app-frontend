@@ -13,7 +13,7 @@
 .messagesHeader > span {
   font-size: 19px;
   font-weight: 800;
-  color: white;
+  color: var(--plain-text);
 }
 .messagesHeader > svg {
   width: 23px;
@@ -37,7 +37,7 @@
   .messages {
     flex: 1;
   }
-  .messagesNone{
+  .messagesNone {
     display: none;
   }
 }
