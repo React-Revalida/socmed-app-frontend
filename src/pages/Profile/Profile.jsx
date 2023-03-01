@@ -15,6 +15,7 @@ import * as likeActions from "../../redux/actions/likeActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -80,8 +81,13 @@ const Profile = () => {
   const selectProfile = useSelector((state) => state.user.profile);
   const selectOtherProfile = useSelector((state) => state.user.otherProfile);
   const [profile, setProfile] = useState(selectProfile);
+  
+  const selectAddress = useSelector((state) => state.user.address);
+  const [address, setAddress] = useState(selectAddress);
 
   useEffect(() => {
+    dispatch(postActions.resetLoading());
+    console.log("reset loading in post");
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
@@ -110,6 +116,7 @@ const Profile = () => {
       setUserLikedPosts(selectUserLikedPosts);
     } else {
       setProfile(selectProfile);
+      setAddress(selectAddress);
       setUserPosts(selectUserPosts);
       setFollowers(selectFollowers);
       setFollowing(selectFollowing);
@@ -119,6 +126,7 @@ const Profile = () => {
   }, [
     params.username,
     selectProfile,
+    selectAddress,
     selectOtherProfile,
     selectUserPosts,
     selectFollowers,
@@ -141,6 +149,7 @@ const Profile = () => {
     <>
       <ProfileEditForm
         profile={profile}
+        address={address}
         isDialogOpen={open}
         onOpenDialog={handleOpenEditDialog}
       />
@@ -154,10 +163,10 @@ const Profile = () => {
         <div className="profileHeader">
           <div>
             <BackIcon
-              onClick={() => {
-                navigate("/home");
-                dispatch(postActions.resetLoading());
-              }}
+              onClick={() => [
+                navigate("/home"),
+                dispatch(postActions.resetLoading()),
+              ]}
               sx={{ "&:hover": { cursor: "pointer" } }}
             />
           </div>
@@ -271,7 +280,6 @@ const Profile = () => {
             <Loading />
           )}
         </article>
-        <BottomSidebar />
       </section>
       <Widgets />
     </>

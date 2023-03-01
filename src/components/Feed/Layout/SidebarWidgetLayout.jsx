@@ -2,9 +2,9 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import HomeBox from "../../HomeBox/HomeBox";
 
-const SidebarWidgetLayout = () => {
+const SidebarWidgetLayout = (otherLoc) => {
   return (
-    <HomeBox>
+    <HomeBox otherLoc={otherLoc}>
       <Outlet />
     </HomeBox>
   );

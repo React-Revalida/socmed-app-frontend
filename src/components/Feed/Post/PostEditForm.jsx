@@ -38,8 +38,6 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
   const [newPicUpload, setNewPicUpload] = useState(null);
   const [currentImage, setCurrentImage] = useState(post ? post.imageUrl : "");
 
-  const navigate = useNavigate();
-
   // useEffect(() => {
   //   setPostState({
   //     message: post.message != null ? post.message : "",
@@ -86,6 +84,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
   };
 
   const success = useSelector((state) => state.user.success);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (success) {
@@ -105,6 +104,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
       setPostState({ ...postState, message: "" });
       setNewPicUpload(null);
       setCurrentImage("");
+      navigate("/home");
     }
     onOpenPostModal(false);
   };

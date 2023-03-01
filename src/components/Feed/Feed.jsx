@@ -31,6 +31,8 @@ const Feed = ({ switchTheme }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(postActions.resetLoading());
+    console.log("reset loading in post");
     dispatch(postActions.fetchPosts());
   }, [dispatch]);
 

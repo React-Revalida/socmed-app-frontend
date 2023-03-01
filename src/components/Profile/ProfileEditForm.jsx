@@ -26,7 +26,7 @@ import * as profileActions from "../../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 
-const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
+const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [tab, setTab] = React.useState(0);
@@ -61,16 +61,16 @@ const ProfileEditForm = ({ profile, onOpenDialog, isDialogOpen }) => {
       bio: profile.bio ? profile.bio : "",
     });
     setAddressState({
-      houseNo: profile.address.houseNo,
-      street: profile.address.street,
-      subdivision: profile.address.subdivision,
-      barangay: profile.address.barangay,
-      city: profile.address.city,
-      province: profile.address.province,
-      zip: profile.address.zip,
+      houseNo: address.houseNo,
+      street: address.street,
+      subdivision:address.subdivision,
+      barangay: address.barangay,
+      city: address.city,
+      province: address.province,
+      zip: address.zip,
     });
     setProfilePic(profile.profilePic);
-  }, [profile]);
+  }, [profile, address]);
 
   const [profilePicUpload, setProfilePicUpload] = useState(null);
 

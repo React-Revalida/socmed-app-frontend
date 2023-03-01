@@ -48,6 +48,8 @@ function App() {
 
   const otherLoc = window.location.href;
 
+  const otherLoc = window.location.href;
+
   return (
     <Routes>
       <Route
@@ -66,6 +68,24 @@ function App() {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/posts/:postId" element={<PostPage />} />
       </Route>
+    <ThemeProvider theme={darkTheme}>
+      <Routes>
+        <Route
+          element={
+            accessToken ? (
+              <SidebarWidgetLayout otherLoc={otherLoc} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        >
+          <Route path="/home" element={<Feed />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/:username" element={<Messages />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/posts/:postId" element={<PostPage />} />
+        </Route>
 
       <Route
         path="/"

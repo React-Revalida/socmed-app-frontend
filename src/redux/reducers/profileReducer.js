@@ -1,9 +1,14 @@
 const initialState = {
-  profile: {
-    address: {},
-  },
-  otherProfile: {
-    address: {},
+  profile: {},
+  otherProfile: {},
+  address: {
+    houseNo: "",
+    street: "",
+    subdivision: "",
+    barangay: "",
+    city: "",
+    province: "",
+    zip: "",
   },
   loading: false,
   error: null,
@@ -24,6 +29,17 @@ export default function userReducer(state = initialState, action) {
         ...state,
         loading: false,
         profile: action.payload,
+        address: action.payload.address
+          ? action.payload.address
+          : {
+              houseNo: "",
+              street: "",
+              subdivision: "",
+              barangay: "",
+              city: "",
+              province: "",
+              zip: "",
+            },
       };
     case "FETCH_PROFILE_FAILURE":
       return {
