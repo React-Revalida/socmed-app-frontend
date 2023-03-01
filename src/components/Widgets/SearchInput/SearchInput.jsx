@@ -39,9 +39,11 @@ const SearchInput = ({ placeholder }) => {
       }}
       renderInput={(params) => (
         <TextField
+          className="search-field"
           {...params}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
+          style={{ color: "var(--plain-text)" }}
           placeholder={placeholder}
           InputProps={{
             ...params.InputProps,

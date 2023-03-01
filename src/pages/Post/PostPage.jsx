@@ -64,7 +64,10 @@ const PostPage = () => {
             <div className="postFooter">
               <CommentBox postUser={post.user} pid={post.postId} />
               {post.comments.map((comment) => (
-                <Comment comment={comment} />
+                <Comment
+                  key={comment.message + comment.timestamp}
+                  comment={comment}
+                />
               ))}
             </div>
           </>

@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import BottomSidebar from "../BottomSidebar/BottomSidebar";
 import Loading from "../Loading/Loading";
-import { Avatar, CardActionArea } from "@mui/material";
+import { Avatar, CardActionArea, IconButton } from "@mui/material";
 import { UserInterfaceContext } from "../../contexts/UserInterfaceContext";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,9 +13,12 @@ import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
 import PostPage from "../../pages/Post/PostPage";
 import { useState } from "react";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 import * as likeActions from "../../redux/actions/likeActions";
-const Feed = () => {
+import Sidebar from "../Sidebar/Sidebar";
+const Feed = ({ switchTheme }) => {
   const { darkMode, onToggleDarkMode } = useContext(UserInterfaceContext);
 
   const selectPosts = useSelector((state) => state.post.posts);
@@ -38,21 +41,6 @@ const Feed = () => {
     //params
   }, [selectPosts, selectLoading]);
 
-  const onLikePost = async (postId) => {
-    console.log("like post" + postId);
-    await dispatch(
-      likeActions.likePost({
-        liked: true,
-        user: selectProfile.userId,
-        post: postId,
-      })
-    );
-  };
-
-  const onUnlikePost = async (postId) => {
-    console.log("unlike post" + postId);
-    await dispatch(likeActions.unlikePost(postId, selectProfile.userId));
-  };
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
 
@@ -67,7 +55,14 @@ const Feed = () => {
             <span>Home</span>
           </div>
           <div className="homeStarsCol">
-            <AutoAwesomeIcon />
+            <IconButton
+              className="inline"
+              sx={{ ml: 1 }}
+              onClick={switchTheme}
+              color="inherit"
+            >
+              <AutoAwesomeIcon />
+            </IconButton>
           </div>
         </div>
         <PostBox />
@@ -80,8 +75,6 @@ const Feed = () => {
                 key={post.postId}
                 post={post}
                 userLoggedIn={selectProfile}
-                onLike={onLikePost}
-                onUnlike={onUnlikePost}
               />
             ))}
           </article>
