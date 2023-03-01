@@ -559,6 +559,46 @@ export const editPostFailure = (error) => {
   };
 };
 
+export const fetchResetTokenRequest = () => {
+  return {
+    type: "FETCH_RESET_TOKEN_REQUEST",
+  };
+};
+
+export const fetchResetTokenSuccess = (token) => {
+  return {
+    type: "FETCH_RESET_TOKEN_SUCCESS",
+    payload: token,
+  };
+};
+
+export const fetchResetTokenFailure = (error) => {
+  return {
+    type: "FETCH_RESET_TOKEN_FAILURE",
+    payload: error,
+  };
+};
+
+export const fetchResetPasswordRequest = () => {
+  return {
+    type: "FETCH_RESET_PASSWORD_REQUEST",
+  };
+};
+
+export const fetchResetPasswordSuccess = (message) => {
+  return {
+    type: "FETCH_RESET_PASSWORD_SUCCESS",
+    payload: message,
+  };
+};
+
+export const fetchResetPasswordFailure = (error) => {
+  return {
+    type: "FETCH_RESET_PASSWORD_FAILURE",
+        payload: error,
+  };
+};
+
 export const fetchMessagesRequest = () => {
   return {
     type: "FETCH_MESSAGES_REQUEST",

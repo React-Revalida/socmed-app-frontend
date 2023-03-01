@@ -58,3 +58,39 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
       });
   };
 };
+
+export const generateResetPasswordToken = (email) => {
+  return async (dispatch) => {
+    dispatch(type.fetchResetTokenRequest());
+    await authService
+      .getResetPasswordToken(email)
+      .then((response) => {
+        const token = response.data.accessToken;
+        localStorage.setItem("resetToken", token);
+        dispatch(type.fetchResetTokenSuccess(token));
+      })
+      .catch((error) => {
+        const errorMsg = error.response.data.message;
+        dispatch(type.fetchResetTokenFailure(errorMsg));
+      });
+  };
+};
+
+export const resetPassword = (resetToken, password) => {
+  return async (dispatch) => {
+    dispatch(type.fetchResetPasswordRequest());
+    await authService
+      .resetPassword(resetToken, password)
+      .then((response) => {
+        const isReset = response;
+        console.log(response);
+        localStorage.removeItem("resetToken");
+        dispatch(type.fetchResetPasswordSuccess(isReset));
+      })
+      .catch((error) => {
+        const errorMsg = error.response.status;
+        console.log(error);
+        dispatch(type.fetchResetPasswordFailure(errorMsg));
+      });
+  };
+};

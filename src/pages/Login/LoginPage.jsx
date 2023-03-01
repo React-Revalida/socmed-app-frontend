@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React from "react";
 import LoginForm from "../../components/LoginSignup/LoginForm";
-import Banner from "../../assets/socmed-banner-1.jpg";
+import Banner from "../../assets/socmed-banner-1-min.jpg";
 
 const LoginPage = () => {
   return (

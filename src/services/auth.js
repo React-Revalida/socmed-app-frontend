@@ -29,3 +29,22 @@ export function getCurrentUser() {
   }
   return null;
 }
+
+export const getResetPasswordToken = async (email) => {
+  return await http.get("/auth/forgot-password", {
+    params: {
+      email: email,
+    },
+  });
+};
+
+export const resetPassword = async (resetToken, password) => {
+  const data = {
+    password: password,
+  };
+  return await http.post("/users/update-password", data, {
+    headers: {
+      Authorization: `Bearer ${resetToken}`,
+    },
+  });
+};

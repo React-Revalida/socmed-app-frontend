@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import SidebarWidgetLayout from "./components/Feed/Layout/SidebarWidgetLayout";
 import Feed from "./components/Feed/Feed";
 import Profile from "./pages/Profile/Profile";
+import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ForgotPassword/ResetPasswordPage";
 
 function App() {
   const setLightMode = () => {
@@ -43,14 +45,15 @@ function App() {
 
   const selectToken = useSelector((state) => state.auth.accessToken);
   const accessToken = localStorage.getItem("accessToken") || selectToken;
+  const resetToken = localStorage.getItem("resetToken");
   const navigate = useNavigate();
   useEffect(() => {
     const datatheme = localStorage.getItem("darkMode");
     setTheme(datatheme);
-    if (!accessToken) {
+    if (!accessToken && !resetToken) {
       navigate("/login");
     }
-  }, [accessToken]);
+  }, [accessToken, resetToken]);
 
   const darkTheme = createTheme({
     palette: {
@@ -125,6 +128,14 @@ function App() {
       <Route
         path="/signup"
         element={accessToken ? <Navigate to="/home" /> : <SignupPage />}
+      />
+      <Route
+        path="/forgot-password"
+        element={accessToken ? <Navigate to="/home" /> : <ForgotPasswordPage />}
+      />
+      <Route
+        path="/reset-password/:token"
+        element={accessToken ? <Navigate to="/home" /> : <ResetPasswordPage />}
       />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
