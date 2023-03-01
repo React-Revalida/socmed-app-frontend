@@ -98,17 +98,14 @@ const ResetPasswordForm = () => {
     try {
       dispatch(
         authActions.resetPassword(resetToken, userDetails.password)
-      ).then((res) => {
-        console.log(res);
-        // if (res.status === 200) {
-        //   toast.success("Password reset successfully");
-        //   navigate("/login");
-        // } else {
-        //   toast.error("Password reset failed");
-        // }
+      ).then(() => {
+        toast.success("Password reset successfully");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
       });
     } catch (error) {
-      console.log(error);
+      toast.error("Password reset failed");
     }
   };
 

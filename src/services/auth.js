@@ -42,7 +42,7 @@ export const resetPassword = async (resetToken, password) => {
   const data = {
     password: password,
   };
-  return await http.post("/users/update-password", data, {
+  return await http.put("/users/update-password", data, {
     headers: {
       Authorization: `Bearer ${resetToken}`,
     },

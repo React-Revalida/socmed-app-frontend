@@ -82,8 +82,7 @@ export const resetPassword = (resetToken, password) => {
     await authService
       .resetPassword(resetToken, password)
       .then((response) => {
-        const isReset = response;
-        console.log(response);
+        const isReset = response.data;
         localStorage.removeItem("resetToken");
         dispatch(type.fetchResetPasswordSuccess(isReset));
       })
