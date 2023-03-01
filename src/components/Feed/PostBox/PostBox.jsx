@@ -40,7 +40,6 @@ const TweetBox = () => {
 
   const uploadImage = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     setProfilePicUpload(file);
     const reader = new FileReader();
     reader.onload = () => {
@@ -90,7 +89,10 @@ const TweetBox = () => {
                 <div className="tweetboxOptions">
                   <Close
                     className="uploadedImage-closeButton"
-                    onClick={() => setPostImage("")}
+                    onClick={() => [
+                      setPostImage(""),
+                      setProfilePicUpload(null),
+                    ]}
                   />
                 </div>
               </Box>

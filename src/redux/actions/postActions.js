@@ -7,7 +7,6 @@ export const fetchPosts = () => {
     postService
       .getPosts()
       .then((response) => {
-        console.log(response.data);
         const posts = response.data;
         dispatch(type.fetchPostsSuccess(posts));
       })
@@ -49,11 +48,9 @@ export const addPost = (message, image) => {
 };
 
 export const editPost = (postId, message, image) => {
-  console.log(image);
   if (image === null) {
     image = "";
   }
-  console.log(image);
   const postMessage = JSON.stringify(message);
   const postMessageBlob = new Blob([postMessage], {
     type: "application/json",
@@ -92,7 +89,6 @@ export const fetchPostById = (postId) => {
     postService
       .getPostById(postId)
       .then((response) => {
-        console.log(response.data);
         const post = response.data;
         dispatch(type.fetchPostByIdSuccess(post));
       })

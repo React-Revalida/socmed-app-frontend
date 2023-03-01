@@ -7,7 +7,6 @@ export const fetchProfile = () => {
     await profileService
       .getProfile()
       .then(async (response) => {
-        console.log(response.data);
         const profile = response.data;
         dispatch(type.fetchProfileSuccess(profile));
       })

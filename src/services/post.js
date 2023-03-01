@@ -25,7 +25,6 @@ export const removePost = async (postId) => {
 };
 
 export const updatePost = async (postId, post) => {
-  console.log(post);
   return await http.put(`/posts/edit/${postId}`, post, {
     headers: {
       "Content-Type": "multipart/form-data",

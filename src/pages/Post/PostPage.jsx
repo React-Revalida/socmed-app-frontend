@@ -19,20 +19,14 @@ const PostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const { handleDisableCardAction, onPostPage } =
-    useContext(UserInterfaceContext);
 
   const loading = useSelector((state) => state.post.loading);
   const post = useSelector((state) => state.post.post);
 
   useEffect(() => {
-    handleDisableCardAction(true);
     dispatch(postActions.resetLoading());
-    console.log("reset loading in post");
     dispatch(postActions.fetchPostById(params.postId));
-    console.log(post);
   }, [dispatch]);
-  console.log(onPostPage);
 
   let dateFormat = new Date(post.timestamp).toLocaleString("en-US", {
     dateStyle: "full",

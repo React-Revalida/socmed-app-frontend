@@ -89,7 +89,6 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(postActions.resetLoading());
-    console.log("reset loading in post");
     dispatch(followActions.getLoggedInUserFollowing());
     if (params.username) {
       dispatch(profileActions.fetchOtherProfile(params.username));
