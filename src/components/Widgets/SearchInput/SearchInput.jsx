@@ -22,11 +22,25 @@ const SearchInput = ({ placeholder }) => {
   }, [selectAllUsers]);
 
   const [isFocus, setIsFocus] = React.useState(false);
+  const theme = localStorage.getItem("darkMode");
 
   return (
     <Autocomplete
       fullWidth
       popupIcon={""}
+      classes={{
+        option: theme === "dark" ? "search-option-dark" : "search-option",
+        listbox: theme === "dark" ? "search-listbox-dark" : "search-listbox",
+        paper: "search-paper",
+        inputRoot:
+          theme === "dark" ? "search-input-root-dark" : "search-input-root",
+        input: theme === "dark" ? "search-input-dark" : "search-input",
+        popupIndicator: "search-popup-indicator",
+        clearIndicator: "search-clear-indicator",
+        endAdornment: "search-end-adornment",
+        focused: "search-focused",
+        root: theme === "dark" ? "search-root-dark" : "search-root",
+      }}
       options={Object.values(allUsers)}
       onChange={(event, newValue) => {
         event.preventDefault();

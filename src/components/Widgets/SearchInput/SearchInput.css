@@ -38,3 +38,14 @@
 .search-field {
   color: var(--plain-text);
 }
+
+.search-listbox-dark,
+.search-listbox {
+  background-color: var(--main-bg-color);
+  color: var(--plain-text);
+}
+
+.search-option-dark,
+.search-option {
+  font-family: "Open Sans", sans-serif;
+}
