@@ -187,6 +187,10 @@ const TweetBox = () => {
                 backgroundColor: "var(--twitter-color)",
                 borderRadius: 8,
                 ml: 38,
+                "&:hover": {
+                  backgroundColor: "var(--twitter-color)",
+                  boxShadow: 3,
+                },
               }}
               disabled={isFormInvalid()}
             >
