@@ -36,7 +36,8 @@ export const signUpUser = (userDetailsDTO, pictureUpload) => {
     type: "application/json",
   });
 
-  const profileImage = new File([pictureUpload], "profile", {
+  const profileImageName = pictureUpload ? pictureUpload.name : null;
+  const profileImage = new File([pictureUpload], profileImageName, {
     type: "image/*",
   });
 
