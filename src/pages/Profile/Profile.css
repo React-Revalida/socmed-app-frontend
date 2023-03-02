@@ -4,7 +4,7 @@
 
 .profile {
   border: 0.5px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 13px;
   margin-top: 5px;
 }
 
@@ -48,10 +48,11 @@
 .backgroundImage {
   height: 200px;
   width: 100%;
-  background-size: cover!important;
-  background-position: center!important;
-  background-repeat: no-repeat!important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   background: rgb(71, 67, 69);
+  border-radius: 12px;
 }
 
 .profileTitle {
