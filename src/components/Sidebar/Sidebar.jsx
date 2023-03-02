@@ -126,7 +126,7 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
         </Button>
 
         {/* CONSTRUCTION */}
-        <Button className="navButton">
+        {/* <Button className="navButton">
           <Link
             // to="/messages"
             style={{ textDecoration: "none" }}
@@ -141,11 +141,11 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
               // }
             />
           </Link>
-        </Button>
+        </Button> */}
         {/* CONSTRUCTION */}
 
         {/* CHAT */}
-        {/* <Button className="navButton">
+        <Button className="navButton">
           <Link
             to="/messages"
             style={{ textDecoration: "none" }}
@@ -159,7 +159,7 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
               }
             />
           </Link>
-        </Button> */}
+        </Button>
         {/* CHAT */}
 
         <Button className="navButton">
