@@ -129,7 +129,10 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
     >
       <Tabs value={tab} textColor="inherit" variant="fullWidth">
         <Tab
-          sx={{ bgcolor: "var(--main-bg-color)", color: "var(--plain-text)" }}
+          sx={{
+            bgcolor: "var(--main-bg-color) !important",
+            color: "var(--plain-text) !important",
+          }}
           label={post ? "Edit Post" : "Create Post"}
           {...a11yProps(0)}
         />
