@@ -1,9 +1,11 @@
 .feed {
-  flex: 0.6;
+  flex: 1;
   border-right: 0.5px var(--border-color) solid;
   border-left: 0.5px var(--border-color) solid;
   min-height: 100vh;
   height: max-content;
+  margin-left: 20px;
+  margin-right: 40px;
 }
 
 .feed-header {

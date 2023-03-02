@@ -1,10 +1,13 @@
 .sidebar {
-  flex: 0.2;
-  padding: 0px 20px;
+  flex: 0.09;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-left: 50px;
+  justify-content: flex-end;
+  align-content: flex-end;
+  margin-left: 50px;
 }
 
 .navButton {

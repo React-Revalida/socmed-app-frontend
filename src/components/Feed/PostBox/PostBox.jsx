@@ -85,7 +85,6 @@ const TweetBox = () => {
 
   const isFormInvalid = () => {
     let result = postSchema.validate(tweet);
-    console.log(result);
     return !!result.error;
   };
 
