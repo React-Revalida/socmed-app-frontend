@@ -4,6 +4,8 @@ import "./ProfileCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as followActions from "../../redux/actions/followActions";
 import { useNavigate } from "react-router";
+import Follow from "../../assets/calm.png";
+import Followed from "../../assets/spilled.png";
 
 const ProfileCard = ({ active, profile }) => {
   const dispatch = useDispatch();
@@ -89,7 +91,23 @@ const ProfileCard = ({ active, profile }) => {
         />
         {user !== profile.username ? (
           <div onClick={handleToggleFollow} style={{ cursor: "pointer" }}>
-            <span>{userFollowed ? "Following" : "Follow"}</span>
+            <span>
+              {userFollowed ? (
+                <img
+                  src={Followed}
+                  alt="Spill"
+                  loading="lazy"
+                  className="followed-icon"
+                />
+              ) : (
+                <img
+                  src={Follow}
+                  alt="Spill"
+                  loading="lazy"
+                  className="follow-icon"
+                />
+              )}
+            </span>
           </div>
         ) : (
           <> </>
@@ -105,16 +123,11 @@ const ProfileCard = ({ active, profile }) => {
         <span>@{profile.username}</span>
       </div>
       <div>
-        <span></span>
-        <span></span>
-      </div>
-      <div>
         <span>
-          <span></span>
           <span>{profile.email}</span>
         </span>
+        &nbsp; &nbsp;
         <span>
-          <span></span>
           <span>{followsUser ? "Follows you" : ""}</span>
         </span>
       </div>
