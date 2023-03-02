@@ -51,11 +51,10 @@ aside.EmojiPickerReact.epr-main {
 
 .tweetboxOptionIcon {
   padding: 10px;
-  color: var(--main-bg-color);
 }
 
 .tweetboxOptionIcon:hover {
-  background-color: var(--twitter-color);
+  background-color: var(--hover-color);
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -65,10 +64,10 @@ aside.EmojiPickerReact.epr-main {
   margin-left: auto;
   margin-right: 10px;
   margin-bottom: 10px;
-  background-color: var(--main-bg-color);
+  background-color: var(--twitter-color) !important;
   border-radius: 9999px;
   color: white;
   font-weight: 900;
-  font-size: 2px;
+  font-size: 15px;
   padding: 10px 15px;
 }

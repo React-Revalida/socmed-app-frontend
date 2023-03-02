@@ -29,7 +29,7 @@
 }
 
 .profileHeader .MuiSvgIcon-root:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .profileHeader div span:nth-child(1) {

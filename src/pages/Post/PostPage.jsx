@@ -42,6 +42,9 @@ const PostPage = () => {
               navigate("/home"),
               dispatch(postActions.resetLoading()),
             ]}
+            sx={{
+              "&:hover": { bgcolor: "var(--hover-color) !imporant" },
+            }}
           />
           <span>Feeds</span>
         </div>

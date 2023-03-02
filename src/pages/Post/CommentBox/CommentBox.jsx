@@ -96,7 +96,11 @@ const CommentBox = ({ postUser, pid }) => {
             <button
               type="submit"
               className="tweetbox-button tweetboxOptionIcon"
-              style={{ cursor: "pointer", fontFamily: "Poppins" }}
+              style={{
+                cursor: "pointer",
+                fontFamily: "Poppins",
+                "&:hover": { color: "var (--twitter-color) !important" },
+              }}
             >
               Reply
             </button>

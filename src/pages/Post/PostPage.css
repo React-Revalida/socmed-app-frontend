@@ -18,7 +18,7 @@
   border-radius: 9999px;
 }
 .postHeader .MuiSvgIcon-root:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .postHeader span {
