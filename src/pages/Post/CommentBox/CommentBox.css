@@ -1,5 +1,4 @@
 .tweetbox {
-  border-bottom: 1px solid var(--border-color);
   /* display: flex; */
   flex: 1;
   flex-direction: column;
@@ -10,11 +9,7 @@ aside.EmojiPickerReact.epr-main {
   top: 125px;
   z-index: 999;
 }
-.bottomBorder {
-  height: 8px;
-  background-color: var(--element-bg-color);
-  border-bottom: 1px solid var(--border-color);
-}
+
 .tweetboxRow {
   display: flex;
   flex-direction: row;

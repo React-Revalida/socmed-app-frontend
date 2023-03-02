@@ -1,6 +1,5 @@
 .post {
-  padding-top: 10px;
-  border-bottom: 0.5px var(--border-color) solid;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -65,6 +64,7 @@
   display: flex;
   flex: 1;
   justify-content: space-evenly;
+  margin-left: 40px;
 }
 .post-event > div {
   flex: 0.25;

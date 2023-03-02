@@ -1,10 +1,9 @@
 .feed {
-  flex: 1;
-  border-right: 0.5px var(--border-color) solid;
-  border-left: 0.5px var(--border-color) solid;
+  flex: 0.8;
+
   min-height: 100vh;
   height: max-content;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-right: 40px;
 }
 
@@ -13,7 +12,6 @@
   top: 0;
   background-color: var(--main-bg-color);
   z-index: 100;
-  border-bottom: 0.5px var(--border-color) solid;
   padding: 0px 15px;
   display: flex;
   flex: 1;
