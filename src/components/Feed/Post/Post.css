@@ -59,6 +59,7 @@
   color: var(--plain-text);
   display: inline;
   font-size: 15px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .post-event {

@@ -191,6 +191,8 @@ const TweetBox = () => {
                       borderRadius: 8,
                       ml: 38,
                       mt: 1,
+                      textTransform: "none",
+                      fontFamily: "Poppins",
                       "&:hover": {
                         cursor: "default",
                         borderColor: "var(--twitter-color)",
@@ -201,6 +203,8 @@ const TweetBox = () => {
                       borderRadius: 8,
                       ml: 38,
                       mt: 1,
+                      textTransform: "none",
+                      fontFamily: "Poppins",
                       "&:hover": {
                         backgroundColor: "var(--twitter-color)",
                         boxShadow: 3,
@@ -209,7 +213,7 @@ const TweetBox = () => {
               }
               // disabled={isFormInvalid()}
             >
-              SPILL
+              Spill
             </Button>
           </div>
         </div>

@@ -231,7 +231,7 @@ const Profile = () => {
             </span>
             <span>{profile.email}</span>
             <span>{profile.bio}</span>
-            <span>
+            <span style={{ fontFamily: "Open Sans" }}>
               <ScheduleIcon />
               {profile.dateJoined}
             </span>
@@ -245,6 +245,7 @@ const Profile = () => {
               }}
               style={{
                 cursor: "pointer",
+                fontFamily: "Open Sans",
               }}
             >
               <span className="numFollow">{profile.following}</span>
@@ -258,6 +259,7 @@ const Profile = () => {
               }}
               style={{
                 cursor: "pointer",
+                fontFamily: "Open Sans",
               }}
             >
               <span className="numFollow">{profile.followers}</span>
