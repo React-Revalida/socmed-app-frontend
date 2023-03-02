@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 const Comment = ({ comment }) => {
   const navigate = useNavigate();
 
+  console.log(comment);
+
   return (
     <div className="post">
       <div className="comment__avatar">
