@@ -154,7 +154,7 @@ const TweetBox = () => {
                 className="tweetboxOptionIcon"
                 width={25}
                 height={25}
-                sx={{ fill: "var(--twitter-color)", mb: 0.7 }}
+                sx={{ fill: "var(--twitter-color)", mt: 1.3 }}
                 onClick={() => setEmojiPicker((prev) => !prev)}
               />
             ) : (
@@ -163,7 +163,7 @@ const TweetBox = () => {
                   className="tweetboxOptionIcon"
                   width={25}
                   height={25}
-                  sx={{ fill: "var(--twitter-color)", mt: 0.5 }}
+                  sx={{ fill: "var(--twitter-color)", mt: 1.3 }}
                   onClick={() => setEmojiPicker((prev) => !prev)}
                 />
                 <EmojiPicker
@@ -182,19 +182,38 @@ const TweetBox = () => {
             )}
             <Button
               type="submit"
-              variant="contained"
-              sx={{
-                backgroundColor: "var(--twitter-color)",
-                borderRadius: 8,
-                ml: 38,
-                "&:hover": {
-                  backgroundColor: "var(--twitter-color)",
-                  boxShadow: 3,
-                },
-              }}
-              disabled={isFormInvalid()}
+              variant={isFormInvalid() ? "outlined" : "contained"}
+              sx={
+                isFormInvalid()
+                  ? {
+                      borderColor: "var(--twitter-color)",
+                      color: "var(--twitter-color)",
+                      borderRadius: 8,
+                      ml: 38,
+                      mt: 1,
+                      textTransform: "none",
+                      fontFamily: "Poppins",
+                      "&:hover": {
+                        cursor: "default",
+                        borderColor: "var(--twitter-color)",
+                      },
+                    }
+                  : {
+                      backgroundColor: "var(--twitter-color)",
+                      borderRadius: 8,
+                      ml: 38,
+                      mt: 1,
+                      textTransform: "none",
+                      fontFamily: "Poppins",
+                      "&:hover": {
+                        backgroundColor: "var(--twitter-color)",
+                        boxShadow: 3,
+                      },
+                    }
+              }
+              // disabled={isFormInvalid()}
             >
-              Post
+              Spill
             </Button>
           </div>
         </div>

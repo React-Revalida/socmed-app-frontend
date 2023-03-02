@@ -5,6 +5,8 @@ import * as followActions from "../../../../redux/actions/followActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { resetLoading } from "../../../../redux/actions/postActions";
+import Follow from "../../../../assets/calm.png";
+import Followed from "../../../../assets/spilled.png";
 
 const FriendSuggestionItem = ({ image, displayName, username }) => {
   const dispatch = useDispatch();
@@ -53,7 +55,25 @@ const FriendSuggestionItem = ({ image, displayName, username }) => {
         style={{ cursor: "pointer" }}
         onClick={handleToggleFollow}
       >
-        <span>{userFollowed ? "Following" : "Follow"}</span>
+        <span>
+          {userFollowed ? (
+            <img
+              src={Followed}
+              // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              alt="Spill"
+              loading="lazy"
+              className="followed-icon"
+            />
+          ) : (
+            <img
+              src={Follow}
+              // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              alt="Spill"
+              loading="lazy"
+              className="follow-icon"
+            />
+          )}
+        </span>
       </div>
     </div>
   );

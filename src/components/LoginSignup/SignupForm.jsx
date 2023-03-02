@@ -21,6 +21,8 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import * as authActions from "../../redux/actions/authActions";
 import { CustomSelect } from "../../custom/CustomFieldComponents";
 import { joiPasswordExtendCore } from "joi-password";
+import mainLogo from "../../assets/SpillLogo.png";
+import "./LoginSignup.css";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -164,7 +166,12 @@ const SignupForm = () => {
         }}
       >
         <Box textAlign={"center"}>
-          <FlutterDashIcon sx={{ color: "#00d5bf" }} />
+          <img
+            src={mainLogo}
+            alt="Spill"
+            loading="lazy"
+            className="login-icon"
+          />
         </Box>
 
         <CardHeader
@@ -331,6 +338,7 @@ const SignupForm = () => {
                 variant="contained"
                 disabled={isFormInvalid()}
                 sx={{
+                  fontFamily: "Poppins",
                   width: 250,
                   backgroundColor: "#00d5bf",
                   borderRadius: 8,
@@ -346,7 +354,11 @@ const SignupForm = () => {
         </CardContent>
         <Box textAlign={"center"} marginTop={0}>
           <Link to="/login" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              fontFamily={"Poppins"}
+            >
               Go to Login
             </Typography>
           </Link>

@@ -22,6 +22,7 @@
 .twitter-icon {
   color: var(--twitter-color);
   font-size: 40px !important;
+  width: 60px;
   margin-top: 12px;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -67,7 +68,7 @@
 }
 .profileCard:hover {
   transition: color 100ms ease-out;
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .profileCardImage > .MuiAvatar-root {

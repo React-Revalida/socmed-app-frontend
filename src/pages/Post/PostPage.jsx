@@ -52,6 +52,7 @@ const PostPage = () => {
             <Post key={post.postId} post={post} from={"postpage"} />
             <div className="postFooter">
               <Typography
+                className="postTimestamp"
                 color={"#8899a6"}
                 fontStyle="oblique"
                 fontSize={12}

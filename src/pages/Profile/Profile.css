@@ -74,7 +74,7 @@
 .followBtn {
   height: auto !important;
   margin-left: auto !important;
-  margin-top: -7px !important;
+  /* margin-top: -7px !important; */
   padding: 10px 15px !important;
   border: 1px var(--twitter-color) solid !important;
   border-radius: 9999px !important;
@@ -85,7 +85,7 @@
 
 .editProfile:hover,
 .followBtn {
-  background-color: var(--hover-blue-color);
+  /* background-color: var(--hover-blue-color); */
 }
 
 .profileBiography {

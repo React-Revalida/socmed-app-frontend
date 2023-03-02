@@ -3,6 +3,7 @@
   align-items: center;
   cursor: pointer;
   width: min-content;
+  font-family: "Poppins", sans-serif;
 }
 
 .sidebarItem > .MuiSvgIcon-root {
@@ -15,13 +16,6 @@
   font-size: 19px;
   font-weight: 700;
   line-height: 24.9375px;
-}
-
-.sidebarItem:hover {
-  border-radius: 30px;
-  color: var(--blue);
-  transition: color 100ms ease-out;
-  background-color: var(--hover-color);
 }
 
 .sidebarItem:hover > span {

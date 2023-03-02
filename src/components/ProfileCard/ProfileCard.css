@@ -40,51 +40,55 @@
   height: min-content;
   padding: 10px 15px;
   margin-left: auto;
-  border: 1px solid var(--blue);
+  border: 1px solid #00d5bf;
   border-radius: 9999px;
-  color: var(--blue);
+  color: #00d5bf;
   font-size: 15px;
   font-weight: 700;
 }
-.profileDetailCard > div:nth-child(1) > div:nth-child(2):hover {
-  background-color: var(--hover-blue-color);
-}
-.profileDetailCard > div:nth-child(2) {
-  margin-top: 5px;
+
+.profilePic {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background-color: var(--main-bg-color);
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
+.profileDetailCard > div:nth-child(1) > div:nth-child(2):hover {
+  background-color: var(--hover-color);
+}
+
 .profileDetailCard > div:nth-child(2) > span {
-  color: white;
+  color: var(--gray);
   font-size: 15px;
   font-weight: 700;
 }
-.profileDetailCard > div:nth-child(2) > svg {
-  width: 18px;
-  height: 18px;
-  fill: white;
-}
+
 .profileDetailCard > div:nth-child(3) > span {
   color: var(--gray);
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 500;
 }
-.profileDetailCard > div:nth-child(4) > span {
-  color: white;
-  font-size: 15px;
-}
-.profileDetailCard > div:nth-child(5) {
-  margin-top: 10px;
-}
-.profileDetailCard > div:nth-child(5) > span {
-  margin-right: 15px;
-}
-.profileDetailCard > div:nth-child(5) > span > span:nth-child(1) {
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 15px;
-  margin-right: 5px;
-}
-.profileDetailCard > div:nth-child(5) > span > span:nth-child(2) {
+
+.profileDetailCard > div:nth-child(4) > span > span:nth-child(1) {
   color: var(--gray);
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.profileDetailCard > div:nth-child(4) > span:nth-child(2) > span:nth-child(1) {
+  color: var(--gray);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.follow-icon {
+  width: 40px;
+}
+
+.followed-icon {
+  width: 50px;
 }

@@ -1,0 +1,14 @@
+.darkCard {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.lightCard {
+  background-color: #fff;
+  color: #000;
+}
+
+.MuiListItemText-secondary,
+.MuiListItemText-primary {
+  font-family: "Poppins", sans-serif;
+}

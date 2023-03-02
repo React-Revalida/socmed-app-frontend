@@ -22,7 +22,7 @@
   padding: 5px 16px;
 }
 .friendFollowButton:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--main-bg-color);
 }
 
 .dname {
@@ -31,4 +31,12 @@
 .profileCardNameColName:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.follow-icon {
+  width: 40px;
+}
+
+.followed-icon {
+  width: 50px;
 }

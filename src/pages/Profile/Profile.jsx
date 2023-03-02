@@ -18,6 +18,8 @@ import { Grid, Typography } from "@mui/material";
 import { CameraAlt, ThumbUp } from "@mui/icons-material";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Follow from "../../assets/calm.png";
+import Followed from "../../assets/spilled.png";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -189,14 +191,37 @@ const Profile = () => {
             </div>
             {isMe ? (
               <div
+                style={{ cursor: "pointer" }}
                 className="editProfile"
                 onClick={() => handleOpenEditDialog(true)}
               >
                 <span>Edit Profile</span>
               </div>
             ) : (
-              <div className="followBtn" onClick={handleToggleFollow}>
-                <span>{userFollowed ? "Following" : "Follow"}</span>
+              <div
+                className="followBtn"
+                onClick={handleToggleFollow}
+                style={{ cursor: "pointer" }}
+              >
+                <span>
+                  {userFollowed ? (
+                    <img
+                      src={Followed}
+                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt="Spill"
+                      loading="lazy"
+                      className="followed-icon"
+                    />
+                  ) : (
+                    <img
+                      src={Follow}
+                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt="Spill"
+                      loading="lazy"
+                      className="followed-icon"
+                    />
+                  )}
+                </span>
               </div>
             )}
           </div>
@@ -206,7 +231,7 @@ const Profile = () => {
             </span>
             <span>{profile.email}</span>
             <span>{profile.bio}</span>
-            <span>
+            <span style={{ fontFamily: "Open Sans" }}>
               <ScheduleIcon />
               {profile.dateJoined}
             </span>
@@ -220,6 +245,7 @@ const Profile = () => {
               }}
               style={{
                 cursor: "pointer",
+                fontFamily: "Open Sans",
               }}
             >
               <span className="numFollow">{profile.following}</span>
@@ -233,6 +259,7 @@ const Profile = () => {
               }}
               style={{
                 cursor: "pointer",
+                fontFamily: "Open Sans",
               }}
             >
               <span className="numFollow">{profile.followers}</span>
@@ -241,16 +268,18 @@ const Profile = () => {
           </div>
           <div className="profileCategory">
             <div
+              style={{ cursor: "pointer" }}
               className={category === 1 && "profileCategoryActive"}
               onClick={() => setCategory(1)}
             >
               <span>Posts</span>
             </div>
             <div
+              style={{ cursor: "pointer" }}
               className={category === 2 && "profileCategoryActive"}
               onClick={() => setCategory(2)}
             >
-              <span>Liked Posts</span>
+              <span>Sipped Posts</span>
             </div>
           </div>
         </div>

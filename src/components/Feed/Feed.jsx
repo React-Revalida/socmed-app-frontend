@@ -13,8 +13,8 @@ import * as postActions from "../../redux/actions/postActions";
 import Widgets from "../Widgets/Widgets";
 import PostPage from "../../pages/Post/PostPage";
 import { useState } from "react";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import NightlightIcon from "@mui/icons-material/Nightlight";
 
 import * as likeActions from "../../redux/actions/likeActions";
 import Sidebar from "../Sidebar/Sidebar";
@@ -45,6 +45,8 @@ const Feed = ({ switchTheme }) => {
     //params
   }, [selectPosts, selectLoading, selectProfile]);
 
+  const theme = localStorage.getItem("darkMode");
+
   const [isDrawerBar, setIsDrawerBar] = React.useState(false);
   const profileImg = useSelector((state) => state.user.profile.profileImg);
 
@@ -73,7 +75,7 @@ const Feed = ({ switchTheme }) => {
               onClick={switchTheme}
               color="inherit"
             >
-              <AutoAwesomeIcon />
+              {theme === "light" ? <LightModeIcon /> : <NightlightIcon />}
             </IconButton>
           </div>
         </div>

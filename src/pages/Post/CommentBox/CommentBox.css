@@ -41,8 +41,7 @@ aside.EmojiPickerReact.epr-main {
   border: none;
   outline: none;
   resize: none;
-  /* font-family: "Gill Sans", sans-serif; */
-  /* padding-top: 20px; */
+  font-family: "Open Sans", sans-serif;
 }
 
 .tweetboxOptions {
@@ -55,11 +54,11 @@ aside.EmojiPickerReact.epr-main {
 
 .tweetboxOptionIcon {
   padding: 10px;
-  color: var(--blue);
+  color: var(--main-bg-color);
 }
 
 .tweetboxOptionIcon:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--main-bg-color);
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -69,7 +68,7 @@ aside.EmojiPickerReact.epr-main {
   margin-left: auto;
   margin-right: 10px;
   margin-bottom: 10px;
-  background-color: var(--blue);
+  background-color: var(--main-bg-color);
   border-radius: 9999px;
   color: white;
   font-weight: 900;

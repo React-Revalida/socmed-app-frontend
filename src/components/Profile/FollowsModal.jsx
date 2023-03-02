@@ -7,12 +7,15 @@ import {
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import Avatar from "react-avatar";
 import { useNavigate } from "react-router";
 import { CustomDialog } from "../../custom/CustomFieldComponents";
+import "./FollowsModal.css";
 
 const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
+  const theme = localStorage.getItem("darkMode");
   const navigate = useNavigate();
 
   const handleRedirect = (username) => {
@@ -27,6 +30,7 @@ const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
       fullWidth
     >
       <Card
+        className={theme === "dark" ? "darkCard" : "lightCard"}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -56,8 +60,27 @@ const FollowsModal = ({ onOpenDialog, isDialogOpen, data, followTab }) => {
                   />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={user.name}
-                  secondary={"@" + user.username}
+                  disableTypography
+                  primary={
+                    <>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <span>{user.name}</span>
+                        <span
+                          style={{
+                            fontSize: "0.8rem",
+                          }}
+                        >
+                          {"@" + user.username}
+                        </span>
+                      </Box>
+                    </>
+                  }
+                  // secondary={"@" + user.username}
                 />
               </ListItem>
             ))}

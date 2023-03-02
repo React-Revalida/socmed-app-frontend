@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/system";
 import ForgotPasswordForm from "../../components/ForgotPassword/ForgotPasswordForm";
-import Banner from "../../assets/socmed-banner-2-min.jpg";
+import Banner from "../../assets/gradient-bg-1.jpg";
 
 const ForgotPasswordPage = () => {
   return (

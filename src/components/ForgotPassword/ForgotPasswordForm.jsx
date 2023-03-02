@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import Joi from "joi";
 import * as authActions from "../../redux/actions/authActions";
 import { useDispatch } from "react-redux";
+import mainLogo from "../../assets/SpillLogo.png";
+import "./PasswordForm.css";
 
 const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
@@ -86,7 +88,12 @@ const ForgotPasswordForm = () => {
         }}
       >
         <Box textAlign={"center"}>
-          <FlutterDashIcon sx={{ color: "#00d5bf" }} />
+          <img
+            src={mainLogo}
+            alt="Spill"
+            loading="lazy"
+            className="password-form-icon"
+          />
         </Box>
 
         <CardHeader
@@ -114,6 +121,7 @@ const ForgotPasswordForm = () => {
             disabled={isFormInvalid()}
             variant="contained"
             sx={{
+              fontFamily: "Poppins",
               width: 250,
               backgroundColor: "#00d5bf",
               borderRadius: 8,
@@ -127,7 +135,11 @@ const ForgotPasswordForm = () => {
         </CardActions>
         <Box marginBottom={4} textAlign={"center"}>
           <Link to="/login" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              fontFamily={"Poppins"}
+            >
               Go to Login
             </Typography>
           </Link>
