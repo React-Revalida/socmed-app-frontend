@@ -23,7 +23,6 @@ import Joi from "joi";
 import { Close } from "@mui/icons-material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useNavigate } from "react-router-dom";
-import "./PostEditForm.css";
 
 const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
   const dispatch = useDispatch();
@@ -134,7 +133,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
         <Grid component="form" onSubmit={handleSubmit} position={"relative"}>
           <Grid container spacing={2}>
             <Grid item xs={1}>
-              <div className="postEditForm">
+              <div className="profile">
                 <div className="profileTitle">
                   <label htmlFor="profilePicInput">
                     <div>
@@ -156,11 +155,13 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
               </div>
             </Grid>
             <Grid item xs={11}>
-              <div className="profileTitle">
-                <Typography sx={{ ml: 2, mb: 1, fontStyle: "inherit" }}>
-                  {profile.firstname}&ensp;{profile.lastname}
-                  <Typography color={"gray"}>@{profile.username}</Typography>
-                </Typography>
+              <div className="profile">
+                <div className="profileTitle">
+                  <Typography sx={{ ml: 2, mb: 1, fontStyle: "inherit" }}>
+                    {profile.firstname}&ensp;{profile.lastname}
+                    <Typography color={"gray"}>@{profile.username}</Typography>
+                  </Typography>
+                </div>
               </div>
             </Grid>
             <Grid item xs={12}>
@@ -218,7 +219,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                     <label htmlFor="profilePicInput">
                       <div className="tweetboxOptionIcon">
                         <AddPhotoAlternateIcon />
-                        <text style={{ fontFamily: "Poppins" }}>Add Photo</text>
+                        <text>Add Photo</text>
                       </div>
                       <input
                         id="profilePicInput"

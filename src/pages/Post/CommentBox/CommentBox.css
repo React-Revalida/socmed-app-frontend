@@ -1,17 +1,20 @@
-.commentBox {
-  border: 1px solid var(--border-color);
+.tweetbox {
+  border-bottom: 1px solid var(--border-color);
   /* display: flex; */
   flex: 1;
   flex-direction: column;
   position: relative;
-  border-radius: 10px;
 }
 aside.EmojiPickerReact.epr-main {
   position: absolute !important;
   top: 125px;
   z-index: 999;
 }
-
+.bottomBorder {
+  height: 8px;
+  background-color: var(--element-bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
 .tweetboxRow {
   display: flex;
   flex-direction: row;
@@ -69,6 +72,6 @@ aside.EmojiPickerReact.epr-main {
   border-radius: 9999px;
   color: white;
   font-weight: 900;
-  font-size: 2px;
+  font-size: 15px;
   padding: 10px 15px;
 }

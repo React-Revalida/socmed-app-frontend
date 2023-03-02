@@ -230,7 +230,6 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
         <Grid component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-<<<<<<< Updated upstream
               <div className="profile">
                 <label htmlFor="coverPicInput">
                   <div className="cover-container">
@@ -271,23 +270,6 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
                     />
                   </label>
                 </div>
-=======
-              <div className="profileTitle">
-                <label htmlFor="profilePicInput">
-                  <Avatar
-                    round={true}
-                    size="120"
-                    name={profile.name}
-                    src={profilePic}
-                  ></Avatar>
-                  <input
-                    type="file"
-                    id="profilePicInput"
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                  />
-                </label>
->>>>>>> Stashed changes
               </div>
             </Grid>
             <Grid item xs={12}>

@@ -2,15 +2,6 @@
   outline: none;
 }
 
-<<<<<<< Updated upstream
-=======
-.profile {
-  border: 0.5px solid var(--border-color);
-  border-radius: 12px;
-  margin-top: 5px;
-}
-
->>>>>>> Stashed changes
 .profileHeader {
   position: sticky;
   z-index: 2;
@@ -19,9 +10,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 0.5px solid var(--border-color);
-  border-radius: 12px;
-  margin-bottom: px;
+  border-bottom: 0.5px solid var(--border-color);
 }
 
 .profileHeader .MuiSvgIcon-root {
@@ -51,15 +40,10 @@
 .backgroundImage {
   height: 200px;
   width: 100%;
-<<<<<<< Updated upstream
   background: rgb(44, 42, 43);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-=======
-  border-radius: 12px;
-  background: rgb(238, 174, 202);
->>>>>>> Stashed changes
 }
 
 .profileTitle {
@@ -99,14 +83,11 @@
   font-weight: 700 !important;
 }
 
-<<<<<<< Updated upstream
 .editProfile:hover,
 .followBtn {
   /* background-color: var(--hover-blue-color); */
 }
 
-=======
->>>>>>> Stashed changes
 .profileBiography {
   display: flex;
   flex-direction: column;
@@ -170,6 +151,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  border-bottom: 0.5px var(--border-color) solid;
   margin-top: 15px;
 }
 
