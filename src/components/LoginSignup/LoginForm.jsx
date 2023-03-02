@@ -92,9 +92,9 @@ const LoginForm = () => {
         </Box>
 
         <CardHeader
-          title="Login to OnlyPosts"
+          title="Login to Spill"
           sx={{ fontWeight: "bold", textAlign: "center" }}
-        />
+        ></CardHeader>
         <CardContent>
           <Box width={250}>
             <TextField

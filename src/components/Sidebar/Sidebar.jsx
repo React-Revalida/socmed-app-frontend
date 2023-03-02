@@ -4,7 +4,6 @@ import SidebarItem from "./SidebarItem/SidebarItem";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
-
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { IconButton } from "@mui/material";
@@ -36,7 +35,7 @@ import FlutterDashIcon from "@mui/icons-material/FlutterDash";
 import LogoutDialog from "./LogoutDialog";
 import { resetLoading } from "../../redux/actions/postActions";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
-
+import mainLogo from "./SpillLogo.png";
 import * as profileActions from "../../redux/actions/profileActions";
 import PostEditForm from "../Feed/Post/PostEditForm";
 import { MaterialUISwitch } from "./MaterialUISwitch";
@@ -102,7 +101,14 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
       />
       <LogoutDialog isDialogOpen={open} onOpenDialog={handleOpenLogoutDialog} />
       <div className="sidebar">
-        <FlutterDashIcon className="twitter-icon" />
+        <img
+          src={mainLogo}
+          // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+          alt="Spill"
+          loading="lazy"
+          className="twitter-icon"
+        />
+        {/* <FlutterDashIcon className="twitter-icon" /> */}
         <Button className="navButton">
           <Link
             to="/home"
@@ -184,7 +190,7 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
             }}
           >
             <PostAddIcon className="addPostIcon" />
-            <span>Create Post</span>
+            <span>Spill it</span>
           </div>
         ) : (
           <></>

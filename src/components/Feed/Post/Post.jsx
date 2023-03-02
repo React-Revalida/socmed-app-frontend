@@ -5,6 +5,10 @@ import PostEditForm from "./PostEditForm";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+import LocalCafeIcon from "@mui/icons-material/LocalCafe";
+import LocalCafeOutlinedIcon from "@mui/icons-material/LocalCafeOutlined";
+
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { MillToDate } from "../../../utils/MillToDate";
 import ProfileCard from "../../ProfileCard/ProfileCard";
@@ -172,7 +176,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
           <div className="post-event">
             <div>
               {liked ? (
-                <FavoriteIcon
+                <LocalCafeIcon
                   className="postIcon"
                   onClick={async (e) => {
                     // unlikePost(e, post.postId);
@@ -202,7 +206,7 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                   }}
                 />
               ) : (
-                <FavoriteBorderIcon
+                <LocalCafeOutlinedIcon
                   className="postIcon"
                   onClick={async (e) => {
                     // likePost(e, post.postId);
