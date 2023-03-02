@@ -18,13 +18,13 @@
 .messagesHeader > svg {
   width: 23px;
   height: 23px;
-  fill: var(--blue);
+  fill: #00d5bf;
   padding: 8px;
   border-radius: 9999px;
   margin: 8px 8px 8px auto;
 }
 .messagesHeader > svg:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 .messagesHeader .MuiAvatar-root {
   display: none;
