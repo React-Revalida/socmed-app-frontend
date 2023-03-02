@@ -32,3 +32,11 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.follow-icon {
+  width: 40px;
+}
+
+.followed-icon {
+  width: 50px;
+}

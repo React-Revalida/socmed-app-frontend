@@ -39,6 +39,7 @@ import mainLogo from "./SpillLogo.png";
 import * as profileActions from "../../redux/actions/profileActions";
 import PostEditForm from "../Feed/Post/PostEditForm";
 import { MaterialUISwitch } from "./MaterialUISwitch";
+import Spill from "./Spill";
 
 const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
   const dispatch = useDispatch();
@@ -108,7 +109,7 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
           loading="lazy"
           className="twitter-icon"
         />
-        {/* <FlutterDashIcon className="twitter-icon" /> */}
+        {/* <Spill className="twitter-icon" /> */}
         <Button className="navButton">
           <Link
             to="/home"
