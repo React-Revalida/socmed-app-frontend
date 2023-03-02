@@ -25,7 +25,8 @@ import moment from "moment";
 import * as profileActions from "../../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { Edit, Photo, PhotoCamera } from "@mui/icons-material";
 
 const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
@@ -64,7 +65,7 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
     setAddressState({
       houseNo: address.houseNo,
       street: address.street,
-      subdivision:address.subdivision,
+      subdivision: address.subdivision,
       barangay: address.barangay,
       city: address.city,
       province: address.province,
@@ -219,12 +220,17 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
               <div className="profile">
                 <div className="profileTitle">
                   <label htmlFor="profilePicInput">
-                    <Avatar
-                      round={true}
-                      size="120"
-                      name={profile.name}
-                      src={profilePic}
-                    ></Avatar>
+                    <div className="avatar-container">
+                      <Avatar
+                        round={true}
+                        size="120"
+                        name={profile.name}
+                        src={profilePic}
+                      />
+                      <div className="overlay">
+                        <PhotoCamera className="overlay-image"/>
+                      </div>
+                    </div>
                     <input
                       type="file"
                       id="profilePicInput"
