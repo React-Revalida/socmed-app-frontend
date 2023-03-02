@@ -17,7 +17,7 @@ import FollowsModal from "../../components/Profile/FollowsModal";
 import { Grid, Typography } from "@mui/material";
 import { CameraAlt, ThumbUp } from "@mui/icons-material";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Follow from "../../assets/calm.png";
 import Followed from "../../assets/spilled.png";
 
@@ -179,7 +179,10 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile">
-          <div className="backgroundImage" style={{ backgroundImage: `url(${profile.coverPic})` }}></div>
+          <div
+            className="backgroundImage"
+            style={{ backgroundImage: `url(${profile.coverPic})` }}
+          ></div>
           <div className="profileTitle">
             <div className="profileImage">
               <Avatar
@@ -191,7 +194,13 @@ const Profile = () => {
             </div>
             {isMe ? (
               <div
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+
+                  "&:hover !important": {
+                    color: "var(--hover-blue-color) !important",
+                  },
+                }}
                 className="editProfile"
                 onClick={() => handleOpenEditDialog(true)}
               >
@@ -203,25 +212,7 @@ const Profile = () => {
                 onClick={handleToggleFollow}
                 style={{ cursor: "pointer" }}
               >
-                <span>
-                  {userFollowed ? (
-                    <img
-                      src={Followed}
-                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt="Spill"
-                      loading="lazy"
-                      className="followed-icon"
-                    />
-                  ) : (
-                    <img
-                      src={Follow}
-                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt="Spill"
-                      loading="lazy"
-                      className="followed-icon"
-                    />
-                  )}
-                </span>
+                <span>{userFollowed ? "Followed" : "Follow"}</span>
               </div>
             )}
           </div>

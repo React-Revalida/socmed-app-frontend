@@ -130,6 +130,9 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                         sx={{
                           fontFamily: "Poppins",
                           color: "var(--twitter-color)",
+                          "&:hover": {
+                            backgroundColor: "var(--hover-blue-color)",
+                          },
                         }}
                         onClick={(e) => {
                           deletePost(e, post.postId);
@@ -143,6 +146,9 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                         sx={{
                           fontFamily: "Poppins",
                           color: "var(--twitter-color)",
+                          "&:hover": {
+                            backgroundColor: "var(--hover-blue-color)",
+                          },
                         }}
                         onClick={() => {
                           editPost(true);

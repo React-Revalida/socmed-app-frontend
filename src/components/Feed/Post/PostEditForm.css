@@ -83,33 +83,41 @@
 
 .editProfile .MuiInputLabel-filled.MuiInputLabel-shrink {
   padding: 0 2.6rem;
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiInputLabel-filled {
   font-size: 1.6rem;
   font-weight: 700;
   padding: 0 2rem;
+  color: var(--twittie-color);
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiFormLabel-root.Mui-focused {
   color: var(--twittie-color) !important;
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiFilledInput-root {
   background-color: var(--twittie-background-2) !important;
   padding: 0 2rem;
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiFormControl-root:nth-child(3) {
   border-radius: 0 0 2rem 2rem;
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiFilledInput-underline:before {
   border-bottom: none;
+  color: var(--twittie-color);
 }
 
 .editProfile .MuiFilledInput-underline:after {
   border-bottom: 3px solid var(--twittie-color);
+  color: var(--twittie-color);
 }
 
 /* not visible of button if disabled */
@@ -201,4 +209,20 @@ aside.EmojiPickerReact.epr-main {
   position: absolute !important;
   top: 125px;
   z-index: 999;
+}
+
+.MuiFormLabel-root {
+  color: var(--plain-text) !important;
+}
+
+/* .MuiInputBase-root {
+  color: var(--plain-text) !important;
+} */
+
+.MuiInputBase-input {
+  color: var(--plain-text) !important;
+}
+
+.MuiInputBase-root {
+  color: var(--plain-text) !important;
 }

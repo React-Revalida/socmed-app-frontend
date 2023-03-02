@@ -22,6 +22,9 @@ const TweetBox = () => {
   const name = useSelector(
     (state) => state.user.profile.firstname + " " + state.user.profile.lastname
   );
+
+  const firstname = useSelector((state) => state.user.profile.firstname);
+
   const success = useSelector((state) => state.post.success);
 
   useEffect(() => {
@@ -103,7 +106,7 @@ const TweetBox = () => {
               name="message"
               value={tweet.message}
               onChange={handleMessageChange}
-              placeholder={`What's your tea ${name}?`}
+              placeholder={`What's your tea, ${firstname}?`}
               style={{ height: "auto" }}
             />
           </div>

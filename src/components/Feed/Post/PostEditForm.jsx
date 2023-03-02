@@ -128,9 +128,15 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
       fullWidth
     >
       <Tabs value={tab} textColor="inherit" variant="fullWidth">
-        <Tab label={post ? "Edit Post" : "Create Post"} {...a11yProps(0)} />
+        <Tab
+          sx={{ bgcolor: "var(--main-bg-color)", color: "var(--plain-text)" }}
+          label={post ? "Edit Post" : "Create Post"}
+          {...a11yProps(0)}
+        />
       </Tabs>
-      <DialogContent sx={{ bgcolor: "background.paper", position: "relative" }}>
+      <DialogContent
+        sx={{ backgroundColor: "var(--main-bg-color)", position: "relative" }}
+      >
         <Grid component="form" onSubmit={handleSubmit} position={"relative"}>
           <Grid container spacing={2}>
             <Grid item xs={1}>
@@ -157,7 +163,14 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
             </Grid>
             <Grid item xs={11}>
               <div className="profileTitle">
-                <Typography sx={{ ml: 2, mb: 1, fontStyle: "inherit" }}>
+                <Typography
+                  sx={{
+                    ml: 2,
+                    mb: 1,
+                    fontStyle: "inherit",
+                    color: "var(--plain-text)",
+                  }}
+                >
                   {profile.firstname}&ensp;{profile.lastname}
                   <Typography color={"gray"}>@{profile.username}</Typography>
                 </Typography>

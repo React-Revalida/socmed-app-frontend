@@ -3,12 +3,13 @@ import { styled } from "@mui/styles";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "var(--twitter-color)!important",
+    color: "var(--plain-text)!important",
   },
   "& .MuiInput-underline:after": {
     borderBottomColor: "var(--twitter-color)!important",
   },
   "& .MuiOutlinedInput-root": {
+    borderColor: "var(--twitter-color)!important",
     "&:hover fieldset": {
       borderColor: "var(--twitter-color)!important",
     },

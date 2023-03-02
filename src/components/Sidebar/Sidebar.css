@@ -159,3 +159,7 @@
     display: none !important;
   }
 }
+
+.MuiTouchRipple-root {
+  color: var(--hover-color) !important;
+}

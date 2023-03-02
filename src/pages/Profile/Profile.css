@@ -228,6 +228,6 @@
   margin-top: 0px;
 }
 
-.numFollow {
-  color: var(--plain-text) !important;
+.MuiMenu-root ul {
+  background-color: var(--main-bg-color) !important;
 }

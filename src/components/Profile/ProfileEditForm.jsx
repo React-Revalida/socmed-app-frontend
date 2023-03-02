@@ -232,7 +232,7 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
       onClose={() => onOpenDialog(false)}
       fullWidth
     >
-      <DialogContent sx={{ bgcolor: "background.paper" }}>
+      <DialogContent sx={{ bgcolor: "var(--main-bg-color)" }}>
         <Grid component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -277,15 +277,29 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
               </div>
             </Grid>
             <Grid item xs={12}>
-              <Box sx={{ bgcolor: "background.paper" }}>
+              <Box>
                 <Tabs
                   value={tab}
                   onChange={handleTabChange}
                   textColor="inherit"
                   variant="fullWidth"
                 >
-                  <Tab label="Profile" {...a11yProps(0)} />
-                  <Tab label="Address" {...a11yProps(1)} />
+                  <Tab
+                    sx={{
+                      bgcolor: "var(--main-bg-color)",
+                      color: "var(--plain-text)",
+                    }}
+                    label="Profile"
+                    {...a11yProps(0)}
+                  />
+                  <Tab
+                    sx={{
+                      bgcolor: "var(--main-bg-color)",
+                      color: "var(--plain-text)",
+                    }}
+                    label="Address"
+                    {...a11yProps(1)}
+                  />
                 </Tabs>
                 <TabPanel value={tab} index={0} dir={theme.direction}>
                   <Grid container spacing={2}>
