@@ -181,6 +181,7 @@ const ResetPasswordForm = () => {
                 variant="contained"
                 disabled={isFormInvalid()}
                 sx={{
+                  fontFamily: "Poppins",
                   width: 250,
                   backgroundColor: "#00d5bf",
                   borderRadius: 8,
@@ -196,7 +197,11 @@ const ResetPasswordForm = () => {
         </CardContent>
         <Box textAlign={"center"} marginTop={0}>
           <Link to="/login" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              fontFamily={"Poppins"}
+            >
               Go to Login
             </Typography>
           </Link>

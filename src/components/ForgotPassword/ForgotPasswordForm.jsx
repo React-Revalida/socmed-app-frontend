@@ -121,6 +121,7 @@ const ForgotPasswordForm = () => {
             disabled={isFormInvalid()}
             variant="contained"
             sx={{
+              fontFamily: "Poppins",
               width: 250,
               backgroundColor: "#00d5bf",
               borderRadius: 8,
@@ -134,7 +135,11 @@ const ForgotPasswordForm = () => {
         </CardActions>
         <Box marginBottom={4} textAlign={"center"}>
           <Link to="/login" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              fontFamily={"Poppins"}
+            >
               Go to Login
             </Typography>
           </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import ResetPasswordForm from "../../components/ForgotPassword/ResetPasswordForm";
-import Banner from "../../assets/socmed-banner-2-min.jpg";
+import Banner from "../../assets/gradient-bg-3.jpg";
 import { Box } from "@mui/system";
 
 const ResetPasswordPage = () => {

@@ -10,7 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Joi from "joi";
 import Follow from "../../assets/calm.png";
 import mainLogo from "../../assets/SpillLogo.png";
-import "./LoginForm.css";
+import "./LoginSignup.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -100,10 +100,7 @@ const LoginForm = () => {
           />
         </Box>
 
-        <CardHeader
-          title="Login to Spill"
-          sx={{ fontWeight: "bold", textAlign: "center" }}
-        ></CardHeader>
+        <CardHeader title="Login to Spill" sx={{ textAlign: "center" }} />
         <CardContent>
           <Box width={250}>
             <TextField
@@ -115,6 +112,7 @@ const LoginForm = () => {
               error={!!loginFieldErrors.username}
               helperText={loginFieldErrors.username}
               onChange={handleLoginChange}
+              fontFamily={"Poppins"}
               fullWidth
             />
             <TextField
@@ -136,6 +134,7 @@ const LoginForm = () => {
             disabled={isFormInvalid()}
             variant="contained"
             sx={{
+              fontFamily: "Poppins",
               width: 250,
               backgroundColor: "#00d5bf",
               borderRadius: 8,
@@ -149,17 +148,30 @@ const LoginForm = () => {
         </CardActions>
         <Box marginBottom={3}>
           <Link to="/forgot-password" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"} marginLeft={"15px"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              marginLeft={"15px"}
+              fontFamily={"Poppins"}
+            >
               Forgot password?
             </Typography>
           </Link>
         </Box>
         <Box marginBottom={4}>
-          <Typography variant="caption" marginLeft={"15px"}>
+          <Typography
+            variant="caption"
+            marginLeft={"15px"}
+            fontFamily={"Poppins"}
+          >
             Don't have an account yet? &nbsp;
           </Typography>
           <Link to="/signup" style={{ textDecoration: "none" }}>
-            <Typography variant="caption" color={"#00d5bf"}>
+            <Typography
+              variant="caption"
+              color={"#00d5bf"}
+              fontFamily={"Poppins"}
+            >
               Sign up here.
             </Typography>
           </Link>

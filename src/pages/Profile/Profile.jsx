@@ -197,7 +197,11 @@ const Profile = () => {
                 <span>Edit Profile</span>
               </div>
             ) : (
-              <div className="followBtn" onClick={handleToggleFollow}>
+              <div
+                className="followBtn"
+                onClick={handleToggleFollow}
+                style={{ cursor: "pointer" }}
+              >
                 <span>
                   {userFollowed ? (
                     <img
