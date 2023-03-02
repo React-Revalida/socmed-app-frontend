@@ -69,211 +69,207 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
 
   return (
     <>
-      <Card
+      {/* <Card
         sx={{
           border: 1,
-          borderRadius: 3,
+          borderRadius: "16px",
           borderColor: "#27D876",
           boxShadow: 3,
-          mt: 3,
+          mt: 1,
         }}
-      >
-        <PostEditForm
-          profile={profile}
-          post={post}
-          isPostModalOpen={open}
-          onOpenPostModal={editPost}
+      > */}
+      <PostEditForm
+        profile={profile}
+        post={post}
+        isPostModalOpen={open}
+        onOpenPostModal={editPost}
+      />
+      <div className="post" onMouseLeave={() => setIsVisibleProfileCard(false)}>
+        <ProfileCard
+          active={isVisibleProfileCard && true}
+          profile={post.user}
         />
         <div
-          className="post"
-          onMouseLeave={() => setIsVisibleProfileCard(false)}
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate(`/profile/${post.user.username}`)}
         >
-          <ProfileCard
-            active={isVisibleProfileCard && true}
-            profile={post.user}
+          <Avatar
+            src={post.user.profilePic}
+            name={post.user.firstname + " " + post.user.lastname}
+            round={true}
+            size={40}
+            style={{ margin: 10 }}
           />
-          <div
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate(`/profile/${post.user.username}`)}
-          >
-            <Avatar
-              src={post.user.profilePic}
-              name={post.user.firstname + " " + post.user.lastname}
-              round={true}
-              size={40}
-              style={{ margin: 10 }}
-            />
-          </div>
-          <div className="post-content-col">
-            <div className="post-header">
-              <span
-                className="post-header-displayname"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate(`/profile/${post.user.username}`)}
-                onMouseEnter={() => setIsVisibleProfileCard(true)}
-                onMouseLeave={() => {
-                  setTimeout(function () {
-                    setIsVisibleProfileCard(false);
-                  }, 1000);
-                }}
-              >
-                {post.user.firstname + " " + post.user.lastname}
-              </span>
-              <span className="post-header-username">
-                {"@" + post.user.username}
-              </span>
-              <span className="post-header-date">
-                {MillToDate(post.timestamp)}
-              </span>
-              {fromComponent == "profile" ? (
-                <PopupState variant="popover" popupId="demo-popup-menu">
-                  {(popupState) => (
-                    <React.Fragment>
-                      <MoreHoriz
-                        className="postMoreIcon"
-                        variant="contained"
-                        {...bindTrigger(popupState)}
-                      />
-                      <Menu {...bindMenu(popupState)}>
-                        <MenuItem
-                          onClick={(e) => {
-                            deletePost(e, post.postId);
-                            popupState.close();
-                          }}
-                        >
-                          <DeleteForever />
-                          &ensp; Delete
-                        </MenuItem>
-                        <MenuItem
-                          onClick={() => {
-                            editPost(true);
-                            popupState.close();
-                          }}
-                        >
-                          <BorderColor /> &ensp; Edit
-                        </MenuItem>
-                      </Menu>
-                    </React.Fragment>
-                  )}
-                </PopupState>
-              ) : (
-                <div></div>
-              )}
-            </div>
-            {onPostPage ? (
-              <>
-                <div className="post-content">{post.message}</div>
-                {post.imageUrl && (
-                  <div className="post-image">
-                    <img src={post.imageUrl} alt="shareimage" />
-                  </div>
+        </div>
+        <div className="post-content-col">
+          <div className="post-header">
+            <span
+              className="post-header-displayname"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(`/profile/${post.user.username}`)}
+              onMouseEnter={() => setIsVisibleProfileCard(true)}
+              onMouseLeave={() => {
+                setTimeout(function () {
+                  setIsVisibleProfileCard(false);
+                }, 1000);
+              }}
+            >
+              {post.user.firstname + " " + post.user.lastname}
+            </span>
+            <span className="post-header-username">
+              {"@" + post.user.username}
+            </span>
+            <span className="post-header-date">
+              {MillToDate(post.timestamp)}
+            </span>
+            {fromComponent == "profile" ? (
+              <PopupState variant="popover" popupId="demo-popup-menu">
+                {(popupState) => (
+                  <React.Fragment>
+                    <MoreHoriz
+                      className="postMoreIcon"
+                      variant="contained"
+                      {...bindTrigger(popupState)}
+                    />
+                    <Menu {...bindMenu(popupState)}>
+                      <MenuItem
+                        onClick={(e) => {
+                          deletePost(e, post.postId);
+                          popupState.close();
+                        }}
+                      >
+                        <DeleteForever />
+                        &ensp; Delete
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          editPost(true);
+                          popupState.close();
+                        }}
+                      >
+                        <BorderColor /> &ensp; Edit
+                      </MenuItem>
+                    </Menu>
+                  </React.Fragment>
                 )}
-              </>
+              </PopupState>
             ) : (
-              <CardActionArea
+              <div></div>
+            )}
+          </div>
+          {onPostPage ? (
+            <>
+              <div className="post-content">{post.message}</div>
+              {post.imageUrl && (
+                <div className="post-image">
+                  <img src={post.imageUrl} alt="shareimage" />
+                </div>
+              )}
+            </>
+          ) : (
+            <CardActionArea
+              onClick={() => [
+                navigate(`/posts/${post.postId}`),
+                dispatch(postActions.resetLoading()),
+              ]}
+            >
+              <div className="post-content">{post.message}</div>
+              {post.imageUrl && (
+                <div className="post-image">
+                  <img src={post.imageUrl} alt="shareimage" />
+                </div>
+              )}
+            </CardActionArea>
+          )}
+
+          <div className="post-event">
+            <div>
+              {liked ? (
+                <LocalCafeIcon
+                  className="postIcon"
+                  onClick={async (e) => {
+                    // unlikePost(e, post.postId);
+                    if (fromComponent === "profile") {
+                      await dispatch(
+                        likeActions.unlikePost(
+                          post.postId,
+                          profile.userId,
+                          profile.username,
+                          fromComponent
+                        )
+                      );
+                    } else if (fromComponent === "postpage") {
+                      await dispatch(
+                        likeActions.unlikePost(
+                          post.postId,
+                          profile.userId,
+                          post.postId,
+                          fromComponent
+                        )
+                      );
+                    } else {
+                      await dispatch(
+                        likeActions.unlikePost(post.postId, profile.userId)
+                      );
+                    }
+                  }}
+                />
+              ) : (
+                <LocalCafeOutlinedIcon
+                  className="postIcon"
+                  onClick={async (e) => {
+                    // likePost(e, post.postId);
+                    if (fromComponent === "profile") {
+                      await dispatch(
+                        likeActions.likePost(
+                          {
+                            liked: true,
+                            user: profile.userId,
+                            post: post.postId,
+                          },
+                          profile.username,
+                          fromComponent
+                        )
+                      );
+                    } else if (fromComponent === "postpage") {
+                      await dispatch(
+                        likeActions.likePost(
+                          {
+                            liked: true,
+                            user: profile.userId,
+                            post: post.postId,
+                          },
+                          post.postId,
+                          fromComponent
+                        )
+                      );
+                    } else {
+                      await dispatch(
+                        likeActions.likePost({
+                          liked: true,
+                          user: profile.userId,
+                          post: post.postId,
+                        })
+                      );
+                    }
+                  }}
+                />
+              )}
+              <span>{likes.length > 0 ? likes.length : ""}</span>
+            </div>
+            <div>
+              <ChatBubbleOutlineIcon
                 onClick={() => [
                   navigate(`/posts/${post.postId}`),
                   dispatch(postActions.resetLoading()),
                 ]}
-              >
-                <div className="post-content">{post.message}</div>
-                {post.imageUrl && (
-                  <div className="post-image">
-                    <img src={post.imageUrl} alt="shareimage" />
-                  </div>
-                )}
-              </CardActionArea>
-            )}
-
-            <div className="post-event">
-              <div>
-                {liked ? (
-                  <LocalCafeIcon
-                    className="postIcon"
-                    onClick={async (e) => {
-                      // unlikePost(e, post.postId);
-                      if (fromComponent === "profile") {
-                        await dispatch(
-                          likeActions.unlikePost(
-                            post.postId,
-                            profile.userId,
-                            profile.username,
-                            fromComponent
-                          )
-                        );
-                      } else if (fromComponent === "postpage") {
-                        await dispatch(
-                          likeActions.unlikePost(
-                            post.postId,
-                            profile.userId,
-                            post.postId,
-                            fromComponent
-                          )
-                        );
-                      } else {
-                        await dispatch(
-                          likeActions.unlikePost(post.postId, profile.userId)
-                        );
-                      }
-                    }}
-                  />
-                ) : (
-                  <LocalCafeOutlinedIcon
-                    className="postIcon"
-                    onClick={async (e) => {
-                      // likePost(e, post.postId);
-                      if (fromComponent === "profile") {
-                        await dispatch(
-                          likeActions.likePost(
-                            {
-                              liked: true,
-                              user: profile.userId,
-                              post: post.postId,
-                            },
-                            profile.username,
-                            fromComponent
-                          )
-                        );
-                      } else if (fromComponent === "postpage") {
-                        await dispatch(
-                          likeActions.likePost(
-                            {
-                              liked: true,
-                              user: profile.userId,
-                              post: post.postId,
-                            },
-                            post.postId,
-                            fromComponent
-                          )
-                        );
-                      } else {
-                        await dispatch(
-                          likeActions.likePost({
-                            liked: true,
-                            user: profile.userId,
-                            post: post.postId,
-                          })
-                        );
-                      }
-                    }}
-                  />
-                )}
-                <span>{likes.length > 0 ? likes.length : ""}</span>
-              </div>
-              <div>
-                <ChatBubbleOutlineIcon
-                  onClick={() => [
-                    navigate(`/posts/${post.postId}`),
-                    dispatch(postActions.resetLoading()),
-                  ]}
-                  className="postIcon"
-                />
-                <span>{comments.length > 0 ? comments.length : ""}</span>
-              </div>
+                className="postIcon"
+              />
+              <span>{comments.length > 0 ? comments.length : ""}</span>
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </>
   );
 };

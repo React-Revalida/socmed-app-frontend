@@ -88,6 +88,8 @@ const TweetBox = () => {
     return !!result.error;
   };
 
+  const message = "message";
+
   return (
     <>
       <form className="tweetbox" onSubmit={(e) => tweetSubmit(e)}>
@@ -103,7 +105,7 @@ const TweetBox = () => {
               name="message"
               value={tweet.message}
               onChange={handleMessageChange}
-              placeholder="What's happening?"
+              placeholder={`What's your tea ${name}?`}
               style={{ height: "auto" }}
             />
           </div>
@@ -188,7 +190,7 @@ const TweetBox = () => {
                       borderColor: "var(--twitter-color)",
                       color: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 38,
+                      ml: 55,
                       mt: 1,
                       "&:hover": {
                         cursor: "default",
@@ -198,7 +200,7 @@ const TweetBox = () => {
                   : {
                       backgroundColor: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 38,
+                      ml: 55,
                       mt: 1,
                       "&:hover": {
                         backgroundColor: "var(--twitter-color)",

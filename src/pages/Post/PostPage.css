@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 0.5px solid var(--border-color);
   cursor: pointer;
 }
 
@@ -25,13 +24,8 @@
   font-size: 15px;
 }
 
-.postFooter {
-  border-bottom: 0.5px solid var(--border-color);
-}
-
 .post {
   padding-top: 10px;
-  border-bottom: 0.5px var(--border-color) solid;
   display: flex;
   flex-direction: row;
   position: relative;
