@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import ConstructionIcon from "@mui/icons-material/Construction";
+import Snackbar from "@mui/material/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
 
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -45,6 +47,33 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
   const [location] = React.useState(useLocation().pathname);
   const profile = useSelector((state) => state.user.profile);
   // const [currLocation, setCurrentLocation] = React.useState(location);
+  const [openSnack, setOpenSnack] = React.useState(false);
+
+  const handleClick = () => {
+    setOpenSnack(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnack(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}></Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   useEffect(() => {
     dispatch(profileActions.fetchProfile());
@@ -95,6 +124,7 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
           <Link
             // to="/messages"
             style={{ textDecoration: "none" }}
+            onClick={handleClick}
             // onClick={() => [dispatch(resetLoading())]}
           >
             <SidebarItem
@@ -226,6 +256,13 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
               )}
             </PopupState>
           </div>
+          <Snackbar
+            open={openSnack}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Under maintenance"
+            action={action}
+          />
         </div>
       </div>
     </>
