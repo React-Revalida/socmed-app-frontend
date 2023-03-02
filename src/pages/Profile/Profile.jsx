@@ -198,25 +198,7 @@ const Profile = () => {
               </div>
             ) : (
               <div className="followBtn" onClick={handleToggleFollow}>
-                <span>
-                  {userFollowed ? (
-                    <img
-                      src={Followed}
-                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt="Spill"
-                      loading="lazy"
-                      className="followed-icon"
-                    />
-                  ) : (
-                    <img
-                      src={Follow}
-                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt="Spill"
-                      loading="lazy"
-                      className="followed-icon"
-                    />
-                  )}
-                </span>
+                <span>{userFollowed ? "Following" : "Follow"}</span>
               </div>
             )}
           </div>
