@@ -177,7 +177,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile">
-          <div className="backgroundImage"></div>
+          <div className="backgroundImage" style={{ backgroundImage: `url(${profile.coverPic})` }}></div>
           <div className="profileTitle">
             <div className="profileImage">
               <Avatar
