@@ -188,7 +188,7 @@ const TweetBox = () => {
                       borderColor: "var(--twitter-color)",
                       color: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 40,
+                      ml: 38,
                       mt: 1,
                       textTransform: "none",
                       fontFamily: "Poppins",
@@ -200,7 +200,7 @@ const TweetBox = () => {
                   : {
                       backgroundColor: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 40,
+                      ml: 38,
                       mt: 1,
                       textTransform: "none",
                       fontFamily: "Poppins",
