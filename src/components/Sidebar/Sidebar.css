@@ -68,7 +68,7 @@
 }
 .profileCard:hover {
   transition: color 100ms ease-out;
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .profileCardImage > .MuiAvatar-root {

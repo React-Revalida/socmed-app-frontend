@@ -46,8 +46,19 @@
   font-size: 15px;
   font-weight: 700;
 }
+
+.profilePic {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .profileDetailCard > div:nth-child(1) > div:nth-child(2):hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
 }
 
 .profileDetailCard > div:nth-child(2) > span {

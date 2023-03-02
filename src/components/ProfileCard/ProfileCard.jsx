@@ -82,6 +82,7 @@ const ProfileCard = ({ active, profile }) => {
     >
       <div>
         <Avatar
+          className="profilePic"
           src={profile.profilePic}
           name={profile.firstname + " " + profile.lastname}
           round={true}
