@@ -274,7 +274,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
                     disabled={isFormInvalid()}
                     sx={{ float: "right", mt: 3, mb: 2, mr: 2 }}
                   >
-                    Add Post
+                    Spill
                   </Button>
                 )}
               </Grid>
