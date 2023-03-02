@@ -120,9 +120,8 @@ const TweetBox = () => {
                 className="tweetboxOptionIcon"
                 width={25}
                 height={25}
-                sx={{ fill: "var(--blue)", mt: 0.5 }}
+                sx={{ fill: "var(--twitter-color)", mt: 0.5 }}
                 onClick={() => setEmojiPicker((prev) => !prev)}
-                sx={{ marginBottom: 0.5 }}
               />
             ) : (
               <>
@@ -130,7 +129,7 @@ const TweetBox = () => {
                   className="tweetboxOptionIcon"
                   width={25}
                   height={25}
-                  sx={{ fill: "var(--blue)", mt: 0.5 }}
+                  sx={{ fill: "var(--twitter-color)", mt: 0.5 }}
                   onClick={() => setEmojiPicker((prev) => !prev)}
                 />
                 <EmojiPicker

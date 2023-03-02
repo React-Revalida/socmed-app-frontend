@@ -107,7 +107,7 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .uploadedImage-closeButton:hover {
-  background-color: var(--twitter-color);
+  background-color: var(--hover-blue-color);
   border-radius: 9999px;
   cursor: pointer;
 }
