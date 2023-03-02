@@ -105,7 +105,7 @@ const PostEditForm = ({ profile, post, onOpenPostModal, isPostModalOpen }) => {
       setNewPicUpload(null);
       setCurrentImage("");
       dispatch(postActions.fetchPosts());
-      dispatch(postActions.resetLoading());
+
       navigate("/home");
     }
     onOpenPostModal(false);
