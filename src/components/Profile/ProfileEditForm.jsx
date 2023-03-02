@@ -194,7 +194,13 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tab === 0) {
-      dispatch(profileActions.updateProfile(profileState, profilePicUpload, coverPicUpload));
+      dispatch(
+        profileActions.updateProfile(
+          profileState,
+          profilePicUpload,
+          coverPicUpload
+        )
+      );
     } else if (tab === 1) {
       dispatch(profileActions.updateAddress(addressState));
     }
@@ -230,56 +236,37 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
         <Grid component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-<<<<<<< Updated upstream
-              <div className="profile">
-                <label htmlFor="coverPicInput">
-                  <div className="cover-container">
-                    <div
-                      className="backgroundImage"
-                      style={{ backgroundImage: `url(${coverPic})` }}
-                    ></div>
-                    <div className="cover-overlay">
-                      <PhotoCamera className="cover-overlay-image" />
+              <label htmlFor="coverPicInput">
+                <div className="cover-container">
+                  <div
+                    className="backgroundImage"
+                    style={{ backgroundImage: `url(${coverPic})` }}
+                  ></div>
+                  <div className="cover-overlay">
+                    <PhotoCamera className="cover-overlay-image" />
+                  </div>
+                </div>
+
+                <input
+                  type="file"
+                  id="coverPicInput"
+                  style={{ display: "none" }}
+                  onChange={handleCoverFileChange}
+                />
+              </label>
+              <div className="profileTitle profileImage">
+                <label htmlFor="profilePicInput">
+                  <div className="avatar-container">
+                    <Avatar
+                      round={true}
+                      size="120"
+                      name={profile.name}
+                      src={profilePic}
+                    />
+                    <div className="overlay">
+                      <PhotoCamera className="overlay-image" />
                     </div>
                   </div>
-
-                  <input
-                    type="file"
-                    id="coverPicInput"
-                    style={{ display: "none" }}
-                    onChange={handleCoverFileChange}
-                  />
-                </label>
-                <div className="profileTitle profileImage">
-                  <label htmlFor="profilePicInput">
-                    <div className="avatar-container">
-                      <Avatar
-                        round={true}
-                        size="120"
-                        name={profile.name}
-                        src={profilePic}
-                      />
-                      <div className="overlay">
-                        <PhotoCamera className="overlay-image" />
-                      </div>
-                    </div>
-                    <input
-                      type="file"
-                      id="profilePicInput"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-                  </label>
-                </div>
-=======
-              <div className="profileTitle">
-                <label htmlFor="profilePicInput">
-                  <Avatar
-                    round={true}
-                    size="120"
-                    name={profile.name}
-                    src={profilePic}
-                  ></Avatar>
                   <input
                     type="file"
                     id="profilePicInput"
@@ -287,7 +274,6 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
                     onChange={handleFileChange}
                   />
                 </label>
->>>>>>> Stashed changes
               </div>
             </Grid>
             <Grid item xs={12}>
