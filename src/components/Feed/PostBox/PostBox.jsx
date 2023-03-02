@@ -182,17 +182,32 @@ const TweetBox = () => {
             )}
             <Button
               type="submit"
-              variant="contained"
-              sx={{
-                backgroundColor: "var(--twitter-color)",
-                borderRadius: 8,
-                ml: 38,
-                "&:hover": {
-                  backgroundColor: "var(--twitter-color)",
-                  boxShadow: 3,
-                },
-              }}
-              disabled={isFormInvalid()}
+              variant={isFormInvalid() ? "outlined" : "contained"}
+              sx={
+                isFormInvalid()
+                  ? {
+                      borderColor: "var(--twitter-color)",
+                      color: "var(--twitter-color)",
+                      borderRadius: 8,
+                      ml: 38,
+                      mt: 1,
+                      "&:hover": {
+                        cursor: "default",
+                        borderColor: "var(--twitter-color)",
+                      },
+                    }
+                  : {
+                      backgroundColor: "var(--twitter-color)",
+                      borderRadius: 8,
+                      ml: 38,
+                      mt: 1,
+                      "&:hover": {
+                        backgroundColor: "var(--twitter-color)",
+                        boxShadow: 3,
+                      },
+                    }
+              }
+              // disabled={isFormInvalid()}
             >
               Post
             </Button>
