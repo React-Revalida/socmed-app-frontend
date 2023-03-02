@@ -17,6 +17,8 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import { joiPasswordExtendCore } from "joi-password";
 import jwtDecode from "jwt-decode";
 import * as authActions from "../../redux/actions/authActions";
+import mainLogo from "../../assets/SpillLogo.png";
+import "./PasswordForm.css";
 
 const ResetPasswordForm = () => {
   const dispatch = useDispatch();
@@ -122,7 +124,12 @@ const ResetPasswordForm = () => {
         }}
       >
         <Box textAlign={"center"}>
-          <FlutterDashIcon sx={{ color: "#00d5bf" }} />
+          <img
+            src={mainLogo}
+            alt="Spill"
+            loading="lazy"
+            className="password-form-icon"
+          />
         </Box>
 
         <CardHeader
