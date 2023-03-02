@@ -1,0 +1,33 @@
+.darkDialog {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.lightDialog {
+  background-color: #fff;
+  color: #000;
+}
+
+.darkButton {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: none;
+}
+
+.darkButton:hover {
+  background-color: #00d5bf;
+}
+
+.lightButton {
+  background-color: #fff;
+  color: #000;
+  box-shadow: none;
+}
+
+.lightButton:hover {
+  background-color: #00d5bf;
+  color: #fff;
+}
