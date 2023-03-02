@@ -72,7 +72,7 @@ const CommentBox = ({ postUser, pid }) => {
   };
   return (
     <>
-      <form className="tweetbox" onSubmit={(e) => tweetSubmit(e)}>
+      <form className="commentBox" onSubmit={(e) => tweetSubmit(e)}>
         <div className="tweetboxRow">
           <div className="tweetboxUserIcon">
             <Avatar round={true} size={40} src={profileImg} name={name} />
@@ -96,7 +96,7 @@ const CommentBox = ({ postUser, pid }) => {
             <button
               type="submit"
               className="tweetbox-button tweetboxOptionIcon"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", fontFamily: "Poppins" }}
             >
               Reply
             </button>

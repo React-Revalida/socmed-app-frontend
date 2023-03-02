@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as postActions from "../../../redux/actions/postActions";
 import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-import { CardActionArea, Menu, MenuItem } from "@mui/material";
+import { CardActionArea, Menu, MenuItem, MenuList } from "@mui/material";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 import {
@@ -27,6 +27,7 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 import { UserInterfaceContext } from "../../../contexts/UserInterfaceContext";
+import { useStyles } from "../Layout/Style";
 
 const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   const fromComponent = from || " ";
@@ -34,6 +35,8 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
   const profile = useSelector((state) => state.user.profile);
   const [open, setOpen] = React.useState(false);
   const { onPostPage } = useContext(UserInterfaceContext);
+
+  const isDarkMode = localStorage.getItem("darkMode");
 
   useEffect(() => {
     // dispatch(likeActions.fetchLikesByPost(post.postId));
@@ -124,21 +127,30 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                     />
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem
+                        sx={{
+                          fontFamily: "Poppins",
+                          color: "var(--twitter-color)",
+                        }}
                         onClick={(e) => {
                           deletePost(e, post.postId);
                           popupState.close();
                         }}
                       >
-                        <DeleteForever />
+                        <DeleteForever sx={{ color: "var(--twitter-color)" }} />
                         &ensp; Delete
                       </MenuItem>
                       <MenuItem
+                        sx={{
+                          fontFamily: "Poppins",
+                          color: "var(--twitter-color)",
+                        }}
                         onClick={() => {
                           editPost(true);
                           popupState.close();
                         }}
                       >
-                        <BorderColor /> &ensp; Edit
+                        <BorderColor sx={{ color: "var(--twitter-color)" }} />{" "}
+                        &ensp; Edit
                       </MenuItem>
                     </Menu>
                   </React.Fragment>

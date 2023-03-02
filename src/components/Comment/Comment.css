@@ -1,10 +1,12 @@
-.post {
-  padding-top: 10px;
-  border-bottom: 0.5px var(--border-color) solid;
+.comment {
+  border: 0.5px var(--border-color) solid;
+  border-radius: 16px;
   display: flex;
   flex-direction: row;
   position: relative;
+  padding: 10px;
 }
+
 .post:hover {
   background-color: var(--hover-color);
 }
