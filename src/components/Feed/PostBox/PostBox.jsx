@@ -85,7 +85,6 @@ const TweetBox = () => {
 
   const isFormInvalid = () => {
     let result = postSchema.validate(tweet);
-    console.log(result);
     return !!result.error;
   };
 
@@ -104,7 +103,7 @@ const TweetBox = () => {
               name="message"
               value={tweet.message}
               onChange={handleMessageChange}
-              placeholder="What's happening?"
+              placeholder={`What's your tea ${name}?`}
               style={{ height: "auto" }}
             />
           </div>
@@ -189,7 +188,7 @@ const TweetBox = () => {
                       borderColor: "var(--twitter-color)",
                       color: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 38,
+                      ml: 40,
                       mt: 1,
                       textTransform: "none",
                       fontFamily: "Poppins",
@@ -201,7 +200,7 @@ const TweetBox = () => {
                   : {
                       backgroundColor: "var(--twitter-color)",
                       borderRadius: 8,
-                      ml: 38,
+                      ml: 40,
                       mt: 1,
                       textTransform: "none",
                       fontFamily: "Poppins",

@@ -3,6 +3,7 @@ import React from "react";
 import { MillToDate } from "../../utils/MillToDate";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router";
+import "./Comment.css";
 
 const Comment = ({ comment }) => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Comment = ({ comment }) => {
   console.log(comment);
 
   return (
-    <div className="post">
+    <div className="comment">
       <div className="comment__avatar">
         <div>
           <Avatar

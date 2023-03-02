@@ -1,10 +1,14 @@
 .post {
   padding-top: 10px;
-  border-bottom: 0.5px var(--border-color) solid;
+  border: 0.5px var(--border-color) solid;
   display: flex;
   flex-direction: row;
   position: relative;
+  margin-top: 10px;
+  border-radius: 16px;
+  box-shadow: 2px 1.5px 1px 1px var(--twitter-color) !important;
 }
+
 .post:hover {
   background-color: var(--hover-color);
 }
