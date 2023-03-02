@@ -124,18 +124,17 @@
 }
 .post-event div:nth-child(1) .postIcon:hover,
 .post-event div:nth-child(4) .postIcon:hover {
-  fill: var(--blue);
-  background-color: var(--hover-blue-color);
+  color: var(--twitter-color);
+  background-color: var(--hover-color);
 }
 .post-event div:nth-child(1) .postIcon:hover + span {
   color: var(--blue);
 }
 .post-event div:nth-child(2) .postIcon:hover {
-  fill: #17bf63;
-  background-color: rgba(23, 191, 99, 0.1);
+  color: var(--twitter-color);
 }
 .post-event div:nth-child(2) .postIcon:hover + span {
-  color: #17bf63;
+  color: var(--twitter-color);
 }
 .post-event div:nth-child(3) .postIcon:hover {
   fill: #e0245e;

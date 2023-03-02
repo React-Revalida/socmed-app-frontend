@@ -180,7 +180,7 @@
 }
 
 .emojiOption:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -200,7 +200,7 @@
 }
 
 .tweetboxOptionIcon:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
   border-radius: 9999px;
   cursor: pointer;
 }

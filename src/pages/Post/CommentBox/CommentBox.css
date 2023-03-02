@@ -55,7 +55,7 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .tweetboxOptionIcon:hover {
-  background-color: var(--main-bg-color);
+  background-color: var(--twitter-color);
   border-radius: 9999px;
   cursor: pointer;
 }

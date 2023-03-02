@@ -184,7 +184,7 @@
 }
 
 .profileCategory > div:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
   color: var(--twitter-color);
 }
 

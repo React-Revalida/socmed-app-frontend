@@ -56,7 +56,7 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .tweetboxOptionIcon:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -104,7 +104,7 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .uploadedImage-closeButton:hover {
-  background-color: var(--hover-blue-color);
+  background-color: var(--hover-color);
   border-radius: 9999px;
   cursor: pointer;
 }

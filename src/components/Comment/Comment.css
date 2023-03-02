@@ -86,15 +86,17 @@
 }
 .post-event div:nth-child(1) .postIcon:hover,
 .post-event div:nth-child(4) .postIcon:hover {
-  fill: var(--blue);
-  background-color: var(--hover-blue-color);
+  fill: var(--twitter-color);
+
+  cursor: pointer;
 }
 .post-event div:nth-child(1) .postIcon:hover + span {
-  color: var(--blue);
+  fill: var(--twitter-color);
+  cursor: pointer;
 }
 .post-event div:nth-child(2) .postIcon:hover {
-  fill: #17bf63;
-  background-color: rgba(23, 191, 99, 0.1);
+  cursor: pointer;
+  fill: var(--twitter-color);
 }
 .post-event div:nth-child(2) .postIcon:hover + span {
   color: #17bf63;
