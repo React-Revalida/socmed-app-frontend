@@ -218,6 +218,7 @@ const Chat = ({ messages, username2Chat, profile }) => {
                       <FromMessage
                         message={chat.message}
                         userimage={user.profilePic}
+                        name={user.name}
                       />
                     )}
                     {chat.senderName === userData.username && (
