@@ -191,6 +191,7 @@ const Profile = () => {
             </div>
             {isMe ? (
               <div
+                style={{ cursor: "pointer" }}
                 className="editProfile"
                 onClick={() => handleOpenEditDialog(true)}
               >
@@ -265,12 +266,14 @@ const Profile = () => {
           </div>
           <div className="profileCategory">
             <div
+              style={{ cursor: "pointer" }}
               className={category === 1 && "profileCategoryActive"}
               onClick={() => setCategory(1)}
             >
               <span>Posts</span>
             </div>
             <div
+              style={{ cursor: "pointer" }}
               className={category === 2 && "profileCategoryActive"}
               onClick={() => setCategory(2)}
             >
