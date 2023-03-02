@@ -25,6 +25,7 @@ import moment from "moment";
 import * as profileActions from "../../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
+import { toast } from 'react-toastify';
 
 const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
@@ -174,13 +175,18 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   };
 
   const success = useSelector((state) => state.user.success);
+  const error = useSelector((state) => state.user.error);
 
   useEffect(() => {
     if (success) {
       onOpenDialog(false);
+      toast.success("Profile updated successfully!");
       dispatch(profileActions.resetSuccess());
     }
-  }, [success, dispatch, onOpenDialog]);
+    if (error) {
+      toast.error(error);
+    }
+  }, [success, dispatch, onOpenDialog, error]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

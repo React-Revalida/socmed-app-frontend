@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import BottomSidebar from "../../components/BottomSidebar/BottomSidebar";
 import Post from "../../components/Feed/Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import BackIcon from "@mui/icons-material/ArrowBackIosNew";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Avatar from "react-avatar";
 import Loading from "../../components/Loading/Loading";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as profileActions from "../../redux/actions/profileActions";
 import * as postActions from "../../redux/actions/postActions";
 import * as followActions from "../../redux/actions/followActions";
@@ -15,9 +14,10 @@ import * as likeActions from "../../redux/actions/likeActions";
 import Widgets from "../../components/Widgets/Widgets";
 import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import FollowsModal from "../../components/Profile/FollowsModal";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import { Grid, Typography } from "@mui/material";
-import { CameraAlt, CircleOutlined, ThumbUp } from "@mui/icons-material";
+import { CameraAlt, ThumbUp } from "@mui/icons-material";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -367,6 +367,7 @@ const Profile = () => {
         </article>
       </section>
       <Widgets />
+      <ToastContainer />
     </>
   );
 };
