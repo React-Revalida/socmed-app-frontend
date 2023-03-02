@@ -25,7 +25,8 @@ export const addPost = (message, image) => {
   const postMessageBlob = new Blob([postMessage], {
     type: "application/json",
   });
-  const postImage = new File([image], "image", {
+  const uploadImage = image ? image.name : null;
+  const postImage = new File([image], uploadImage, {
     type: "image/*",
   });
   let formData = new FormData();
@@ -55,7 +56,8 @@ export const editPost = (postId, message, image) => {
   const postMessageBlob = new Blob([postMessage], {
     type: "application/json",
   });
-  const postImage = new File([image], "image", {
+  const uploadImage = image ? image.name : null;
+  const postImage = new File([image], uploadImage, {
     type: "image/*",
   });
   let formData = new FormData();
