@@ -29,7 +29,6 @@ const LogoutDialog = ({ isDialogOpen, onOpenDialog }) => {
       fullWidth
     >
       <DialogContent
-        sx={{ bgcolor: "background.paper" }}
         className={theme === "dark" ? "darkDialog" : "lightDialog"}
       >
         <Box marginTop={2} marginBottom={2} marginLeft={4} marginRight={4}>

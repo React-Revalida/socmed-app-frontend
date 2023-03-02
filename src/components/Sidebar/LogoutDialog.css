@@ -9,8 +9,8 @@
 }
 
 .darkButton {
-  background-color: #1e1e1e;
-  color: #fff;
+  background-color: #1e1e1e !important;
+  color: #fff !important;
   border-radius: 15px;
   padding-left: 20px;
   padding-right: 20px;
@@ -18,16 +18,16 @@
 }
 
 .darkButton:hover {
-  background-color: #00d5bf;
+  background-color: #00d5bf !important;
 }
 
 .lightButton {
-  background-color: #fff;
-  color: #000;
+  background-color: #fff !important;
+  color: #000 !important;
   box-shadow: none;
 }
 
 .lightButton:hover {
-  background-color: #00d5bf;
-  color: #fff;
+  background-color: #00d5bf !important;
+  color: #fff !important;
 }
