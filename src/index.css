@@ -5,13 +5,13 @@
 :root {
   /* option 1 */
   /* --main-bg-color: #15202b;
-  --hover-color: #1c2732; 
+  --hover-color: #1c2732;
   --element-bg-color: #192734; */
 
   /* option 2 */
-  /* --main-bg-color: #252121;
+  --main-bg-color: #252121;
   --hover-color: #413839;
-  --element-bg-color: #413839; */
+  --element-bg-color: #413839;
 
   /* option 3 */
   /* --main-bg-color: #201910;
@@ -19,9 +19,9 @@
   --element-bg-color: #362819; */
 
   /* option 4 */
-  --main-bg-color: #18191a;
+  /* --main-bg-color: #18191a;
   --hover-color: #242526;
-  --element-bg-color: #242526;
+  --element-bg-color: #242526; */
 
   --blue: #1da1f2;
   --hover-blue-color: #162d40;
