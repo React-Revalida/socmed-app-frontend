@@ -1,6 +1,7 @@
 .MuiDialog-root {
   outline: none;
 }
+
 .profileHeader {
   position: sticky;
   z-index: 2;
@@ -11,15 +12,18 @@
   align-items: center;
   border-bottom: 0.5px solid var(--border-color);
 }
+
 .profileHeader .MuiSvgIcon-root {
   margin: 8px 25px 8px 12px;
   padding: 7px;
   color: var(--twitter-color);
   border-radius: 9999px;
 }
+
 .profileHeader .MuiSvgIcon-root:hover {
   background-color: var(--hover-blue-color);
 }
+
 .profileHeader div span:nth-child(1) {
   display: flex;
   flex-direction: column;
@@ -27,21 +31,28 @@
   font-size: 20px;
   font-weight: 800;
 }
+
 .profileHeader div span:nth-child(2) {
   color: #8899a6;
   font-size: 15px;
 }
+
 .backgroundImage {
   height: 200px;
   width: 100%;
-  background: rgb(238, 174, 202);
+  background: rgb(44, 42, 43);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
 .profileTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px 15px;
 }
+
 .profileImage {
   width: 134px;
   height: 134px;
@@ -53,10 +64,12 @@
   align-items: center;
   justify-content: center;
 }
-.profileImage > .MuiAvatar-root {
+
+.profileImage>.MuiAvatar-root {
   width: 134px;
   height: 134px;
 }
+
 .editProfile,
 .followBtn {
   height: auto !important;
@@ -69,56 +82,68 @@
   font-size: 15px !important;
   font-weight: 700 !important;
 }
+
 .editProfile:hover,
 .followBtn {
   /* background-color: var(--hover-blue-color); */
 }
+
 .profileBiography {
   display: flex;
   flex-direction: column;
   padding: 0px 15px;
 }
+
 .profileBiography span:nth-child(1) {
   color: var(--gray);
   font-size: 19px;
   font-weight: 800;
 }
+
 .profileBiography span:nth-child(2) {
   color: #8899a6;
   font-size: 15px;
 }
+
 .profileBiography span:nth-child(3) {
   margin: 5px 0px;
   color: #000000;
   font-size: 15px;
 }
+
 .profileBiography span:nth-child(4) {
   display: flex;
   align-items: center;
   color: var(--gray);
   font-size: 15px;
 }
+
 .profileBiography span:nth-child(4) .MuiSvgIcon-root {
   font-size: 15px;
   margin-right: 5px;
 }
+
 .profile div:nth-child(4) {
   padding: 0px 15px;
   margin-top: 5px;
 }
+
 .profile div:nth-child(4) span {
   margin-right: 15px;
 }
+
 .profile div:nth-child(4) span span:nth-child(1) {
   color: #000000;
   font-weight: 700;
   font-size: 15px;
   margin-right: 5px;
 }
+
 .profile div:nth-child(4) span span:nth-child(2) {
   color: var(--gray);
   font-size: 15px;
 }
+
 .profileCategory {
   display: flex;
   align-items: center;
@@ -127,9 +152,10 @@
   border-bottom: 0.5px var(--border-color) solid;
   margin-top: 15px;
 }
-.profileCategory > div:nth-child(1),
-.profileCategory > div:nth-child(3),
-.profileCategory > div:nth-child(4) {
+
+.profileCategory>div:nth-child(1),
+.profileCategory>div:nth-child(3),
+.profileCategory>div:nth-child(4) {
   flex: 0.2;
   text-align: center;
   color: var(--gray);
@@ -137,7 +163,8 @@
   font-weight: 700;
   padding: 15px 0px;
 }
-.profileCategory > div:nth-child(2) {
+
+.profileCategory>div:nth-child(2) {
   flex: 0.4;
   text-align: center;
   color: var(--gray);
@@ -145,20 +172,26 @@
   font-weight: 700;
   padding: 15px 0px;
 }
-.profileCategory > div:hover {
+
+.profileCategory>div:hover {
   background-color: var(--hover-blue-color);
   color: var(--twitter-color);
 }
+
 .profileCategoryActive {
   border-bottom: 2px var(--twitter-color) solid;
 }
-.profileCategoryActive > span {
+
+.profileCategoryActive>span {
   color: var(--twitter-color);
 }
 
 @media (min-width: 0) and (max-width: 1000px) {
   .backgroundImage {
-    height: 100px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 

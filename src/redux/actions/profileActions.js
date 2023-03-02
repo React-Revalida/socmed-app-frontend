@@ -32,7 +32,7 @@ export const fetchOtherProfile = (username) => {
   };
 };
 
-export const updateProfile = (profileDTO, profilePic) => {
+export const updateProfile = (profileDTO, profilePic, coverPic) => {
   if (profilePic === null) {
     profilePic = "";
   }
@@ -40,12 +40,20 @@ export const updateProfile = (profileDTO, profilePic) => {
   const profileBlob = new Blob([profile], {
     type: "application/json",
   });
-  const profileImage = new File([profilePic], "profile", {
+
+  const profileImageName = profilePic ? profilePic.name : null;
+  const coverImageName = coverPic ? coverPic.name : null;
+  const profileImage = new File([profilePic], profileImageName, {
     type: "image/*",
   });
+  const coverImage = new File([coverPic], coverImageName, {
+    type: "image/*",
+  });
+
   let formData = new FormData();
   formData.append("user", profileBlob);
   formData.append("profile", profileImage);
+  formData.append("cover", coverImage);
   return (dispatch) => {
     dispatch(type.updateProfileRequest());
     profileService

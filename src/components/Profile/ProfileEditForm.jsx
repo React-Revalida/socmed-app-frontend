@@ -25,6 +25,8 @@ import moment from "moment";
 import * as profileActions from "../../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
+import { toast } from "react-toastify";
+import { Edit, Photo, PhotoCamera } from "@mui/icons-material";
 
 const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   const theme = useTheme();
@@ -50,6 +52,7 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
     zip: "",
   });
   const [profilePic, setProfilePic] = React.useState(null);
+  const [coverPic, setCoverPic] = React.useState(null);
   useEffect(() => {
     setProfileState({
       firstname: profile.firstname,
@@ -63,17 +66,18 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
     setAddressState({
       houseNo: address.houseNo,
       street: address.street,
-      subdivision:address.subdivision,
+      subdivision: address.subdivision,
       barangay: address.barangay,
       city: address.city,
       province: address.province,
       zip: address.zip,
     });
     setProfilePic(profile.profilePic);
+    setCoverPic(profile.coverPic);
   }, [profile, address]);
 
   const [profilePicUpload, setProfilePicUpload] = useState(null);
-
+  const [coverPicUpload, setCoverPicUpload] = useState(null);
   const profileSchema = Joi.object({
     firstname: Joi.string().max(50).required(),
     middlename: Joi.string().max(20).allow(""),
@@ -174,18 +178,23 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
   };
 
   const success = useSelector((state) => state.user.success);
+  const error = useSelector((state) => state.user.error);
 
   useEffect(() => {
     if (success) {
       onOpenDialog(false);
+      toast.success("Profile updated successfully!");
       dispatch(profileActions.resetSuccess());
     }
-  }, [success, dispatch, onOpenDialog]);
+    if (error) {
+      toast.error(error);
+    }
+  }, [success, dispatch, onOpenDialog, error]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tab === 0) {
-      dispatch(profileActions.updateProfile(profileState, profilePicUpload));
+      dispatch(profileActions.updateProfile(profileState, profilePicUpload, coverPicUpload));
     } else if (tab === 1) {
       dispatch(profileActions.updateAddress(addressState));
     }
@@ -200,6 +209,17 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
     };
     reader.readAsDataURL(file);
   };
+
+  const handleCoverFileChange = (event) => {
+    const file = event.target.files[0];
+    setCoverPicUpload(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setCoverPic(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <CustomDialog
       open={isDialogOpen}
@@ -211,14 +231,37 @@ const ProfileEditForm = ({ profile, address, onOpenDialog, isDialogOpen }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <div className="profile">
-                <div className="profileTitle">
+                <label htmlFor="coverPicInput">
+                  <div className="cover-container">
+                    <div
+                      className="backgroundImage"
+                      style={{ backgroundImage: `url(${coverPic})` }}
+                    ></div>
+                    <div className="cover-overlay">
+                      <PhotoCamera className="cover-overlay-image" />
+                    </div>
+                  </div>
+
+                  <input
+                    type="file"
+                    id="coverPicInput"
+                    style={{ display: "none" }}
+                    onChange={handleCoverFileChange}
+                  />
+                </label>
+                <div className="profileTitle profileImage">
                   <label htmlFor="profilePicInput">
-                    <Avatar
-                      round={true}
-                      size="120"
-                      name={profile.name}
-                      src={profilePic}
-                    ></Avatar>
+                    <div className="avatar-container">
+                      <Avatar
+                        round={true}
+                        size="120"
+                        name={profile.name}
+                        src={profilePic}
+                      />
+                      <div className="overlay">
+                        <PhotoCamera className="overlay-image" />
+                      </div>
+                    </div>
                     <input
                       type="file"
                       id="profilePicInput"
