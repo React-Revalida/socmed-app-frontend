@@ -10,6 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Joi from "joi";
 import Follow from "../../assets/calm.png";
 import mainLogo from "../../assets/SpillLogo.png";
+import "./LoginForm.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const LoginForm = () => {
             // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt="Spill"
             loading="lazy"
-            className="followed-icon"
+            className="login-icon"
           />
         </Box>
 
