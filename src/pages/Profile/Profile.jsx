@@ -18,6 +18,8 @@ import FollowsModal from "../../components/Profile/FollowsModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Grid, Typography } from "@mui/material";
 import { CameraAlt, CircleOutlined, ThumbUp } from "@mui/icons-material";
+import Follow from "../../assets/calm.png";
+import Followed from "../../assets/spilled.png";
 
 const Profile = () => {
   const [category, setCategory] = React.useState(1);
@@ -196,7 +198,25 @@ const Profile = () => {
               </div>
             ) : (
               <div className="followBtn" onClick={handleToggleFollow}>
-                <span>{userFollowed ? "Following" : "Follow"}</span>
+                <span>
+                  {userFollowed ? (
+                    <img
+                      src={Followed}
+                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt="Spill"
+                      loading="lazy"
+                      className="followed-icon"
+                    />
+                  ) : (
+                    <img
+                      src={Follow}
+                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt="Spill"
+                      loading="lazy"
+                      className="followed-icon"
+                    />
+                  )}
+                </span>
               </div>
             )}
           </div>
