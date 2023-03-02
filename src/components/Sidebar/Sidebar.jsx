@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem/SidebarItem";
+import ConstructionIcon from "@mui/icons-material/Construction";
 
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -88,7 +89,27 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
             />
           </Link>
         </Button>
+
+        {/* CONSTRUCTION */}
         <Button className="navButton">
+          <Link
+            // to="/messages"
+            style={{ textDecoration: "none" }}
+            // onClick={() => [dispatch(resetLoading())]}
+          >
+            <SidebarItem
+              text="..."
+              Icon={ConstructionIcon}
+              // active={
+              //   otherLoc.otherLoc === "http://localhost:3000/messages" && true
+              // }
+            />
+          </Link>
+        </Button>
+        {/* CONSTRUCTION */}
+
+        {/* CHAT */}
+        {/* <Button className="navButton">
           <Link
             to="/messages"
             style={{ textDecoration: "none" }}
@@ -102,7 +123,9 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
               }
             />
           </Link>
-        </Button>
+        </Button> */}
+        {/* CHAT */}
+
         <Button className="navButton">
           <Link
             to="/profile"
