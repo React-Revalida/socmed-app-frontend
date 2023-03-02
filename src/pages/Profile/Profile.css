@@ -2,15 +2,12 @@
   outline: none;
 }
 
-<<<<<<< Updated upstream
-=======
 .profile {
   border: 0.5px solid var(--border-color);
   border-radius: 12px;
   margin-top: 5px;
 }
 
->>>>>>> Stashed changes
 .profileHeader {
   position: sticky;
   z-index: 2;
@@ -51,15 +48,14 @@
 .backgroundImage {
   height: 200px;
   width: 100%;
-<<<<<<< Updated upstream
-  background: rgb(44, 42, 43);
+
+  /* background: rgb(44, 42, 43);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-=======
+  background-repeat: no-repeat; */
+
   border-radius: 12px;
   background: rgb(238, 174, 202);
->>>>>>> Stashed changes
 }
 
 .profileTitle {
@@ -81,7 +77,7 @@
   justify-content: center;
 }
 
-.profileImage>.MuiAvatar-root {
+.profileImage > .MuiAvatar-root {
   width: 134px;
   height: 134px;
 }
@@ -99,14 +95,11 @@
   font-weight: 700 !important;
 }
 
-<<<<<<< Updated upstream
 .editProfile:hover,
 .followBtn {
   /* background-color: var(--hover-blue-color); */
 }
 
-=======
->>>>>>> Stashed changes
 .profileBiography {
   display: flex;
   flex-direction: column;
@@ -173,9 +166,9 @@
   margin-top: 15px;
 }
 
-.profileCategory>div:nth-child(1),
-.profileCategory>div:nth-child(3),
-.profileCategory>div:nth-child(4) {
+.profileCategory > div:nth-child(1),
+.profileCategory > div:nth-child(3),
+.profileCategory > div:nth-child(4) {
   flex: 0.2;
   text-align: center;
   color: var(--gray);
@@ -184,7 +177,7 @@
   padding: 15px 0px;
 }
 
-.profileCategory>div:nth-child(2) {
+.profileCategory > div:nth-child(2) {
   flex: 0.4;
   text-align: center;
   color: var(--gray);
@@ -193,7 +186,7 @@
   padding: 15px 0px;
 }
 
-.profileCategory>div:hover {
+.profileCategory > div:hover {
   background-color: var(--hover-blue-color);
   color: var(--twitter-color);
 }
@@ -202,7 +195,7 @@
   border-bottom: 2px var(--twitter-color) solid;
 }
 
-.profileCategoryActive>span {
+.profileCategoryActive > span {
   color: var(--twitter-color);
 }
 
