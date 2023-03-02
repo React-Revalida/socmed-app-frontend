@@ -250,7 +250,7 @@ const Profile = () => {
               className={category === 2 && "profileCategoryActive"}
               onClick={() => setCategory(2)}
             >
-              <span>Liked Posts</span>
+              <span>Sipped Posts</span>
             </div>
           </div>
         </div>
