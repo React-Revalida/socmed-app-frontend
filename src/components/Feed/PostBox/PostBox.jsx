@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import EmojiPicker from "emoji-picker-react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Box } from "@mui/system";
-import { Grid, IconButton } from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { blue } from "@mui/material/colors";
+import Joi from "joi";
 
 const TweetBox = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,38 @@ const TweetBox = () => {
     setPostImage("");
     dispatch(postActions.resetSuccess());
   };
+
+  const postSchema = Joi.object({
+    message: Joi.string().max(200).required(),
+  });
+
+  const [postFieldErrors, setPostFieldErrors] = useState({});
+
+  const handleMessageChange = ({ currentTarget: input }) => {
+    setTweet({ ...tweet, [input.name]: input.value });
+
+    const { error } = postSchema
+      .extract(input.name)
+      .label(input.name)
+      .validate(input.value);
+
+    if (error) {
+      setPostFieldErrors({
+        ...postFieldErrors,
+        [input.name]: error.details[0].message,
+      });
+    } else {
+      delete postSchema[input.name];
+      setPostFieldErrors({ ...postFieldErrors, [input.name]: "" });
+    }
+  };
+
+  const isFormInvalid = () => {
+    let result = postSchema.validate(tweet);
+    console.log(result);
+    return !!result.error;
+  };
+
   return (
     <>
       <form className="tweetbox" onSubmit={(e) => tweetSubmit(e)}>
@@ -68,8 +101,9 @@ const TweetBox = () => {
               className="tweetbox-input"
               rows={2}
               cols={5}
+              name="message"
               value={tweet.message}
-              onChange={(e) => setTweet({ ...tweet, message: e.target.value })}
+              onChange={handleMessageChange}
               placeholder="What's happening?"
               style={{ height: "auto" }}
             />
@@ -120,7 +154,7 @@ const TweetBox = () => {
                 className="tweetboxOptionIcon"
                 width={25}
                 height={25}
-                sx={{ fill: "var(--twitter-color)", mt: 0.5 }}
+                sx={{ fill: "var(--twitter-color)", mb: 0.7 }}
                 onClick={() => setEmojiPicker((prev) => !prev)}
               />
             ) : (
@@ -146,13 +180,18 @@ const TweetBox = () => {
                 />
               </>
             )}
-            <button
+            <Button
               type="submit"
-              className="tweetbox-button tweetboxOptionIcon"
-              style={{ cursor: "pointer" }}
+              variant="contained"
+              sx={{
+                backgroundColor: "var(--twitter-color)",
+                borderRadius: 8,
+                ml: 38,
+              }}
+              disabled={isFormInvalid()}
             >
               Post
-            </button>
+            </Button>
           </div>
         </div>
       </form>
