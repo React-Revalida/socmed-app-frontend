@@ -231,6 +231,12 @@ const Sidebar = ({ switchTheme, appTheme, otherLoc }) => {
                   <MoreHoriz
                     className="postMoreIcon"
                     variant="contained"
+                    sx={{
+                      "&:hover": {
+                        bgcolor: "gray !important",
+                        color: "var(--twitter-color)",
+                      },
+                    }}
                     {...bindTrigger(popupState)}
                   />
                   <Menu {...bindMenu(popupState)}>

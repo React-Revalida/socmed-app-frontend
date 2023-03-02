@@ -123,6 +123,10 @@ const Post = ({ post, onLike, onUnlike, from, onDelete }) => {
                     <MoreHoriz
                       className="postMoreIcon"
                       variant="contained"
+                      sx={{
+                        "&:hover": { bgcolor: "var(--hover-color) !important" },
+                        color: "var(--twitter-color) !important",
+                      }}
                       {...bindTrigger(popupState)}
                     />
                     <Menu {...bindMenu(popupState)}>

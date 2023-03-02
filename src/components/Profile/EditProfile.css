@@ -194,6 +194,6 @@
   object-fit: cover;
 }
 
-/* .MuiButtonBase-root {
+.MuiButtonBase-root {
   background-color: transparent !important;
-} */
+}

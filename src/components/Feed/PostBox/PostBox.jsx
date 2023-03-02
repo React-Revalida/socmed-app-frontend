@@ -201,14 +201,15 @@ const TweetBox = () => {
                       },
                     }
                   : {
-                      backgroundColor: "var(--twitter-color)",
+                      backgroundColor: "var(--twitter-color) !important",
                       borderRadius: 8,
                       ml: 38,
                       mt: 1,
                       textTransform: "none",
                       fontFamily: "Poppins",
+
                       "&:hover": {
-                        backgroundColor: "var(--twitter-color)",
+                        backgroundColor: "var(--twitter-color) !important",
                         boxShadow: 3,
                       },
                     }
