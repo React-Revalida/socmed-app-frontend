@@ -85,6 +85,7 @@ const ForgotPasswordForm = () => {
           paddingTop: 2,
           paddingBottom: 4,
           borderRadius: 4,
+          backgroundColor: "var(--main-bg-color) !important",
         }}
       >
         <Box textAlign={"center"}>
@@ -98,7 +99,11 @@ const ForgotPasswordForm = () => {
 
         <CardHeader
           title="Forgot password?"
-          sx={{ fontWeight: "bold", textAlign: "center" }}
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "var(--plain-text) !important",
+          }}
         />
         <CardContent>
           <Box width={250}>
@@ -112,6 +117,10 @@ const ForgotPasswordForm = () => {
               helperText={emailFieldErrors}
               onChange={handleEmailChange}
               fullWidth
+              sx={{
+                color: "var(--plain-text) !important",
+                backgroundColor: "var(--main-bg-color) !important",
+              }}
             />
           </Box>
         </CardContent>

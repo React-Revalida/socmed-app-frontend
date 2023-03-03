@@ -5,3 +5,7 @@
 .MuiCardHeader-title {
   font-family: "Poppins", sans-serif !important;
 }
+
+.MuiPaper-root {
+  background-color: "var(--main-bg-color)" !important;
+}

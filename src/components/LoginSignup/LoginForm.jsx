@@ -81,13 +81,14 @@ const LoginForm = () => {
   return (
     <>
       <Card
-        color="red"
+        color="var(--main-bg-color)"
         sx={{
           paddingLeft: 5,
           paddingRight: 5,
           paddingTop: 2,
           paddingBottom: 4,
           borderRadius: 4,
+          backgroundColor: "var(--main-bg-color)",
         }}
       >
         <Box textAlign={"center"}>
@@ -100,7 +101,11 @@ const LoginForm = () => {
           />
         </Box>
 
-        <CardHeader title="Login to Spill" sx={{ textAlign: "center" }} />
+        <CardHeader
+          color
+          title="Login to Spill"
+          sx={{ textAlign: "center", color: "var(--plain-text) !important" }}
+        />
         <CardContent>
           <Box width={250}>
             <TextField
@@ -114,6 +119,7 @@ const LoginForm = () => {
               onChange={handleLoginChange}
               fontFamily={"Poppins"}
               fullWidth
+              sx={{ color: "var(--plain-text) !important" }}
             />
             <TextField
               name="password"
@@ -125,6 +131,7 @@ const LoginForm = () => {
               error={!!loginFieldErrors.password}
               helperText={loginFieldErrors.password}
               fullWidth
+              sx={{ color: "var(--plain-text) !important" }}
             />
           </Box>
         </CardContent>
@@ -163,6 +170,7 @@ const LoginForm = () => {
             variant="caption"
             marginLeft={"15px"}
             fontFamily={"Poppins"}
+            sx={{ color: "var(--plain-text) !important" }}
           >
             Don't have an account yet? &nbsp;
           </Typography>

@@ -121,6 +121,7 @@ const ResetPasswordForm = () => {
           paddingBottom: 4,
           borderRadius: 4,
           width: 400,
+          backgroundColor: "var(--main-bg-color) !important",
         }}
       >
         <Box textAlign={"center"}>
@@ -134,7 +135,11 @@ const ResetPasswordForm = () => {
 
         <CardHeader
           title="Reset your password"
-          sx={{ fontWeight: "bold", textAlign: "center" }}
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "var(--plain-text) !important",
+          }}
         />
         <CardContent sx={{ marginBottom: 0 }}>
           <Grid component="form" onSubmit={handleSubmit} container spacing={2}>
@@ -150,6 +155,7 @@ const ResetPasswordForm = () => {
                 helperText={userDetailsFieldErrors.password}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={12}>
@@ -164,6 +170,7 @@ const ResetPasswordForm = () => {
                 helperText={userDetailsFieldErrors.confirmPassword}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid

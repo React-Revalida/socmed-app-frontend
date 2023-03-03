@@ -163,6 +163,7 @@ const SignupForm = () => {
           paddingBottom: 4,
           borderRadius: 4,
           width: 800,
+          backgroundColor: "var(--main-bg-color) !important",
         }}
       >
         <Box textAlign={"center"}>
@@ -176,7 +177,11 @@ const SignupForm = () => {
 
         <CardHeader
           title="Create an account"
-          sx={{ fontWeight: "bold", textAlign: "center" }}
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "var(--plain-text) !important",
+          }}
         />
         <CardContent sx={{ marginBottom: 0 }}>
           <Grid component="form" onSubmit={handleSubmit} container spacing={2}>
@@ -191,6 +196,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.firstname}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -204,6 +210,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.middlename}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -217,6 +224,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.lastname}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -230,6 +238,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.username}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -243,6 +252,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.email}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -257,6 +267,7 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.password}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -271,11 +282,17 @@ const SignupForm = () => {
                 helperText={userDetailsFieldErrors.confirmPassword}
                 onChange={handleUserDetailsChange}
                 fullWidth
+                sx={{ color: "var(--plain-text) !important" }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <FormControl fullWidth>
-                <InputLabel id="gender">Gender</InputLabel>
+                <InputLabel
+                  id="gender"
+                  sx={{ color: "var(--plain-text) !important" }}
+                >
+                  Gender
+                </InputLabel>
                 <CustomSelect
                   labelId="gender"
                   id="gender"
@@ -319,6 +336,7 @@ const SignupForm = () => {
                     position: "absolute",
                     left: -90,
                     outline: "none",
+                    color: "var(--plain-text) !important",
                   }}
                 />
               </div>

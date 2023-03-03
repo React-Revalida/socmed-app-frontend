@@ -16,6 +16,7 @@ const ResetPasswordPage = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
+        backgroundColor: "var(--main-bg-color) !important",
       }}
     >
       <ResetPasswordForm />
