@@ -132,10 +132,10 @@ const ForgotPasswordForm = () => {
             sx={{
               fontFamily: "Poppins",
               width: 250,
-              backgroundColor: "#00d5bf",
+              backgroundColor: "var(--gray) !important",
               borderRadius: 8,
               ":hover": {
-                backgroundColor: "#00d5bf",
+                backgroundColor: "var(--gray) !important",
               },
             }}
           >

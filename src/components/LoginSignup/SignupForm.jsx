@@ -336,7 +336,7 @@ const SignupForm = () => {
                     position: "absolute",
                     left: -90,
                     outline: "none",
-                    color: "var(--plain-text) !important",
+                    color: "var(--plain-text)",
                   }}
                 />
               </div>
@@ -358,10 +358,10 @@ const SignupForm = () => {
                 sx={{
                   fontFamily: "Poppins",
                   width: 250,
-                  backgroundColor: "#00d5bf",
+                  backgroundColor: "var(--gray) !important",
                   borderRadius: 8,
                   ":hover": {
-                    backgroundColor: "#00d5bf",
+                    backgroundColor: "var(--gray) !important",
                   },
                 }}
               >
