@@ -15,7 +15,7 @@ const FriendSuggestions = () => {
   return (
     <div className="friendSuggestions">
       <div className="friendSuggestionsHeader">
-        <span>Connect with...</span>
+        <span>Have a tea with...</span>
       </div>
       {whoToFollow.map((user) => (
         <FriendSuggestionItem
