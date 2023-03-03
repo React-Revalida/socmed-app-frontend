@@ -308,9 +308,24 @@ const SignupForm = () => {
                     });
                   }}
                 >
-                  <MenuItem value="MALE">Male</MenuItem>
-                  <MenuItem value="FEMALE">Female</MenuItem>
-                  <MenuItem value="OTHERS">Others</MenuItem>
+                  <MenuItem
+                    sx={{ color: "var(--plain-text) !important" }}
+                    value="MALE"
+                  >
+                    Male
+                  </MenuItem>
+                  <MenuItem
+                    sx={{ color: "var(--plain-text) !important" }}
+                    value="FEMALE"
+                  >
+                    Female
+                  </MenuItem>
+                  <MenuItem
+                    sx={{ color: "var(--plain-text) !important" }}
+                    value="OTHERS"
+                  >
+                    Others
+                  </MenuItem>
                 </CustomSelect>
               </FormControl>
             </Grid>
