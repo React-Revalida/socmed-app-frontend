@@ -364,7 +364,7 @@ const Profile = () => {
                       color={"var(--twitter-color)"}
                       sx={{ fontWeight: 400 }}
                     >
-                      No liked posts yet...
+                      No sipped posts yet...
                     </Typography>
                   </Grid>
                 </Grid>
